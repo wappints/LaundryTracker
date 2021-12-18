@@ -60,14 +60,11 @@ const systemController = {
         });
     }
     else{
-        errors = errors.errors;
 
         var details = {};
 
-        for(i = 0; i < errors.length; i++)
-            details[errors[i].param + 'Error'] = errors[i].msg;
 
-        res.render(';ogin', details);
+        res.render('login', details);
     }
 }
 }

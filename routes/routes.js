@@ -7,5 +7,5 @@ const app = express();
 const db = require('../models/db.js');
 app.set('views', path.join(__dirname, '../views'))
 app.get('/', systemController.getSystem);
-app.get('/login', systemController.postLogin);
+app.post('/login', systemController.postLogin);
 module.exports = app;  

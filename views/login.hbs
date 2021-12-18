@@ -5,14 +5,14 @@
                 <form class="form-container" method="post" action="/login">
                   <div class="form-group">
                     <label for="ACCType">Account</label>
-                    <select id="ACCType" class="form-select" aria-label="Default select example">
+                    <select id="ACCType" class="form-select" aria-label="Default select example" name="ACCType">
                       <option value="ADMIN">Admin</option>
                       <option selected="EMPLOYEE">Employee</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label for="PASSField">Password</label>
-                    <input type="password" class="form-control" id="PASSField">
+                    <input type="password" class="form-control" id="PASSField" name="PASSField">
                   </div>
                   <button onclick="test()" target="_self" class="btn btn-info btn-block" role="button">Login</button>
                 </form>

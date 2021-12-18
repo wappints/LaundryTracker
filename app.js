@@ -31,6 +31,13 @@ app.use(express.static(path.join(__dirname, '/public')))
 
 app.use('/', routes)
 /*
+app.post('/login', function(req, res) {
+  var acc = req.body.ACCType;
+  var pass = req.body.PASSField;
+  console.log("post received: %s %s", acc, pass)
+});
+*/
+/*
 app.use(function (req, res) {
     res.render('error', {
       css: ['global', 'error'],
