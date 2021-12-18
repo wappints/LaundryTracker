@@ -11,12 +11,12 @@ const routes = require('./routes/routes.js')
 
 //hbs
 const hbs = exphbs.create({
-    defaultLayout: 'main',
+    defaultLayout: 'loginLayout',
     extname: '.hbs',
     layoutsDir: path.join(__dirname, 'views/layouts'),
     partialsDir: path.join(__dirname, 'views/partials'),
   })
-
+ 
 //env
 dotenv.config();
 hostname = process.env.HOSTNAME;

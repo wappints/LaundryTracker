@@ -2,7 +2,7 @@
   "name": "julian",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,6 +14,7 @@
     "connect-mongo": "^4.6.0",
     "dotenv": "^10.0.0",
     "electron": "^16.0.5",
+    "electron-log": "^4.4.3",
     "express": "^4.17.2",
     "express-handlebars": "^6.0.2",
     "express-session": "^1.17.2",

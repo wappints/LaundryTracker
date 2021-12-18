@@ -13,16 +13,8 @@ const Sales = require('../models/SalesModel.js');
 const systemController = {
 
     getSystem : function (req, res) {
-        details = {ACCType: req.ACCType }
-        console.log("LOSER")
-        if (req)
-            console.log("WINNER")
-            //res.render("home", {details})
-        
-        else 
-            console.log("LOSER")
 
-        }
+            res.render("login", {})
 }
-
+}
 module.exports = systemController;
