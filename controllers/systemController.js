@@ -27,17 +27,14 @@ const systemController = {
         console.log(PASSField)
     
 
-       if (ACCType === "Employee")
+       if (ACCType === "EMPLOYEE")
        {
         db.findOne(System, {EMPPass : PASSField}, {}, function(result){
             console.log(result)
             if (result != null){
-                bcrypt.compare(PASSField, result.EMPPass, function(err, equal){
-
-                    if(equal){
+                    if(result.EMPPass === PASSField){
                         console.log("FOUND")
-                        req.session.ACCType = type.ACCType;
-                        res.redirect('/home');
+                        res.render('home', {ACCType : ACCType, layout : 'mainLayout'});
                     }
                     else{
                         console.log("NOT FOUND")
@@ -47,8 +44,7 @@ const systemController = {
                         res.render("login", details);
                     }
 
-                });
-            }
+                }
             else{
                 console.log("NOT FOUND 2")
                 var details = {
@@ -59,7 +55,32 @@ const systemController = {
         });
     }
     else 
-        console.log("LMAO")
+    {
+        db.findOne(System, {ADMINPass : PASSField}, {}, function(result){
+            console.log(result)
+            if (result != null){
+                    if(result.ADMINPass === PASSField){
+                        console.log("FOUND")
+                        res.render('home', {ACCType : ACCType, layout : 'mainLayout'});
+                    }
+                    else{
+                        console.log("NOT FOUND")
+                        var details = {
+                            loginError : `Password is incorrect`
+                        }
+                        res.render("login", details);
+                    }
+
+                }
+            else{
+                console.log("NOT FOUND 2")
+                var details = {
+                    loginError : `Password is not associated with any account`
+                }
+                res.render("login", details);
+            }
+        });
+    }
     }
     else{
 

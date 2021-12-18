@@ -102,3 +102,45 @@ SyntaxError: Identifier 'hbs' has already been declared
     at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:56:20
     at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
     at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-19 03:01:53.965] [error] C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\systemController.js:48
+                });
+                 ^
+
+SyntaxError: Unexpected token ')'
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1038:15)
+    at Module._compile (node:internal/modules/cjs/loader:1072:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1169:10)
+    at Module.load (node:internal/modules/cjs/loader:988:32)
+    at Module._load (node:internal/modules/cjs/loader:829:12)
+    at Function.c._load (node:electron/js2c/asar_bundle:5:13331)
+    at Module.require (node:internal/modules/cjs/loader:1012:19)
+    at require (node:internal/modules/cjs/helpers:94:18)
+    at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\routes\routes.js:4:26)
+[2021-12-19 03:02:33.165] [error] ReferenceError: PASSfield is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\systemController.js:35:43
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:56:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-19 03:02:49.271] [error] ReferenceError: type is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\systemController.js:37:47
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:56:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-19 03:03:32.186] [error] TypeError: Cannot set properties of undefined (setting 'ACCType')
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\systemController.js:37:45
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:56:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-19 03:03:56.128] [error] TypeError: Cannot create property '_locals' on string 'Employee'
+    at ServerResponse.render (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\express\lib\response.js:1008:16)
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\systemController.js:37:29
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:56:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-19 03:05:59.791] [error] TypeError: Cannot create property '_locals' on string 'Employee'
+    at ServerResponse.render (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\express\lib\response.js:1008:16)
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\systemController.js:37:29
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:56:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
