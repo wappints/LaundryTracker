@@ -1,35 +1,49 @@
-const {createWindow} = require('./main')
-const {app} = require('electron')
+const dotenv = require('dotenv')
+const express = require('express')
+const bodyParser = require('body-parser')
+const exphbs = require('express-handlebars')
+const path = require('path')
+//const fse = require('fs-extra')
 
-app.whenReady().then(createWindow)
-app.allowRendererProcesesReuse = false;
-const routes = require('./routes/routes.js');
-
-
-const express = require('express'); 
-var exp = express();
-const dotenv = require('dotenv'); 
-const db = require('./models/db.js'); 
-
-exp.use('/', routes);
-
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
-
-exp.set('view engine', 'hbs'); 
-exp.use(express.urlencoded({extended : true}));
-exp.use(express.static('public'));
-
-dotenv.config(); 
-
-hostname = process.env.HOSTNAME;
-port = process.env.PORT || 3000; 
+const app = express()
+const routes = require('./routes/routes.js')
+//const { dialog } = require('electron')
 
 //hbs
+const hbs = exphbs.create({
+    defaultLayout: 'main',
+    extname: '.hbs',
+    layoutsDir: path.join(__dirname, 'views/layouts'),
+    partialsDir: path.join(__dirname, 'views/partials'),
+  })
 
-exp.listen(port, hostname, function () {
-    console.log(`Server is running at:`);
-    console.log(`http://localhost` + `:` + port);
-});
+//env
+dotenv.config();
+hostname = process.env.HOSTNAME;
+port = process.env.PORT;
 
 
+app.engine('hbs', hbs.engine)
+app.set('view engine', '.hbs')
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.static(path.join(__dirname, '/public')))
+
+app.use('/', routes)
+
+app.use(function (req, res) {
+    res.render('error', {
+      css: ['global', 'error'],
+      status: {
+        code: '404',
+        message: 'Not Found'
+      },
+      Level: parseInt(req.session.level)
+    })
+  })
+  
+  app.listen(port, hostname, function () {
+    console.log('Server running at:')
+    console.log('http://' + hostname + ':' + port)
+  })
+  
+  module.export = app

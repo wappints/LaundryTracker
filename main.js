@@ -1,30 +1,48 @@
 
-const {BrowserWindow} = require('electron')
-//const {handlebarsHbs} = require('handlebars-hbs');
+const {app, BrowserWindow} = require('electron')
 const url = require('url')
 const path = require('path')
-/*const newHandlebars = new handlebarsHbs(
-   path.join(__dirname, 'views'), // the path to views folder
-   path.join(__dirname, 'views', 'layouts'), // the path to layouts
-   'login.hbs',// the main file i'ts similar to the following example
-   path.join(__dirname, 'views', 'temp') // the temp folder i'ts very important because since that's where all the .html already rendered are saved
-);*/
 
-function createWindow() {
-   const win = new BrowserWindow({        webPreferences: {
-      nodeIntegration: true}, width: 1920, height: 1080})
-   win.loadURL(url.format ({
-      pathname: path.join(__dirname, 'login.html'),
-      protocol: 'file:',
-      slashes: true
-   }), {})
+dotenv.config({ path: path.join(__dirname, '.env') })
+
+const port = process.env.PORT
+const hostname = process.env.HOSTNAME
+require('./app.js');
+
+if (process.env.PORTABLE_EXECUTABLE_DIR !== undefined) {
+   logPath = path.join(process.env.PORTABLE_EXECUTABLE_DIR, '/logs')
+ } else if (fse.existsSync(path.join(appPath, '../../logs'))) {
+   logPath = path.join(appPath, '../../logs')
+ }
+
+//This is the OG createWindow()
+
+// function createWindow() {
+//    const win = new BrowserWindow({        webPreferences: {
+//       nodeIntegration: true}, width: 1920, height: 1080})
+//    win.loadURL(url.format ({
+//       pathname: path.join(__dirname, 'login.html'),
+//       protocol: 'file:',
+//       slashes: true
+//    }), {})
    
-   /*
-   mainWindow.webContents.on('did-finish-load', () => {
-      mainWindow.show();
-      mainWindow.focus();
-    });
-    */
+// }
+
+//This is the test createWindow()
+
+function createWindow(){
+   const win = new BrowserWindow({
+      width: 1920,
+      height: 1080    
+   })
+
+   win.loadURL('http://' + hostname + ':' + port)
 }
 
-module.exports = {createWindow}
+app.on('ready', createWindow)
+
+app.on('activate', function () {
+   if (mainWindow === null) {
+     createWindow()
+   }
+ })
