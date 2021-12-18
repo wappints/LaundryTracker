@@ -1,0 +1,13 @@
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js">
+              function sending(option) {
+        settings = {ACCType : option}
+      $.ajax({
+        url: 'controllers/systemController',
+        type: 'GET',
+        dataType: 'json',
+        data: settings,
+        cache: true,
+        success: function (data) {}
+      });
+      }
+        </script>

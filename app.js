@@ -3,14 +3,15 @@ const {app} = require('electron')
 
 app.whenReady().then(createWindow)
 app.allowRendererProcesesReuse = false;
+const routes = require('./routes/routes.js');
 
 
 const express = require('express'); 
 var exp = express();
 const dotenv = require('dotenv'); 
 const db = require('./models/db.js'); 
-const routes = require('./routes/routes.js');
 
+exp.use('/', routes);
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -25,12 +26,10 @@ hostname = process.env.HOSTNAME;
 port = process.env.PORT || 3000; 
 
 //hbs
-exp.set('view engine', 'hbs');
 
 exp.listen(port, hostname, function () {
     console.log(`Server is running at:`);
     console.log(`http://localhost` + `:` + port);
 });
 
-exp.use('views/login', routes)
 
