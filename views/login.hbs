@@ -1,10 +1,11 @@
+   
     <div class="container-fluid bg">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-3">
-                <form class="form-container">
+                <form class="form-container" method="post" action="/login">
                   <div class="form-group">
                     <label for="ACCType">Account</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select id="ACCType" class="form-select" aria-label="Default select example">
                       <option value="ADMIN">Admin</option>
                       <option selected="EMPLOYEE">Employee</option>
                     </select>
@@ -13,8 +14,41 @@
                     <label for="PASSField">Password</label>
                     <input type="password" class="form-control" id="PASSField">
                   </div>
-                  <a href="home.html" target="_self" class="btn btn-info btn-block" role="button">Login</a>
+                  <button onclick="test()" target="_self" class="btn btn-info btn-block" role="button">Login</button>
                 </form>
+                <p id = "loginError" class = "error">{{loginError}}</p>
             </section>
         </section>
     </div>
+
+  <script>
+          function test()
+    {
+        var option = $("#ACCType option:selected").val()
+        var option2 = $("#PASSField ").val()
+        console.log(option)
+         console.log(option2)
+        if (option == "ADMIN")
+        {
+          if (option2 == "6789")
+          {
+            console.log("CORRECT")
+          }
+          else
+            console.log("WRONG PASSWORD")
+        }
+        else
+
+          if(option2 == "12345")
+          {
+            console.log("CORRECT")
+          }
+
+          else 
+            console.log("WRONG PASSWORD")
+
+
+            //$.get('/login', {_id : card, qty : stocks}, function (result) {});
+      }
+ 
+ </script>

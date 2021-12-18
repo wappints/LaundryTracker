@@ -3,6 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const path = require('path')
+const db = require('./models/db.js'); 
 //const fse = require('fs-extra')
 
 const app = express()
@@ -29,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, '/public')))
 
 app.use('/', routes)
-
+/*
 app.use(function (req, res) {
     res.render('error', {
       css: ['global', 'error'],
@@ -40,7 +41,7 @@ app.use(function (req, res) {
       Level: parseInt(req.session.level)
     })
   })
-  
+  */db.connect();
   app.listen(port, hostname, function () {
     console.log('Server running at:')
     console.log('http://' + hostname + ':' + port)

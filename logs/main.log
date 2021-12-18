@@ -75,3 +75,25 @@ SyntaxError: Identifier 'hbs' has already been declared
     at require (node:internal/modules/cjs/helpers:94:18)
     at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\app.js:9:16)
     at Module._compile (node:internal/modules/cjs/loader:1116:14)
+[2021-12-19 02:16:41.658] [error] ReferenceError: db is not defined
+    at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\app.js:43:5)
+    at Module._compile (node:internal/modules/cjs/loader:1116:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1169:10)
+    at Module.load (node:internal/modules/cjs/loader:988:32)
+    at Module._load (node:internal/modules/cjs/loader:829:12)
+    at Function.c._load (node:electron/js2c/asar_bundle:5:13331)
+    at Module.require (node:internal/modules/cjs/loader:1012:19)
+    at require (node:internal/modules/cjs/helpers:94:18)
+    at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\main.js:38:1)
+    at Module._compile (node:internal/modules/cjs/loader:1116:14)
+[2021-12-19 02:17:21.570] [error] MongoParseError: Invalid connection string "mmongodb://localhost:27017/LaundryTracker"
+    at new ConnectionString (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongodb-connection-string-url\lib\index.js:68:19)
+    at parseOptions (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongodb\lib\connection_string.js:213:17)
+    at new MongoClient (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongodb\lib\mongo_client.js:62:63)
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\connection.js:779:16
+    at new Promise (<anonymous>)
+    at NativeConnection.Connection.openUri (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\connection.js:776:19)
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\index.js:332:10
+    at promiseOrCallback (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\helpers\promiseOrCallback.js:10:12)
+    at Mongoose._promiseOrCallback (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\index.js:1158:10)
+    at Mongoose.connect (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\index.js:331:20)

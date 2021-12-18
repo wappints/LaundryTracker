@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 // LaundryTracker is the name of the database
-const url = 'mmongodb://localhost:27017/LaundryTracker';
+const url = 'mongodb://localhost:27017/LaundryTracker';
 // additional connection options
 const options = {
     useUnifiedTopology: true,
