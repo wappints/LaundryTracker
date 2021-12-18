@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
         <link rel="stylesheet" href="public/css/styles.css">
         <link rel="stylesheet" href="public/css/nav.css">
+        <link rel="stylesheet" href="public/css/home.css">
         <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
      
    <body>      
@@ -34,7 +35,7 @@
                <a class="nav-link rounded-top rounded-bottom navhover" href="log.html" style="color: black;"><i class="bi bi-journal-text"></i> Log</a>
             </li>
             <li>
-               <a class="nav-link rounded-top rounded-bottom navhover" href="contacts.html" style="color: black;"><i class="bi bi-person-rolodex"></i> Contacts</a>
+               <a class="nav-link rounded-top rounded-bottom navhover" href="contacts.html" style="color: black;"><i class="bi bi-cash-stack"></i> Balances</a>
             </li>
 
             <li>
@@ -43,13 +44,17 @@
 
          </ul>
          <ul class="navbar-nav ms-auto">
+          <div class="px-3 font-monospace" style="font-size: 14px;">
+            Current Session: Yeohan Norona
+            <br>
+            Type: Employee
+            </div>
           <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle rounded-top rounded-bottom navhover" id="SessionDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
                   <i class="bi bi-clock-fill"></i> Session
               </a>
               <div class="dropdown-menu" aria-labelledby="SessionDropDown">
                 <a class="dropdown-item" href="addSessionModal" data-toggle="modal" data-target="#addSessionModal">Add Session</a>
-                <a class="dropdown-item" href="ChangeSessionModal" data-toggle="modal" data-target="#ChangeSessionModal">Change Session</a>
                 <a class="dropdown-item" href="endSessionModal" data-toggle="modal" data-target="#endSessionModal">End Session</a>
           </li>
 
@@ -74,11 +79,6 @@
                 <input type="password">
               </div>
 
-               <div class="modal-body col-12">
-                 <h5>Time (ex. 13:45)</h5>
-                 <input class="text">
-
-               </div>
 
                <div class="modal-footer">
                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -196,11 +196,15 @@
         </div>
 
         <div class="col-md-9">
-          <h3 class="text-center mt-3 mb-3"><button><i class="bi bi-caret-left-fill"></i></button></i> YYYY - MM - DD <button><i class="bi bi-caret-right-fill"></i></button> </h3>
+          <h3 class="text-center mt-3 mb-3 col-10"><a class="btn btn-outline-primary"><i class="bi bi-caret-left-fill"></i></a></i> YYYY - MM - DD <a class="btn btn-outline-primary"><i class="bi bi-caret-right-fill"></i></a> </h3>
         </div>
 
-        <div class="col-md-1 mt-3 mr-3">
-          <button class="btn btn-primary" data-toggle="modal" data-target="">Edit Sales</button>
+        <div class="col-md-1 mt-3 editsales">
+          Edit Sales:
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
         </div>
 
         <!--model for editPrice-->
@@ -210,7 +214,7 @@
             <div class="modal-content">
               
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Sales</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Price</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -261,6 +265,12 @@
                     <div class="col-md-4 ml-auto">Soap</div>
                     <div class="col-md-8 ml-auto">
                       <input type="text" value="15">
+                    </div>
+                  </div>
+                  <div class="row mt-2">
+                    <div class="col-md-4 ml-auto">Downy</div>
+                    <div class="col-md-8 ml-auto">
+                      <input type="text" value="10">
                     </div>
                   </div>
 
@@ -322,69 +332,70 @@
                     </div>
                   </div>
 
-                  <row>
-
-                    <div class="col-3 form-check">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="lighCloth" checked>
-                      <label class="form-check-label" for="lightCloth">
-                        Light
-                      </label>
-                    </div>
-
-                    <div class="col-3 form-check">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="thickCloth">
-                      <label class="form-check-label" for="thickCloth">
-                        Thick
-                      </label>
-                    </div>
-
-                  </row>
-
-
-                  <div class="row">
-                    <div class="col-md-4 ml-auto" >Wash Token</div>
+                  <div class="row mt-2">
+                    <div class="col-md-4 ml-auto" >Thin Wash</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text">
+                      <input type="text" size="4">
                     </div>
                   </div>
 
                   <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Dry Token</div>
+                    <div class="col-md-4 ml-auto">Thin Dry</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text">
+                      <input type="text" size="4">
+                    </div>
+                  </div>
+
+                  <div class="row mt-2">
+                    <div class="col-md-4 ml-auto">Thick Wash</div>
+                    <div class="col-md-8 ml-auto">
+                      <input type="text" size="4">
+                    </div>
+                  </div>
+
+                  <div class="row mt-2">
+                    <div class="col-md-4 ml-auto">Thin Dry</div>
+                    <div class="col-md-8 ml-auto">
+                      <input type="text" size="4">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Fold</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text">
+                      <input type="text" size="4">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Soap</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text">
+                      <input type="text" size="4">
+                    </div>
+                  </div>
+
+                  <div class="row mt-2">
+                    <div class="col-md-4 ml-auto">Downy</div>
+                    <div class="col-md-8 ml-auto">
+                      <input type="text" size="4">
                     </div>
                   </div>
 
                   
 
                   <div class="row mt-3">
-                    <div class="col-md ml-auto" text="text-left">Amount</div>
+                    <div class="col-md ml-auto" text="text-left">Total Price: </div>
+                  </div>
+
+                  <div class="row mt-2">
+                    <div class="col-md-4 ml-auto">Amount Paid: </div>
+                    <div class="col-md-8 ml-auto">
+                      <input type="text" size="4">
+                    </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-md ml-auto">Paid</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md ml-auto">Balance</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md ml-auto">Total</div>
+                    <div class="col-md ml-auto">Balance: </div>
                   </div>
 
 
@@ -416,70 +427,135 @@
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Name</th>
-                <th scope="col">Total Items</th>
+                <th scope="col">Thin Wash</th>
+                <th scope="col">Thin Dry</th>
+                <th scope="col">Thick Wash</th>
+                <th scope="col">Thick Dry</th>
+                <th scope="col">Fold</th>
+                <th scope="col">Soap</th>
+                <th scope="col">Downy</th>
+                <th scope="col">Total Price</th>
                 <th scope="col">Amount Paid</th>
                 <th scope="col">Balance</th>
                 <th scope="col">Token Error</th>
+                <th scope="col">Phone Number</th>
               </tr>
             </thead>
 
             <!-- Table Body -->
             <tbody>
               <tr>
-                <td width="200">John Doe</td>
-                <td><input class="text-center" value="321" readonly></td>
-                <td><input class="text-center" value="123" readonly></td>
-                <td><input class="text-center" value="104,999" readonly></td>
+                <td ><input class="text-center" size="35" value="John Doe" readonly></td>
+                <td ><input class="text-center" size="2" value="1" readonly></td>
+                <td ><input class="text-center" size="2" value="2" readonly></td>
+                <td ><input class="text-center" size="2" value="3" readonly></td>
+                <td ><input class="text-center" size="2" value="4" readonly></td>
+                <td ><input class="text-center" size="2" value="1" readonly></td>
+                <td ><input class="text-center" size="2" value="2" readonly></td>
+                <td ><input class="text-center" size="2" value="3" readonly></td>
+                <td width="100">321</td>
+                <td width="100">123</td>
+                <td width="100">104,999</td>
                 <td>
-                  <input class="text-center" value="0" readonly> 
+                  <input class="text-center" size="2" value="2" readonly> 
                 </td>
+                <td ><input class="text-center" size="11" value="123412" readonly></td>
 
-                <td><button disabled>X</button></td>
+                <td><a class="btn btn-outline-danger "><i class="bi bi-trash" href="DeleteAccountModal" data-toggle="modal" data-target="#DeleteAccountModal"></i></a></td>
 
               </tr>
 
                <tr>
-                <td width="200">Lorem ipsum</td>
-                <td ><input class="text-center" value="321123" readonly></td>
-                <td><input class="text-center" value="456" readonly></td>
-                <td><input class="text-center" value="1,500" readonly></td>
-                <td><input class="text-center" value="1" readonly></td>
-                <td><button disabled>X</button></td>
+                <td ><input class="text-center" size="35" value="Loren ipsum" readonly></td>
+                <td ><input class="text-center" size="2" value="1" readonly></td>
+                <td ><input class="text-center" size="2" value="2" readonly></td>
+                <td ><input class="text-center" size="2" value="3" readonly></td>
+                <td ><input class="text-center" size="2" value="4" readonly></td>
+                <td ><input class="text-center" size="2" value="1" readonly></td>
+                <td ><input class="text-center" size="2" value="2" readonly></td>
+                <td ><input class="text-center" size="2" value="3" readonly></td>
+                <td width="100">121</td>
+                <td width="100">456</td>
+                <td width="100">1,500</td>
+                <td><input class="text-center" size="2" value="1" readonly></td>
+                <td ><input class="text-center" size="11" value="09123456789" readonly></td>
+                <td><a class="btn btn-outline-danger disabled"><i class="bi bi-trash" href="DeleteAccountModal" data-toggle="modal" data-target="#DeleteAccountModal"></i></a></td>
               </tr>
 
                <tr>
-                <td width="200">dolor sit amet</td>
-                <td ><input class="text-center" value="321125" readonly></td>
-                <td><input class="text-center" value="789" readonly></td>
-                <td><input class="text-center" value="69,000" readonly></td>
-                <td><input class="text-center" value="2" readonly></td>
-                <td><button disabled>X</button></td>
+                <td ><input class="text-center" size="35" value="dolor sit amet" readonly></td>
+                <td ><input class="text-center" size="2" value="1" readonly></td>
+                <td ><input class="text-center" size="2" value="2" readonly></td>
+                <td ><input class="text-center" size="2" value="3" readonly></td>
+                <td ><input class="text-center" size="2" value="4" readonly></td>
+                <td ><input class="text-center" size="2" value="1" readonly></td>
+                <td ><input class="text-center"size="2"  value="2" readonly></td>
+                <td ><input class="text-center" size="2" value="3" readonly></td>
+                <td width="100">130</td>
+                <td width="100">789</td>
+                <td width="100">69,000</td>
+                <td><input class="text-center" size="2" value="2" readonly></td>
+                <td ><input class="text-center" size="11" value="09876543210" readonly></td>
+                <td><a class="btn btn-outline-danger disabled"><i class="bi bi-trash" href="DeleteAccountModal" data-toggle="modal" data-target="#DeleteAccountModal"></i></a></td>
               </tr>
 
               <tr>
-                <td width="200">consectetur adipiscing elit</td>
-                <td ><input class="text-center" value="2314" readonly></td>
-                <td><input class="text-center" value="10124" readonly></td>
-                <td><input class="text-center" value="3,685" readonly></td>
-                <td><input class="text-center" value="3" readonly></td>
-                <td><button disabled>X</button></td>
+                <td ><input class="text-center" size="35" value="consectetur adipiscing elit" readonly></td>
+                <td ><input class="text-center" size="2" value="1" readonly></td>
+                <td ><input class="text-center" size="2" value="2" readonly></td>
+                <td ><input class="text-center" size="2" value="3" readonly></td>
+                <td ><input class="text-center" size="2" value="4" readonly></td>
+                <td ><input class="text-center" size="2" value="1" readonly></td>
+                <td ><input class="text-center" size="2" value="2" readonly></td>
+                <td ><input class="text-center" size="2" value="3" readonly></td>
+                <td width="100">151</td>
+                <td width="100">10124</td>
+                <td width="100">3,685</td>
+                <td><input class="text-center" size="2" value="3" readonly></td>
+                <td ><input class="text-center" size="11" value="09999999999" readonly></td>
+                <td><a class="btn btn-outline-danger disabled"><i class="bi bi-trash" href="DeleteAccountModal" data-toggle="modal" data-target="#DeleteAccountModal"></i></a></td>
               </tr>
 
-               <tr>
-                <td width="200">sed do eiusmod</td>
-                <td ><input class="text-center" value="321123" readonly></td>
-                <td><input class="text-center" value="1234" readonly></td>
-                <td><input class="text-center" value="89,100" readonly></td>
-                <td><input class="text-center" value="4" readonly></td>
-                <td><button disabled>X</button></td>
+              <tr>
+                <td ><input class="text-center" size="35" value="sed do eiusmod" readonly></td>
+                <td ><input class="text-center" size="2" value="1" readonly></td>
+                <td ><input class="text-center" size="2" value="2" readonly></td>
+                <td ><input class="text-center" size="2" value="3" readonly></td>
+                <td ><input class="text-center" size="2" value="4" readonly></td>
+                <td ><input class="text-center" size="2" value="1" readonly></td>
+                <td ><input class="text-center" size="2" value="2" readonly></td>
+                <td ><input class="text-center" size="2" value="3" readonly></td>
+                <td width="100">200</td>
+                <td width="100">1234</td>
+                <td width="100">89,100</td>
+                <td><input class="text-center" size="2" value="4" readonly></td>
+                <td ><input class="text-center" size="11" value="09999999999" readonly></td>
+                <td><a class="btn btn-outline-danger disabled"><i class="bi bi-trash" href="DeleteAccountModal" data-toggle="modal" data-target="#DeleteAccountModal"></i></a></td>
               </tr>
+
 
             </tbody>
+
+            <tr>
+              <td>Total: </td>
+              <td>10</td>
+              <td >10</td>
+              <td>10</td>
+              <td>10</td>
+              <td>10</td>
+              <td>10</td>
+              <td>10</td>
+              <td>200</td>
+              <td>1650</td>
+              <td>500</td>
+              <td>10</td>
+            </tr>
             <!-- End of Table Body -->
 
           </table>
           <!-- End of Table -->
         </div>
+
         </div>
 
          <!-- JQuery -->

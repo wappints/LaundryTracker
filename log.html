@@ -14,7 +14,7 @@
     <nav class="navbar navbar-expand-sm navbar-light">
       <div class = "container-fluid">
       <a href="#" class="navbar-brand">
-         <img src="css/logo.jpg" alt="Dirty Treats Logo" width="50" height="50" class="d-inline-block align-middle"/>
+         <img src="public/css/logo.jpg" alt="Dirty Treats Logo" width="50" height="50" class="d-inline-block align-middle"/>
              </a>
       <button
          class="navbar-toggler"
@@ -35,20 +35,24 @@
                <a class="nav-link rounded-top rounded-bottom navhover" href="log.html" style="color: black;"><i class="bi bi-journal-text"></i> Log</a>
             </li>
             <li>
-               <a class="nav-link rounded-top rounded-bottom navhover" href="contacts.html" style="color: black;"><i class="bi bi-person-rolodex"></i> Contacts</a>
-            </li>
+              <a class="nav-link rounded-top rounded-bottom navhover" href="contacts.html" style="color: black;"><i class="bi bi-cash-stack"></i> Balances</a>
+           </li>
             <li>
               <a class="nav-link rounded-top rounded-bottom navhover" href="inventory.html" style="color: black;"><i class="bi bi-boxes"></i> Inventory</a>
           </li>
          </ul>
          <ul class="navbar-nav ms-auto">
+          <div class="px-3 font-monospace" style="font-size: 14px;">
+            Current Session: Yeohan Norona
+            <br>
+            Type: Employee
+            </div>
           <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle rounded-top rounded-bottom navhover" id="SessionDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
                   <i class="bi bi-clock-fill"></i> Session
               </a>
               <div class="dropdown-menu" aria-labelledby="SessionDropDown">
                 <a class="dropdown-item" href="addSessionModal" data-toggle="modal" data-target="#addSessionModal">Add Session</a>
-                <a class="dropdown-item" href="ChangeSessionModal" data-toggle="modal" data-target="#ChangeSessionModal">Change Session</a>
                 <a class="dropdown-item" href="endSessionModal" data-toggle="modal" data-target="#endSessionModal">End Session</a>
           </li>
 
@@ -67,12 +71,11 @@
                  <input class="text">
 
                </div>
-
-               <div class="modal-body col-12">
-                 <h5>Time (ex. 13:45)</h5>
-                 <input class="text">
-
-               </div>
+              
+               <div class="modal-body">
+                <h5>Password</h5>
+                <input type="password">
+              </div>
 
                <div class="modal-footer">
                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -177,7 +180,7 @@
 
                 <form>
                   <div class="row mt-2">
-                    <div class="col-5">
+                    <div class="col-6">
                       <select class="form-select" aria-label="SelectView">
                         <option selected value="YYYY">YYYY</option>
                         <option value="2021">2021</option>
@@ -185,7 +188,7 @@
                       </select>
                     </div>
                     
-                    <div class="col-4">
+                    <div class="col-6">
                       <select class="form-select" aria-label="SelectView">
                         <option selected value="MM">MM</option>
                         <option value="Jan">Jan</option>
@@ -203,9 +206,6 @@
                       </select>
                     </div>
 
-                    <div class="col-3">
-                      <input type="text" class="form-control" placeholder="DD">
-                    </div>
                   </div>
                 </form>
 
@@ -251,25 +251,6 @@
 
                     
                  </ul><br>
-                 <nav aria-label="PageNav">
-                  <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                      <a class="page-link page" href="#" aria-label="Previous">
-                        <i class="bi bi-chevron-left"></i>
-                      </a>
-                    </li>
-                    <li class="page-item"><a class="page-link page" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link page" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link page" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link page" href="#">N</a></li>
-                    <li class="page-item">
-                      <a class="page-link page" href="#" aria-label="Next">
-                        <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
                 
 
               </div>
@@ -281,13 +262,18 @@
                       <thead class="thead-dark">
                         <tr>
                           <th scope="col">Name</th>
-                          <th scope="col">Total Items</th>
+                          <th scope="col">Thin Wash</th>
+                          <th scope="col">Thin Dry</th>
+                          <th scope="col">Thick Wash</th>
+                          <th scope="col">Thick Dry</th>
+                          <th scope="col">Fold</th>
+                          <th scope="col">Soap</th>
+                          <th scope="col">Downy</th>
+                          <th scope="col">Total Price</th>
                           <th scope="col">Amount Paid</th>
                           <th scope="col">Balance</th>
                           <th scope="col">Token Error</th>
-                          <th scope="col">Log</th>
-                          <th scope="col">Employee</th>
-                          <th scope="col">Shift</th>
+                          <th scope="col">Edit Log</th>
                         </tr>
                       </thead>
           
@@ -295,63 +281,101 @@
                       <tbody>
                         <tr>
                           <td width="200">John Doe</td>
+                          <td >1</td>
+                          <td >2</td>
+                          <td >3</td>
+                          <td >4</td>
+                          <td >1</td>
+                          <td >2</td>
+                          <td >3</td>
                           <td >321</td>
                           <td>123</td>
                           <td>104,999.00</td>
                           <td>0</td>
                           <td> Token Error Edited by: Nechayev</td>
-                          <td>Nechayev</td>
-                          <td>8:00-12:00</td>
                         </tr>
           
                          <tr>
                           <td width="200">Lorem ipsum</td>
+                          <td >1</td>
+                          <td >2</td>
+                          <td >3</td>
+                          <td >4</td>
+                          <td >1</td>
+                          <td >2</td>
+                          <td >3</td>
                           <td >321123</td>
                           <td>456</td>
                           <td>1,500.00</td>
                           <td>1</td>
                           <td> </td>
-                          <td>Employee B</td>
-                          <td>12:00-17:00</td>
                         </tr>
                 
           
                          <tr>
                           <td width="200">dolor sit amet</td>
+                          <td >1</td>
+                          <td >2</td>
+                          <td >3</td>
+                          <td >4</td>
+                          <td >1</td>
+                          <td >2</td>
+                          <td >3</td>
                           <td >3210987</td>
                           <td>789</td>
                           <td>69,999.00</td>
                           <td>2</td>
                           <td>Balance Edited by: Employee B</td>
-                          <td>Employee B</td>
-                          <td>12:00-17:00</td>
                         </tr>
           
                         <tr>
                           <td width="200">consectetur adipiscing elit</td>
+                          <td >1</td>
+                          <td >2</td>
+                          <td >3</td>
+                          <td >4</td>
+                          <td >1</td>
+                          <td >2</td>
+                          <td >3</td>
                           <td >24642</td>
                           <td>101112</td>
                           <td>3,695.00</td>
                           <td>3</td>
                           <td>Action made by: Emloyee N</td>
-                          <td>Employee B</td>
-                          <td>12:00-17:00</td>
                         </tr>
           
                          <tr>
                           <td width="200">sed do eiusmod</td>
+                          <td >1</td>
+                          <td >2</td>
+                          <td >3</td>
+                          <td >4</td>
+                          <td >1</td>
+                          <td >2</td>
+                          <td >3</td>
                           <td >321321</td>
                           <td>2134</td>
                           <td>84,999.00</td>
                           <td>4</td>
                           <td>Action made by: Emloyee N</td>
-                          <td>Employee B</td>
-                          <td>12:00-17:00</td>
                         </tr>
           
                       </tbody>
                       <!-- End of Table Body -->
-          
+                      <tr>
+                        <td>Total: </td>
+                        <td>10</td>
+                        <td >10</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>200</td>
+                        <td>1650</td>
+                        <td>500</td>
+                        <td>10</td>
+                      </tr>
                     </table>
                     <!-- End of Table -->
                   </div>
