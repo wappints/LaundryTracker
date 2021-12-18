@@ -1,52 +1,36 @@
+const {createWindow} = require('./main')
+const {app} = require('electron')
+
+app.whenReady().then(createWindow)
+app.allowRendererProcesesReuse = false;
+
+
 const express = require('express'); 
+var exp = express();
 const dotenv = require('dotenv'); 
-const hbs = require('hbs'); 
 const db = require('./models/db.js'); 
 const routes = require('./routes/routes.js');
-const app = express(); 
+
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
-app.set('view engine', 'hbs'); 
-app.use(express.urlencoded({extended : true}));
-app.use(express.static('public'));
+exp.set('view engine', 'hbs'); 
+exp.use(express.urlencoded({extended : true}));
+exp.use(express.static('public'));
 
 dotenv.config(); 
 
 hostname = process.env.HOSTNAME;
 port = process.env.PORT || 3000; 
 
-//register partials
-hbs.registerHelper('IFEQUALS', function(v1, v2, options) {
-    console.log(v1)
-    console.log(v2)
-    if(v1 == v2) {
-      return options.fn(this);
-    }
-    return options.inverse(this);
-  });
-             
-app.use(
-    session({
-        secret: 'LaundryTracker',
-        resave: false,
-        saveUninitialized: false,
-        store: MongoStore.create({ mongoUrl:"mongodb+srv://admin:admin@clickandship.qtova.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"})
-    })
-);
+//hbs
+exp.set('view engine', 'hbs');
 
-app.use('/', routes);
-
-//path if it does not exist
-app.use(function (req, res) {
-    res.send('error');
-});
-
-//connect to database
-db.connect();
-
-app.listen(port, hostname, function () {
+exp.listen(port, hostname, function () {
     console.log(`Server is running at:`);
     console.log(`http://localhost` + `:` + port);
 });
+
+exp.use('views/login', routes)
+

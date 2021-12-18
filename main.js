@@ -1,22 +1,18 @@
 
-const {app, BrowserWindow} = require('electron')
-require('./app.js')
+const {BrowserWindow} = require('electron')
+
 const url = require('url')
 const path = require('path')
 
 //Electron
 
-let win
-
 function createWindow() {
-   win = new BrowserWindow({width: 1920, height: 1080})
+   const win = new BrowserWindow({width: 1920, height: 1080})
    win.loadURL(url.format ({
-      pathname: path.join(__dirname, 'views/login.hbs'),
+      pathname: path.join(__dirname, 'login.html'),
       protocol: 'file:',
       slashes: true
    }))
 }
 
-app.on('ready', createWindow)
-
-
+module.exports = {createWindow}

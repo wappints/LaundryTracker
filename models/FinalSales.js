@@ -3,19 +3,11 @@
 var mongoose = require('mongoose');
 
 // defines the schema for collection `prices`
-var SalesSchema = new mongoose.Schema({
+var FinalSalesSchema = new mongoose.Schema({
    
-    SalesID : {
+    FinalSalesID : {
         type : mongoose.Schema.Types.ObjectId,
         required : true
-    },
-    Name: {
-        type: String,
-        required: true
-    },
-    PhoneNum: {
-        type: String,
-        required: true
     },
     DDate: {
         type: Date,
@@ -24,54 +16,50 @@ var SalesSchema = new mongoose.Schema({
 
 
     
-    ThinWash: {
+    ThinWashSum: {
         type: Number,
         required: true
     },
-    ThinDry: {
+    ThinDrySum: {
         type: Number,
         required: true
     },
-    ThickWash: {
+    ThickWashSum: {
         type: Number,
         required: true
     },
-    ThickDry: {
+    ThickDrySum: {
         type: Number,
         required: true
     },
-    Fold: {
+    FoldSum: {
         type: Number,
         required: true
     },
-    Soap: {
+    SoapSum: {
         type: Number,
         required: true
     },
-    Downy: {
-        type: Number,
-        required: true
-    },
-
-
-
-    AmountPaid: {
-        type: Number,
-        required: true
-    },
-    TotalPrice: {
-        type: Number,
-        required: true
-    },
-    Balance: {
+    DownySum: {
         type: Number,
         required: true
     },
 
 
 
-
-    TokenError: {
+    AmountPaidSum: {
+        type: Number,
+        required: true
+    },
+    TotalPriceSum: {
+        type: Number,
+        required: true
+    },
+    BalanceSum: {
+        type: Number,
+        required: true
+    },
+    TokenErrorSum: {
         type: Number,
         required: true
     },
@@ -86,5 +74,5 @@ var SalesSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `sales` -> plural of the argument `Sale`
 */
-module.exports = mongoose.model('Sale', SalesSchema, 'sales');
+module.exports = mongoose.model('finalsale', FinalSalesSchema, 'finalsales');
 

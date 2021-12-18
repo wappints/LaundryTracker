@@ -3,32 +3,22 @@
 var mongoose = require('mongoose');
 
 // defines the schema for collection `transact`
-var LogSchema = new mongoose.Schema({
+var LogsSchema = new mongoose.Schema({
    
     LogID : {
         type : mongoose.Schema.Types.ObjectId,
         required : true
     },
-
-    Name: {
-        type: String,
-        required: true
-    },
-
-    Logs : [  {
+  
+    Editors : [{
         type : String,
-        required: false
+        required : false
     }],
 
-    ShiftStart: {
-        type: Numbers,
-        required: true
-    },
-
-    ShiftEnd: {
-        type: Numbers,
-        required: true
-    }
+    EditLog : [{
+        type : String,
+        required : false
+    }],
 
 });
 
@@ -36,7 +26,7 @@ var LogSchema = new mongoose.Schema({
     exports a mongodb.model object based on cartSchema` (defined above)
     when another script exports from this file
     This model executes CRUD operations
-    to collection `logs` -> plural of the argument `Log`
+    to collection `log` -> plural of the argument `Log`
 */
-module.exports = mongoose.model('Log', LogSchema, 'logs');
+module.exports = mongoose.model('Log', LogsSchema, 'log');
 

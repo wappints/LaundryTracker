@@ -5,9 +5,9 @@ const db = require('../models/db.js');
 // import module `System` from `../models/SystemModel.js`
 const System = require('../models/SystemModel.js');
 
-const bcrypt = require ('bcrypt');
+//const bcrypt = require ('bcrypt');
 
-const { validationResult } = require('express-validator');
+//const { validationResult } = require('express-validator');
 const SystemModel = require('../models/SystemModel.js');
 
 /*
@@ -20,7 +20,7 @@ const systemController = {
         if (req != null)
             console.log("HI")
         else 
-            console.log("ERROR")
+            res.render('login')
         /*if (req.session.ACCType == "ADMIN")
         {
             var query = {ADMINPass : req.params.PASSField}

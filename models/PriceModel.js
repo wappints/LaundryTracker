@@ -10,34 +10,41 @@ var PriceSchema = new mongoose.Schema({
         required : true
     },
 
-    ThinWash: {
-        type: Numbers,
+
+    
+    TNWPRice: {
+        type: Number,
         required: true
     },
 
-    ThinDry: {
-        type: Numbers,
+    TNDPrice: {
+        type: Number,
         required: true
     },
 
-    ThickWash: {
-        type: Numbers,
+    TNKPrice: {
+        type: Number,
         required: true
     },
 
-    ThickDry: {
-        type: Numbers,
+    TKDPrice: {
+        type: Number,
         required: true
     },
 
-    Fold: {
-        type: Numbers,
+    FOLDPrice: {
+        type: Number,
         required: true
     },
-    Soap: {
-        type: Numbers,
+    SOAPPrice: {
+        type: Number,
+        required: true
+    },
+    DOWNPrice: {
+        type: Number,
         required: true
     }
+
 });
 
 /*
