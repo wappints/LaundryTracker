@@ -63,7 +63,6 @@ function createWindow(){
    win = null
   })
 
-  win.removeMenu()
   win.maximize()
 }
 
