@@ -4,7 +4,7 @@ const { request } = require('express');
 const db = require('../models/db.js');
 
 // import module `System` from `../models/SystemModel.js`
-const System= require('../models/SystemModel.js');
+const System = require('../models/SystemModel.js');
 const bcrypt = require ('bcrypt');
 
 const { validationResult } = require('express-validator');
@@ -24,17 +24,12 @@ const systemController = {
     if(errors.isEmpty()){
         var ACCType = req.body.ACCType;
         var PASSField = req.body.PASSField;
+        console.log(PASSField)
+    
 
-        var type = {
-
-            EMPPass : PASSField
-
-        }
-
-       var projection = "EMPPass";
        if (ACCType === "Employee")
        {
-        db.findOne(System, type, projection, function(result){
+        db.findOne(System, {EMPPass : PASSField}, {}, function(result){
             console.log(result)
             if (result != null){
                 bcrypt.compare(PASSField, result.EMPPass, function(err, equal){
