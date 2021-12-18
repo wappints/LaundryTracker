@@ -24,5 +24,5 @@ var SystemSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `balances` -> plural of the argument `balance`
 */
-module.exports = mongoose.model('System', SystemSchema, 'systems');
+module.exports = mongoose.model('System', SystemSchema);
 

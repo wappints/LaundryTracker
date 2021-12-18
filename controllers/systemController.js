@@ -19,12 +19,11 @@ const systemController = {
         res.render("login", {})
 },
     postLogin: function (req, res) {
-        console.log("I AM HERE2")
     var errors = validationResult(req);
 
     if(errors.isEmpty()){
         var ACCType = req.body.ACCType;
-        var PASSfield = req.body.PASSField;
+        var PASSField = req.body.PASSField;
 
         var type = {
 
@@ -32,17 +31,21 @@ const systemController = {
 
         }
 
-        var projection = 'EMPPass ADMINPass';
-        console.log("I AM HERE")
+       var projection = "EMPPass";
+       if (ACCType === "Employee")
+       {
         db.findOne(System, type, projection, function(result){
+            console.log(result)
             if (result != null){
-                bcrypt.compare(EMPPass, result.EMPPas, function(err, equal){
+                bcrypt.compare(PASSField, result.EMPPass, function(err, equal){
 
                     if(equal){
+                        console.log("FOUND")
                         req.session.ACCType = type.ACCType;
                         res.redirect('/home');
                     }
                     else{
+                        console.log("NOT FOUND")
                         var details = {
                             loginError : `Password is incorrect`
                         }
@@ -52,12 +55,16 @@ const systemController = {
                 });
             }
             else{
+                console.log("NOT FOUND 2")
                 var details = {
                     loginError : `Password is not associated with any account`
                 }
                 res.render("login", details);
             }
         });
+    }
+    else 
+        console.log("LMAO")
     }
     else{
 
