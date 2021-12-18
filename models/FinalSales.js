@@ -74,5 +74,5 @@ var FinalSalesSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `sales` -> plural of the argument `Sale`
 */
-module.exports = mongoose.model('finalsale', FinalSalesSchema, 'finalsales');
+module.exports = mongoose.model('finalsale', FinalSalesSchema, 'finalsale');
 

@@ -53,5 +53,5 @@ var PriceSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `prices` -> plural of the argument `Price`
 */
-module.exports = mongoose.model('Price', PriceSchema, 'prices');
+module.exports = mongoose.model('Price', PriceSchema, 'Price');
 

@@ -23,5 +23,5 @@ var InventorySchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `Inventories` -> plural of the argument `Inventory`
 */
-module.exports = mongoose.model('Inventory', InventorySchema, 'Inventories');
+module.exports = mongoose.model('Inventory', InventorySchema, 'Inventory');
 

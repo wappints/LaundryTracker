@@ -28,5 +28,5 @@ var LogsSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `log` -> plural of the argument `Log`
 */
-module.exports = mongoose.model('Log', LogsSchema, 'log');
+module.exports = mongoose.model('Log', LogsSchema, 'Log');
 

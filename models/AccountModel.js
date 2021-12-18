@@ -36,5 +36,5 @@ var AccountSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `Account` -> plural of the argument `account`
 */
-module.exports = mongoose.model('Account', AccountSchema, 'account');
+module.exports = mongoose.model('Account', AccountSchema, 'Account');
 

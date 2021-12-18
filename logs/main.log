@@ -97,3 +97,8 @@ SyntaxError: Identifier 'hbs' has already been declared
     at promiseOrCallback (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\helpers\promiseOrCallback.js:10:12)
     at Mongoose._promiseOrCallback (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\index.js:1158:10)
     at Mongoose.connect (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\index.js:331:20)
+[2021-12-19 02:55:12.690] [error] TypeError: Cannot read properties of null (reading 'EMPPass')
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\systemController.js:40:50
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:56:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
