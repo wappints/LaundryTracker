@@ -1,11 +1,11 @@
 
 // import module `mongodb`
 var mongoose = require('mongoose');
-
+console.log("MODEL ACCESSED");
 // defines the schema for collection `prices`
 var SystemSchema = new mongoose.Schema({
    
-
+    
     EMPPass: {
         type: String,
         required: true
@@ -24,5 +24,5 @@ var SystemSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `balances` -> plural of the argument `balance`
 */
-module.exports = mongoose.model('System', SystemSchema);
+module.exports = mongoose.model('System', SystemSchema, 'System');
 
