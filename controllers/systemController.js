@@ -61,7 +61,7 @@ const systemController = {
             if (result != null){
                     if(result.ADMINPass === PASSField){
                         console.log("FOUND")
-                        res.render('home', {ACCType : ACCType, layout : 'mainLayout'});
+                        res.render('home', {layout : 'mainLayout', ACCType : ACCType});
                     }
                     else{
                         console.log("NOT FOUND")
