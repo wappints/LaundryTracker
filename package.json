@@ -12,6 +12,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "browserify": "^17.0.0",
+    "bson": "^4.6.0",
     "connect-mongo": "^4.6.0",
     "dotenv": "^10.0.0",
     "electron": "^16.0.5",

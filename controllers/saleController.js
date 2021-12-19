@@ -100,11 +100,14 @@ const saleController = {
         var currentDate = new Date();
         currentDate.setHours(currentDate.getHours() + 8);
         currentDate = new Date(currentDate.toISOString());
+        var ObjectID = require('bson').ObjectID;
+        var id  = new ObjectID();
         console.log(currentDate)
         var docs = {
+            _id : id,
             Name : Name,
-            DDate : currentDate,
             PhoneNum : Phone,
+            DDate : currentDate,
             ThinWash : TNW,
             ThinDry : TND,
             ThickWash : TKW,
@@ -112,8 +115,8 @@ const saleController = {
             Fold : Fold,
             Soap : Soap,
             Downy : Downy,
-            TotalPrice : TotalPrice,
             AmountPaid : AmountPaid,
+            TotalPrice : TotalPrice,
             Balance : Balance,
             TokenError : tokenDefault
         }
@@ -123,7 +126,12 @@ const saleController = {
             if(result)
                 console.log("INSERTED!")
             else
-                console.log("FAILED INSERTION!")
+                console.log("FAILED INSERTION!") // <-------------- Jihro fix this pls
+            db.findMany(Sale, {}, {}, function(result){
+                console.log(result)
+                res.redirect('home')
+            })
+
         })
 
     }

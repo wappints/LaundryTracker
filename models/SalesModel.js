@@ -1,71 +1,71 @@
 
 // import module `mongodb`
 var mongoose = require('mongoose');
-
+const { ObjectID } = require('bson');
 // defines the schema for collection `prices`
 var SalesSchema = new mongoose.Schema({
    
-    SalesID : {
-        type : mongoose.Schema.Types.ObjectId,
+    _id : {
+        type : ObjectID,
         required : true
     },
     Name: {
         type: String,
-        required: true
+        required: false
     },
     PhoneNum: {
         type: String,
-        required: true
+        required: false
     },
     DDate: {
         type: Date,
-        required: true
+        required: false
     },
 
 
     
     ThinWash: {
         type: Number,
-        required: true
+        required: false
     },
     ThinDry: {
         type: Number,
-        required: true
+        required: false
     },
     ThickWash: {
         type: Number,
-        required: true
+        required: false
     },
     ThickDry: {
         type: Number,
-        required: true
+        required: false
     },
     Fold: {
         type: Number,
-        required: true
+        required: false
     },
     Soap: {
         type: Number,
-        required: true
+        required: false
     },
     Downy: {
         type: Number,
-        required: true
+        required: false
     },
 
 
 
     AmountPaid: {
         type: Number,
-        required: true
+        required: false
     },
     TotalPrice: {
         type: Number,
-        required: true
+        required: false
     },
     Balance: {
         type: Number,
-        required: true
+        required: false
     },
 
 
@@ -73,7 +73,7 @@ var SalesSchema = new mongoose.Schema({
 
     TokenError: {
         type: Number,
-        required: true
+        required: false
     },
 
 

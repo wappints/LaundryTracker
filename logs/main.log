@@ -333,3 +333,14 @@ SyntaxError: Unexpected token ')'
     at Module.require (node:internal/modules/cjs/loader:1012:19)
     at require (node:internal/modules/cjs/helpers:94:18)
     at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\routes\routes.js:5:24)
+[2021-12-20 05:15:04.324] [error] TypeError: Invalid select() argument. Must be string or object.
+    at model.Query.select (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\query.js:1082:9)
+    at Function.findOne (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:2247:6)
+    at Object.findOne (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:54:15)
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:130:16
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:30:29
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\helpers\promiseOrCallback.js:17:11
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4969:21
+    at _done (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:3143:16)
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:3158:18
+    at callbackWrapper (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:3112:20)
