@@ -28,7 +28,16 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', '.hbs')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname)))
-
+/*
+hbs.registerHelper('IFEQUALS', function(v1, v2, options) {
+  console.log(v1)
+  console.log(v2)
+  if(v1 == v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+*/
 app.use('/', routes)
 /*
 app.post('/login', function(req, res) {

@@ -18,7 +18,7 @@ var SalesSchema = new mongoose.Schema({
         required: true
     },
     DDate: {
-        type: Date,
+        type: String,
         required: true
     },
 
