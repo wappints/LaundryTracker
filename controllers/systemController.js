@@ -19,29 +19,31 @@ const systemController = {
 },
     postLogin: function (req, res) {
     var errors = validationResult(req);
+    //var acctype = req.body.ACCType;
+    //console.log(acctype)
     var currentDate = new Date()
     currentDate.setHours(currentDate.getHours() + 8);
-    var formattedDate = currentDate.toISOString().split('T')[0];
+    //var formattedDate = currentDate.toISOString().split('T')[0];
 
-    console.log(formattedDate)
+    //console.log(formattedDate)
 
     if(errors.isEmpty()){
         var ACCType = req.body.ACCType;
         var PASSField = req.body.PASSField;
-        console.log(PASSField)
+        //console.log(PASSField)
     
 
        if (ACCType === "EMPLOYEE")
        {
         db.findOne(System, {EMPPass : PASSField}, {}, function(result){
-            console.log(result)
+            //console.log(result)
             if (result != null){
                     if(result.EMPPass === PASSField){
-                        console.log("FOUND")
-                        res.render('home', {ACCType : ACCType, layout : 'mainLayout', DATE : formattedDate});
+                        //console.log("FOUND")
+                        res.redirect("home/EMPLOYEE");
                     }
                     else{
-                        console.log("NOT FOUND")
+                        //console.log("NOT FOUND")
                         var details = {
                             loginError : `Password is incorrect`
                         }
@@ -50,7 +52,7 @@ const systemController = {
 
                 }
             else{
-                console.log("NOT FOUND 2")
+                //console.log("NOT FOUND 2")
                 var details = {
                     loginError : `Password is not associated with any account`
                 }
@@ -61,14 +63,14 @@ const systemController = {
     else 
     {
         db.findOne(System, {ADMINPass : PASSField}, {}, function(result){
-            console.log(result)
+            //console.log(result)
             if (result != null){
                     if(result.ADMINPass === PASSField){
-                        console.log("FOUND")
-                        res.render('home', {layout : 'mainLayout', ACCType : ACCType, DATE : formattedDate});
+                        //console.log("FOUND")
+                        res.redirect("home/ADMIN");
                     }
                     else{
-                        console.log("NOT FOUND")
+                        //console.log("NOT FOUND")
                         var details = {
                             loginError : `Password is incorrect`
                         }
@@ -77,7 +79,7 @@ const systemController = {
 
                 }
             else{
-                console.log("NOT FOUND 2")
+                //console.log("NOT FOUND 2")
                 var details = {
                     loginError : `Password is not associated with any account`
                 }

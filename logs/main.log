@@ -188,3 +188,148 @@ SyntaxError: Unexpected token ')'
     at require (node:internal/modules/cjs/helpers:94:18)
     at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\main.js:38:1)
     at Module._compile (node:internal/modules/cjs/loader:1116:14)
+[2021-12-20 00:21:22.770] [error] ReferenceError: details is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:55:64
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:69:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 00:22:18.567] [error] ReferenceError: details is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:56:64
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:69:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 00:23:11.471] [error] ReferenceError: details is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:58:64
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:69:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 00:24:03.081] [error] ReferenceError: details is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:59:64
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:69:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 00:29:45.229] [error] ReferenceError: details is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:59:17
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:69:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 00:34:50.865] [error] TypeError: result is not iterable
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:42:27
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:68:30
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 00:38:04.042] [error] TypeError: result is not iterable
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:42:27
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:68:30
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 00:38:35.351] [error] TypeError: result is not iterable
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:42:27
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:68:30
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 00:38:52.248] [error] C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:38
+        db.findMany(Sale, {[{DDate : {$gte:start}}, {DDate : {lte:end}}], {}, function(result){
+                                                  ^
+
+SyntaxError: Unexpected token ','
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1038:15)
+    at Module._compile (node:internal/modules/cjs/loader:1072:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1169:10)
+    at Module.load (node:internal/modules/cjs/loader:988:32)
+    at Module._load (node:internal/modules/cjs/loader:829:12)
+    at Function.c._load (node:electron/js2c/asar_bundle:5:13331)
+    at Module.require (node:internal/modules/cjs/loader:1012:19)
+    at require (node:internal/modules/cjs/helpers:94:18)
+    at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\routes\routes.js:5:24)
+[2021-12-20 00:39:05.016] [error] TypeError: result is not iterable
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:42:27
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:68:30
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 00:39:46.511] [error] ReferenceError: details is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:63:17
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:69:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 00:41:08.507] [error] ReferenceError: details is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:63:17
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:69:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 00:45:36.446] [error] ReferenceError: details is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:62:17
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:69:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 00:46:06.293] [error] ReferenceError: details is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:60:17
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:69:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 00:47:36.671] [error] C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:38
+        db.findMany(Sale, {DDate : end)}, {}, function(result){
+                                      ^
+
+SyntaxError: Unexpected token ')'
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1038:15)
+    at Module._compile (node:internal/modules/cjs/loader:1072:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1169:10)
+    at Module.load (node:internal/modules/cjs/loader:988:32)
+    at Module._load (node:internal/modules/cjs/loader:829:12)
+    at Function.c._load (node:electron/js2c/asar_bundle:5:13331)
+    at Module.require (node:internal/modules/cjs/loader:1012:19)
+    at require (node:internal/modules/cjs/helpers:94:18)
+    at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\routes\routes.js:5:24)
+[2021-12-20 00:59:50.730] [error] TypeError: result is not iterable
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:34:27
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:68:30
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 01:00:13.782] [error] TypeError: result is not iterable
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:34:27
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:68:30
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 01:00:38.240] [error] TypeError: result is not iterable
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:34:27
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:68:30
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 01:05:53.398] [error] ReferenceError: details is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:59:17
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:69:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 01:06:26.006] [error] ReferenceError: details is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:59:17
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:69:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 01:07:19.693] [error] ReferenceError: details is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:58:17
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:69:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 03:15:28.208] [error] TypeError: details2.push is not a function
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:77:26
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:56:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 03:28:57.314] [error] C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:77
+                res.render('home', {ACCType : typeOfAcc, DDate : formattedDate, entry : details, layout : 'mainLayout')
+                                                                                                                      ^
+
+SyntaxError: Unexpected token ')'
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1038:15)
+    at Module._compile (node:internal/modules/cjs/loader:1072:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1169:10)
+    at Module.load (node:internal/modules/cjs/loader:988:32)
+    at Module._load (node:internal/modules/cjs/loader:829:12)
+    at Function.c._load (node:electron/js2c/asar_bundle:5:13331)
+    at Module.require (node:internal/modules/cjs/loader:1012:19)
+    at require (node:internal/modules/cjs/helpers:94:18)
+    at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\routes\routes.js:5:24)

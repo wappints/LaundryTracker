@@ -10,9 +10,7 @@ var PriceSchema = new mongoose.Schema({
         required : true
     },
 
-
-    
-    TNWPRice: {
+    TNWPrice: {
         type: Number,
         required: true
     },
@@ -22,7 +20,7 @@ var PriceSchema = new mongoose.Schema({
         required: true
     },
 
-    TNKPrice: {
+    TKWPrice: {
         type: Number,
         required: true
     },

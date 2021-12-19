@@ -36,7 +36,7 @@
         </div>
 
         <div class="col-md-9">
-          <h3 class="text-center mt-3 mb-3 col-10"><a class="btn btn-outline-primary"><i class="bi bi-caret-left-fill"></i></a></i> {{DATE}} <a class="btn btn-outline-primary"><i class="bi bi-caret-right-fill"></i></a> </h3>
+          <h3 class="text-center mt-3 mb-3 col-10"><a class="btn btn-outline-primary"><i class="bi bi-caret-left-fill"></i></a></i> {{DDate}} <a class="btn btn-outline-primary"><i class="bi bi-caret-right-fill"></i></a> </h3>
         </div>
 
         <div class="col-md-1 mt-3 editsales">
@@ -67,50 +67,50 @@
 
 
                   <div class="row">
-                    <div class="col-md-4 ml-auto" >Light Wash</div>
+                    <div class="col-md-4 ml-auto" >Thin Wash</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="65">
+                      <input type="text" value="{{object.TNWPrice}}">
                     </div>
                   </div>
 
                   <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Thick Dry</div>
+                    <div class="col-md-4 ml-auto">Thin Dry</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="65">
+                      <input type="text" value="{{object.TNDPrice}}">
                     </div>
                   </div>
 
                   <div class="row  mt-2">
                     <div class="col-md-4 ml-auto" >Thick Wash</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="75">
+                      <input type="text" value="{{object.TKWPrice}}">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thick Dry</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="75">
+                      <input type="text" value="{{object.TKDPrice}}">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Fold</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="60">
+                      <input type="text" value="{{object.FOLDPrice}}">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Soap</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="15">
+                      <input type="text" value="{{object.SOAPPrice}}">
                     </div>
                   </div>
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Downy</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="10">
+                      <input type="text" value="{{object.DOWNPrice}}">
                     </div>
                   </div>
 
@@ -139,6 +139,17 @@
 
 
         <!--modal for Add Sales-->
+        <div hidden> 
+        <div  id="TNWPrice"  > {{object.TNWPrice}}</div>
+        <div  id="TNDPrice"  >{{object.TNDPrice}}</div>
+        <div  id="TKWPrice"  >{{object.TKWPrice}}</div>
+        <div  id="TKDPrice"  >{{object.TKDPrice}}</div>
+        <div  id="FOLDPrice" >{{object.FOLDPrice}}</div>
+        <div  id="SOAPPrice" >{{object.SOAPPrice}}</div>
+        <div  id="DOWNPrice" >{{object.DOWNPrice}}</div>
+          
+        </div>
+
         <div class="modal fade" id="salesBtn" tabindex="-1" role="dialog" aria-labelledby="salesModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -151,7 +162,8 @@
               </div>
               
               <div class="modal-body">
-                <div class="container-fluid">
+                <div class="container-fluid" id="ADDSalesID">
+                  <form method="post" action="/home/{{ACCType}}" id="addSaleForm">
                   <div class="row">
                     <div class="col-md-4">
 
@@ -160,93 +172,141 @@
                     </div>
 
                     <div class="col-md-8 ml-auto">
-                      <input type="text">
+                      <input type="text" id="ADDName" name="ADDName">
 
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-md-4 ml-auto">Phone</div>
+                    <div class="col-md-4 ml-auto" >Phone</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text">
+                      <input type="text" id="ADDPhone" name="ADDPhone">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto" >Thin Wash</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" size="4">
+                      <input class="ADDSALES_INPUTidentifier" type="tel" size="4" id="ADDThinW" name="ADDThinW" value="0">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thin Dry</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" size="4">
+                      <input class="ADDSALES_INPUTidentifier"type="tel" size="4" id="ADDThinD" name="ADDThinD"  value="0">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thick Wash</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" size="4">
+                      <input class="ADDSALES_INPUTidentifier" type="tel" size="4" id="ADDThickW"  name="ADDThickW" value="0">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thin Dry</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" size="4">
+                      <input class="ADDSALES_INPUTidentifier"  type="tel" size="4" id="ADDThickD" name="ADDThickD" value="0">
                     </div>
                   </div>
 
                   <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Fold</div>
+                    <div class="col-md-4 ml-auto"  >Fold</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" size="4">
+                      <input class="ADDSALES_INPUTidentifier" type="tel" size="4" id="ADDFold" name="ADDFold" value="0">
                     </div>
                   </div>
 
                   <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Soap</div>
+                    <div class="col-md-4 ml-auto" >Soap</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" size="4">
+                      <input class="ADDSALES_INPUTidentifier"  type="tel" size="4" id="ADDSoap" name="ADDSoap" value="0">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Downy</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" size="4">
+                      <input class="ADDSALES_INPUTidentifier" type="tel" size="4" id="ADDDowny" name="ADDDowny" value="0">
                     </div>
                   </div>
 
                   
 
                   <div class="row mt-3">
-                    <div class="col-md ml-auto" text="text-left">Total Price: </div>
+                    <div class="col-md ml-auto" text="text-left" id="ADDTotalPrice" name="ADDTotalPrice">Total Price: </div>
+                    <input  type="number" size="4" id="ADDTotalPriceR" name="ADDTotalPriceR" value="0" readonly>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Amount Paid: </div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" size="4">
+                      <input type="tel" size="4"  id="ADDAmountPaid" name="ADDAmountPaid">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-md ml-auto">Balance: </div>
+                    <div class="col-md ml-auto" id="ADDBalance">Balance: </div>
+                    <input  type="number" size="4" id="ADDBalanceR" name="ADDBalanceR" value="0" readonly>
                   </div>
+                  <script>
+                    window.onload = function(){
+                      var jaba = parseInt($("#TNWPrice").text())
+                      console.log(jaba)
+                    }
+                    $(".ADDSALES_INPUTidentifier ").on("change paste keyup cut select", function() {
+                      console.log("OUCH")
+                      var TNWPrice = parseInt($("#TNWPrice").text())
+                      var TNDPrice =parseInt($("#TNDPrice").text())
+                      var TKWPrice =parseInt($("#TKWPrice").text())
+                      var TKDPrice =parseInt($("#TKDPrice").text())
+                      var FOLDPrice =parseInt($("#FOLDPrice").text())
+                      var SOAPPrice =parseInt($("#SOAPPrice").text())
+                      var DOWNPrice =parseInt($("#DOWNPrice").text())
+                      var TNWQty = parseInt($("#ADDThinW").val())
+                      var TNDQty = parseInt($("#ADDThinD").val())
+                      var TKWQty = parseInt($("#ADDThickW").val())
+                      var TKDQty = parseInt($("#ADDThickW").val())
+                      var FOLDQty = parseInt($("#ADDFold").val())
+                      var SOAPQty = parseInt($("#ADDSoap").val())
+                      var DOWNQty = parseInt($("#ADDDowny").val())
+                      /*
+                     console.log(TNWPrice)
+                     console.log(TNDPrice)
+                     console.log(TKWPrice)
+                     console.log(TKDPrice)
+                     console.log(FOLDPrice)
+                     console.log(SOAPPrice)
+                     console.log(DOWNPrice)
+                     console.log(TNWQty)
+                     console.log(TNDQty )
+                     console.log(TKDQty)
+                     console.log(TKWQty)
+                     console.log(FOLDQty)
+                     console.log(DOWNQty)
+                      console.log(SOAPQty)
+                      */
+                      var computation = TNWPrice * TNWQty + TNDPrice * TNDQty +  TKWPrice * TKWQty +  TKDPrice * TKDQty +  FOLDPrice * FOLDQty + SOAPPrice * SOAPQty + DOWNPrice * DOWNQty
+                      
+                      $("#ADDTotalPriceR").val(computation);
+                    });
 
+                    $("#ADDAmountPaid").on("change paste keyup cut select", function() {
+                      $("#ADDBalanceR").val( $("#ADDTotalPriceR").val() - $("#ADDAmountPaid").val()) 
+                    });
+
+                    </script>
 
                   <div class="row mt-2">
                     
 
                     <button class="col-3 text-right btn btn-danger" data-dismiss="modal">Cancel</button>
                     <div class="col-1"></div>
-                    <button class="col-3 text-right btn btn-success ml-2" data-dismiss="modal">Confirm</button>
+                    <button class="col-3 text-right btn btn-success ml-2" form="addSaleForm" target="_self">Confirm</button>
                   </div>
-
+                  </form>
 
                   </div>
                 </div>
@@ -285,7 +345,7 @@
             <!-- Table Body -->
             <tbody>
               {{#each this.entry}}
-                <div id="Entry_id" hidden> {{this._id}} </div>
+                <div id="Entry_id" hidden> {{this.SalesID}} </div>
                 <td ><input  id ="NAMEField" class="text-center" size="35" value="{{this.Name}}"readonly>  </td>
                 <td ><input  id ="TNWField"class="text-center" size="2" value="{{this.ThinWash}}" readonly>  </td>
                 <td ><input  id ="TNDField"class="text-center" size="2" value="{{this.ThinDry}}" readonly>  </td>
