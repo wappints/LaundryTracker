@@ -5,7 +5,6 @@ const db = require('../models/db.js');
 
 // import module `System` from `../models/SystemModel.js`
 const System = require('../models/SystemModel.js');
-const bcrypt = require ('bcrypt');
 
 const { validationResult } = require('express-validator');
 /*
@@ -20,6 +19,11 @@ const systemController = {
 },
     postLogin: function (req, res) {
     var errors = validationResult(req);
+    var currentDate = new Date()
+    currentDate.setHours(currentDate.getHours() + 8);
+    var formattedDate = currentDate.toISOString().split('T')[0];
+
+    console.log(formattedDate)
 
     if(errors.isEmpty()){
         var ACCType = req.body.ACCType;
@@ -34,7 +38,7 @@ const systemController = {
             if (result != null){
                     if(result.EMPPass === PASSField){
                         console.log("FOUND")
-                        res.render('home', {ACCType : ACCType, layout : 'mainLayout'});
+                        res.render('home', {ACCType : ACCType, layout : 'mainLayout', DATE : formattedDate});
                     }
                     else{
                         console.log("NOT FOUND")
@@ -61,7 +65,7 @@ const systemController = {
             if (result != null){
                     if(result.ADMINPass === PASSField){
                         console.log("FOUND")
-                        res.render('home', {layout : 'mainLayout', ACCType : ACCType});
+                        res.render('home', {layout : 'mainLayout', ACCType : ACCType, DATE : formattedDate});
                     }
                     else{
                         console.log("NOT FOUND")
