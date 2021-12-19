@@ -1,5 +1,44 @@
 {{>header}}
 
-<div class='body'>
-    
-</div>
+        <div class="col-md-12">
+          <table class="table text-center table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Add/Remove</th>
+              </tr>
+            </thead>
+
+            <!-- Table Body -->
+            <tbody>
+              <tr>
+                <td width="200">Downy</td>
+                <td >111</td>
+                <td>150</td>
+                <td>
+                    <button class="btn btn-danger" data-toggle="modal" ><i class="bi bi-dash"></i></button>
+                        <input type="text" size="1" class="text-center" placeholder="Qty.">
+                    <button class="btn btn-primary" data-toggle="modal"><i class="bi bi-plus"></i></button>
+                </td>
+              </tr>
+
+               <tr>
+                <td width="200">Soap</td>
+                <td >222</td>
+                <td>250</td>
+                <td>
+                    <button class="btn btn-danger" data-toggle="modal" ><i class="bi bi-dash"></i></button>
+                        <input type="text" size="1" class="text-center" placeholder="Qty.">
+                    <button class="btn btn-primary" data-toggle="modal" ><i class="bi bi-plus"></i></button>
+                </td>
+              </tr>
+
+
+            </tbody>
+            <!-- End of Table Body -->
+
+          </table>
+          <!-- End of Table -->
+        </div>

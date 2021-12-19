@@ -11,13 +11,13 @@ const { validationResult } = require('express-validator');
     defines an object which contains functions executed as callback
     when a client requests for `signup` paths in the server
 */
-const systemController = {
+
+const saleController = {
 
     getEntries : function (req, res) {
 
-        
 },
    
 
 }
-module.exports = systemController;
+module.exports = saleController;

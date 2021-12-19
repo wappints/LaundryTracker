@@ -15,109 +15,6 @@
       </div>
    </div>
    </nav>
-         
-         <!-- Cart -->
-      <div class="container-fluid">
-      <div class="row">
-        <!-- Page Header -->
-
-        <div class="col-md-1 mt-3">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#salesBtn">Add Sales</button>
-        </div>
-
-        <div class='col-md-1 mt-3'>
-          <button class='btn btn-primary' data-toggle="modal" data-target="#editPrice">Edit Price</button>
-        </div>
-
-        <div class="col-md-9">
-          <h3 class="text-center mt-3 mb-3"><button><i class="bi bi-caret-left-fill"></i></button></i> <div id="DDATE"> {{DATE}} </div> <button><i class="bi bi-caret-right-fill"></i></button> </h3>
-        </div>
-
-        <div class="col-md-1 mt-3 mr-3">
-          <button class="btn btn-primary" data-toggle="modal" data-target="">Edit Sales</button>
-        </div>
-
-        <!--model for editPrice-->
-
-        <div class="modal fade" id="editPrice" tabindex="-1" role="dialog" aria-labelledby="salesModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Sales</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              
-              <div class="modal-body">
-                <div class="container-fluid">
-
-                  
-
-
-                  <div class="row">
-                    <div class="col-md-4 ml-auto" >Light Wash</div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="text" value="65">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Thick Dry</div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="text" value="65">
-                    </div>
-                  </div>
-
-                  <div class="row  mt-2">
-                    <div class="col-md-4 ml-auto" >Thick Wash</div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="text" value="75">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Thick Dry</div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="text" value="75">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Fold</div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="text" value="60">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Soap</div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="text" value="15">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                   
-
-                    <button class="col-3 text-right btn btn-danger ml-4" data-dismiss="modal">Cancel</button>
-                    <div class="col-1"></div>
-                    <button class="col-3 text-right btn btn-success" data-dismiss="modal">Confirm</button>
-                  </div>
-
-
-                  </div>
-                </div>
-              </div>
-
-
-              
-
-
-            </div>
-          </div>
-        </div>
 
         
 
@@ -259,6 +156,22 @@
 
             <!-- Table Body -->
             <tbody>
+              {{#each this.entry}}
+              <tr>
+                <div id = "Entry_id" hidden>{{this._id}}</div>
+                <td><input id=NAMEField class = "text-center" size = "35" value = "{{this.Name}}" readonly></td>
+                <td><input id=TNWFIeld class = "text-center" size = "2" value = "{{this.ThinWash}}" readonly></td>
+                <td><input id=TNDField class = "text-center" size = "2" value = "{{this.ThinDry}}" readonly></td>
+                <td><input id=TKWField class = "text-center" size = "2" value = "{{this.ThickWash}}" readonly></td>
+                <td><input id=TKDField class = "text-center" size = "2" value = "{{this.ThickDry}}" readonly></td>
+                <td><input id=FOLDField class = "text-center" size = "2" value = "{{this.Fold}}" readonly></td>
+                <td><input id=SOAPField class = "text-center" size = "2" value = "{{this.Soap}}" readonly></td>
+                <td><input id=DOWNYField class = "text-center" size = "2" value = "{{this.Downy}}" readonly></td>
+                <td id = "TTLField" width = "100" value = "{{this.totalPrice}}"></td>
+                <td id = "AMTField" width = "100" value = "{{this.AmountPaid}}"></td>
+                <td id = "BALField" width = "100" value = "{{this.Balance}}"></td>
+              </tr>
+              {{/each}}
               <tr>
                 <td width="200">John Doe</td>
                 <td><input class="text-center" value="321" readonly></td>
