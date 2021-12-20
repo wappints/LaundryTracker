@@ -344,3 +344,13 @@ SyntaxError: Unexpected token ')'
     at _done (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:3143:16)
     at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:3158:18
     at callbackWrapper (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:3112:20)
+[2021-12-20 12:44:25.605] [error] TypeError: Cannot read properties of null (reading 'TNWPrice')
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:69:39
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:56:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-20 12:44:41.619] [error] TypeError: Cannot read properties of null (reading 'TNWPrice')
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:69:39
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:56:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
