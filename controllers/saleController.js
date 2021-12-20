@@ -134,7 +134,20 @@ const saleController = {
 
         })
 
+    },
+
+    deleteEntry : function (req, res)
+    {
+        var id = req.query._id
+        console.log(id)
+        db.deleteOne(Sale, {_id : id}, function(result){
+            if (result)
+                console.log("Entry deletion SUCCESSFUL")
+            else
+                console.log("Entry deletion FAILURE")
+        })
     }
+
    
 
 }

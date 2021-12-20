@@ -58,7 +58,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              
+              <form id="editSaleForm" mode="post" action="/edit">
               <div class="modal-body">
                 <div class="container-fluid">
 
@@ -118,12 +118,13 @@
 
                     <button class="col-3 text-right btn btn-danger ml-4" data-dismiss="modal">Cancel</button>
                     <div class="col-1"></div>
-                    <button class="col-3 text-right btn btn-success" data-dismiss="modal">Confirm</button>
+                    <button class="col-3 text-right btn btn-success" form="editSaleForm" data-dismiss="modal">Confirm</button>
                   </div>
 
 
                   </div>
                 </div>
+                </form>
               </div>
 
 
@@ -139,13 +140,13 @@
 
         <!--modal for Add Sales-->
         <div hidden> 
-        <div  id="TNWPrice"  > {{object.TNWPrice}}</div>
-        <div  id="TNDPrice"  >{{object.TNDPrice}}</div>
-        <div  id="TKWPrice"  >{{object.TKWPrice}}</div>
-        <div  id="TKDPrice"  >{{object.TKDPrice}}</div>
-        <div  id="FOLDPrice" >{{object.FOLDPrice}}</div>
-        <div  id="SOAPPrice" >{{object.SOAPPrice}}</div>
-        <div  id="DOWNPrice" >{{object.DOWNPrice}}</div>
+        <div  id="TNWPrice"  name ="TNWPrice"> {{object.TNWPrice}}</div>
+        <div  id="TNDPrice"  name="TNDPrice" >{{object.TNDPrice}}</div>
+        <div  id="TKWPrice"  name="TKWPrice" >{{object.TKWPrice}}</div>
+        <div  id="TKDPrice"  name="TKDPrice" >{{object.TKDPrice}}</div>
+        <div  id="FOLDPrice" name="FOLDPrice" >{{object.FOLDPrice}}</div>
+        <div  id="SOAPPrice" name="SOAPPrice">{{object.SOAPPrice}}</div>
+        <div  id="DOWNPrice" name="DOWNPrice">{{object.DOWNPrice}}</div>
           
         </div>
 
@@ -155,7 +156,7 @@
               
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add Sales</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" id="xAddSalebtn" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -251,9 +252,26 @@
                     <input  type="number" size="4" id="ADDBalanceR" name="ADDBalanceR" value="0" readonly>
                   </div>
                   <script>
-                    window.onload = function(){
+                    /*window.onload() = function(){
                       var jaba = parseInt($("#TNWPrice").text())
                       console.log(jaba)
+                    }*/
+
+                    $("#xAddSalebtn").click()
+                    {
+                      console.log("X BUTTON")
+                      //$(".ADDSALES_INPUTidentifier").each(function(index, element)
+                      //{
+                      //    $(this).val(0)  
+                      //})
+                    }
+                    $("#cancelAddSalebtn").click()
+                    {
+                      console.log("cancel BUTTON")
+                      //$(".ADDSALES_INPUTidentifier").each(function(index, element)
+                      //{
+                      //    $(this).val(0)  
+                      //})
                     }
                     $(".ADDSALES_INPUTidentifier ").on("change paste keyup cut select", function() {
                       console.log("OUCH")
@@ -267,7 +285,7 @@
                       var TNWQty = parseInt($("#ADDThinW").val())
                       var TNDQty = parseInt($("#ADDThinD").val())
                       var TKWQty = parseInt($("#ADDThickW").val())
-                      var TKDQty = parseInt($("#ADDThickW").val())
+                      var TKDQty = parseInt($("#ADDThickD").val())
                       var FOLDQty = parseInt($("#ADDFold").val())
                       var SOAPQty = parseInt($("#ADDSoap").val())
                       var DOWNQty = parseInt($("#ADDDowny").val())
@@ -301,7 +319,7 @@
                   <div class="row mt-2">
                     
 
-                    <button class="col-3 text-right btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button class="col-3 text-right btn btn-danger" data-dismiss="modal" id="cancelAddSalebtn">Cancel</button>
                     <div class="col-1"></div>
                     <button class="col-3 text-right btn btn-success ml-2" form="addSaleForm" target="_self">Confirm</button>
                   </div>
@@ -343,46 +361,69 @@
 
             <!-- Table Body -->
             <tbody>
-              {{#each this.entry}}
-                <div id="Entry_id" hidden> {{this.SalesID}} </div>
-                <td ><input  id ="NAMEField" class="text-center" size="35" value="{{this.Name}}"readonly>  </td>
-                <td ><input  id ="TNWField"class="text-center" size="2" value="{{this.ThinWash}}" readonly>  </td>
-                <td ><input  id ="TNDField"class="text-center" size="2" value="{{this.ThinDry}}" readonly>  </td>
-                <td ><input  id ="TKWField"class="text-center" size="2" value="{{this.ThickWash}}" readonly>  </td>
-                <td ><input  id ="TKDField" class="text-center" size="2" value="{{this.ThickDry}}" readonly>  </td>
-                <td ><input  id ="FOLDField" class="text-center" size="2" value="{{this.Fold}}" readonly>  </td>
-                <td ><input  id ="SOAPField" class="text-center" size="2" value="{{this.Soap}}" readonly>  </td>
-                <td ><input  id ="DOWNField" class="text-center" size="2" value="{{this.Downy}}" readonly> </td>
-                <td id ="TTLField" width="100" value="{{this.totalPrice}}"></td>
-                <td id ="AMTField" width="100" value="{{this.AmountPaid}}"></td>
-                <td id ="BALField" width="100" value="{{this.Balance}}"></td>
+                                             {{#each this.entry}}
+               <tr id="FinancialEntry" name="FinancialEntry">
+                <td hidden><div id="Entry_id" name="Entry_id" >{{this.SalesID}}</div>  </td>      
+                <td ><input  id ="NAMEField" class="text-center" size="20" value="{{this.Name}}"readonly>  </td>
+                <td ><input  id ="TNWField"class="text-center" size="1" value="{{this.ThinWash}}" readonly>  </td>
+                <td ><input  id ="TNDField"class="text-center" size="1" value="{{this.ThinDry}}" readonly>  </td>
+                <td ><input  id ="TKWField"class="text-center" size="1" value="{{this.ThickWash}}" readonly>  </td>
+                <td ><input  id ="TKDField" class="text-center" size="1" value="{{this.ThickDry}}" readonly>  </td>
+                <td ><input  id ="FOLDField" class="text-center" size="1" value="{{this.Fold}}" readonly>  </td>
+                <td ><input  id ="SOAPField" class="text-center" size="1" value="{{this.Soap}}" readonly>  </td>
+                <td ><input  id ="DOWNField" class="text-center" size="1" value="{{this.Downy}}" readonly> </td>
+                <td  width="100"> <input  id ="TTLField" class="text-center" size="5" value="{{this.totalPrice}}" readonly> </td>
+                <td  width="100"> <input  id ="AMTField" class="text-center" size="5" value="{{this.AmountPaid}}" readonly> </td>
+                <td  width="100"> <input  id ="BALField" class="text-center" size="5" value="{{this.Balance}}" readonly> </td>
                 <td>
-                  <input id ="TOKENField" class="text-center" size="2" value ="{{this.Token}}" readonly> 
+                  <input id ="TOKENField" class="text-center" size="1" value ="{{this.Token}}" readonly> 
                 </td>
                 <td ><input id ="PHONEField" class="text-center" size="11" value="{{this.PhoneNumber}}" readonly></td>
 
-                <td><a class="btn btn-outline-danger "><i class="bi bi-trash" href="DeleteAccountModal" data-toggle="modal" data-target="#DeleteAccountModal"></i></a></td>
-
+                <td><a class="btn btn-outline-danger "><i class="bi bi-trash" href="/delete" data-toggle="modal" data-target="#DeleteAccountModal"></i></a></td>
               </tr>
+
               {{/each}}
             </tbody>
+            <script >     $('.btn.btn-outline-danger').click((event) => { 
+              entry = event.currentTarget.parentElement.parentElement.innerHTML
+              //console.log(entry)
+              var card = event.currentTarget.parentElement.parentElement.querySelector("#Entry_id").innerHTML
+              //console.log(card)
+              //console.log("ID gotten is " + card);
+
+            $.get('/delete', {_id : card}, function (result) {
+            
+            });
+            $(event.currentTarget.parentElement.parentElement).remove();
+    });
+    </script>
             <tr>
               <td>Total: </td>
-              <td>{{TNWSum}}</td>
-              <td >{{TNDSum}}</td>
-              <td>{{TKWSum}}</td>
-              <td>{{TKDSum}}</td>
-              <td>{{FOLDSum}}</td>
-              <td>{{SOAPSum}}</td>
-              <td>{{DOWNSum}}</td>
-              <td>{{TTLSum}}</td>
-              <td>{{AMTSum}}</td>
-              <td>{{BALSum}}</td>
-              <td>{{TOKENSum}}</td>
+              <td> <input  id ="TNWSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="TNDSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="TKWSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="TKDSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="FOLDSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="SOAPSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="DOWNSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="TTLSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="AMTSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="TNWSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="TNWSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
             </tr>
             <!-- End of Table Body -->
 
           </table>
+          <script>
+            window.onload = function()
+            {
+              var numRows = document.getElementsByName("FinancialEntry").length 
+              console.log(numRows)
+              //$("#TNWSum").val() 
+            }
+            //$(".ADDSALES_EDITidentifier ").on("change paste keyup cut select", function() {}
+          </script>
           <!-- End of Table -->
         </div>
 
@@ -391,11 +432,12 @@
 
 
          <!-- JQuery -->
- <script
+ <!-- <script
  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
  crossorigin="anonymous"
-></script>
+></script> -->
+
 <!-- Popper -->
 <script
  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
