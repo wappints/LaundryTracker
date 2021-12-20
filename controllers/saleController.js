@@ -17,23 +17,52 @@ const saleController = {
 
     getEntries : function (req, res) {
         //console.log("I AM HERE")
+        var purpose = req.query.purpose
+        var DDate = req.body.DDate
+        if (DDate == null)
+            DDate = req.query.DDate
+        if (purpose == null)
+        {
+            var currentDate = new Date()
+            currentDate.setHours(currentDate.getHours() + 8);
+            console.log("current")
+        }
+        else if (purpose == "next")
+        {
+            var currentDate = new Date(DDate)
+            currentDate.setDate(currentDate.getDate() + 1) 
+            console.log(currentDate)
+            console.log("next")
+        }
+        else if (purpose == "previous")
+        {
+            var currentDate = new Date(DDate)
+            currentDate.setDate(currentDate.getDate() - 1) 
+            console.log(currentDate)
+            console.log("previous")
+        }
         var typeOfAcc = req.params.ACCType
+        if (typeOfAcc == null)
+            typeOfAcc = req.body.ACCType
+        
+        
         //console.log(typeOfAcc)
-        var currentDate = new Date()
-        currentDate.setHours(currentDate.getHours() + 8);
+
+        
         var formattedDate = currentDate.toISOString().split('T')[0];
+        console.log(formattedDate)
         var start = formattedDate + "T00:00:00.000Z"
         var end = formattedDate + "T23:59:59.999Z"
-        // $gte: ISODate("2021-12-19T00:00:00.000Z"),
-        // $lt: ISODate("2021-12-19T23:59:59.000Z"),    
         start = new Date(start).toISOString()
         end = new Date(end).toISOString()
+        // $gte: ISODate("2021-12-19T00:00:00.000Z"),
+        // $lt: ISODate("2021-12-19T23:59:59.000Z"),    
         // var test = formattedDate + "T16:00:00.000Z"
-        //test = new Date(test).toISOString()
-        //console.log(start)
-        //console.log(end)
+        // test = new Date(test).toISOString()
+        // console.log(start)
+        // console.log(end)
 
-        //, $lte:end
+        //$lte:end
         db.findMany(Sale, {DDate : {$gte : start, $lte : end}}, {}, function(result){
             var obj = {}
             //console.log("part 1")
@@ -75,7 +104,12 @@ const saleController = {
                     DOWNPrice : result.DOWNPrice
                 }
                 // console.log(obj2)
-                res.render('home', {ACCType : typeOfAcc, DDate : formattedDate, entry : details, layout : 'mainLayout', object : obj2})
+                var renderobjects = {ACCType : typeOfAcc, DDate : formattedDate, entry : details, layout : 'mainLayout', object : obj2}
+                console.log(renderobjects)
+                if (purpose == null)
+                    res.render('home', renderobjects)
+                else 
+                    res.render('newhomes')
             })
 
         })
@@ -146,9 +180,9 @@ const saleController = {
             else
                 console.log("Entry deletion FAILURE")
         })
-    }
+    },
 
    
-
+    
 }
 module.exports = saleController;
