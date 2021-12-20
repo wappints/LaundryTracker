@@ -2,11 +2,17 @@
 const { request } = require('express');
 const db = require('../models/db.js');
 
-// import module `System` from `../models/SystemModel.js`
-const Sale = require('../models/SalesModel.js');
+// import module `System` from `../models/InventoryModel.js`
+const Inventory = require('../models/InventoryModel.js');
 
 const inventoryController = {
-    
+
+    getInventory : function (req,res){
+
+        res.render('inventory', {layout: 'inventory layout'});
+    }
+
+
 }
 
 
