@@ -381,3 +381,35 @@ SyntaxError: Unexpected token ')'
     at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:82:24
     at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
     at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-21 04:25:01.280] [error] RangeError [ERR_HTTP_INVALID_STATUS_CODE]: Invalid status code: {
+  ACCType: 'EMPLOYEE',
+  DDate: '2021-12-21',
+  entry: [Array],
+  layout: 'mainLayout',
+  object: [Object]
+}
+    at new NodeError (node:internal/errors:371:5)
+    at ServerResponse.writeHead (node:_http_server:275:11)
+    at ServerResponse._implicitHeader (node:_http_server:266:8)
+    at write_ (node:_http_outgoing:763:9)
+    at ServerResponse.end (node:_http_outgoing:852:5)
+    at ServerResponse.redirect (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\express\lib\response.js:956:10)
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:108:21
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:56:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-21 04:46:22.471] [error] C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:112
+                    res.render('newhomes', renderobjects')
+                                           ^^^^^^^^^^^^^
+
+SyntaxError: missing ) after argument list
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1038:15)
+    at Module._compile (node:internal/modules/cjs/loader:1072:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1169:10)
+    at Module.load (node:internal/modules/cjs/loader:988:32)
+    at Module._load (node:internal/modules/cjs/loader:829:12)
+    at Function.c._load (node:electron/js2c/asar_bundle:5:13331)
+    at Module.require (node:internal/modules/cjs/loader:1012:19)
+    at require (node:internal/modules/cjs/helpers:94:18)
+    at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\routes\routes.js:5:24)

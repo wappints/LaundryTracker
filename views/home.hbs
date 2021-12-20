@@ -35,8 +35,39 @@
         </div>
 
         <div class="col-md-9">
-          <h3 class="text-center mt-3 mb-3 col-10"><a class="btn btn-outline-primary"><i class="bi bi-caret-left-fill"></i></a></i> {{DDate}} <a class="btn btn-outline-primary"><i class="bi bi-caret-right-fill"></i></a> </h3>
+          <div id ="hiddenDate" hidden>{{DDate}}</div>
+          <div id ="hiddenAcc" hidden>{{ACCType}}</div>
+          <h3 class="text-center mt-3 mb-3 col-10">
+          <button id="prevDatebtn"class="btn btn-outline-primary" type='submit'>
+            <i class="bi bi-caret-left-fill"></i></button></i>  {{DDate}}  
+          <button id="nextDatebtn" class="btn btn-outline-primary" type='submit'>
+            <i class="bi bi-caret-right-fill"></i></button> </h3>
         </div>
+
+        <script>
+            // $("#prevDatebtn")
+            $("#nextDatebtn").click((event) => {
+              var DDate = $('#hiddenDate').text()
+               var ACCType = $('#hiddenAcc').text()
+               var purpose = "next"
+               //var stringPost =  "/next" + "/" + ACCType
+               console.log(DDate)
+               console.log(ACCType)
+               //console.log(stringPost)
+          $.get("/home/" + ACCType, {purpose : purpose, DDate : DDate, ACCType : ACCType, }, function (result) {
+          });
+            })
+                $("#prevDatebtn").click((event) => {
+              var DDate = $('#hiddenDate').text()
+               var ACCType = $('#hiddenAcc').text()
+               var purpose = "previous"
+               //var stringPost =  "/next" + "/" + ACCType
+               console.log(DDate)
+               console.log(ACCType)
+               //console.log(stringPost)
+          $.get("/home/" + ACCType, {purpose : purpose, DDate : DDate, ACCType : ACCType, }, function (result) {
+          });})
+        </script>
 
         <div class="col-md-1 mt-3 editsales">
           Edit Sales:
@@ -423,12 +454,14 @@
           <script>
             window.onload = function()
             {
+              
               var numRows = document.getElementsByName("FinancialEntry").length 
               console.log(numRows)
               //$("#TNWSum").val() 
             }
             //$(".ADDSALES_EDITidentifier ").on("change paste keyup cut select", function() {}
           </script>
+          
           <!-- End of Table -->
         </div>
 
