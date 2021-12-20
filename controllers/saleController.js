@@ -74,7 +74,7 @@ const saleController = {
                     SOAPPrice : result.SOAPPrice,
                     DOWNPrice : result.DOWNPrice
                 }
-                console.log(obj2)
+                // console.log(obj2)
                 res.render('home', {ACCType : typeOfAcc, DDate : formattedDate, entry : details, layout : 'mainLayout', object : obj2})
             })
 

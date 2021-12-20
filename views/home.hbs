@@ -58,73 +58,81 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <form id="editSaleForm" mode="post" action="/edit">
+              <form method="post" action="/edit" id="editSaleForm" >
               <div class="modal-body">
                 <div class="container-fluid">
-
+                    <div hidden> {{ACCType}} </div>
                   
 
 
                   <div class="row">
                     <div class="col-md-4 ml-auto" >Thin Wash</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="{{object.TNWPrice}}">
+                      <input type="tel" class="EDITSALES_INPUTidentifier" name="ETNWPrice" id="ETNWPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TNWPrice}}">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thin Dry</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="{{object.TNDPrice}}">
+                      <input type="tel" class="EDITSALES_INPUTidentifier" name="ETNDPrice" id="ETNDPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TNDPrice}}">
                     </div>
                   </div>
 
                   <div class="row  mt-2">
                     <div class="col-md-4 ml-auto" >Thick Wash</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="{{object.TKWPrice}}">
+                      <input type="tel" class="EDITSALES_INPUTidentifier" name="ETKWPrice" id="ETKWPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TKWPrice}}">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thick Dry</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="{{object.TKDPrice}}">
+                      <input type="tel" class="EDITSALES_INPUTidentifier" name="ETKDPrice" id="ETKDPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TKDPrice}}">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Fold</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="{{object.FOLDPrice}}">
+                      <input type="tel" class="EDITSALES_INPUTidentifier" name="EFOLDPrice" id="EFOLDPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.FOLDPrice}}">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Soap</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="{{object.SOAPPrice}}">
+                      <input type="tel" class="EDITSALES_INPUTidentifier" name="ESOAPPrice" id="ESOAPPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.SOAPPrice}}">
                     </div>
                   </div>
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Downy</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" value="{{object.DOWNPrice}}">
+                      <input type="tel" class="EDITSALES_INPUTidentifier" name="EDOWNPrice" id="EDOWNPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.DOWNPrice}}">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                    
-
+                      <script>
+                      $(".EDITSALES_INPUTidentifier").on("change paste keyup cut select", function()
+                      {
+                        console.log("JABOL")
+                        console.log($("#EDOWNPrice").val())
+                      })
+                      
+                        </script>
                     <button class="col-3 text-right btn btn-danger ml-4" data-dismiss="modal">Cancel</button>
                     <div class="col-1"></div>
-                    <button class="col-3 text-right btn btn-success" form="editSaleForm" data-dismiss="modal">Confirm</button>
+                    <button class="col-3 text-right btn btn-success" form="editSaleForm" target="_self">Confirm</button>
+                    </form>
                   </div>
 
 
                   </div>
                 </div>
-                </form>
+                
               </div>
 
 
@@ -156,7 +164,7 @@
               
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add Sales</h5>
-                <button type="button" class="close" id="xAddSalebtn" data-dismiss="modal" aria-label="Close">
+                <button type="button" onclick="xAddSale()" class="close" id="xAddSalebtn" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -172,7 +180,7 @@
                     </div>
 
                     <div class="col-md-8 ml-auto">
-                      <input type="text" id="ADDName" name="ADDName">
+                      <input type="text" onkeypress="return /[a-z]/i.test(event.key)" id="ADDName" name="ADDName">
 
                     </div>
                   </div>
@@ -180,56 +188,56 @@
                   <div class="row">
                     <div class="col-md-4 ml-auto" >Phone</div>
                     <div class="col-md-8 ml-auto">
-                      <input type="text" id="ADDPhone" name="ADDPhone">
+                      <input onkeypress="return /[0-9]/i.test(event.key)" type="text" id="ADDPhone" name="ADDPhone">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto" >Thin Wash</div>
                     <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier" type="tel" size="4" id="ADDThinW" name="ADDThinW" value="0">
+                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThinW" name="ADDThinW" value="0">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thin Dry</div>
                     <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier"type="tel" size="4" id="ADDThinD" name="ADDThinD"  value="0">
+                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThinD" name="ADDThinD"  value="0">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thick Wash</div>
                     <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier" type="tel" size="4" id="ADDThickW"  name="ADDThickW" value="0">
+                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThickW"  name="ADDThickW" value="0">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thin Dry</div>
                     <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier"  type="tel" size="4" id="ADDThickD" name="ADDThickD" value="0">
+                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)"  type="tel" size="4" id="ADDThickD" name="ADDThickD" value="0">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto"  >Fold</div>
                     <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier" type="tel" size="4" id="ADDFold" name="ADDFold" value="0">
+                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDFold" name="ADDFold" value="0">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto" >Soap</div>
                     <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier"  type="tel" size="4" id="ADDSoap" name="ADDSoap" value="0">
+                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)"  type="tel" size="4" id="ADDSoap" name="ADDSoap" value="0">
                     </div>
                   </div>
 
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Downy</div>
                     <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier" type="tel" size="4" id="ADDDowny" name="ADDDowny" value="0">
+                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDDowny" name="ADDDowny" value="0">
                     </div>
                   </div>
 
@@ -243,7 +251,7 @@
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Amount Paid: </div>
                     <div class="col-md-8 ml-auto">
-                      <input type="tel" size="4"  id="ADDAmountPaid" name="ADDAmountPaid">
+                      <input type="tel" size="4" onkeypress="return /[0-9]/i.test(event.key)" id="ADDAmountPaid" name="ADDAmountPaid">
                     </div>
                   </div>
 
@@ -256,25 +264,22 @@
                       var jaba = parseInt($("#TNWPrice").text())
                       console.log(jaba)
                     }*/
-
-                    $("#xAddSalebtn").click()
+                    function xAddSale()
                     {
                       console.log("X BUTTON")
-                      //$(".ADDSALES_INPUTidentifier").each(function(index, element)
-                      //{
-                      //    $(this).val(0)  
-                      //})
+                      $(".ADDSALES_INPUTidentifier").each(function(index, element)
+                      {
+                          $("#ADDName").val("") 
+                          $("#ADDPhone").val("") 
+                          $(this).val(0)  
+                          $("#ADDTotalPriceR").val(0) 
+                          $("#ADDBalanceR").val(0) 
+                      })
+                      
                     }
-                    $("#cancelAddSalebtn").click()
-                    {
-                      console.log("cancel BUTTON")
-                      //$(".ADDSALES_INPUTidentifier").each(function(index, element)
-                      //{
-                      //    $(this).val(0)  
-                      //})
-                    }
-                    $(".ADDSALES_INPUTidentifier ").on("change paste keyup cut select", function() {
+                    $(".ADDSALES_INPUTidentifier").on("change paste keyup cut select", function() {
                       console.log("OUCH")
+                      //$(".ADDSALES_INPUTidentifier").val().replace(/^[0]+/g,0)
                       var TNWPrice = parseInt($("#TNWPrice").text())
                       var TNDPrice =parseInt($("#TNDPrice").text())
                       var TKWPrice =parseInt($("#TKWPrice").text())
@@ -319,7 +324,7 @@
                   <div class="row mt-2">
                     
 
-                    <button class="col-3 text-right btn btn-danger" data-dismiss="modal" id="cancelAddSalebtn">Cancel</button>
+                    <button class="col-3 text-right btn btn-danger" onclick="xAddSale()" data-dismiss="modal" id="cancelAddSalebtn">Cancel</button>
                     <div class="col-1"></div>
                     <button class="col-3 text-right btn btn-success ml-2" form="addSaleForm" target="_self">Confirm</button>
                   </div>

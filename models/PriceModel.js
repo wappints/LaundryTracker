@@ -7,9 +7,12 @@ var PriceSchema = new mongoose.Schema({
    
     PriceID : {
         type : mongoose.Schema.Types.ObjectId,
+        required : false
+    },
+    key : {
+        type : String,
         required : true
     },
-
     TNWPrice: {
         type: Number,
         required: true

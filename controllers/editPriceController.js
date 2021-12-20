@@ -10,23 +10,29 @@ const editPriceController = {
 
     changePrice : function (req, res)
     {
-        docs = {
-            TNWPrice : req.TNWPrice,
-            TNDPrice : req.TNDPrice,
-            TKWPrice : req.TKWPrice,
-            TKDPrice : req.TKDPrice,
-            FOLDrice : req.FOLDPrice,
-            SOAPPrice : req.SOAPPrice,
-            DOWNPrice : req.DownPrice,
+        console.log("changePrice of editPriceController ACTIVATED")
+        var ACCType = req.body.ACCType
+        docs = {   
+            key : 'Price',
+            TNWPrice : parseInt(req.body.ETNWPrice),
+            TNDPrice : parseInt(req.body.ETNDPrice),
+            TKWPrice : parseInt(req.body.ETKWPrice),
+            TKDPrice : parseInt(req.body.ETKDPrice),
+            FOLDrice : parseInt(req.body.EFOLDPrice),
+            SOAPPrice : parseInt(req.body.ESOAPPrice),
+            DOWNPrice : parseInt(req.body.EDOWNPrice),
         }
-        db.updateOne(Price, {}, docs, function(result){
-
+        console.log(docs)
+        db.findMany(Price, {}, {}, function(result){
+            console.log(result)
+        })
+        db.updateOne(Price, {key:docs.key}, docs, function(result){
             if (result)
                 console.log("Updated Prices SUCCESSFULLY")
             else
                 console.log("Updated Prices FAILURE")
 
-            res.redirect("home")
+            res.redirect("home/" + ACCType)
         })
     }
     

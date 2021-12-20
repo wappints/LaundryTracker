@@ -376,3 +376,8 @@ SyntaxError: Unexpected token ')'
     at Function.c._load (node:electron/js2c/asar_bundle:5:13331)
     at Module.require (node:internal/modules/cjs/loader:1012:19)
     at require (node:internal/modules/cjs/helpers:94:18)
+[2021-12-20 16:34:14.314] [error] ReferenceError: ACCTYPE is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\editPriceController.js:31:36
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:82:24
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
