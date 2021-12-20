@@ -22,7 +22,7 @@ const editPriceController = {
             SOAPPrice : parseInt(req.body.ESOAPPrice),
             DOWNPrice : parseInt(req.body.EDOWNPrice),
         }
-        console.log(docs)
+        //console.log(docs)
         db.findMany(Price, {}, {}, function(result){
             console.log(result)
         })
@@ -32,7 +32,7 @@ const editPriceController = {
             else
                 console.log("Updated Prices FAILURE")
 
-            res.redirect("home/" + ACCType)
+            res.redirect("back")
         })
     }
     

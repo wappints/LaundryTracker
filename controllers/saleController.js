@@ -129,7 +129,7 @@ const saleController = {
                 console.log("FAILED INSERTION!") // <-------------- Jihro fix this pls
             db.findMany(Sale, {}, {}, function(result){
                 console.log(result)
-                res.redirect('home')
+                res.redirect('back')
             })
 
         })

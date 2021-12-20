@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 
 // defines the schema for collection `transact`
-var LogsSchema = new mongoose.Schema({
+var LogSchema = new mongoose.Schema({
    
     LogID : {
         type : mongoose.Schema.Types.ObjectId,
@@ -28,5 +28,5 @@ var LogsSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `log` -> plural of the argument `Log`
 */
-module.exports = mongoose.model('Log', LogsSchema, 'Log');
+module.exports = mongoose.model('Log', LogSchema, 'Log');
 

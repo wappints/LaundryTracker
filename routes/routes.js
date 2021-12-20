@@ -11,6 +11,8 @@ app.get('/', systemController.getSystem);
 app.post('/login', systemController.postLogin);
 app.get('/home/:ACCType', saleController.getEntries); 
 app.post('/home/:ACCType', saleController.addEntry);
+app.get('/log/:ACCType', ); 
+app.post('/log/:ACCType', );
 app.get('/delete', saleController.deleteEntry);
 app.post('/edit', editPriceController.changePrice);
 module.exports = app;  
