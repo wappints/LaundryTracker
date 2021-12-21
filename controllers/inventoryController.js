@@ -18,12 +18,15 @@ const inventoryController = {
         {
             var object =  result;
             object["ACCType"] = ACCType
+            object["INVDowny"] = result.INVDowny
+            object["INVSoap"] = result.INVSoap
             db.findOne(Price, {}, {}, function(result)
             {
                 var SOAPPrice = result.SOAPPrice
                 var DOWNPrice = result.DOWNPrice
                 object["SOAPPrice"] = SOAPPrice
                 object["DOWNPrice"] = DOWNPrice
+
                 object["DDate"] = formattedDate
                 object["layout"] = "inventoryLayout"
                 res.render("inventory", object)
@@ -31,14 +34,22 @@ const inventoryController = {
         })
 
     },
+    
+    setInventory : function (req, res) {
 
-    itemDowny : function (req, res){
-        console.log('downy bad');
+        var INVSoap = req.body.INVSoap
+        var INVDowny = req.body.INVDowny
+        var object = {
+            INVSoap : INVSoap,
+            INVDowny : INVDowny
+        }
+        db.updateOne(Inventory, {}, object, function(result)
+        {
+            res.redirect("back")
+        })
+
     },
 
-    itemSoap : function (req, res){
-        console.log('sabon');
-    }
 }
 
 

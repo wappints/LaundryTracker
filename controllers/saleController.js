@@ -16,38 +16,34 @@ const { insertOne } = require('../models/db.js');
 const saleController = {
 
     getEntries : function (req, res) {
-        //console.log("I AM HERE")
         var purpose = req.query.purpose
-        var DDate = req.body.DDate
+        var DDate = req.query.DDate
+        console.log(DDate)
         if (DDate == null)
-            DDate = req.query.DDate
-        if (purpose == null)
-        {
+            DDate = req.params.DDate
+        if (DDate == null)
+            DDate = req.body.DDate
+        if (purpose == null) {
             var currentDate = new Date()
             currentDate.setHours(currentDate.getHours() + 8);
+            console.log("currentDate = " + currentDate)
             console.log("current")
         }
-        else if (purpose == "next")
-        {
+        else if (purpose == "next") {
             var currentDate = new Date(DDate)
             currentDate.setDate(currentDate.getDate() + 1) 
-            console.log(currentDate)
+            console.log("nextDate = " + currentDate)
             console.log("next")
         }
-        else if (purpose == "previous")
-        {
+        else if (purpose == "previous") {
             var currentDate = new Date(DDate)
             currentDate.setDate(currentDate.getDate() - 1) 
             console.log(currentDate)
-            console.log("previous")
+            console.log("previousDate = " + currentDate)
         }
         var typeOfAcc = req.params.ACCType
         if (typeOfAcc == null)
             typeOfAcc = req.body.ACCType
-        
-        
-        //console.log(typeOfAcc)
-
         
         var formattedDate = currentDate.toISOString().split('T')[0];
         console.log(formattedDate)
@@ -55,20 +51,10 @@ const saleController = {
         var end = formattedDate + "T23:59:59.999Z"
         start = new Date(start).toISOString()
         end = new Date(end).toISOString()
-        // $gte: ISODate("2021-12-19T00:00:00.000Z"),
-        // $lt: ISODate("2021-12-19T23:59:59.000Z"),    
-        // var test = formattedDate + "T16:00:00.000Z"
-        // test = new Date(test).toISOString()
-        // console.log(start)
-        // console.log(end)
-
-        //$lte:end
         db.findMany(Sale, {DDate : {$gte : start, $lte : end}}, {}, function(result){
             var obj = {}
-            //console.log("part 1")
             details = []
-            for (var i of result)
-            {
+            for (var i of result) {
                 obj = {}
                 obj["SalesID"] = i._id,
                 obj["Name"] =    i.Name,
@@ -92,8 +78,7 @@ const saleController = {
                 //console.log(details)
             }
 
-            db.findOne(Price, {}, {}, function(result)
-            {
+            db.findOne(Price, {}, {}, function(result) {
                 var  obj2 = {
                     TNWPrice : result.TNWPrice,
                     TNDPrice : result.TNDPrice,
@@ -103,13 +88,13 @@ const saleController = {
                     SOAPPrice : result.SOAPPrice,
                     DOWNPrice : result.DOWNPrice
                 }
-                // console.log(obj2)
                 var renderobjects = {ACCType : typeOfAcc, DDate : formattedDate, entry : details, layout : 'mainLayout', object : obj2}
-                console.log(renderobjects)
-                if (purpose == null)
+                console.log("DDate = " + DDate )
+                console.log("formattedDate = " + formattedDate)
+                if (DDate === formattedDate)
+                {
                     res.render('home', renderobjects)
-                else
-                    res.render('home', renderobjects)
+                }
             })
 
         })
@@ -181,7 +166,31 @@ const saleController = {
                 console.log("Entry deletion FAILURE")
         })
     },
+    redirectt : function (req, res)
+ {
+        var purpose = req.query.purpose
+        var DDate = req.params.DDate
+        var ACCType = req.params.ACCType
 
+        if (purpose == "next") {
+            var currentDate = new Date(DDate)
+            
+            currentDate = currentDate.setDate(currentDate.getDate() + 1) 
+            var newDate = new Date (currentDate)
+            var stuff =  newDate.toISOString().split('T')[0];
+            console.log("Next Date is " + stuff)
+            res.redirect("/home/" + ACCType +"/" + stuff)
+           
+        }
+        else if (purpose == "previous") {
+            var currentDate = new Date(DDate)
+            currentDate = currentDate.setDate(currentDate.getDate() - 1) 
+            var newDate = new Date (currentDate)
+            var stuff = newDate.toISOString().split('T')[0];
+            console.log("Previous Date is " + stuff)
+            res.redirect("/home/" + ACCType +"/" + stuff)
+        }
+    }
    
     
 }

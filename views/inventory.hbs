@@ -3,11 +3,11 @@
    <head>
       <meta charset = "UTF-8">
       <title>Home</title>
-        <link rel ="stylesheet"  href="./bower_components/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel ="stylesheet"  href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="public/css/styles.css">
-        <link rel="stylesheet" href="public/css/nav.css">
-        <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js" ></script>
+        <link rel="stylesheet" href="../public/css/styles.css">
+        <link rel="stylesheet" href="../public/css/nav.css">
+        <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js" ></script>
    
    <body>      
     {{>header}}
@@ -44,7 +44,7 @@
               <tr>
                 <td width="200">Downy</td>
                 <td>{{DOWNPrice}}</td>
-                <td #id="QTYFieldDowny">{{INVDowny}}</td>
+                <td><div id="QTYFieldDowny">{{INVDowny}}</div></td>
                 <td>
                     <button id="DECDownybtn" class="btn btn-danger" data-toggle="modal" ><i class="bi bi-dash"></i></button>
                         <input type="text" size="1" class="text-center" placeholder="Qty.">
@@ -56,46 +56,47 @@
                 <td width="200">Soap</td>
                 
                 <td> {{SOAPPrice}} </td>
-                <td #id="QTYFieldSoap">{{INVSoap}}</td>
+                <td > <div id="QTYFieldSoap">{{INVSoap}}</div></td>
                 <td>
-                    <button class="btn btn-danger" data-toggle="modal" ><i class="bi bi-dash"></i></button>
+                    <button id="DECSoapbtn" class="btn btn-danger" data-toggle="modal" ><i class="bi bi-dash"></i></button>
                         <input type="text" size="1" class="text-center" placeholder="Qty.">
-                    <button class="btn btn-primary" data-toggle="modal" ><i class="bi bi-plus"></i></button>
+                    <button id="INCSoapbtn" class="btn btn-primary" data-toggle="modal"><i class="bi bi-plus"></i></button>
+               </td>
+              </tr>
                     <script>
                       var ACCType = $("#navACCType").text()
                       var INVDowny = parseInt($("#QTYFieldDowny").text())
                       var INVSoap = parseInt($("#QTYFieldSoap").text())
-                      $("#INCDownybtn").on((event) =>
+                      console.log(INVDowny)
+                      console.log(INVSoap)
+                      $("#INCDownybtn").click((event) =>
                       {
-                        console.log("HI")
                         INVDowny = INVDowny + 1;
-                        $("#QTYFieldDowny").text = INVDowny
-                        $.post("/editInventory/" + ACCType, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
+                        document.getElementById("QTYFieldDowny").innerText = INVDowny
+                        $.post("/inventory/" + ACCType, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
                       })
                       $("#DECDownybtn").click((event) =>
                       {
                         INVDowny = INVDowny - 1;
-                        $("#QTYFieldDowny").text = INVDowny
-                        $.post("/editInventory/" + ACCType, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {
-              
+                        document.getElementById("QTYFieldDowny").innerText = INVDowny
+                        $.post("/inventory/" + ACCType, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {
                         })
-                      })
-                      $("#INCSoapbtn").click((event) =>
-                      {
-                      INVDowny = INVDowny + 1;
-                      $("#QTYFieldSoap").text = INVSoap
-                      $.post("/editInventory/" + ACCType, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
                       })
                       $("#DECSoapbtn").click((event) =>
                       {
-                      INVSoap = INVSoap - 1;
-                      $("#QTYFieldSoap").text = INVSoap
-                      $.post("/editInventory/" + ACCType, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
+                       INVSoap = INVSoap - 1;
+                       document.getElementById("QTYFieldSoap").innerText = INVSoap
+                      $.post("/inventory/" + ACCType, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
+                      })
+                      $("#INCSoapbtn").click((event) =>
+                      {
+                        INVSoap = INVSoap + 1;
+                        document.getElementById("QTYFieldSoap").innerText = INVSoap
+                      $.post("/inventory/" + ACCType, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
                       })
                       
                     </script>
-                </td>
-              </tr>
+
 
 
             </tbody>
