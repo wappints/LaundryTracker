@@ -24,7 +24,7 @@ const systemController = {
     var currentDate = new Date()
     currentDate.setHours(currentDate.getHours() + 8);
     //var formattedDate = currentDate.toISOString().split('T')[0];
-
+        
     //console.log(formattedDate)
 
     if(errors.isEmpty()){
@@ -40,7 +40,7 @@ const systemController = {
             if (result != null){
                     if(result.EMPPass === PASSField){
                         //console.log("FOUND")
-                        res.redirect("home/EMPLOYEE/" + ACCType);
+                        res.redirect("home/EMPLOYEE/" + DDate);
                     }
                     else{
                         //console.log("NOT FOUND")
