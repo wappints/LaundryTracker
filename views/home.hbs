@@ -54,7 +54,7 @@
                console.log(DDate)
                console.log(ACCType)
                //console.log(stringPost)
-          $.get("/home/" + ACCType, {purpose : purpose, DDate : DDate, ACCType : ACCType, }, function (result) {
+          $.get("/home/" + ACCType + "/" + DDate, {purpose : purpose, DDate : DDate, ACCType : ACCType, }, function (result) {
           });
             })
                 $("#prevDatebtn").click((event) => {
@@ -65,7 +65,7 @@
                console.log(DDate)
                console.log(ACCType)
                //console.log(stringPost)
-          $.get("/home/" + ACCType, {purpose : purpose, DDate : DDate, ACCType : ACCType, }, function (result) {
+          $.get("/home/" + ACCType + "/" + DDate, {purpose : purpose, DDate : DDate, ACCType : ACCType, }, function (result) {
           });})
         </script>
 

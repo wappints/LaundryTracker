@@ -40,7 +40,7 @@ const systemController = {
             if (result != null){
                     if(result.EMPPass === PASSField){
                         //console.log("FOUND")
-                        res.redirect("home/EMPLOYEE");
+                        res.redirect("home/EMPLOYEE/" + ACCType);
                     }
                     else{
                         //console.log("NOT FOUND")
