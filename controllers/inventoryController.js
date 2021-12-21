@@ -7,12 +7,23 @@ const Inventory = require('../models/InventoryModel.js');
 
 const inventoryController = {
 
-    getInventory : function (req,res){
+    getInventory : function (req, res) {
 
-        res.render('inventory', {layout: 'inventory layout'});
+        res.render("inventory", {})
+        let DownyQTY = req.body.INVDowny;
+        let SoapQTY = req.body.INVSoap;
+
+        console.log(DownyQTY);
+        console.log(SoapQTY);
+    },
+
+    itemDowny : function (req, res){
+        console.log('downy bad');
+    },
+
+    itemSoap : function (req, res){
+        console.log('sabon');
     }
-
-
 }
 
 
