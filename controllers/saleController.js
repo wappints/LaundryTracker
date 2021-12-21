@@ -106,15 +106,35 @@ const saleController = {
         var Name = req.body.ADDName;
         var Phone = req.body.ADDPhone;
         var TNW = req.body.ADDThinW;
+        if (isNaN(TNW))
+            TNW = 0
         var TND = req.body.ADDThinD;
+        if (isNaN(TND))
+            TND = 0
         var TKW = req.body.ADDThickW;
+        if (isNaN(TKW))
+            TKW = 0
         var TKD = req.body.ADDThickD;
+        if (isNaN(TKD))
+            TKD = 0
         var Fold =req.body.ADDFold;
+        if (isNaN(Fold))
+            Fold = 0
         var Soap = req.body.ADDSoap;
+        if (isNaN(Soap))
+            Soap = 0
         var Downy = req.body.ADDDowny;
+        if (isNaN(Downy))
+            Downy = 0
         var TotalPrice = req.body.ADDTotalPriceR;
+        if (isNaN(TotalPrice))
+            TotalPrice = 0
         var AmountPaid = req.body.ADDAmountPaid;
+        if (isNaN(AmountPaid))
+            AmountPaid = 0
         var Balance = req.body.ADDBalanceR;
+        if (isNaN(Balance))
+            Balance = 0
         var tokenDefault = 0;
         var currentDate = new Date();
         currentDate.setHours(currentDate.getHours() + 8);
@@ -122,6 +142,9 @@ const saleController = {
         var ObjectID = require('bson').ObjectID;
         var id  = new ObjectID();
         console.log(currentDate)
+        var pass = 0; 
+        if (Balance > 0)
+            pass = 1;
         var docs = {
             _id : id,
             Name : Name,

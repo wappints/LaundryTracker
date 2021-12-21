@@ -31,11 +31,11 @@
               {{#each this.entry}}
               <tr>
                 <div id = "BAL_ID" hidden>{{this._id}}</div>
-                <td><input id=NAMEField class = "text-center" size = "35" value = "{{this.Name}}" readonly></td>
-                <td><input id=PHONEField class = "text-center" size = "2" value = "{{this.Phone}}" readonly></td>
-                <td><input id=BALFIeld class = "text-center" size = "2" value = "{{this.Balance}}" readonly></td>
-                <td><input id=DATEField class = "text-center" size = "2" value = "{{this.Date}}" readonly></td>
-                <td><input id=PAYMENTField class = "text-center" size = "2" value = "{{this.Payment}}}" ></td>
+                <td><input id="NAMEField"  name="NAMEField" class = "text-center" size = "35" value = "{{this.Name}}" readonly></td>
+                <td><input id="PHONEField" name="PHONEField" class = "text-center" size = "2" value = "{{this.Phone}}" readonly></td>
+                <td><input id="BALField" name="BALField"  class = "text-center" size = "2" value = "{{this.Balance}}" readonly></td>
+                <td><input id="DATEField"  name="DATEField" class = "text-center" size = "2" value = "{{this.Date}}" readonly></td>
+                <td><input id="PAYMENTField" name="NAMEField" class = "text-center" size = "2" value = "{{this.Payment}}}" ></td>
               </tr>
               {{/each}}
             </tbody>

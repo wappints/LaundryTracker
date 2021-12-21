@@ -61,7 +61,7 @@
                newDate.setDate(newDate.getDate() + 1) 
                DDate = newDate.toISOString().split('T')[0];
                console.log(DDate)
-                 document.getElementById("THEDATEFORM").setAttribute("action", "/home/" + ACCType + "/" LastDate)
+                 document.getElementById("THEDATEFORM").setAttribute("action", "/home/" + ACCType + "/" + LastDate)
                 document.getElementById("THEDATEFORM").submit()
           });
                 $("#prevDatebtn").click((event) => {
@@ -75,7 +75,7 @@
                newDate.setDate(newDate.getDate() - 1) 
                var LastDate = newDate.toISOString().split('T')[0];
                 console.log(LastDate)      
-                document.getElementById("THEDATEFORM").setAttribute("action", "/home/" + ACCType + "/" LastDate)
+                document.getElementById("THEDATEFORM").setAttribute("action", "/home/" + ACCType + "/" + LastDate)
                 document.getElementById("THEDATEFORM").submit()
           });
           //})
@@ -283,7 +283,7 @@
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Amount Paid: </div>
                     <div class="col-md-8 ml-auto">
-                      <input type="tel" size="4" onkeypress="return /[0-9]/i.test(event.key)" id="ADDAmountPaid" name="ADDAmountPaid">
+                      <input type="tel" size="4" onkeypress="return /[0-9]/i.test(event.key)" id="ADDAmountPaid" name="ADDAmountPaid" value="0">
                     </div>
                   </div>
 
@@ -326,22 +326,23 @@
                       var FOLDQty = parseInt($("#ADDFold").val())
                       var SOAPQty = parseInt($("#ADDSoap").val())
                       var DOWNQty = parseInt($("#ADDDowny").val())
-                      /*
-                     console.log(TNWPrice)
-                     console.log(TNDPrice)
-                     console.log(TKWPrice)
-                     console.log(TKDPrice)
-                     console.log(FOLDPrice)
-                     console.log(SOAPPrice)
-                     console.log(DOWNPrice)
-                     console.log(TNWQty)
-                     console.log(TNDQty )
-                     console.log(TKDQty)
-                     console.log(TKWQty)
-                     console.log(FOLDQty)
-                     console.log(DOWNQty)
-                      console.log(SOAPQty)
-                      */
+                      var BALQty = parseInt($("#ADDBalanceR").val())
+                      if (isNaN(TNWQty))
+                        $("#ADDThinW").val(0)
+                      if (isNaN(TNDQty))
+                        $("#ADDThinD").val(0)
+                      if (isNaN(TKWQty))
+                        $("#ADDThickW").val(0)
+                      if ( isNaN(TKDQty))
+                        $("#ADDThickD").val(0)
+                      if (isNaN(FOLDQty))
+                        $("#ADDFold").val(0)
+                      if (isNaN(SOAPQty ))
+                        $("#ADDSoap").val(0)
+                      if (isNaN(DOWNQty))
+                        $("#ADDDowny").val(0)
+                      if (isNaN(BALQty))
+                        $("#ADDBalanceR").val(0)
                       var computation = TNWPrice * TNWQty + TNDPrice * TNDQty +  TKWPrice * TKWQty +  TKDPrice * TKDQty +  FOLDPrice * FOLDQty + SOAPPrice * SOAPQty + DOWNPrice * DOWNQty
                       
                       $("#ADDTotalPriceR").val(computation);
@@ -401,19 +402,19 @@
                                              {{#each this.entry}}
                <tr id="FinancialEntry" name="FinancialEntry">
                 <td hidden><div id="Entry_id" name="Entry_id" >{{this.SalesID}}</div>  </td>      
-                <td ><input  id ="NAMEField" class="text-center" size="20" value="{{this.Name}}"readonly>  </td>
-                <td ><input  id ="TNWField"class="text-center" size="1" value="{{this.ThinWash}}" readonly>  </td>
-                <td ><input  id ="TNDField"class="text-center" size="1" value="{{this.ThinDry}}" readonly>  </td>
-                <td ><input  id ="TKWField"class="text-center" size="1" value="{{this.ThickWash}}" readonly>  </td>
-                <td ><input  id ="TKDField" class="text-center" size="1" value="{{this.ThickDry}}" readonly>  </td>
-                <td ><input  id ="FOLDField" class="text-center" size="1" value="{{this.Fold}}" readonly>  </td>
-                <td ><input  id ="SOAPField" class="text-center" size="1" value="{{this.Soap}}" readonly>  </td>
-                <td ><input  id ="DOWNField" class="text-center" size="1" value="{{this.Downy}}" readonly> </td>
-                <td  width="100"> <input  id ="TTLField" class="text-center" size="5" value="{{this.totalPrice}}" readonly> </td>
-                <td  width="100"> <input  id ="AMTField" class="text-center" size="5" value="{{this.AmountPaid}}" readonly> </td>
-                <td  width="100"> <input  id ="BALField" class="text-center" size="5" value="{{this.Balance}}" readonly> </td>
+                <td ><input  id ="NAMEField" name="NAMEField" class="text-center" size="20" value="{{this.Name}}"readonly>  </td>
+                <td ><input  id ="TNWField" name="TNWField"class="text-center" size="1" value="{{this.ThinWash}}" readonly>  </td>
+                <td ><input  id ="TNDField" name="TNDField"class="text-center" size="1" value="{{this.ThinDry}}" readonly>  </td>
+                <td ><input  id ="TKWField" name="TKWField"class="text-center" size="1" value="{{this.ThickWash}}" readonly>  </td>
+                <td ><input  id ="TKDField"  name="TKDField"class="text-center" size="1" value="{{this.ThickDry}}" readonly>  </td>
+                <td ><input  id ="FOLDField"  name="FOLDField"class="text-center" size="1" value="{{this.Fold}}" readonly>  </td>
+                <td ><input  id ="SOAPField"  name="SOAPField"class="text-center" size="1" value="{{this.Soap}}" readonly>  </td>
+                <td ><input  id ="DOWNField" name="DOWNField"class="text-center" size="1" value="{{this.Downy}}" readonly> </td>
+                <td  width="100"> <input name="TTLField" id ="TTLField" class="text-center" size="5" value="{{this.totalPrice}}" readonly> </td>
+                <td  width="100"> <input   name="AMTField"id ="AMTField" class="text-center" size="5" value="{{this.AmountPaid}}" readonly> </td>
+                <td  width="100"> <input   name="BALField" id ="BALField" class="text-center" size="5" value="{{this.Balance}}" readonly> </td>
                 <td>
-                  <input id ="TOKENField" class="text-center" size="1" value ="{{this.Token}}" readonly> 
+                  <input id ="TOKENField" name="TOKENField" class="text-center" size="1" value ="{{this.Token}}" readonly> 
                 </td>
                 <td ><input id ="PHONEField" class="text-center" size="11" value="{{this.PhoneNumber}}" readonly></td>
 
@@ -446,21 +447,104 @@
               <td> <input  id ="DOWNSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
               <td> <input  id ="TTLSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
               <td> <input  id ="AMTSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
-              <td> <input  id ="TNWSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
-              <td> <input  id ="TNWSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="BALSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="TOKENSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
             </tr>
             <!-- End of Table Body -->
 
           </table>
           <script>
-            window.onload = function()
-            {
-              
+            $(document).on("change paste keyup cut select", function() { 
+              console.log("TRIGGER")
+              var a = 0;
+              var b = 0;
+              var c = 0;
+              var d = 0;
+              var e = 0;
+              var f = 0;
+              var g = 0;
+              var h = 0;
+              var i = 0;
+              var j = 0;
+              var k = 0;
               var numRows = document.getElementsByName("FinancialEntry").length 
+
+                for (z = 0; z <numRows; z++)
+                {
+                    a += parseInt(document.getElementsByName("TNWField")[z].value)
+                    b += parseInt(document.getElementsByName("TNDField")[z].value)
+                    c += parseInt(document.getElementsByName("TKWField")[z].value)
+                    d += parseInt(document.getElementsByName("TKDField")[z].value)
+                    e += parseInt(document.getElementsByName("FOLDField")[z].value)
+                    f += parseInt(document.getElementsByName("SOAPField")[z].value)
+                    g += parseInt(document.getElementsByName("DOWNField")[z].value)
+                    h += parseInt(document.getElementsByName("TTLField")[z].value)
+                    i += parseInt(document.getElementsByName("AMTField")[z].value)
+                    j += parseInt(document.getElementsByName("BALField")[z].value)
+                    k += parseInt(document.getElementsByName("TOKENField")[z].value)
+                    $("#TNWSum").val(a)
+                    $("#TNDSum").val(b)
+                    $("#TKWSum").val(c)
+                    $("#TKDSum").val(d)
+                    $("#FOLDSum").val(e)
+                    $("#SOAPSum").val(f)
+                    $("#DOWNSum").val(g)
+                    $("#TTLSum").val(h)
+                    $("#AMTSum").val(i)
+                    $("#BALSum").val(j)
+                    $("#TOKENSum").val(k)
+                 }
+              
+
+            })
+
+            window.onload = function test ()
+            {
+              var a = 0;
+              var b = 0;
+              var c = 0;
+              var d = 0;
+              var e = 0;
+              var f = 0;
+              var g = 0;
+              var h = 0;
+              var i = 0;
+              var j = 0;
+              var k = 0;
+              var numRows = document.getElementsByName("FinancialEntry").length 
+
+                for (z = 0; z <numRows; z++)
+                {
+                    a += parseInt(document.getElementsByName("TNWField")[z].value)
+                    b += parseInt(document.getElementsByName("TNDField")[z].value)
+                    c += parseInt(document.getElementsByName("TKWField")[z].value)
+                    d += parseInt(document.getElementsByName("TKDField")[z].value)
+                    e += parseInt(document.getElementsByName("FOLDField")[z].value)
+                    f += parseInt(document.getElementsByName("SOAPField")[z].value)
+                    g += parseInt(document.getElementsByName("DOWNField")[z].value)
+                    h += parseInt(document.getElementsByName("TTLField")[z].value)
+                    i += parseInt(document.getElementsByName("AMTField")[z].value)
+                    j += parseInt(document.getElementsByName("BALField")[z].value)
+                    k += parseInt(document.getElementsByName("TOKENField")[z].value)
+                    $("#TNWSum").val(a)
+                    $("#TNDSum").val(b)
+                    $("#TKWSum").val(c)
+                    $("#TKDSum").val(d)
+                    $("#FOLDSum").val(e)
+                    $("#SOAPSum").val(f)
+                    $("#DOWNSum").val(g)
+                    $("#TTLSum").val(h)
+                    $("#AMTSum").val(i)
+                    $("#BALSum").val(j)
+                    $("#TOKENSum").val(k)
+                 }
+              
+
+              
               console.log(numRows)
               //$("#TNWSum").val() 
             }
-            //$(".ADDSALES_EDITidentifier ").on("change paste keyup cut select", function() {}
+            
           </script>
           
           <!-- End of Table -->

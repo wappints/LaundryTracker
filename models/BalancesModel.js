@@ -1,18 +1,28 @@
-
 // import module `mongodb`
+const { ObjectID } = require('bson');
 var mongoose = require('mongoose');
 
 // defines the schema for collection `prices`
 var BalancesSchema = new mongoose.Schema({
    
 
-    BalanceEntries: {
-        type: Array,
-        required: true
+    Name : {
+        type: String,
+        required: false
     },
-
-
- 
+    Phone : {
+        type: String,
+        required: false
+    },
+    Balance : {
+        type: Number,
+        required: false
+    },  
+    Date : 
+    {
+        type: Date,
+        required: false
+    }
 });
 
 /*
@@ -21,5 +31,5 @@ var BalancesSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `balances` -> plural of the argument `balance`
 */
-module.exports = mongoose.model('balances', BalancesSchema, 'balances');
+module.exports = mongoose.model('Balances', BalancesSchema, 'Balances');
 
