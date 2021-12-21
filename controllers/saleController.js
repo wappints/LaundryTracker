@@ -108,8 +108,8 @@ const saleController = {
                 console.log(renderobjects)
                 if (purpose == null)
                     res.render('home', renderobjects)
-                else 
-                    res.render('newhomes')
+                else
+                    res.render('home', renderobjects)
             })
 
         })

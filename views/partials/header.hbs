@@ -16,7 +16,7 @@
       <div class="collapse navbar-collapse" id="toggleMobileMenu">
          <ul class="navbar-nav text-center">
             <li>
-               <a class="nav-link active rounded-top rounded-bottom navhover"  href="/home/{{ACCType}}" style="color: black;"><i class="bi bi-house-fill" ></i> Home</a>
+               <a class="nav-link active rounded-top rounded-bottom navhover"  href="/home/{{ACCType}}/{{DDate}}" style="color: black;"><i class="bi bi-house-fill" ></i> Home</a>
             </li>
             <li>
                <a class="nav-link rounded-top rounded-bottom navhover" href="/log/{{ACCType}}" style="color: black;"><i class="bi bi-journal-text" ></i> Log</a>
@@ -34,7 +34,7 @@
           <div class="px-3 font-monospace" style="font-size: 14px;">
             Current Session: Yeohan Norona
             <br>
-            Type: {{ACCType}}
+            Type: <div id="navACCType">{{ACCType}}</div>
             </div>
           <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle rounded-top rounded-bottom navhover" id="SessionDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">

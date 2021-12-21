@@ -4,17 +4,32 @@ const db = require('../models/db.js');
 
 // import module `System` from `../models/InventoryModel.js`
 const Inventory = require('../models/InventoryModel.js');
-
+const Price = require('../models/PriceModel.js');
 const inventoryController = {
 
     getInventory : function (req, res) {
 
-        res.render("inventory", {})
-        let DownyQTY = req.body.INVDowny;
-        let SoapQTY = req.body.INVSoap;
+        var ACCType = req.params.ACCType
+        var currentDate = new Date()
+        currentDate.setHours(currentDate.getHours() + 8);
+        var formattedDate = currentDate.toISOString().split('T')[0];
 
-        console.log(DownyQTY);
-        console.log(SoapQTY);
+        db.findOne(Inventory, {}, {}, function(result)
+        {
+            var object =  result;
+            object["ACCType"] = ACCType
+            db.findOne(Price, {}, {}, function(result)
+            {
+                var SOAPPrice = result.SOAPPrice
+                var DOWNPrice = result.DOWNPrice
+                object["SOAPPrice"] = SOAPPrice
+                object["DOWNPrice"] = DOWNPrice
+                object["DDate"] = formattedDate
+                object["layout"] = "inventoryLayout"
+                res.render("inventory", object)
+            })
+        })
+
     },
 
     itemDowny : function (req, res){

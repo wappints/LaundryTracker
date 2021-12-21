@@ -10,8 +10,8 @@ const inventoryController = require('../controllers/inventoryController.js');
 app.set('views', path.join(__dirname, '../views'))
 app.get('/', systemController.getSystem); 
 app.post('/login', systemController.postLogin);
-app.get('/home/:ACCType', saleController.getEntries); 
-app.post('/home/:ACCType', saleController.addEntry);
+app.get('/home/:ACCType/:DDate', saleController.getEntries); 
+app.post('/home/:ACCType/:DDate', saleController.addEntry);
 app.get('/log/:ACCType', ); 
 app.post('/log/:ACCType', );
 app.get('/delete', saleController.deleteEntry);
