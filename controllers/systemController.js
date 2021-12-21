@@ -23,7 +23,7 @@ const systemController = {
     //console.log(acctype)
     var currentDate = new Date()
     currentDate.setHours(currentDate.getHours() + 8);
-    //var formattedDate = currentDate.toISOString().split('T')[0];
+    var formattedDate = currentDate.toISOString().split('T')[0];
         
     //console.log(formattedDate)
 
@@ -40,7 +40,7 @@ const systemController = {
             if (result != null){
                     if(result.EMPPass === PASSField){
                         //console.log("FOUND")
-                        res.redirect("home/EMPLOYEE/" + DDate);
+                        res.redirect("home/EMPLOYEE/" + formattedDate);
                     }
                     else{
                         //console.log("NOT FOUND")
@@ -67,7 +67,7 @@ const systemController = {
             if (result != null){
                     if(result.ADMINPass === PASSField){
                         //console.log("FOUND")
-                        res.redirect("home/ADMIN");
+                        res.redirect("home/ADMIN/" + formattedDate);
                     }
                     else{
                         //console.log("NOT FOUND")

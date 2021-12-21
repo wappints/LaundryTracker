@@ -1,3 +1,4 @@
 
 node_modules/electron/dist/electron.exe
 node_modules/electron/dist/debug.log
+*.log
