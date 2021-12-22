@@ -25,7 +25,7 @@ const balancesController = {
                 details.push(obj)
             }
             console.log(details)
-            res.render("balances", {entry : details, DDate :DDate, ACCType : ACCType})
+            res.render("balances", {entry : details, DDate :DDate, ACCType : ACCType, layout : "balancesLayout"})
         })
        
 
