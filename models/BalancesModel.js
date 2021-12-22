@@ -5,7 +5,10 @@ var mongoose = require('mongoose');
 // defines the schema for collection `prices`
 var BalancesSchema = new mongoose.Schema({
    
-
+    BalanceID : {
+        type: ObjectID,
+        required: true
+    },
     Name : {
         type: String,
         required: false

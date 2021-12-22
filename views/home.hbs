@@ -34,17 +34,24 @@
           <button class='btn btn-primary' data-toggle="modal" data-target="#editPrice">Edit Price</button>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-8 ml-5">
           <div id ="hiddenDate" hidden>{{DDate}}</div>
           <div id ="hiddenAcc" hidden>{{ACCType}}</div>
           <div id ="indexing" hidden>0</div>
           <h3 class="text-center mt-3 mb-3 col-10">
             <form id = "THEDATEFORM" method="post" action="">
-          <button id="prevDatebtn" form="THEDATEFORM" class="btn btn-outline-primary">
-            <i class="bi bi-caret-left-fill"></i></button></i> <div id="THEDATE">{{DDate}} </div>
+          <div id="THEDATE" class=""> <button id="prevDatebtn" form="THEDATEFORM" class="btn btn-outline-primary">
+            <i class="bi bi-caret-left-fill"></i></button></i> {{DDate}} 
           <button id="nextDatebtn" form="THEDATEFORM" class="btn btn-outline-primary">
-            <i class="bi bi-caret-right-fill"></i></button> </h3>
+            <i class="bi bi-caret-right-fill"></i></button> </h3> </div>
             </form>
+                   <div class="col-sm-1 mt-3 editsales text-center">
+          Edit Sales:
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </div>
         </div>
 
         <script>
@@ -81,13 +88,7 @@
           //})
         </script>
 
-        <div class="col-md-1 mt-3 editsales">
-          Edit Sales:
-          <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span>
-          </label>
-        </div>
+ 
 
         <!--model for editPrice-->
 
@@ -407,7 +408,7 @@
                                              {{#each this.entry}}
                <tr id="FinancialEntry" name="FinancialEntry">
                 <td hidden><div id="Entry_id" name="Entry_id" >{{this.SalesID}}</div>  </td>      
-                <td ><input  id ="NAMEField" name="NAMEField" class="text-center" size="20" value="{{this.Name}}"readonly>  </td>
+                <td ><input  id ="NAMEField" name="NAMEField" class="text-center" size="18" value="{{this.Name}}"readonly>  </td>
                 <td ><input  id ="TNWField" name="TNWField"class="text-center" size="1" value="{{this.ThinWash}}" readonly>  </td>
                 <td ><input  id ="TNDField" name="TNDField"class="text-center" size="1" value="{{this.ThinDry}}" readonly>  </td>
                 <td ><input  id ="TKWField" name="TKWField"class="text-center" size="1" value="{{this.ThickWash}}" readonly>  </td>
@@ -443,17 +444,17 @@
     </script>
             <tr>
               <td>Total: </td>
-              <td> <input  id ="TNWSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
-              <td> <input  id ="TNDSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
-              <td> <input  id ="TKWSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
-              <td> <input  id ="TKDSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
-              <td> <input  id ="FOLDSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
-              <td> <input  id ="SOAPSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
-              <td> <input  id ="DOWNSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="TNWSum" class="text-center ADDSALES_EDITidentifier" size="1" value="0" readonly></td>
+              <td> <input  id ="TNDSum" class="text-center ADDSALES_EDITidentifier" size="1" value="0" readonly></td>
+              <td> <input  id ="TKWSum" class="text-center ADDSALES_EDITidentifier" size="1" value="0" readonly></td>
+              <td> <input  id ="TKDSum" class="text-center ADDSALES_EDITidentifier" size="1" value="0" readonly></td>
+              <td> <input  id ="FOLDSum" class="text-center ADDSALES_EDITidentifier" size="1" value="0" readonly></td>
+              <td> <input  id ="SOAPSum" class="text-center ADDSALES_EDITidentifier" size="1" value="0" readonly></td>
+              <td> <input  id ="DOWNSum" class="text-center ADDSALES_EDITidentifier" size="1" value="0" readonly></td>
               <td> <input  id ="TTLSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
               <td> <input  id ="AMTSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
               <td> <input  id ="BALSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
-              <td> <input  id ="TOKENSum" class="text-center ADDSALES_EDITidentifier" size="5" value="0" readonly></td>
+              <td> <input  id ="TOKENSum" class="text-center ADDSALES_EDITidentifier" size="1" value="0" readonly></td>
             </tr>
             <!-- End of Table Body -->
 

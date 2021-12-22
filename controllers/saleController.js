@@ -153,6 +153,7 @@ const saleController = {
         {
             pass = 1;
             docs2 = {
+                BalanceID : id,
                 Name : Name,
                 PhoneNum : Phone,
                 DDate : dateForBalance,
@@ -207,9 +208,10 @@ const saleController = {
                 console.log("Entry deletion SUCCESSFUL")
             else
                 console.log("Entry deletion FAILURE")
+            db.deleteOne(Balances, {BalanceID : id}, function(result){})
         })
     },
-    redirectt : function (req, res)
+    redirectt : function (req, res) //remove thjs later
  {
         var purpose = req.query.purpose
         var DDate = req.params.DDate
