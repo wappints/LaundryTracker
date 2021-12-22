@@ -26,4 +26,7 @@ app.post('/new/:ACCType/:DDate', viewDateController.newDate)
 app.get('/inventory/:ACCType/:DDate', inventoryController.getInventory);
 app.post('/inventory/:ACCType/:DDate', inventoryController.setInventory);
 app.get('/management/:ACCType/:DDate', accountsController.getAccounts);
+app.post('/management/:ACCType/:DDate', accountsController.updateAccounts);
+app.post('/addAccount', accountsController.addAccount);
+app.post('/delAccount', accountsController.deleteAccount);
 module.exports = app;  

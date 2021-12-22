@@ -5,12 +5,6 @@ var mongoose = require('mongoose');
 // defines the schema for collection `prices`
 var AccountSchema = new mongoose.Schema({
    
-    AccID:
-    {
-        type : mongoose.Schema.Types.ObjectId,
-        required : true
-    },
-
     isAdmin:
     {
         type : Boolean,

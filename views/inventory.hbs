@@ -84,8 +84,7 @@
                         INVSoap = parseInt($("#QTYFieldSoap").text())
                         INVDowny = INVDowny - 1;
                         document.getElementById("QTYFieldDowny").innerText = INVDowny
-                        $.post("/inventory/" + ACCType + "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {
-                        })
+                        $.post("/inventory/" + ACCType + "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
                       })
                       $("#DECSoapbtn").click((event) =>
                       {
@@ -93,7 +92,7 @@
                        INVSoap = parseInt($("#QTYFieldSoap").text())
                        INVSoap = INVSoap - 1;
                        document.getElementById("QTYFieldSoap").innerText = INVSoap
-                      $.post("/inventory/" + ACCType "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
+                      $.post("/inventory/" + ACCType + "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
                       })
                       $("#INCSoapbtn").click((event) =>
                       {
@@ -101,21 +100,21 @@
                         INVSoap = parseInt($("#QTYFieldSoap").text())
                         INVSoap = INVSoap + 1;
                         document.getElementById("QTYFieldSoap").innerText = INVSoap
-                      $.post("/inventory/" + ACCType "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
+                      $.post("/inventory/" + ACCType + "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
                       })
                       $("#SOAPinput").on("change", function () 
                       {
                       INVSoap = document.getElementById("SOAPinput").value
                       $("SOAPinput").val(INVSoap)
                       document.getElementById("QTYFieldSoap").innerText = INVSoap
-                      $.post("/inventory/" + ACCType "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
+                      $.post("/inventory/" + ACCType + "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
                       })
                       $("#DOWNYinput").on("change", function () 
                       {
                       INVDowny = document.getElementById("DOWNYinput").value
                       $("DOWNYinput").val(INVDowny)
                       document.getElementById("QTYFieldDowny").innerText = INVDowny
-                      $.post("/inventory/" + ACCType "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
+                      $.post("/inventory/" + ACCType + "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
                       })
                     </script>
 
