@@ -138,15 +138,16 @@
               <h4> Admin </h4>
           </div>
         </row>
+        {{#each admin}}
         <div class="col-3 mt-3">
           <table class="table table-light">
             <tbody class="border">
               <th scope="col">Admin Name:
-                <input class="mb-2" type="text" value="Juan Tamad" readonly>
+                <input class="mb-2" type="text" value="{{this.EMPName}}" readonly>
                 <br>
                 Password:
                 <input type="password" value="wordpass" readonly> <br>
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <input class="form-check-input" type="checkbox" value="{{this.EMPPass}}" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                   Show Password
                 </label> </th>
@@ -155,7 +156,7 @@
             </tbody>
           </table>
           </div>
-          </row>
+      {{/each}}
           <br><br>
           <row>
             <div class="col-6 mt-3">
@@ -165,32 +166,22 @@
 
           <div class="col-3 mt-3">
           <table class="table table-light">
+             {{#each accounts}}
             <tbody>
+             
               <th scope="col">Employee Name:
-                <input class="mb-2" type="text" value="Juan Tamad" readonly>
+                <input class="mb-2" type="text" value="{{this.EMPName}}" readonly>
                 <br>
                 Password: 
                 <input type="password" value="wordpass" readonly> <br>
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <input class="form-check-input" type="checkbox" value="{{this.EMPPass}}" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                   Show Password
                 </label></th>
                 <th scope="col"> <a class="btn btn-outline-primary"><i class="bi bi-pencil-square" href="editEmployeeModal" data-toggle="modal" data-target="#editEmployeeModal"></i></a>
                 <br> <a class="btn btn-outline-danger mt-2"><i class="bi bi-trash" href="DeleteAccountModal" data-toggle="modal" data-target="#DeleteAccountModal"></i></a>
             </tbody>
-            <tbody>
-              <th scope="col">Employee Name:
-                <input class="mb-2" type="text" value="Pedro Parker" readonly>
-                <br>
-                Password: 
-                <input type="password" value="test1" readonly><br>
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Show Password
-                </label></th>
-                <th scope="col"> <a class="btn btn-outline-primary"><i class="bi bi-pencil-square" href="editEmployeeModal" data-toggle="modal" data-target="#editEmployeeModal"></i></a>
-                  <br> <a class="btn btn-outline-danger mt-2"><i class="bi bi-trash" href="DeleteAccountModal" data-toggle="modal" data-target="#DeleteAccountModal"></i></a>
-            </tbody>
+            {{/each}}
           </table>
           </div>
 
