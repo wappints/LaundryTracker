@@ -9,6 +9,7 @@ const editPriceController = require('../controllers/editPriceController.js');
 const inventoryController = require('../controllers/inventoryController.js');
 const balancesController = require('../controllers/balancesController.js');
 const viewDateController = require('../controllers/viewDateController.js');
+const accountsController = require('../controllers/accountsController.js');
 app.set('views', path.join(__dirname, '../views'))
 app.get('/', systemController.getSystem); 
 app.post('/login', systemController.postLogin);
@@ -24,4 +25,5 @@ app.get('/deleteBal', balancesController.deleteBalance);
 app.post('/new/:ACCType/:DDate', viewDateController.newDate)
 app.get('/inventory/:ACCType/:DDate', inventoryController.getInventory);
 app.post('/inventory/:ACCType/:DDate', inventoryController.setInventory);
+app.get('/management/:ACCType', accountsController.getInventory);
 module.exports = app;  
