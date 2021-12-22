@@ -8,6 +8,7 @@ const db = require('../models/db.js');
 const editPriceController = require('../controllers/editPriceController.js');
 const inventoryController = require('../controllers/inventoryController.js');
 const balancesController = require('../controllers/balancesController.js');
+const viewDateController = require('../controllers/viewDateController.js');
 app.set('views', path.join(__dirname, '../views'))
 app.get('/', systemController.getSystem); 
 app.post('/login', systemController.postLogin);
@@ -16,9 +17,11 @@ app.post('/home/:ACCType/:DDate', saleController.addEntry);
 app.get('/log/:ACCType', ); 
 app.post('/log/:ACCType', );
 app.get('/balances/:ACCType/:DDate', balancesController.getBalances); 
-//app.post('/balances/:ACCType/:DDate', balancesController.removeBalance);
+app.post('/balances/:ACCType/:DDate', balancesController.payBalances);
 app.get('/delete', saleController.deleteEntry);
 app.post('/edit', editPriceController.changePrice);
+app.get('/deleteBal', balancesController.deleteBalance);
+app.post('/new/:ACCType/:DDate', viewDateController.newDate)
 app.get('/inventory/:ACCType', inventoryController.getInventory);
 app.post('/inventory/:ACCType', inventoryController.setInventory);
 module.exports = app;  

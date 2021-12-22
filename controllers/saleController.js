@@ -17,35 +17,17 @@ const { insertOne } = require('../models/db.js');
 const saleController = {
 
     getEntries : function (req, res) {
-        var purpose = req.query.purpose
         var DDate = req.query.DDate
         console.log(DDate)
         if (DDate == null)
             DDate = req.params.DDate
         if (DDate == null)
             DDate = req.body.DDate
-        if (purpose == null) {
-            var currentDate = new Date()
-            currentDate.setHours(currentDate.getHours() + 8);
-            console.log("currentDate = " + currentDate)
-            console.log("current")
-        }
-        else if (purpose == "next") {
-            var currentDate = new Date(DDate)
-            currentDate.setDate(currentDate.getDate() + 1) 
-            console.log("nextDate = " + currentDate)
-            console.log("next")
-        }
-        else if (purpose == "previous") {
-            var currentDate = new Date(DDate)
-            currentDate.setDate(currentDate.getDate() - 1) 
-            console.log(currentDate)
-            console.log("previousDate = " + currentDate)
-        }
         var typeOfAcc = req.params.ACCType
         if (typeOfAcc == null)
             typeOfAcc = req.body.ACCType
-        
+        var currentDate = new Date(DDate)
+        console.log("currentDate = " + currentDate)
         var formattedDate = currentDate.toISOString().split('T')[0];
         console.log(formattedDate)
         var start = formattedDate + "T00:00:00.000Z"
@@ -92,10 +74,8 @@ const saleController = {
                 var renderobjects = {ACCType : typeOfAcc, DDate : formattedDate, entry : details, layout : 'mainLayout', object : obj2}
                 console.log("DDate = " + DDate )
                 console.log("formattedDate = " + formattedDate)
-                if (DDate === formattedDate)
-                {
                     res.render('home', renderobjects)
-                }
+    
             })
 
         })
@@ -106,6 +86,7 @@ const saleController = {
     addEntry : function (req, res) {
         var Name = req.body.ADDName;
         var Phone = req.body.ADDPhone;
+        var DDate = req.params.DDate
         if (isNaN(Phone) || Phone === null || Phone == "")
             Phone = "No Number"
         var TNW = req.body.ADDThinW;
@@ -139,9 +120,7 @@ const saleController = {
         if (isNaN(Balance))
             Balance = 0
         var tokenDefault = 0;
-        var currentDate = new Date();
-        currentDate.setHours(currentDate.getHours() + 8);
-        currentDate = new Date(currentDate.toISOString());
+        var currentDate = new Date(DDate);
         var dateForBalance = currentDate
         dateForBalance = dateForBalance.toISOString().split('T')[0]
         console.log(dateForBalance)
@@ -189,9 +168,12 @@ const saleController = {
             db.findMany(Sale, {}, {}, function(result){
                 console.log(result)
                 if (pass)
-                    db.insertOne(Balances, docs2, function(result){
-
+                {
+                    db.findOne(Balances, {BalanceID : id}, {}, function(result){
+                        if (!result)
+                            db.insertOne(Balances, docs2, function(result){})
                     })
+                }
                 res.redirect('back')
             })
 
@@ -199,44 +181,44 @@ const saleController = {
 
     },
 
-    deleteEntry : function (req, res)
-    {
+    deleteEntry : function (req, res) {
         var id = req.query._id
         console.log(id)
-        db.deleteOne(Sale, {_id : id}, function(result){
-            if (result)
-                console.log("Entry deletion SUCCESSFUL")
-            else
-                console.log("Entry deletion FAILURE")
-            db.deleteOne(Balances, {BalanceID : id}, function(result){})
-        })
-    },
-    redirectt : function (req, res) //remove thjs later
- {
-        var purpose = req.query.purpose
-        var DDate = req.params.DDate
-        var ACCType = req.params.ACCType
+        db.findOne(Sale, {_id : id}, {}, function(result){
+            if (result.Balance < 0)
+            {
+                var Name = result.Name;
+                var Phone = result.PhoneNum;
+                var currentDate = result.DDate
+                var dateForBalance = currentDate.toISOString().split('T')[0]
+                var newid  = result._id
+                var docs2 = {
+                    BalanceID : newid,
+                    Name : Name,
+                    PhoneNum : Phone,
+                    DDate : dateForBalance,
+                    Balance : -(result.Balance)
+                } 
+                db.insertOne(Balances, docs2, function(result){
+                    db.deleteOne(Sale, {_id : id}, function(result){
 
-        if (purpose == "next") {
-            var currentDate = new Date(DDate)
-            
-            currentDate = currentDate.setDate(currentDate.getDate() + 1) 
-            var newDate = new Date (currentDate)
-            var stuff =  newDate.toISOString().split('T')[0];
-            console.log("Next Date is " + stuff)
-            res.redirect("/home/" + ACCType +"/" + stuff)
-           
-        }
-        else if (purpose == "previous") {
-            var currentDate = new Date(DDate)
-            currentDate = currentDate.setDate(currentDate.getDate() - 1) 
-            var newDate = new Date (currentDate)
-            var stuff = newDate.toISOString().split('T')[0];
-            console.log("Previous Date is " + stuff)
-            res.redirect("/home/" + ACCType +"/" + stuff)
-        }
+                    })
+                })
+               
+            }
+            else
+            {
+                db.deleteOne(Sale, {_id : id}, function(result){
+                    if (result)
+                        console.log("Entry deletion SUCCESSFUL")
+                    else
+                        console.log("Entry deletion FAILURE")
+                    db.deleteOne(Balances, {BalanceID : id}, function(result){})
+                })
+            }
+
+        })
+
     }
-   
-    
 }
 module.exports = saleController;

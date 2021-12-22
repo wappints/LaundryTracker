@@ -3,99 +3,76 @@
    <head>
       <meta charset = "UTF-8">
       <title>Home</title>
-  
-    <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js" ></script>
-             <link rel="stylesheet" href="public/css/nav.css">
-              <link rel="stylesheet" href="public/css/styles.css">
-                      <link rel="stylesheet" href="public/css/home.css">
-        <link rel ="stylesheet"  href="./bower_components/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-
-   
-     
+      <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js" ></script>
+      <link rel="stylesheet" href="public/css/nav.css">
+      <link rel="stylesheet" href="public/css/styles.css">
+      <link rel="stylesheet" href="public/css/home.css">
+      <link rel ="stylesheet"  href="./bower_components/bootstrap/dist/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
    <body>      
      {{> header}}
-
-
-      </div>
+    </div>
    </div>
    </nav>
-         
          <!-- Cart -->
       <div class="container-fluid">
       <div class="row">
         <!-- Page Header -->
-
         <div class="col-md-1 mt-3">
           <button class="btn btn-primary" data-toggle="modal" data-target="#salesBtn">Add Sales</button>
         </div>
-
         <div class='col-md-1 mt-3'>
           <button class='btn btn-primary' data-toggle="modal" data-target="#editPrice">Edit Price</button>
         </div>
-
         <div class="col-md-8 ml-5">
           <div id ="hiddenDate" hidden>{{DDate}}</div>
           <div id ="hiddenAcc" hidden>{{ACCType}}</div>
-          <div id ="indexing" hidden>0</div>
           <h3 class="text-center mt-3 mb-3 col-10">
-            <form id = "THEDATEFORM" method="post" action="">
+          <form id = "THEDATEFORM" method="post" action="">
           <div id="THEDATE" class=""> <button id="prevDatebtn" form="THEDATEFORM" class="btn btn-outline-primary">
-            <i class="bi bi-caret-left-fill"></i></button></i> {{DDate}} 
+          <i class="bi bi-caret-left-fill"></i></button></i> {{DDate}} 
           <button id="nextDatebtn" form="THEDATEFORM" class="btn btn-outline-primary">
-            <i class="bi bi-caret-right-fill"></i></button> </h3> </div>
-            </form>
-                   <div class="col-sm-1 mt-3 editsales text-center">
-          Edit Sales:
+          <i class="bi bi-caret-right-fill"></i></button> </h3> </div>
+          </form>
+          <div class="col-sm-1 mt-3 editsales text-center">Edit Sales:
           <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span>
+          <input type="checkbox">
+          <span class="slider round"></span>
           </label>
         </div>
         </div>
-
         <script>
             // $("#prevDatebtn")
             $("#nextDatebtn").click((event) => {
-              var DDate = $('#hiddenDate').text()
-               var ACCType = $('#hiddenAcc').text()
-               var indexing = parseInt($('#indexing').text())
-               var purpose = "next"
-               console.log(DDate)
-               console.log(ACCType)
-
-              var newDate = new Date(DDate)
-               newDate.setDate(newDate.getDate() + 1) 
-               DDate = newDate.toISOString().split('T')[0];
-               console.log(DDate)
-                 document.getElementById("THEDATEFORM").setAttribute("action", "/home/" + ACCType + "/" + LastDate)
-                document.getElementById("THEDATEFORM").submit()
+            var DDate = $('#hiddenDate').text()
+            var ACCType = $('#hiddenAcc').text()
+            console.log(DDate)
+            console.log(ACCType)
+            var newDate = new Date(DDate)
+            newDate.setDate(newDate.getDate() + 1) 
+            DDate = newDate.toISOString().split('T')[0];
+            console.log(DDate)
+            
+            document.getElementById("THEDATEFORM").setAttribute("action", "/new/" + ACCType + "/" + DDate)
+            document.getElementById("THEDATEFORM").submit()
           });
-                $("#prevDatebtn").click((event) => {
-              var DDate = $('#hiddenDate').text()
-               var ACCType = $('#hiddenAcc').text()
-               var indexing = parseInt($('#indexing').text())
-               var purpose = "previous"
-               //var stringPost =  "/next" + "/" + ACCType
-               console.log(ACCType)
-              var newDate = new Date(DDate)
-               newDate.setDate(newDate.getDate() - 1) 
-               var LastDate = newDate.toISOString().split('T')[0];
-                console.log(LastDate)      
-                document.getElementById("THEDATEFORM").setAttribute("action", "/home/" + ACCType + "/" + LastDate)
-                document.getElementById("THEDATEFORM").submit()
+            $("#prevDatebtn").click((event) => {
+            var DDate = $('#hiddenDate').text()
+            var ACCType = $('#hiddenAcc').text()
+            console.log(ACCType)
+            var newDate = new Date(DDate)
+            newDate.setDate(newDate.getDate() - 1) 
+            var LastDate = newDate.toISOString().split('T')[0];
+            console.log(LastDate)      
+            document.getElementById("THEDATEFORM").setAttribute("action", "/new/" + ACCType + "/" + LastDate)
+            document.getElementById("THEDATEFORM").submit()
           });
           //})
         </script>
-
- 
-
         <!--model for editPrice-->
-
         <div class="modal fade" id="editPrice" tabindex="-1" role="dialog" aria-labelledby="salesModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
-              
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Price</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -106,44 +83,36 @@
               <div class="modal-body">
                 <div class="container-fluid">
                     <div hidden> {{ACCType}} </div>
-                  
-
-
                   <div class="row">
                     <div class="col-md-4 ml-auto" >Thin Wash</div>
                     <div class="col-md-8 ml-auto">
                       <input type="tel" class="EDITSALES_INPUTidentifier" name="ETNWPrice" id="ETNWPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TNWPrice}}">
                     </div>
                   </div>
-
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thin Dry</div>
                     <div class="col-md-8 ml-auto">
                       <input type="tel" class="EDITSALES_INPUTidentifier" name="ETNDPrice" id="ETNDPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TNDPrice}}">
                     </div>
                   </div>
-
                   <div class="row  mt-2">
                     <div class="col-md-4 ml-auto" >Thick Wash</div>
                     <div class="col-md-8 ml-auto">
                       <input type="tel" class="EDITSALES_INPUTidentifier" name="ETKWPrice" id="ETKWPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TKWPrice}}">
                     </div>
                   </div>
-
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thick Dry</div>
                     <div class="col-md-8 ml-auto">
                       <input type="tel" class="EDITSALES_INPUTidentifier" name="ETKDPrice" id="ETKDPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TKDPrice}}">
                     </div>
                   </div>
-
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Fold</div>
                     <div class="col-md-8 ml-auto">
                       <input type="tel" class="EDITSALES_INPUTidentifier" name="EFOLDPrice" id="EFOLDPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.FOLDPrice}}">
                     </div>
                   </div>
-
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Soap</div>
                     <div class="col-md-8 ml-auto">
@@ -156,17 +125,14 @@
                       <input type="tel" class="EDITSALES_INPUTidentifier" name="EDOWNPrice" id="EDOWNPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.DOWNPrice}}">
                     </div>
                   </div>
-
-                  <div class="row mt-2">
-                   
+                  <div class="row mt-2">           
                       <script>
                       $(".EDITSALES_INPUTidentifier").on("change paste keyup cut select", function()
                       {
                         console.log("JABOL")
                         console.log($("#EDOWNPrice").val())
-                      })
-                      
-                        </script>
+                      })   
+                      </script>
                     <button class="col-3 text-right btn btn-danger ml-4" data-dismiss="modal">Cancel</button>
                     <div class="col-1"></div>
                     <button class="col-3 text-right btn btn-success" form="editSaleForm" target="_self">Confirm</button>
@@ -178,7 +144,6 @@
             </div>
           </div>
         </div>
-
         <!--modal for Add Sales-->
         <div hidden> 
         <div  id="TNWPrice"  name ="TNWPrice"> {{object.TNWPrice}}</div>
@@ -190,18 +155,15 @@
         <div  id="DOWNPrice" name="DOWNPrice">{{object.DOWNPrice}}</div>
           
         </div>
-
         <div class="modal fade" id="salesBtn" tabindex="-1" role="dialog" aria-labelledby="salesModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              
+            <div class="modal-content">            
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add Sales</h5>
                 <button type="button" onclick="xAddSale()" class="close" id="xAddSalebtn" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
-              </div>
-              
+              </div>         
               <div class="modal-body">
                 <div class="container-fluid" id="ADDSalesID">
                   <form method="post" action="/home/{{ACCType}}/{{DDate}}" id="addSaleForm">
@@ -211,92 +173,74 @@
                       <p>Name</p>
 
                     </div>
-
                     <div class="col-md-8 ml-auto">
                       <input type="text" onkeypress="return /[a-z]/i.test(event.key)" id="ADDName" name="ADDName">
 
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="col-md-4 ml-auto" >Phone</div>
                     <div class="col-md-8 ml-auto">
                       <input onkeypress="return /[0-9]/i.test(event.key)" type="text" id="ADDPhone" name="ADDPhone">
                     </div>
                   </div>
-
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto" >Thin Wash</div>
                     <div class="col-md-8 ml-auto">
                       <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThinW" name="ADDThinW" value="0">
                     </div>
                   </div>
-
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thin Dry</div>
                     <div class="col-md-8 ml-auto">
                       <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThinD" name="ADDThinD"  value="0">
                     </div>
                   </div>
-
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thick Wash</div>
                     <div class="col-md-8 ml-auto">
                       <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThickW"  name="ADDThickW" value="0">
                     </div>
                   </div>
-
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Thin Dry</div>
                     <div class="col-md-8 ml-auto">
                       <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)"  type="tel" size="4" id="ADDThickD" name="ADDThickD" value="0">
                     </div>
                   </div>
-
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto"  >Fold</div>
                     <div class="col-md-8 ml-auto">
                       <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDFold" name="ADDFold" value="0">
                     </div>
                   </div>
-
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto" >Soap</div>
                     <div class="col-md-8 ml-auto">
                       <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)"  type="tel" size="4" id="ADDSoap" name="ADDSoap" value="0">
                     </div>
                   </div>
-
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Downy</div>
                     <div class="col-md-8 ml-auto">
                       <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDDowny" name="ADDDowny" value="0">
                     </div>
                   </div>
-
-                  
-
                   <div class="row mt-3">
                     <div class="col-md ml-auto" text="text-left" id="ADDTotalPrice" name="ADDTotalPrice">Total Price: </div>
                     <input  type="number" size="4" id="ADDTotalPriceR" name="ADDTotalPriceR" value="0" readonly>
                   </div>
-
                   <div class="row mt-2">
                     <div class="col-md-4 ml-auto">Amount Paid: </div>
                     <div class="col-md-8 ml-auto">
                       <input type="tel" size="4" onkeypress="return /[0-9]/i.test(event.key)" id="ADDAmountPaid" name="ADDAmountPaid" value="0">
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="col-md ml-auto" id="ADDBalance">Balance: </div>
                     <input  type="number" size="4" id="ADDBalanceR" name="ADDBalanceR" value="0" readonly>
                   </div>
                   <script>
-                    /*window.onload() = function(){
-                      var jaba = parseInt($("#TNWPrice").text())
-                      console.log(jaba)
-                    }*/
                     function xAddSale()
                     {
                       console.log("X BUTTON")
@@ -308,7 +252,6 @@
                           $("#ADDTotalPriceR").val(0) 
                           $("#ADDBalanceR").val(0) 
                       })
-                      
                     }
                     $(".ADDSALES_INPUTidentifier").on("change paste keyup cut select", function() {
                       console.log("OUCH")
@@ -358,29 +301,19 @@
                       $("#ADDBalanceR").val( $("#ADDTotalPriceR").val() - $("#ADDAmountPaid").val()) 
                     });
 
-                    </script>
-
+                  </script>
                   <div class="row mt-2">
-                    
-
                     <button class="col-3 text-right btn btn-danger" onclick="xAddSale()" data-dismiss="modal" id="cancelAddSalebtn">Cancel</button>
                     <div class="col-1"></div>
                     <button class="col-3 text-right btn btn-success ml-2" form="addSaleForm" target="_self">Confirm</button>
                   </div>
                   </form>
-
                   </div>
                 </div>
               </div>
-
-
-              
-
-
             </div>
           </div>
         </div>
-
         <!-- Table Cart -->
         <!-- Header -->
         <div class="col-md-12">
@@ -402,10 +335,9 @@
                 <th scope="col">Phone Number</th>
               </tr>
             </thead>
-
             <!-- Table Body -->
             <tbody>
-                                             {{#each this.entry}}
+                 {{#each this.entry}}
                <tr id="FinancialEntry" name="FinancialEntry">
                 <td hidden><div id="Entry_id" name="Entry_id" >{{this.SalesID}}</div>  </td>      
                 <td ><input  id ="NAMEField" name="NAMEField" class="text-center" size="18" value="{{this.Name}}"readonly>  </td>
@@ -426,22 +358,55 @@
 
                 <td><a class="btn btn-outline-danger "><i class="bi bi-trash" href="/delete" data-toggle="modal" data-target="#DeleteAccountModal"></i></a></td>
               </tr>
-
               {{/each}}
             </tbody>
-            <script >     $('.btn.btn-outline-danger').click((event) => { 
+            <script>     
+              $('.btn.btn-outline-danger').click((event) => { 
               entry = event.currentTarget.parentElement.parentElement.innerHTML
-              //console.log(entry)
               var card = event.currentTarget.parentElement.parentElement.querySelector("#Entry_id").innerHTML
-              //console.log(card)
-              //console.log("ID gotten is " + card);
-
-            $.get('/delete', {_id : card}, function (result) {
-            
-            });
+              console.log(card)
+            $.get('/delete', {_id : card}, function (result) {});
             $(event.currentTarget.parentElement.parentElement).remove();
-    });
-    </script>
+              console.log("TRIGGER")
+              var a = 0;
+              var b = 0;
+              var c = 0;
+              var d = 0;
+              var e = 0;
+              var f = 0;
+              var g = 0;
+              var h = 0;
+              var i = 0;
+              var j = 0;
+              var k = 0;
+              var numRows = document.getElementsByName("FinancialEntry").length 
+                for (z = 0; z <numRows; z++)
+                {
+                    a += parseInt(document.getElementsByName("TNWField")[z].value)
+                    b += parseInt(document.getElementsByName("TNDField")[z].value)
+                    c += parseInt(document.getElementsByName("TKWField")[z].value)
+                    d += parseInt(document.getElementsByName("TKDField")[z].value)
+                    e += parseInt(document.getElementsByName("FOLDField")[z].value)
+                    f += parseInt(document.getElementsByName("SOAPField")[z].value)
+                    g += parseInt(document.getElementsByName("DOWNField")[z].value)
+                    h += parseInt(document.getElementsByName("TTLField")[z].value)
+                    i += parseInt(document.getElementsByName("AMTField")[z].value)
+                    j += parseInt(document.getElementsByName("BALField")[z].value)
+                    k += parseInt(document.getElementsByName("TOKENField")[z].value)
+                    $("#TNWSum").val(a)
+                    $("#TNDSum").val(b)
+                    $("#TKWSum").val(c)
+                    $("#TKDSum").val(d)
+                    $("#FOLDSum").val(e)
+                    $("#SOAPSum").val(f)
+                    $("#DOWNSum").val(g)
+                    $("#TTLSum").val(h)
+                    $("#AMTSum").val(i)
+                    $("#BALSum").val(j)
+                    $("#TOKENSum").val(k)
+                 }
+            });
+            </script>     
             <tr>
               <td>Total: </td>
               <td> <input  id ="TNWSum" class="text-center ADDSALES_EDITidentifier" size="1" value="0" readonly></td>
@@ -457,7 +422,6 @@
               <td> <input  id ="TOKENSum" class="text-center ADDSALES_EDITidentifier" size="1" value="0" readonly></td>
             </tr>
             <!-- End of Table Body -->
-
           </table>
           <script>
             $(document).on("change paste keyup cut select", function() { 
@@ -500,10 +464,7 @@
                     $("#BALSum").val(j)
                     $("#TOKENSum").val(k)
                  }
-              
-
             })
-
             window.onload = function test ()
             {
               var a = 0;
@@ -518,7 +479,6 @@
               var j = 0;
               var k = 0;
               var numRows = document.getElementsByName("FinancialEntry").length 
-
                 for (z = 0; z <numRows; z++)
                 {
                     a += parseInt(document.getElementsByName("TNWField")[z].value)
@@ -544,28 +504,11 @@
                     $("#BALSum").val(j)
                     $("#TOKENSum").val(k)
                  }
-              
-
-              
-              console.log(numRows)
-              //$("#TNWSum").val() 
             }
-            
           </script>
-          
           <!-- End of Table -->
         </div>
-
         </div>
-
-
-
-         <!-- JQuery -->
- <!-- <script
- src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
- integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
- crossorigin="anonymous"
-></script> -->
 
 <!-- Popper -->
 <script
