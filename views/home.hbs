@@ -337,6 +337,7 @@
             </thead>
             <!-- Table Body -->
             <tbody>
+              {{#if this.entry}}
                  {{#each this.entry}}
                <tr id="FinancialEntry" name="FinancialEntry">
                 <td hidden><div id="Entry_id" name="Entry_id" >{{this.SalesID}}</div>  </td>      
@@ -359,6 +360,9 @@
                 <td><a class="btn btn-outline-danger "><i class="bi bi-trash" href="/delete" data-toggle="modal" data-target="#DeleteAccountModal"></i></a></td>
               </tr>
               {{/each}}
+            {{else}}
+              <h1>No entries for the day</h1>
+            {{/if}}
             </tbody>
             <script>     
               $('.btn.btn-outline-danger').click((event) => { 
