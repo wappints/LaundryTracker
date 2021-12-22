@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-light">
+        <div id="ULTIMATEhiddendate" hidden>{{DDate}}</div>
       <div class = "container-fluid">
       <a href="/home/{{ACCType}}/{{DDate}}" class="navbar-brand">
          <img src="/public/css/logo.jpg" alt="Dirty Treats Logo" width="50" height="50" class="d-inline-block align-middle"/>
@@ -19,14 +20,14 @@
                <a class="nav-link active rounded-top rounded-bottom navhover"  href="/home/{{ACCType}}/{{DDate}}" style="color: black;"><i class="bi bi-house-fill" ></i> Home</a>
             </li>
             <li>
-               <a class="nav-link rounded-top rounded-bottom navhover" href="/log/{{ACCType}}" style="color: black;"><i class="bi bi-journal-text" ></i> Log</a>
+               <a class="nav-link rounded-top rounded-bottom navhover" href="/log/{{ACCType}}/{{DDate}}" style="color: black;"><i class="bi bi-journal-text" ></i> Log</a>
             </li>
             <li>
                <a class="nav-link rounded-top rounded-bottom navhover" href="/balances/{{ACCType}}/{{DDate}}" style="color: black;"><i class="bi bi-cash-stack"></i> Balances</a>
             </li>
 
             <li>
-              <a class="nav-link rounded-top rounded-bottom navhover" href="/inventory/{{ACCType}}" style="color: black;"><i class="bi bi-boxes" ></i> Inventory</a>
+              <a class="nav-link rounded-top rounded-bottom navhover" href="/inventory/{{ACCType}}/{{DDate}}" style="color: black;"><i class="bi bi-boxes" ></i> Inventory</a>
           </li>
 
          </ul>
@@ -137,7 +138,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="AccountDropDown">
                 <a class="dropdown-item" href="management.html">Management</a>
-                <a class="dropdown-item" href="LogOutModal" data-toggle="modal" data-target="#LogOutModal">Log Out</a>
+                <a class="dropdown-item" href="/login" data-toggle="modal" data-target="#LogOutModal">Log Out</a>
            </li>
             <!-- Start of Log Out Modal -->
          <div class="modal fade" id="LogOutModal" tabindex="-1" role="dialog" aria-labelledby="LogOutModalLabel" aria-hidden="true">
