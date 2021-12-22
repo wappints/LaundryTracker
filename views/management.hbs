@@ -1,17 +1,17 @@
-
-  {{>header}}
+{{>header}}
    
    <body>      
 
          
          <!-- Cart -->
+
       <div class="container-fluid">
           <row>
             <div class="col-3 text-left mt-3">
                 <h5>Admin Name</h5>
             </div>
             <div class="col-3">
-                <input type="text" value="John Doe" readonly>
+                <input type="text" value="{{admin.EMPName}}" readonly>
             </div>
           </row>
 
@@ -20,10 +20,12 @@
                 <h5>Password</h5>
             </div>
             <div class="col-3">
-                <input type="password" value="tubero" readonly>
+                <input type="password" value="{{admin.EMPPass}}" readonly>
             </div>
           </row>
+  <script>
 
+  </script>
           <row>
             <div class="col-12 text-left mt-3">
                 <button class="btn btn-primary btn-lg btn-block">Edit</button>
@@ -35,14 +37,14 @@
                 <h4>Employee List</h4>
             </div>
           </row>
-
+          {{#each accounts}}
           <row>
               <div class="col-6">
-                  <p>Juan Dela Cruz</p>
-                  <input type="password" value="test1" readonly>
+                  <p>{{this.EMPName}}</p>
+                  <input type="password" value="{{this.EMPPass}}" readonly>
               </div>
           </row>
-
+          {{/each}}
         <!-- Table Cart -->
         <!-- Header -->
         

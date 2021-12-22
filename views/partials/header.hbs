@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-light">
         <div id="ULTIMATEhiddendate" hidden>{{DDate}}</div>
+        <div id="ULTIMATEhiddenacc" hidden>{{ACCType}}</div>
       <div class = "container-fluid">
       <a href="/home/{{ACCType}}/{{DDate}}" class="navbar-brand">
          <img src="/public/css/logo.jpg" alt="Dirty Treats Logo" width="50" height="50" class="d-inline-block align-middle"/>
@@ -33,7 +34,7 @@
          </ul>
          <ul class="navbar-nav ms-auto">
           <div class="px-3 font-monospace" style="font-size: 14px;">
-            Current Session: Yeohan Norona
+            Current Session: {{EMPName}}
             <br>
             Type: <div id="navACCType" style="display: inline">{{ACCType}}</div>
             </div>
@@ -137,7 +138,7 @@
                   <i class="bi bi-person-badge-fill"></i> Account
               </a>
               <div class="dropdown-menu" aria-labelledby="AccountDropDown">
-                <a class="dropdown-item" href="/management/{{ACCType}}">Management</a>
+                <a class="dropdown-item" href="/management/{{ACCType}}/{{DDate}}">Management</a>
                 <a class="dropdown-item" href="/login" data-toggle="modal" data-target="#LogOutModal">Log Out</a>
            </li>
             <!-- Start of Log Out Modal -->

@@ -25,5 +25,5 @@ app.get('/deleteBal', balancesController.deleteBalance);
 app.post('/new/:ACCType/:DDate', viewDateController.newDate)
 app.get('/inventory/:ACCType/:DDate', inventoryController.getInventory);
 app.post('/inventory/:ACCType/:DDate', inventoryController.setInventory);
-app.get('/management/:ACCType', accountsController.getInventory);
+app.get('/management/:ACCType/:DDate', accountsController.getAccounts);
 module.exports = app;  
