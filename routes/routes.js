@@ -16,7 +16,7 @@ app.post('/home/:ACCType/:DDate', saleController.addEntry);
 app.get('/log/:ACCType', ); 
 app.post('/log/:ACCType', );
 app.get('/balances/:ACCType/:DDate', balancesController.getBalances); 
-app.post('/balances/:ACCType/:DDate', balancesController.removeBalance);
+//app.post('/balances/:ACCType/:DDate', balancesController.removeBalance);
 app.get('/delete', saleController.deleteEntry);
 app.post('/edit', editPriceController.changePrice);
 app.get('/inventory/:ACCType', inventoryController.getInventory);

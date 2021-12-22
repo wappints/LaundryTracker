@@ -346,7 +346,12 @@
                       var computation = TNWPrice * TNWQty + TNDPrice * TNDQty +  TKWPrice * TKWQty +  TKDPrice * TKDQty +  FOLDPrice * FOLDQty + SOAPPrice * SOAPQty + DOWNPrice * DOWNQty
                       
                       $("#ADDTotalPriceR").val(computation);
+                      $("#ADDBalanceR").val( $("#ADDTotalPriceR").val() - $("#ADDAmountPaid").val()) 
                     });
+
+
+                      
+
 
                     $("#ADDAmountPaid").on("change paste keyup cut select", function() {
                       $("#ADDBalanceR").val( $("#ADDTotalPriceR").val() - $("#ADDAmountPaid").val()) 

@@ -10,7 +10,7 @@ var BalancesSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    Phone : {
+    PhoneNum : {
         type: String,
         required: false
     },
@@ -18,9 +18,9 @@ var BalancesSchema = new mongoose.Schema({
         type: Number,
         required: false
     },  
-    Date : 
+    DDate : 
     {
-        type: Date,
+        type: String,
         required: false
     }
 });

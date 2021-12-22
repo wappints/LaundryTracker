@@ -6,6 +6,7 @@ const db = require('../models/db.js');
 // import module `System` from `../models/SystemModel.js`
 const Sale = require('../models/SalesModel.js');
 const Price = require('../models/PriceModel.js');
+const Balances = require('../models/BalancesModel.js');
 const { validationResult } = require('express-validator');
 const { insertOne } = require('../models/db.js');
 /*
@@ -105,6 +106,8 @@ const saleController = {
     addEntry : function (req, res) {
         var Name = req.body.ADDName;
         var Phone = req.body.ADDPhone;
+        if (isNaN(Phone) || Phone === null || Phone == "")
+            Phone = "No Number"
         var TNW = req.body.ADDThinW;
         if (isNaN(TNW))
             TNW = 0
@@ -139,12 +142,25 @@ const saleController = {
         var currentDate = new Date();
         currentDate.setHours(currentDate.getHours() + 8);
         currentDate = new Date(currentDate.toISOString());
+        var dateForBalance = currentDate
+        dateForBalance = dateForBalance.toISOString().split('T')[0]
+        console.log(dateForBalance)
         var ObjectID = require('bson').ObjectID;
         var id  = new ObjectID();
         console.log(currentDate)
         var pass = 0; 
         if (Balance > 0)
+        {
             pass = 1;
+            docs2 = {
+                Name : Name,
+                PhoneNum : Phone,
+                DDate : dateForBalance,
+                Balance : Balance
+            }
+            console.log(docs2)
+        }
+            
         var docs = {
             _id : id,
             Name : Name,
@@ -171,6 +187,10 @@ const saleController = {
                 console.log("FAILED INSERTION!") // <-------------- Jihro fix this pls
             db.findMany(Sale, {}, {}, function(result){
                 console.log(result)
+                if (pass)
+                    db.insertOne(Balances, docs2, function(result){
+
+                    })
                 res.redirect('back')
             })
 

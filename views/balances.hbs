@@ -5,12 +5,13 @@
       <div class="row">
         <div class="col-md-10"><h3 class="text-left mt-3 mb-3">Contacts</h3></div>
         <!-- Page Header -->
-        <div class="col-md-2 mt-3">
-            <select class="form-select" aria-label="SelectView">
-              <option selected value="allContacts">All Contacts</option>
-              <option value="withBalance">With Balance</option>
-            </select>
-          </div>
+        <div class="col-md-1 mt-3 editsales">
+          Enable Payments:
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </div>
         </div>
         <!-- Table Cart -->
         <!-- Header -->
@@ -21,8 +22,8 @@
                 <th scope="col">Name</th>
                 <th scope="col">Phone Number</th>
                 <th scope="col">Balance</th>
-                <th scope="col">Free Space</th>
-                <th scope="col">Free Space</th>
+                <th scope="col">Date</th>
+                <th scope="col">Payment</th>
               </tr>
             </thead>
 
@@ -31,11 +32,11 @@
               {{#each this.entry}}
               <tr>
                 <div id = "BAL_ID" hidden>{{this._id}}</div>
-                <td><input id="NAMEField"  name="NAMEField" class = "text-center" size = "35" value = "{{this.Name}}" readonly></td>
-                <td><input id="PHONEField" name="PHONEField" class = "text-center" size = "2" value = "{{this.Phone}}" readonly></td>
-                <td><input id="BALField" name="BALField"  class = "text-center" size = "2" value = "{{this.Balance}}" readonly></td>
-                <td><input id="DATEField"  name="DATEField" class = "text-center" size = "2" value = "{{this.Date}}" readonly></td>
-                <td><input id="PAYMENTField" name="NAMEField" class = "text-center" size = "2" value = "{{this.Payment}}}" ></td>
+                <td><input type="text" id="NAMEField"  name="NAMEField" class = "text-center" size = "30" value = "{{this.Name}}" readonly></td>
+                <td><input type="text" id="PHONEField" name="PHONEField" class = "text-center" size = "30" value = "{{this.PhoneNum}}" readonly></td>
+                <td><input type="tel" id="BALField" name="BALField"  class = "text-center" size = "7" value = "{{this.Balance}}" readonly></td>
+                <td><input type="text" id="DATEField"  name="DATEField" class = "text-center" size = "17" value = "{{this.DDate}}" readonly></td>
+                <td><input type="tel" id="PAYMENTField" name="PAYMENTField" class = "text-center" size = "7" value = "0" ></td>
               </tr>
               {{/each}}
             </tbody>
