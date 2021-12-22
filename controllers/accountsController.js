@@ -14,6 +14,7 @@ const accountsController = {
             var obj = {}
             var obj2 = {}
             var details = []
+            var details2 = []
             for (var i of result)
             {
                 if(i.isAdmin)
@@ -22,6 +23,7 @@ const accountsController = {
                     obj["isAdmin"] = i.isAdmin
                     obj["EMPName"] = i.EMPName
                     obj["EMPPass"] = i.EMPPass
+                    details.push(obj)
                 }
                 else
                 {
@@ -29,10 +31,11 @@ const accountsController = {
                     obj2["isAdmin"] = i.isAdmin
                     obj2["EMPName"] = i.EMPName
                     obj2["EMPPass"] = i.EMPPass
+                    details2.push(obj2)
                 }
-                details.push(obj)
+                
             }
-            res.render("management", {admin : obj, accounts : obj2, layout : "managementLayout", ACCType : ACCType, DDate : DDate})
+            res.render("management", {admin : details, accounts : details2, layout : "managementLayout", ACCType : ACCType, DDate : DDate})
         })
 
     }

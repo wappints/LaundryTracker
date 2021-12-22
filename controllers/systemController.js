@@ -41,6 +41,7 @@ const systemController = {
                     if(result.EMPPass === PASSField){
                         //console.log("FOUND")
                         res.redirect("home/EMPLOYEE/" + formattedDate);
+                        //res.redirect("home/EMPLOYEE/UNKNOWN" + formattedDate);
                     }
                     else{
                         //console.log("NOT FOUND")
@@ -68,6 +69,7 @@ const systemController = {
                     if(result.ADMINPass === PASSField){
                         //console.log("FOUND")
                         res.redirect("home/ADMIN/" + formattedDate);
+                        //res.redirect("home/ADMIN/UNKNOWN" + formattedDate);
                     }
                     else{
                         //console.log("NOT FOUND")
