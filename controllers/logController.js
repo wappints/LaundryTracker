@@ -2,15 +2,14 @@
 const { request } = require('express');
 const db = require('../models/db.js');
 
-// import module `System` from `../models/InventoryModel.js`
+// import module `Log` from `../models/LogModel.js`
 const Log = require('../models/LogModel.js');
 
 const logController = {
 
-    getLogs : function (req,res){
-
+    getLogs : function (req,res) {
 
     }
 }
 
-module.exports = inventoryController;
+module.exports = logController;

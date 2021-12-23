@@ -87,46 +87,47 @@ const saleController = {
         var Name = req.body.ADDName;
         var Phone = req.body.ADDPhone;
         var DDate = req.params.DDate
+        var TNW = req.body.ADDThinW;
+        var TND = req.body.ADDThinD;
+        var TKW = req.body.ADDThickW;
+        var TKD = req.body.ADDThickD;
+        var Fold =req.body.ADDFold;
+        var Soap = req.body.ADDSoap;
+        var Downy = req.body.ADDDowny;
+        var TotalPrice = req.body.ADDTotalPriceR;
+        var AmountPaid = req.body.ADDAmountPaid;
+        var Balance = req.body.ADDBalanceR;
+
         if (isNaN(Phone) || Phone === null || Phone == "")
             Phone = "No Number"
-        var TNW = req.body.ADDThinW;
         if (isNaN(TNW))
             TNW = 0
-        var TND = req.body.ADDThinD;
         if (isNaN(TND))
             TND = 0
-        var TKW = req.body.ADDThickW;
         if (isNaN(TKW))
             TKW = 0
-        var TKD = req.body.ADDThickD;
         if (isNaN(TKD))
             TKD = 0
-        var Fold =req.body.ADDFold;
         if (isNaN(Fold))
             Fold = 0
-        var Soap = req.body.ADDSoap;
         if (isNaN(Soap))
             Soap = 0
-        var Downy = req.body.ADDDowny;
         if (isNaN(Downy))
             Downy = 0
-        var TotalPrice = req.body.ADDTotalPriceR;
         if (isNaN(TotalPrice))
             TotalPrice = 0
-        var AmountPaid = req.body.ADDAmountPaid;
         if (isNaN(AmountPaid))
             AmountPaid = 0
-        var Balance = req.body.ADDBalanceR;
         if (isNaN(Balance))
             Balance = 0
+
         var tokenDefault = 0;
         var currentDate = new Date(DDate);
         var dateForBalance = currentDate
         dateForBalance = dateForBalance.toISOString().split('T')[0]
-        console.log(dateForBalance)
+
         var ObjectID = require('bson').ObjectID;
         var id  = new ObjectID();
-        console.log(currentDate)
         var pass = 0; 
         if (Balance > 0)
         {
@@ -138,9 +139,7 @@ const saleController = {
                 DDate : dateForBalance,
                 Balance : Balance
             }
-            console.log(docs2)
-        }
-            
+        }     
         var docs = {
             _id : id,
             Name : Name,
@@ -158,15 +157,9 @@ const saleController = {
             Balance : Balance,
             TokenError : tokenDefault
         }
-        console.log(docs)
         db.insertOne(Sale, docs, function(result)
         {
-            if(result)
-                console.log("INSERTED!")
-            else
-                console.log("FAILED INSERTION!") // <-------------- Jihro fix this pls
             db.findMany(Sale, {}, {}, function(result){
-                console.log(result)
                 if (pass)
                 {
                     db.findOne(Balances, {BalanceID : id}, {}, function(result){
@@ -176,14 +169,10 @@ const saleController = {
                 }
                 res.redirect('back')
             })
-
         })
-
     },
-
     deleteEntry : function (req, res) {
         var id = req.query._id
-        console.log(id)
         db.findOne(Sale, {_id : id}, {}, function(result){
             if (result.Balance < 0)
             {
@@ -199,12 +188,7 @@ const saleController = {
                     DDate : dateForBalance,
                     Balance : -(result.Balance)
                 } 
-                db.insertOne(Balances, docs2, function(result){
-                    db.deleteOne(Sale, {_id : id}, function(result){
-
-                    })
-                })
-               
+                db.insertOne(Balances, docs2, function(result){db.deleteOne(Sale, {_id : id}, function(result){})})   
             }
             else
             {
@@ -216,9 +200,7 @@ const saleController = {
                     db.deleteOne(Balances, {BalanceID : id}, function(result){})
                 })
             }
-
         })
-
     }
 }
 module.exports = saleController;

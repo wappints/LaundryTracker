@@ -2,15 +2,13 @@
 // import module `mongodb`
 var mongoose = require('mongoose');
 
-// defines the schema for collection `prices`
+// defines the schema for collection `Account`
 var AccountSchema = new mongoose.Schema({
-   
     isAdmin:
     {
         type : Boolean,
         required : true
     },
-    
     EMPName: 
     {
         type: String,

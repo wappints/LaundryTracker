@@ -1,18 +1,12 @@
-// import module `database` from `../models/db.js`
 const { request } = require('express');
 const db = require('../models/db.js');
-
-// import module `System` from `../models/InventoryModel.js`
 const Balances = require('../models/BalancesModel.js');
 const Sale = require('../models/SalesModel.js');
 const balancesController = {
-
     getBalances : function (req,res){
         var DDate = req.params.DDate
         var ACCType = req.params.ACCType
-
-        db.findMany(Balances, {}, {}, function(result)
-        {
+        db.findMany(Balances, {}, {}, function(result) {
             var obj = {}
             var details = []
             for (var i of result)
@@ -25,33 +19,21 @@ const balancesController = {
                 obj["Balance"] = i.Balance
                 details.push(obj)
             }
-            console.log(details)
             res.render("balances", {entry : details, DDate :DDate, ACCType : ACCType, layout : "balancesLayout"})
         })
-       
-
     },
-
     payBalances : function(req,res)
     {
-      
         var BalanceID = req.body.BalanceID
-        console.log(req)
-        console.log("ABOVE")
         var Name = req.body.Name
         var PhoneNum = req.body.PhoneNum
-        var DDate = req.params.DDate
         var computation = req.body.computation
         var Balance = req.body.Balance
         var Payment = req.body.Payment
-        if (computation == 0)
-        {
+        if (computation == 0) 
             db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){})
-        }
         else
-        {
             db.updateOne(Balances, {BalanceID : BalanceID}, {Balance : computation}, function(result) {})
-        }
         var ObjectID = require('bson').ObjectID;
         var id  = new ObjectID();
         var currentDate = new Date()
@@ -74,21 +56,12 @@ const balancesController = {
             Balance : -Payment,
             TokenError : 0
         }
-        db.insertOne(Sale, docs, function(result){
-
-        })
+        db.insertOne(Sale, docs, function(result){})
     },
-    
     deleteBalance : function(req,res)
     {
         var BalanceID = req.query.card
-        console.log(BalanceID)
-        db.deleteOne(Sale, {_id : BalanceID}, function(result){
-            db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){})
-        })
-        
+        db.deleteOne(Sale, {_id : BalanceID}, function(result){db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){})})
     }
-    
 }
-
 module.exports = balancesController;

@@ -1,10 +1,9 @@
 
 // import module `mongodb`
 var mongoose = require('mongoose');
-
 // defines the schema for collection `prices`
 var FinalSalesSchema = new mongoose.Schema({
-   
+
     FinalSalesID : {
         type : mongoose.Schema.Types.ObjectId,
         required : true
@@ -13,9 +12,6 @@ var FinalSalesSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-
-
-    
     ThinWashSum: {
         type: Number,
         required: true
@@ -44,9 +40,6 @@ var FinalSalesSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-
-
-
     AmountPaidSum: {
         type: Number,
         required: true
@@ -63,9 +56,7 @@ var FinalSalesSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-
-
- 
+    
 });
 
 /*
@@ -74,5 +65,5 @@ var FinalSalesSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `sales` -> plural of the argument `Sale`
 */
-module.exports = mongoose.model('finalsale', FinalSalesSchema, 'finalsale');
+module.exports = mongoose.model('Finalsale', FinalSalesSchema, 'Finalsale');
 

@@ -2,7 +2,7 @@
 const { ObjectID } = require('bson');
 var mongoose = require('mongoose');
 
-// defines the schema for collection `prices`
+// defines the schema for collection `Balances`
 var BalancesSchema = new mongoose.Schema({
    
     BalanceID : {
@@ -21,18 +21,18 @@ var BalancesSchema = new mongoose.Schema({
         type: Number,
         required: false
     },  
-    DDate : 
-    {
+    DDate : {
         type: String,
         required: false
     }
+    
 });
 
 /*
-    exports a mongodb.model object based on PriceSchema` (defined above)
+    exports a mongodb.model object based on BalancesSchema` (defined above)
     when another script exports from this file
     This model executes CRUD operations
-    to collection `balances` -> plural of the argument `balance`
+    to collection `Balances` -> plural of the argument `Balances`
 */
 module.exports = mongoose.model('Balances', BalancesSchema, 'Balances');
 

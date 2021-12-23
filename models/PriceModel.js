@@ -2,7 +2,7 @@
 // import module `mongodb`
 var mongoose = require('mongoose');
 
-// defines the schema for collection `prices`
+// defines the schema for collection `Price`
 var PriceSchema = new mongoose.Schema({
    
     PriceID : {
@@ -52,7 +52,7 @@ var PriceSchema = new mongoose.Schema({
     exports a mongodb.model object based on PriceSchema` (defined above)
     when another script exports from this file
     This model executes CRUD operations
-    to collection `prices` -> plural of the argument `Price`
+    to collection `Price` -> plural of the argument `Price`
 */
 module.exports = mongoose.model('Price', PriceSchema, 'Price');
 

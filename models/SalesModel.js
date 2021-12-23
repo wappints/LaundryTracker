@@ -21,9 +21,6 @@ var SalesSchema = new mongoose.Schema({
         type: Date,
         required: false
     },
-
-
-    
     ThinWash: {
         type: Number,
         required: false
@@ -52,9 +49,6 @@ var SalesSchema = new mongoose.Schema({
         type: Number,
         required: false
     },
-
-
-
     AmountPaid: {
         type: Number,
         required: false
@@ -67,16 +61,10 @@ var SalesSchema = new mongoose.Schema({
         type: Number,
         required: false
     },
-
-
-
-
     TokenError: {
         type: Number,
         required: false
     },
-
-
  
 });
 
@@ -84,7 +72,7 @@ var SalesSchema = new mongoose.Schema({
     exports a mongodb.model object based on PriceSchema` (defined above)
     when another script exports from this file
     This model executes CRUD operations
-    to collection `sales` -> plural of the argument `Sale`
+    to collection `Sale` -> plural of the argument `Sale`
 */
 module.exports = mongoose.model('Sale', SalesSchema, 'Sale');
 
