@@ -2,12 +2,21 @@
 {{> header}}
     <div class="container-fluid">
         <div class="row">
+            {{#if_neq Session "Anonymous"}}
             <div class="col-md-1 mt-3">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#salesBtn">Add Sales</button>
             </div>
+            {{else}}
+            {{/if_neq}}
+            {{#if_neq Session "Anonymous"}}
+                {{#if_eq ACCType "ADMIN"}}
             <div class='col-md-1 mt-3'>
                 <button class='btn btn-primary' data-toggle="modal" data-target="#editPrice">Edit Price</button>
             </div>
+                {{else}}
+                {{/if_eq}}
+            {{else}}
+            {{/if_neq}}
             <div class="col-md-8 ml-5">
                 <div id ="hiddenDate" hidden>{{DDate}}</div>
                 <div id ="hiddenAcc" hidden>{{ACCType}}</div>
@@ -24,13 +33,15 @@
                     </form>
                 </h3> 
             </div>
-
+            {{#if_neq Session "Anonymous"}}
             <div class="col-sm-1 mt-3 editsales align-center"> Edit Sales:
                 <label class="switch">
                     <input type="checkbox">
                     <span class="slider round"></span>
                 </label>
             </div>
+            {{else}}
+            {{/if_neq}}
 
         </div>
         <script>
@@ -476,6 +487,7 @@
         })
 
         window.onload = function test () {
+
             var a = b = c = d = e = f = g = h = i = j = k = 0
             var numRows = document.getElementsByName("FinancialEntry").length 
             for (z = 0; z <numRows; z++) {

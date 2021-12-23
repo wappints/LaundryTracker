@@ -11,13 +11,30 @@ const routes = require('./routes/routes.js')
 //const { dialog } = require('electron')
 
 //hbs
+var helperIF = {
+  'if_neq' : function(a, b, opts) {
+  if(a != b) // Or === depending on your needs
+      return opts.fn(this);
+  else
+      return opts.inverse(this);
+  },
+  
+  'if_eq' : function(a, b, opts) {
+    if(a === b) // Or === depending on your needs
+        return opts.fn(this);
+    else
+        return opts.inverse(this);
+    }
+}
+
 const hbs = exphbs.create({
     defaultLayout: 'loginLayout',
     extname: '.hbs',
     layoutsDir: path.join(__dirname, 'views/layouts'),
     partialsDir: path.join(__dirname, 'views/partials'),
+    helpers: helperIF
   })
- 
+
 //env
 dotenv.config();
 hostname = process.env.HOSTNAME;

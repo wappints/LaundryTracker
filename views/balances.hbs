@@ -5,6 +5,7 @@
             <div class="col-md-10">
                 <h3 class="text-left mt-3 mb-3"></h3>
             </div>
+            {{#if_neq Session "Anonymous"}}
             <div class="col-md-1 mt-3 editsales">
                 Enable Payments:
                 <label class="switch">
@@ -12,6 +13,8 @@
                     <span class="slider round"></span>
                 </label>
             </div>
+            {{else}}
+            {{/if_neq}}           
         </div>
         <div class="col-md-12">
             <table class="table text-center table-striped">

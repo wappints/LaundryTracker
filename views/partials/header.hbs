@@ -43,8 +43,15 @@
 						<i class="bi bi-clock-fill"> Session </i> 
 					</a>
 					<div class="dropdown-menu" aria-labelledby="SessionDropDown">
+						{{#if_eq Session "Anonymous"}}
 						<a class="dropdown-item" href="addSessionModal" data-toggle="modal" data-target="#addSessionModal"> Add Session </a>
+						{{else}}
+						<a class="dropdown-item" href="addSessionModal" data-toggle="modal" data-target="#addSessionModal"> Change Session </a>
+						{{/if_eq}}
+						{{#if_neq Session "Anonymous"}}
 						<a class="dropdown-item" href="endSessionModal" data-toggle="modal" data-target="#endSessionModal"> End Session </a>
+						{{else}}
+						{{/if_neq}}
 					</div>
 				</li>
 				<!-- Start of Add Session Modal -->			
@@ -53,8 +60,8 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel"> Add Session </h5>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<h5 class="modal-title" id="exampleModalLabel"> {{#if_eq Session "Anonymous"}} Add Session {{else}} Change Session {{/if_eq}} </h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"  onclick="resetSessionInput()">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
@@ -72,8 +79,6 @@
 										var sessionPass = event.currentTarget.parentElement.parentElement.children[2].children[1].value
 										var DDate = $("#ULTIMATEhiddendate").text()
 										var ACCType = $("#ULTIMATEhiddenacc").text()
-										console.log(sessionName)
-										console.log(sessionPass)
 										document.getElementById("THESESSIONFORM").setAttribute("action", "/session/" + ACCType + "/" + sessionName + "/" + sessionPass + "/" + DDate)
 										document.getElementById("THESESSIONFORM").submit()
 									}
@@ -136,7 +141,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancel </button>
-								<a href="/home/{{ACCType}}/{{Session}}/{{DDate}}" class="btn btn-danger"> End </a>
+								<a href="/home/{{ACCType}}/Anonymous/{{DDate}}" class="btn btn-danger"> End </a>
 						</div>
 						</div>
 					</div>
@@ -147,7 +152,13 @@
 						<i class="bi bi-person-badge-fill"> Account </i> 
 					</a>
 					<div class="dropdown-menu" aria-labelledby="AccountDropDown">
+						{{#if_neq Session "Anonymous"}}
+							{{#if_eq ACCType "ADMIN"}}
 						<a class="dropdown-item" href="/management/{{ACCType}}/{{Session}}/{{DDate}}"> Management </a>
+							{{else}}
+							{{/if_eq}}
+						{{else}}
+						{{/if_neq}}
 						<a class="dropdown-item" href="/login" data-toggle="modal" data-target="#LogOutModal"> Log Out </a>
 				</li>
 				<!-- Start of Log Out Modal -->

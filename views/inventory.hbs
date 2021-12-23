@@ -23,13 +23,22 @@
                         <div id="QTYFieldDowny">{{INVDowny}}</div>
                     </td>
                     <td>
-                        <button id="DECDownybtn" class="btn btn-danger" data-toggle="modal" >
-                            <i class="bi bi-dash"></i>
-                        </button>
-                        <input id="DOWNYinput" type="text" size="1" class="text-center" placeholder="Qty.">
-                        <button id="INCDownybtn"class="btn btn-primary" data-toggle="modal">
-                            <i class="bi bi-plus"></i>
-                        </button>
+                        {{#if_neq Session "Anonymous"}}
+                            {{#if_eq ACCType "ADMIN"}}
+                            <button id="DECDownybtn" class="btn btn-danger" data-toggle="modal" >
+                                <i class="bi bi-dash"></i>
+                            </button>
+                            <input id="DOWNYinput" type="text" size="1" class="text-center" placeholder="Qty.">
+                            <button id="INCDownybtn"class="btn btn-primary" data-toggle="modal">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                            {{else}}
+                            <button id="INCDownybtn"class="btn btn-primary" data-toggle="modal">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                            {{/if_eq}}
+                        {{else}}
+                        {{/if_neq}}
                     </td>
                 </tr>
                 <tr>
@@ -39,13 +48,22 @@
                         <div id="QTYFieldSoap">{{INVSoap}}</div>
                     </td>
                     <td>
-                        <button id="DECSoapbtn" class="btn btn-danger" data-toggle="modal" >
-                            <i class="bi bi-dash"></i>
-                        </button>
-                        <input id="SOAPinput" type="text" size="1" class="text-center" placeholder="Qty.">
-                        <button id="INCSoapbtn" class="btn btn-primary" data-toggle="modal">
-                            <i class="bi bi-plus"></i>
-                        </button>
+                        {{#if_neq Session "Anonymous"}}
+                            {{#if_eq ACCType "ADMIN"}}
+                            <button id="DECSoapbtn" class="btn btn-danger" data-toggle="modal" >
+                                <i class="bi bi-dash"></i>
+                            </button>
+                            <input id="SOAPinput" type="text" size="1" class="text-center" placeholder="Qty.">
+                            <button id="INCSoapbtn" class="btn btn-primary" data-toggle="modal">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                            {{else}}
+                            <button id="INCSoapbtn" class="btn btn-primary" data-toggle="modal">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                            {{/if_eq}}
+                        {{else}}
+                        {{/if_neq}}
                     </td>
                 </tr>
                 <script>
