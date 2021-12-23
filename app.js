@@ -28,36 +28,10 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', '.hbs')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname)))
-/*
-hbs.registerHelper('IFEQUALS', function(v1, v2, options) {
-  console.log(v1)
-  console.log(v2)
-  if(v1 == v2) {
-    return options.fn(this);
-  }
-  return options.inverse(this);
-});
-*/
+
 app.use('/', routes)
-/*
-app.post('/login', function(req, res) {
-  var acc = req.body.ACCType;
-  var pass = req.body.PASSField;
-  console.log("post received: %s %s", acc, pass)
-});
-*/
-/*
-app.use(function (req, res) {
-    res.render('error', {
-      css: ['global', 'error'],
-      status: {
-        code: '404',
-        message: 'Not Found'
-      },
-      Level: parseInt(req.session.level)
-    })
-  })
-  */db.connect();
+
+db.connect();
   app.listen(port, hostname, function () {
     console.log('Server running at:')
     console.log('http://' + hostname + ':' + port)
