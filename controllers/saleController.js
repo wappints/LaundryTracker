@@ -16,7 +16,7 @@ const saleController = {
 
     getEntries : function (req, res) {
         var DDate = req.query.DDate
-
+        var Session = req.params.Session
         if (DDate == null)
             DDate = req.params.DDate
 
@@ -70,10 +70,11 @@ const saleController = {
                     SOAPPrice : result.SOAPPrice,
                     DOWNPrice : result.DOWNPrice
                 }
-                var renderobjects = {ACCType : typeOfAcc, DDate : formattedDate, entry : details, layout : 'mainLayout', object : obj2}
+                var renderobjects = {ACCType : typeOfAcc, DDate : formattedDate, Session : Session, entry : details, layout : 'mainLayout', object : obj2}
                 console.log("DDate = " + DDate )
                 console.log("formattedDate = " + formattedDate)
-                    res.render('home', renderobjects)
+                console.log("Session = " + Session)
+                res.render('home', renderobjects)
             })
         })
     },

@@ -13,17 +13,16 @@ const systemController = {
         var currentDate = new Date()
         currentDate.setHours(currentDate.getHours() + 8);
         var formattedDate = currentDate.toISOString().split('T')[0];
-        var session = "/Anonymous"
+        
         if (errors.isEmpty()) {
             var ACCType = req.body.ACCType;
             var PASSField = req.body.PASSField;
-
+            var session = "Anonymous"
             if (ACCType === "EMPLOYEE") {
                 db.findOne(System, {EMPPass : PASSField}, {}, function(result) {
                     if (result != null) {
                         if (result.EMPPass === PASSField) {
-                            res.redirect("home/EMPLOYEE/" + formattedDate);
-                            //res.redirect("home/EMPLOYEE/UNKNOWN" + formattedDate);
+                            res.redirect("home/EMPLOYEE/" + session + "/" + formattedDate);
                         }
                         else {
                             var details = {
@@ -44,8 +43,7 @@ const systemController = {
                 db.findOne(System, {ADMINPass : PASSField}, {}, function(result) {
                     if (result != null) {
                         if (result.ADMINPass === PASSField) {
-                            res.redirect("home/ADMIN/" + formattedDate);
-                            //res.redirect("home/ADMIN/UNKNOWN" + formattedDate);
+                            res.redirect("home/EMPLOYEE/" + session + "/" + formattedDate);
                         }
                         else {
                             var details = {

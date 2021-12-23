@@ -3,7 +3,7 @@
 	<script type="text/javascript" src="../../node_modules/jquery/dist/jquery.min.js" ></script>
     <div hidden id="ULTIMATEhiddendate" value="{{DDate}}"></div>  
     <div hidden id="ULTIMATEhiddenacc" value="{{ACCType}}"></div>  
-
+	<div hidden id="ULTIMATEhiddenses" value="{{Session}}"></div>  
     <!-- Start of Add Employee Modal -->
     <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -114,8 +114,9 @@
 							var pass = $("#adminPassInput").val()
 							var ACCType = $("#ULTIMATEhiddenacc").text()
 							var DDate = $("#ULTIMATEhiddendate").text()
+							var Session = $("#ULTIMATEhiddenses").text()
 							var adminID = $("#adminID").text()
-                  			$.post("/management/" + ACCType + "/" + DDate, {EMPName : name, EMPPass : pass, ID : adminID}, function(result){})
+                  			$.post("/management/" + ACCType + "/" + Session + "/" + DDate, {EMPName : name, EMPPass : pass, ID : adminID}, function(result){})
                   		document.location.reload()
                   		})
               		</script>
@@ -254,7 +255,8 @@
 					var Pass = event.currentTarget.parentElement.parentElement.children[2].children[1].value
 					var DDate = $("#ULTIMATEhiddendate").value
 					var ACCType = $("#ULTIMATEhiddenacc").value
-                  	$.post("/management" + "/" + ACCType + "/" + DDate, {ID : entry, Name : Name, Pass : Pass},  function(result){window.location.reload()})
+					var Session = $("#ULTIMATEhiddenses").value
+                  	$.post("/management" + "/" + ACCType + "/" + Session + "/" + DDate , {ID : entry, Name : Name, Pass : Pass},  function(result){window.location.reload()})
                 })
             })
         </script>

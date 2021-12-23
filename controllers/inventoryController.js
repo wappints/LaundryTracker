@@ -5,6 +5,7 @@ const inventoryController = {
 
     getInventory : function (req, res) {
         var ACCType = req.params.ACCType
+        var Session = req.params.Session
         var currentDate = new Date()
         currentDate.setHours(currentDate.getHours() + 8);
         var formattedDate = currentDate.toISOString().split('T')[0];
@@ -12,6 +13,7 @@ const inventoryController = {
         {
             var object =  result;
             object["ACCType"] = ACCType
+            object["Session"] = Session
             object["INVDowny"] = result.INVDowny
             object["INVSoap"] = result.INVSoap
             db.findOne(Price, {}, {}, function(result)

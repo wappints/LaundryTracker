@@ -6,6 +6,7 @@ const accountsController = {
     getAccounts : function (req,res){
         var ACCType = req.params.ACCType
         var DDate = req.params.DDate
+        var Session = req.params.Session
         db.findMany(Account, {}, {}, function(result){
             var obj = {}
             var obj2 = {}
@@ -29,13 +30,11 @@ const accountsController = {
                     details2.push(obj2)
                 }
             }
-            res.render("management", {admin : details, accounts : details2, layout : "managementLayout", ACCType : ACCType, DDate : DDate})
+            res.render("management", {admin : details, accounts : details2, layout : "managementLayout", ACCType : ACCType, DDate : DDate, Session : Session})
         })
 
     },
     updateAccounts : function (req,res) {
-        var ACCType = req.params.ACCType
-        var DDate = req.params.DDate
         var EMPName = req.body.Name
         var EMPPass = req.body.Pass
         var ID = req.body.ID

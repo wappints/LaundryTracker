@@ -6,6 +6,7 @@ const balancesController = {
     getBalances : function (req,res){
         var DDate = req.params.DDate
         var ACCType = req.params.ACCType
+        var Session = req.params.Session
         db.findMany(Balances, {}, {}, function(result) {
             var obj = {}
             var details = []
@@ -19,7 +20,7 @@ const balancesController = {
                 obj["Balance"] = i.Balance
                 details.push(obj)
             }
-            res.render("balances", {entry : details, DDate :DDate, ACCType : ACCType, layout : "balancesLayout"})
+            res.render("balances", {entry : details, DDate : DDate, Session : Session,  ACCType : ACCType, layout : "balancesLayout"})
         })
     },
     payBalances : function(req,res)

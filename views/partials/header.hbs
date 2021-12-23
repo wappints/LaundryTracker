@@ -1,8 +1,9 @@
 	<nav class="navbar navbar-expand-sm navbar-light">
 		<div id="ULTIMATEhiddendate" hidden>{{DDate}}</div>
 		<div id="ULTIMATEhiddenacc" hidden>{{ACCType}}</div>
+		<div id="ULTIMATEhiddenses" hidden>{{Session}}</div>
 		<div class = "container-fluid">
-			<a href="/home/{{ACCType}}/{{DDate}}" class="navbar-brand">
+			<a href="/home/{{ACCType}}/{{Session}}/{{DDate}}" class="navbar-brand">
 				<img src="/public/css/logo.jpg" alt="Dirty Treats Logo" width="50" height="50" class="d-inline-block align-middle"/> 
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu" aria-controls="toggleMobileMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,29 +12,29 @@
 			<div class="collapse navbar-collapse" id="toggleMobileMenu">
 				<ul class="navbar-nav text-center">
 					<li> 
-						<a class="nav-link active rounded-top rounded-bottom navhover"  href="/home/{{ACCType}}/{{DDate}}" style="color: black;">
+						<a class="nav-link active rounded-top rounded-bottom navhover"  href="/home/{{ACCType}}/{{Session}}/{{DDate}}" style="color: black;">
 							<i class="bi bi-house-fill" > Home </i>  
 						</a> 
 					</li>
 					<li> 
-						<a class="nav-link rounded-top rounded-bottom navhover" href="/log/{{ACCType}}/{{DDate}}" style="color: black;">
+						<a class="nav-link rounded-top rounded-bottom navhover" href="/log/{{ACCType}}/{{Session}}/{{DDate}}" style="color: black;">
 							<i class="bi bi-journal-text" > Log </i>  
 						</a> 
 					</li>
 					<li> 
-						<a class="nav-link rounded-top rounded-bottom navhover" href="/balances/{{ACCType}}/{{DDate}}" style="color: black;">
+						<a class="nav-link rounded-top rounded-bottom navhover" href="/balances/{{ACCType}}/{{Session}}/{{DDate}}" style="color: black;">
 							<i class="bi bi-cash-stack"> Balances </i> 
 						</a> 
 					</li>
 					<li> 
-						<a class="nav-link rounded-top rounded-bottom navhover" href="/inventory/{{ACCType}}/{{DDate}}" style="color: black;">
+						<a class="nav-link rounded-top rounded-bottom navhover" href="/inventory/{{ACCType}}/{{Session}}/{{DDate}}" style="color: black;">
 							<i class="bi bi-boxes" > Inventory </i> 
 						</a> 
 					</li>
 				</ul>
 				<ul class="navbar-nav ms-auto">
 					<div class="px-3 font-monospace" style="font-size: 14px;">
-						Current Session: {{EMPName}}
+						Current Session: <div id="navSession" style="display: inline">{{Session}}</div>
 						<br>
 						Type: <div id="navACCType" style="display: inline">{{ACCType}}</div>
 					</div>
@@ -118,7 +119,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancel </button>
-								<a href="/home/{{ACCType}}/{{DDate}}" class="btn btn-danger"> End </a>
+								<a href="/home/{{ACCType}}/{{Session}}/{{DDate}}" class="btn btn-danger"> End </a>
 						</div>
 						</div>
 					</div>
@@ -129,7 +130,7 @@
 						<i class="bi bi-person-badge-fill"> Account </i> 
 					</a>
 					<div class="dropdown-menu" aria-labelledby="AccountDropDown">
-						<a class="dropdown-item" href="/management/{{ACCType}}/{{DDate}}"> Management </a>
+						<a class="dropdown-item" href="/management/{{ACCType}}/{{Session}}/{{DDate}}"> Management </a>
 						<a class="dropdown-item" href="/login" data-toggle="modal" data-target="#LogOutModal"> Log Out </a>
 				</li>
 				<!-- Start of Log Out Modal -->

@@ -11,6 +11,7 @@
             <div class="col-md-8 ml-5">
                 <div id ="hiddenDate" hidden>{{DDate}}</div>
                 <div id ="hiddenAcc" hidden>{{ACCType}}</div>
+                <div id ="hiddenSes" hidden>{{Session}}</div>
                 <h3 class="text-center mt-3 mb-3 col-10 align-center">
                     <form id = "THEDATEFORM" method="post" action="">
                     <div id="THEDATE"> </div>
@@ -36,24 +37,24 @@
             $("#nextDatebtn").click((event) => {
                 var DDate = $('#hiddenDate').text()
                 var ACCType = $('#hiddenAcc').text()
-
+                var Session = $('#hiddenSes').text()
                 var newDate = new Date(DDate)
                 newDate.setDate(newDate.getDate() + 1) 
                 DDate = newDate.toISOString().split('T')[0];
 
-                document.getElementById("THEDATEFORM").setAttribute("action", "/new/" + ACCType + "/" + DDate)
+                document.getElementById("THEDATEFORM").setAttribute("action", "/new/" + ACCType + "/" + Session + "/" + DDate)
                 document.getElementById("THEDATEFORM").submit()
             });
 
             $("#prevDatebtn").click((event) => {
                 var DDate = $('#hiddenDate').text()
                 var ACCType = $('#hiddenAcc').text()
-
+                var Session = $('#hiddenSes').text()
                 var newDate = new Date(DDate)
                 newDate.setDate(newDate.getDate() - 1) 
                 var LastDate = newDate.toISOString().split('T')[0];
     
-                document.getElementById("THEDATEFORM").setAttribute("action", "/new/" + ACCType + "/" + LastDate)
+                document.getElementById("THEDATEFORM").setAttribute("action", "/new/" + ACCType + "/" + Session + "/" + LastDate)
                 document.getElementById("THEDATEFORM").submit()
             });
 
@@ -151,7 +152,7 @@
                 </div>         
                 <div class="modal-body">
                     <div class="container-fluid" id="ADDSalesID">
-                        <form method="post" action="/home/{{ACCType}}/{{DDate}}" id="addSaleForm">
+                        <form method="post" action="/home/{{ACCType}}/{{Session}}/{{DDate}}" id="addSaleForm">
                         <div class="row">
                             <div class="col-md-4">
                                 <p>Name</p>

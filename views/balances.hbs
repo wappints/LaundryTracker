@@ -26,6 +26,7 @@
                 </thead>
                 <div hidden id="HIDDENACCType">{{ACCType}}</div>
                 <div hidden id="HIDDENDDate">{{DDate}}</div>
+                <div hidden id="HIDDENDSesh">{{Session}}</div>
                 <tbody>
                     {{#each this.entry}}
                     <tr>
@@ -92,6 +93,7 @@
 
                         var ACCType = document.getElementById("HIDDENACCType").innerText
                         var DDate = document.getElementById("HIDDENDDate").innerText
+                        var Session = document.getElementById("HIDDENDSesh").innerText
                         var obj = {
                             BalanceID : BalanceID,
                             Name : Name, 
@@ -100,7 +102,7 @@
                             Balance : Balance,
                             PhoneNum : PhoneNum
                         }
-                        $.post("/balances/" + ACCType + "/" + DDate, obj, function(result){})
+                        $.post("/balances/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})
                     }
                 })
             </script>
