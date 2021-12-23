@@ -7,8 +7,6 @@ const db = require('../models/db.js');
 const Sale = require('../models/SalesModel.js');
 const Price = require('../models/PriceModel.js');
 const Balances = require('../models/BalancesModel.js');
-const { validationResult } = require('express-validator');
-const { insertOne } = require('../models/db.js');
 /*
     defines an object which contains functions executed as callback
     when a client requests for `signup` paths in the server
@@ -18,23 +16,27 @@ const saleController = {
 
     getEntries : function (req, res) {
         var DDate = req.query.DDate
-        console.log(DDate)
+
         if (DDate == null)
             DDate = req.params.DDate
+
         if (DDate == null)
             DDate = req.body.DDate
+
         var typeOfAcc = req.params.ACCType
+
         if (typeOfAcc == null)
             typeOfAcc = req.body.ACCType
+
         var currentDate = new Date(DDate)
-        console.log("currentDate = " + currentDate)
         var formattedDate = currentDate.toISOString().split('T')[0];
-        console.log(formattedDate)
+
         var start = formattedDate + "T00:00:00.000Z"
         var end = formattedDate + "T23:59:59.999Z"
+
         start = new Date(start).toISOString()
         end = new Date(end).toISOString()
-        db.findMany(Sale, {DDate : {$gte : start, $lte : end}}, {}, function(result){
+        db.findMany(Sale, {DDate : {$gte : start, $lte : end}}, {}, function(result) {
             var obj = {}
             details = []
             for (var i of result) {
@@ -54,11 +56,8 @@ const saleController = {
                 obj["totalPrice"] =      i.TotalPrice,
                 obj["Balance"] =      i.Balance,
                 obj["Token"] =     i.TokenError
-                
-                //console.log("part 2")
-                //console.log(obj)
+ 
                 details.push(obj)
-                //console.log(details)
             }
 
             db.findOne(Price, {}, {}, function(result) {
@@ -75,13 +74,8 @@ const saleController = {
                 console.log("DDate = " + DDate )
                 console.log("formattedDate = " + formattedDate)
                     res.render('home', renderobjects)
-    
             })
-
         })
-        
-
-        
     },
     addEntry : function (req, res) {
         var Name = req.body.ADDName;
@@ -129,8 +123,7 @@ const saleController = {
         var ObjectID = require('bson').ObjectID;
         var id  = new ObjectID();
         var pass = 0; 
-        if (Balance > 0)
-        {
+        if (Balance > 0) {
             pass = 1;
             docs2 = {
                 BalanceID : id,
@@ -157,12 +150,10 @@ const saleController = {
             Balance : Balance,
             TokenError : tokenDefault
         }
-        db.insertOne(Sale, docs, function(result)
-        {
-            db.findMany(Sale, {}, {}, function(result){
-                if (pass)
-                {
-                    db.findOne(Balances, {BalanceID : id}, {}, function(result){
+        db.insertOne(Sale, docs, function(result) {
+            db.findMany(Sale, {}, {}, function(result) {
+                if (pass) {
+                    db.findOne(Balances, {BalanceID : id}, {}, function(result) {
                         if (!result)
                             db.insertOne(Balances, docs2, function(result){})
                     })
@@ -174,8 +165,7 @@ const saleController = {
     deleteEntry : function (req, res) {
         var id = req.query._id
         db.findOne(Sale, {_id : id}, {}, function(result){
-            if (result.Balance < 0)
-            {
+            if (result.Balance < 0) {
                 var Name = result.Name;
                 var Phone = result.PhoneNum;
                 var currentDate = result.DDate
@@ -190,13 +180,8 @@ const saleController = {
                 } 
                 db.insertOne(Balances, docs2, function(result){db.deleteOne(Sale, {_id : id}, function(result){})})   
             }
-            else
-            {
+            else {
                 db.deleteOne(Sale, {_id : id}, function(result){
-                    if (result)
-                        console.log("Entry deletion SUCCESSFUL")
-                    else
-                        console.log("Entry deletion FAILURE")
                     db.deleteOne(Balances, {BalanceID : id}, function(result){})
                 })
             }

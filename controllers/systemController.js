@@ -13,10 +13,11 @@ const systemController = {
         var currentDate = new Date()
         currentDate.setHours(currentDate.getHours() + 8);
         var formattedDate = currentDate.toISOString().split('T')[0];
-
+        var session = "/Anonymous"
         if (errors.isEmpty()) {
             var ACCType = req.body.ACCType;
             var PASSField = req.body.PASSField;
+
             if (ACCType === "EMPLOYEE") {
                 db.findOne(System, {EMPPass : PASSField}, {}, function(result) {
                     if (result != null) {
