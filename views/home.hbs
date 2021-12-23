@@ -1,305 +1,291 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset = "UTF-8">
-      <title>Home</title>
-      <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js" ></script>
-      <link rel="stylesheet" href="public/css/nav.css">
-      <link rel="stylesheet" href="public/css/styles.css">
-      <link rel="stylesheet" href="public/css/home.css">
-      <link rel ="stylesheet"  href="./bower_components/bootstrap/dist/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-   <body>      
-     {{> header}}
-    </div>
-   </div>
-   </nav>
-         <!-- Cart -->
-      <div class="container-fluid">
-      <div class="row">
-        <!-- Page Header -->
+    <head>
+        <meta charset = "UTF-8">
+            <title>Home</title>
+                <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js" ></script>
+                <link rel="stylesheet" href="public/css/nav.css">
+                <link rel="stylesheet" href="public/css/styles.css">
+                <link rel="stylesheet" href="public/css/home.css">
+                <link rel ="stylesheet"  href="./bower_components/bootstrap/dist/css/bootstrap.min.css" />
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">    
+    {{> header}}
+ 
+<div class="container-fluid">
+    <div class="row">
         <div class="col-md-1 mt-3">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#salesBtn">Add Sales</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#salesBtn">Add Sales</button>
         </div>
         <div class='col-md-1 mt-3'>
-          <button class='btn btn-primary' data-toggle="modal" data-target="#editPrice">Edit Price</button>
+            <button class='btn btn-primary' data-toggle="modal" data-target="#editPrice">Edit Price</button>
         </div>
         <div class="col-md-8 ml-5">
-          <div id ="hiddenDate" hidden>{{DDate}}</div>
-          <div id ="hiddenAcc" hidden>{{ACCType}}</div>
-          <h3 class="text-center mt-3 mb-3 col-10 align-center">
-          <form id = "THEDATEFORM" method="post" action="">
-          <div id="THEDATE"> <button id="prevDatebtn" form="THEDATEFORM" class="btn btn-outline-primary">
-          <i class="bi bi-caret-left-fill"></i></button></i> {{DDate}} 
-          <button id="nextDatebtn" form="THEDATEFORM" class="btn btn-outline-primary">
-          <i class="bi bi-caret-right-fill"></i></button> </h3> </div>
-          </form>
-          <div class="col-sm-1 mt-3 editsales align-center">Edit Sales:
-          <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-          </label>
+            <div id ="hiddenDate" hidden>{{DDate}}</div>
+            <div id ="hiddenAcc" hidden>{{ACCType}}</div>
+            <h3 class="text-center mt-3 mb-3 col-10 align-center">
+                <form id = "THEDATEFORM" method="post" action="">
+                <div id="THEDATE"> </div>
+                    <button id="prevDatebtn" form="THEDATEFORM" class="btn btn-outline-primary">
+                        <i class="bi bi-caret-left-fill"></i>
+                    </button> {{DDate}} 
+                    <button id="nextDatebtn" form="THEDATEFORM" class="btn btn-outline-primary">
+                        <i class="bi bi-caret-right-fill"></i>
+                    </button> 
+                </form>
+            </h3> 
         </div>
+
+        <div class="col-sm-1 mt-3 editsales align-center"> Edit Sales:
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
         </div>
-        <script>
-            // $("#prevDatebtn")
-            $("#nextDatebtn").click((event) => {
+
+    </div>
+    <script>
+        $("#nextDatebtn").click((event) => {
             var DDate = $('#hiddenDate').text()
             var ACCType = $('#hiddenAcc').text()
-            console.log(DDate)
-            console.log(ACCType)
+
             var newDate = new Date(DDate)
             newDate.setDate(newDate.getDate() + 1) 
             DDate = newDate.toISOString().split('T')[0];
-            console.log(DDate)
-            
+
             document.getElementById("THEDATEFORM").setAttribute("action", "/new/" + ACCType + "/" + DDate)
             document.getElementById("THEDATEFORM").submit()
-          });
-            $("#prevDatebtn").click((event) => {
+        });
+
+        $("#prevDatebtn").click((event) => {
             var DDate = $('#hiddenDate').text()
             var ACCType = $('#hiddenAcc').text()
-            console.log(ACCType)
+
             var newDate = new Date(DDate)
             newDate.setDate(newDate.getDate() - 1) 
             var LastDate = newDate.toISOString().split('T')[0];
-            console.log(LastDate)      
+ 
             document.getElementById("THEDATEFORM").setAttribute("action", "/new/" + ACCType + "/" + LastDate)
             document.getElementById("THEDATEFORM").submit()
-          });
-          //})
-        </script>
+        });
+
+    </script>
+
         <!--model for editPrice-->
-        <div class="modal fade" id="editPrice" tabindex="-1" role="dialog" aria-labelledby="salesModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
+    <div class="modal fade" id="editPrice" tabindex="-1" role="dialog" aria-labelledby="salesModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Price</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <form method="post" action="/edit" id="editSaleForm" >
-              <div class="modal-body">
-                <div class="container-fluid">
-                    <div hidden> {{ACCType}} </div>
-                  <div class="row">
-                    <div class="col-md-4 ml-auto" >Thin Wash</div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="tel" class="EDITSALES_INPUTidentifier" name="ETNWPrice" id="ETNWPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TNWPrice}}">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Price</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="/edit" id="editSaleForm" >
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div hidden> {{ACCType}} </div>
+                            <div class="row">
+                                <div class="col-md-4 ml-auto" >Thin Wash</div>
+                                <div class="col-md-8 ml-auto">
+                                    <input type="tel" class="EDITSALES_INPUTidentifier" name="ETNWPrice" id="ETNWPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TNWPrice}}">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-4 ml-auto">Thin Dry</div>
+                                <div class="col-md-8 ml-auto">
+                                    <input type="tel" class="EDITSALES_INPUTidentifier" name="ETNDPrice" id="ETNDPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TNDPrice}}">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-4 ml-auto" >Thick Wash</div>
+                                <div class="col-md-8 ml-auto">
+                                    <input type="tel" class="EDITSALES_INPUTidentifier" name="ETKWPrice" id="ETKWPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TKWPrice}}">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-4 ml-auto">Thick Dry</div>
+                                <div class="col-md-8 ml-auto">
+                                    <input type="tel" class="EDITSALES_INPUTidentifier" name="ETKDPrice" id="ETKDPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TKDPrice}}">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-4 ml-auto">Fold</div>
+                                <div class="col-md-8 ml-auto">
+                                    <input type="tel" class="EDITSALES_INPUTidentifier" name="EFOLDPrice" id="EFOLDPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.FOLDPrice}}">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-4 ml-auto">Soap</div>
+                                <div class="col-md-8 ml-auto">
+                                    <input type="tel" class="EDITSALES_INPUTidentifier" name="ESOAPPrice" id="ESOAPPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.SOAPPrice}}">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-4 ml-auto">Downy</div>
+                                <div class="col-md-8 ml-auto">
+                                    <input type="tel" class="EDITSALES_INPUTidentifier" name="EDOWNPrice" id="EDOWNPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.DOWNPrice}}">
+                                </div>
+                            </div>
+                            <div class="row mt-2">           
+                            
+                                <button class="col-3 text-right btn btn-danger ml-4" data-dismiss="modal">Cancel</button>
+                                <div class="col-1"></div>
+                                <button class="col-3 text-right btn btn-success" form="editSaleForm" target="_self">Confirm</button>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Thin Dry</div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="tel" class="EDITSALES_INPUTidentifier" name="ETNDPrice" id="ETNDPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TNDPrice}}">
-                    </div>
-                  </div>
-                  <div class="row  mt-2">
-                    <div class="col-md-4 ml-auto" >Thick Wash</div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="tel" class="EDITSALES_INPUTidentifier" name="ETKWPrice" id="ETKWPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TKWPrice}}">
-                    </div>
-                  </div>
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Thick Dry</div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="tel" class="EDITSALES_INPUTidentifier" name="ETKDPrice" id="ETKDPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.TKDPrice}}">
-                    </div>
-                  </div>
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Fold</div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="tel" class="EDITSALES_INPUTidentifier" name="EFOLDPrice" id="EFOLDPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.FOLDPrice}}">
-                    </div>
-                  </div>
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Soap</div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="tel" class="EDITSALES_INPUTidentifier" name="ESOAPPrice" id="ESOAPPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.SOAPPrice}}">
-                    </div>
-                  </div>
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Downy</div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="tel" class="EDITSALES_INPUTidentifier" name="EDOWNPrice" id="EDOWNPrice" onkeypress="return /[0-9]/i.test(event.key)" value="{{object.DOWNPrice}}">
-                    </div>
-                  </div>
-                  <div class="row mt-2">           
-                      <script>
-                      $(".EDITSALES_INPUTidentifier").on("change paste keyup cut select", function()
-                      {
-                        console.log("JABOL")
-                        console.log($("#EDOWNPrice").val())
-                      })   
-                      </script>
-                    <button class="col-3 text-right btn btn-danger ml-4" data-dismiss="modal">Cancel</button>
-                    <div class="col-1"></div>
-                    <button class="col-3 text-right btn btn-success" form="editSaleForm" target="_self">Confirm</button>
-                    </form>
-                  </div>
-                  </div>
-                </div>          
-              </div>
+                </form>
             </div>
-          </div>
         </div>
-        <!--modal for Add Sales-->
-        <div hidden> 
-        <div  id="TNWPrice"  name ="TNWPrice"> {{object.TNWPrice}}</div>
-        <div  id="TNDPrice"  name="TNDPrice" >{{object.TNDPrice}}</div>
-        <div  id="TKWPrice"  name="TKWPrice" >{{object.TKWPrice}}</div>
-        <div  id="TKDPrice"  name="TKDPrice" >{{object.TKDPrice}}</div>
-        <div  id="FOLDPrice" name="FOLDPrice" >{{object.FOLDPrice}}</div>
-        <div  id="SOAPPrice" name="SOAPPrice">{{object.SOAPPrice}}</div>
-        <div  id="DOWNPrice" name="DOWNPrice">{{object.DOWNPrice}}</div>
-          
-        </div>
-        <div class="modal fade" id="salesBtn" tabindex="-1" role="dialog" aria-labelledby="salesModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">            
-              <div class="modal-header">
+    </div>
+</div>          
+
+<!--modal for Add Sales-->
+<div hidden> 
+    <div  id="TNWPrice"  name ="TNWPrice"> {{object.TNWPrice}}</div>
+    <div  id="TNDPrice"  name="TNDPrice" >{{object.TNDPrice}}</div>
+    <div  id="TKWPrice"  name="TKWPrice" >{{object.TKWPrice}}</div>
+    <div  id="TKDPrice"  name="TKDPrice" >{{object.TKDPrice}}</div>
+    <div  id="FOLDPrice" name="FOLDPrice" >{{object.FOLDPrice}}</div>
+    <div  id="SOAPPrice" name="SOAPPrice">{{object.SOAPPrice}}</div>
+    <div  id="DOWNPrice" name="DOWNPrice">{{object.DOWNPrice}}</div>
+</div>
+
+<div class="modal fade" id="salesBtn" tabindex="-1" role="dialog" aria-labelledby="salesModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">            
+            <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add Sales</h5>
                 <button type="button" onclick="xAddSale()" class="close" id="xAddSalebtn" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
-              </div>         
-              <div class="modal-body">
+            </div>         
+            <div class="modal-body">
                 <div class="container-fluid" id="ADDSalesID">
-                  <form method="post" action="/home/{{ACCType}}/{{DDate}}" id="addSaleForm">
-                  <div class="row">
-                    <div class="col-md-4">
+                    <form method="post" action="/home/{{ACCType}}/{{DDate}}" id="addSaleForm">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>Name</p>
+                        </div>
+                        <div class="col-md-8 ml-auto">
+                            <input type="text" onkeypress="return /[a-z]/i.test(event.key)" id="ADDName" name="ADDName">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 ml-auto" >Phone</div>
+                        <div class="col-md-8 ml-auto">
+                            <input onkeypress="return /[0-9]/i.test(event.key)" type="text" id="ADDPhone" name="ADDPhone">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4 ml-auto" >Thin Wash</div>
+                        <div class="col-md-8 ml-auto">
+                            <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThinW" name="ADDThinW" value="0">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4 ml-auto">Thin Dry</div>
+                        <div class="col-md-8 ml-auto">
+                            <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThinD" name="ADDThinD"  value="0">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4 ml-auto">Thick Wash</div>
+                        <div class="col-md-8 ml-auto">
+                            <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThickW"  name="ADDThickW" value="0">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4 ml-auto">Thin Dry</div>
+                        <div class="col-md-8 ml-auto">
+                            <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)"  type="tel" size="4" id="ADDThickD" name="ADDThickD" value="0">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4 ml-auto"  >Fold</div>
+                        <div class="col-md-8 ml-auto">
+                            <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDFold" name="ADDFold" value="0">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4 ml-auto" >Soap</div>
+                        <div class="col-md-8 ml-auto">
+                            <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)"  type="tel" size="4" id="ADDSoap" name="ADDSoap" value="0">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4 ml-auto">Downy</div>
+                        <div class="col-md-8 ml-auto">
+                            <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDDowny" name="ADDDowny" value="0">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md ml-auto" text="text-left" id="ADDTotalPrice" name="ADDTotalPrice">Total Price: </div>
+                            <input  type="number" size="4" id="ADDTotalPriceR" name="ADDTotalPriceR" value="0" readonly>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4 ml-auto">Amount Paid: </div>
+                        <div class="col-md-8 ml-auto">
+                            <input type="tel" size="4" onkeypress="return /[0-9]/i.test(event.key)" id="ADDAmountPaid" name="ADDAmountPaid" value="0">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md ml-auto" id="ADDBalance">Balance: </div>
+                            <input  type="number" size="4" id="ADDBalanceR" name="ADDBalanceR" value="0" readonly>
+                        </div>
+                        <script>
+                        function xAddSale() {
+                            $(".ADDSALES_INPUTidentifier").each(function(index, element) {
+                            $("#ADDName").val("") 
+                            $("#ADDPhone").val("") 
+                            $(this).val(0)  
+                            $("#ADDTotalPriceR").val(0) 
+                            $("#ADDBalanceR").val(0) 
+                            })
+                        }
 
-                      <p>Name</p>
+                        $(".ADDSALES_INPUTidentifier").on("change paste keyup cut select", function() {
+                            var TNWPrice = parseInt($("#TNWPrice").text())
+                            var TNDPrice =parseInt($("#TNDPrice").text())
+                            var TKWPrice =parseInt($("#TKWPrice").text())
+                            var TKDPrice =parseInt($("#TKDPrice").text())
+                            var FOLDPrice =parseInt($("#FOLDPrice").text())
+                            var SOAPPrice =parseInt($("#SOAPPrice").text())
+                            var DOWNPrice =parseInt($("#DOWNPrice").text())
+                            var TNWQty = parseInt($("#ADDThinW").val())
+                            var TNDQty = parseInt($("#ADDThinD").val())
+                            var TKWQty = parseInt($("#ADDThickW").val())
+                            var TKDQty = parseInt($("#ADDThickD").val())
+                            var FOLDQty = parseInt($("#ADDFold").val())
+                            var SOAPQty = parseInt($("#ADDSoap").val())
+                            var DOWNQty = parseInt($("#ADDDowny").val())
+                            var BALQty = parseInt($("#ADDBalanceR").val())
 
-                    </div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="text" onkeypress="return /[a-z]/i.test(event.key)" id="ADDName" name="ADDName">
+                            if (isNaN(TNWQty))
+                                $("#ADDThinW").val(0)
+                            if (isNaN(TNDQty))
+                                $("#ADDThinD").val(0)
+                            if (isNaN(TKWQty))
+                                $("#ADDThickW").val(0)
+                            if ( isNaN(TKDQty))
+                                $("#ADDThickD").val(0)
+                            if (isNaN(FOLDQty))
+                                $("#ADDFold").val(0)
+                            if (isNaN(SOAPQty ))
+                                $("#ADDSoap").val(0)
+                            if (isNaN(DOWNQty))
+                                $("#ADDDowny").val(0)
+                            if (isNaN(BALQty))
+                                $("#ADDBalanceR").val(0)
+      
+                            var computation = TNWPrice * TNWQty + TNDPrice * TNDQty +  TKWPrice * TKWQty +  TKDPrice * TKDQty +  FOLDPrice * FOLDQty + SOAPPrice * SOAPQty + DOWNPrice * DOWNQty  
+                            $("#ADDTotalPriceR").val(computation);
+                            $("#ADDBalanceR").val( $("#ADDTotalPriceR").val() - $("#ADDAmountPaid").val()) 
+                        });
 
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4 ml-auto" >Phone</div>
-                    <div class="col-md-8 ml-auto">
-                      <input onkeypress="return /[0-9]/i.test(event.key)" type="text" id="ADDPhone" name="ADDPhone">
-                    </div>
-                  </div>
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto" >Thin Wash</div>
-                    <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThinW" name="ADDThinW" value="0">
-                    </div>
-                  </div>
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Thin Dry</div>
-                    <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThinD" name="ADDThinD"  value="0">
-                    </div>
-                  </div>
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Thick Wash</div>
-                    <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThickW"  name="ADDThickW" value="0">
-                    </div>
-                  </div>
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Thin Dry</div>
-                    <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)"  type="tel" size="4" id="ADDThickD" name="ADDThickD" value="0">
-                    </div>
-                  </div>
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto"  >Fold</div>
-                    <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDFold" name="ADDFold" value="0">
-                    </div>
-                  </div>
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto" >Soap</div>
-                    <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)"  type="tel" size="4" id="ADDSoap" name="ADDSoap" value="0">
-                    </div>
-                  </div>
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Downy</div>
-                    <div class="col-md-8 ml-auto">
-                      <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDDowny" name="ADDDowny" value="0">
-                    </div>
-                  </div>
-                  <div class="row mt-3">
-                    <div class="col-md ml-auto" text="text-left" id="ADDTotalPrice" name="ADDTotalPrice">Total Price: </div>
-                    <input  type="number" size="4" id="ADDTotalPriceR" name="ADDTotalPriceR" value="0" readonly>
-                  </div>
-                  <div class="row mt-2">
-                    <div class="col-md-4 ml-auto">Amount Paid: </div>
-                    <div class="col-md-8 ml-auto">
-                      <input type="tel" size="4" onkeypress="return /[0-9]/i.test(event.key)" id="ADDAmountPaid" name="ADDAmountPaid" value="0">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md ml-auto" id="ADDBalance">Balance: </div>
-                    <input  type="number" size="4" id="ADDBalanceR" name="ADDBalanceR" value="0" readonly>
-                  </div>
-                  <script>
-                    function xAddSale()
-                    {
-                      console.log("X BUTTON")
-                      $(".ADDSALES_INPUTidentifier").each(function(index, element)
-                      {
-                          $("#ADDName").val("") 
-                          $("#ADDPhone").val("") 
-                          $(this).val(0)  
-                          $("#ADDTotalPriceR").val(0) 
-                          $("#ADDBalanceR").val(0) 
-                      })
-                    }
-                    $(".ADDSALES_INPUTidentifier").on("change paste keyup cut select", function() {
-                      console.log("OUCH")
-                      //$(".ADDSALES_INPUTidentifier").val().replace(/^[0]+/g,0)
-                      var TNWPrice = parseInt($("#TNWPrice").text())
-                      var TNDPrice =parseInt($("#TNDPrice").text())
-                      var TKWPrice =parseInt($("#TKWPrice").text())
-                      var TKDPrice =parseInt($("#TKDPrice").text())
-                      var FOLDPrice =parseInt($("#FOLDPrice").text())
-                      var SOAPPrice =parseInt($("#SOAPPrice").text())
-                      var DOWNPrice =parseInt($("#DOWNPrice").text())
-                      var TNWQty = parseInt($("#ADDThinW").val())
-                      var TNDQty = parseInt($("#ADDThinD").val())
-                      var TKWQty = parseInt($("#ADDThickW").val())
-                      var TKDQty = parseInt($("#ADDThickD").val())
-                      var FOLDQty = parseInt($("#ADDFold").val())
-                      var SOAPQty = parseInt($("#ADDSoap").val())
-                      var DOWNQty = parseInt($("#ADDDowny").val())
-                      var BALQty = parseInt($("#ADDBalanceR").val())
-                      if (isNaN(TNWQty))
-                        $("#ADDThinW").val(0)
-                      if (isNaN(TNDQty))
-                        $("#ADDThinD").val(0)
-                      if (isNaN(TKWQty))
-                        $("#ADDThickW").val(0)
-                      if ( isNaN(TKDQty))
-                        $("#ADDThickD").val(0)
-                      if (isNaN(FOLDQty))
-                        $("#ADDFold").val(0)
-                      if (isNaN(SOAPQty ))
-                        $("#ADDSoap").val(0)
-                      if (isNaN(DOWNQty))
-                        $("#ADDDowny").val(0)
-                      if (isNaN(BALQty))
-                        $("#ADDBalanceR").val(0)
-                      var computation = TNWPrice * TNWQty + TNDPrice * TNDQty +  TKWPrice * TKWQty +  TKDPrice * TKDQty +  FOLDPrice * FOLDQty + SOAPPrice * SOAPQty + DOWNPrice * DOWNQty
-                      
-                      $("#ADDTotalPriceR").val(computation);
-                      $("#ADDBalanceR").val( $("#ADDTotalPriceR").val() - $("#ADDAmountPaid").val()) 
-                    });
-
-
-                      
-
-
-                    $("#ADDAmountPaid").on("change paste keyup cut select", function() {
-                      $("#ADDBalanceR").val( $("#ADDTotalPriceR").val() - $("#ADDAmountPaid").val()) 
-                    });
+                        $("#ADDAmountPaid").on("change paste keyup cut select", function() {
+                            $("#ADDBalanceR").val( $("#ADDTotalPriceR").val() - $("#ADDAmountPaid").val()) 
+                        });
 
                   </script>
                   <div class="row mt-2">

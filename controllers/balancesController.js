@@ -61,6 +61,7 @@ const balancesController = {
     deleteBalance : function(req,res)
     {
         var BalanceID = req.query.card
+        console.log(BalanceID)
         db.deleteOne(Sale, {_id : BalanceID}, function(result){db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){})})
     }
 }
