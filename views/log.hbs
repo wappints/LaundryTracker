@@ -1,153 +1,140 @@
-{{>header}}
 <body>
-         <div class="container-fluid">
+{{>header}}
+        <div class="container-fluid">
             <div class="row content">
-              <div class="col-sm-2 sidenav">
-
-                <form>
-                  <div class="row mt-2">
-                    <div class="col-5">
-                      <select class="form-select" aria-label="SelectView">
-                        <option selected value="YYYY">YYYY</option>
-                        <option value="2021">2021</option>
-                        <option value="2020">2020</option>
-                      </select>
-                    </div>
-                    
-                    <div class="col-4">
-                      <select class="form-select" aria-label="SelectView">
-                        <option selected value="MM">MM</option>
-                        <option value="Jan">Jan</option>
-                        <option value="Jan">Feb</option>
-                        <option value="Jan">Mar</option>
-                        <option value="Jan">Apr</option>
-                        <option value="Jan">May</option>
-                        <option value="Jan">Jun</option>
-                        <option value="Jan">Jul</option>
-                        <option value="Jan">Aug</option>
-                        <option value="Jan">Sept</option>
-                        <option value="Jan">Oct</option>
-                        <option value="Jan">Nov</option>
-                        <option value="Jan">Dec</option>
-                      </select>
-                    </div>
-
-                    <div class="col-3">
-                      <input type="text" class="form-control" placeholder="DD">
-                    </div>
-                  </div>
-                </form>
-
+                <div class="col-sm-2 sidenav">
+                    <form>
+                        <div class="row mt-2">
+                            <div class="col-5">
+                                <select class="form-select" aria-label="SelectView">
+                                    <option selected value="YYYY">YYYY</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <select class="form-select" aria-label="SelectView">
+                                    <option selected value="MM">MM</option>
+                                    <option value="Jan">Jan</option>
+                                    <option value="Jan">Feb</option>
+                                    <option value="Jan">Mar</option>
+                                    <option value="Jan">Apr</option>
+                                    <option value="Jan">May</option>
+                                    <option value="Jan">Jun</option>
+                                    <option value="Jan">Jul</option>
+                                    <option value="Jan">Aug</option>
+                                    <option value="Jan">Sept</option>
+                                    <option value="Jan">Oct</option>
+                                    <option value="Jan">Nov</option>
+                                    <option value="Jan">Dec</option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <input type="text" class="form-control" placeholder="DD">
+                            </div>
+                        </div>
+                    </form>
+                    <ul class="navbar-nav text-center">     
+                        <table class="table text-center table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="btn date-drawer">2021-01-01</th>
+                                </tr>
+                                <tr>
+                                    <th scope="col" class="btn date-drawer">2021-01-02</th>
+                                </tr>
+                            </thead>
+                        </table>                       
+                    </ul>
+                    <br>
+                    <nav aria-label="PageNav">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link page" href="#" aria-label="Previous">
+                                    <i class="bi bi-chevron-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link page" href="#">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link page" href="#">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link page" href="#">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link page" href="#">N</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link page" href="#" aria-label="Next">
+                                    <span aria-hidden="true">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-sm-10">
+                    <h4>
+                        <small> DAILY REPORT (YYYY/MM/DD) </small>
+                    </h4>
+                    <div class="col-md-12">
+                        <table class="table text-center table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Total Items</th>
+                                    <th scope="col">Amount Paid</th>
+                                    <th scope="col">Balance</th>
+                                    <th scope="col">Token Error</th>
+                                    <th scope="col">Log</th>
+                                    <th scope="col">Employee</th>
+                                    <th scope="col">Shift</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each this.entry}}
+                                <tr>
+                                    <div id = "Log_ID" hidden>{{this._id}}</div>
+                                    <td>
+                                        <input id=NAMEField class = "text-center" size = "35" value = "{{this.Name}}" readonly>
+                                    </td>
+                                    <td>
+                                        <input id=TNWFIeld class = "text-center" size = "2" value = "{{this.ThinWash}}" readonly>
+                                    </td>
+                                    <td>
+                                        <input id=TNDField class = "text-center" size = "2" value = "{{this.ThinDry}}" readonly>
+                                    </td>
+                                    <td>
+                                        <input id=TKWField class = "text-center" size = "2" value = "{{this.ThickWash}}" readonly>
+                                    </td>
+                                    <td>
+                                        <input id=TKDField class = "text-center" size = "2" value = "{{this.ThickDry}}" readonly>
+                                    </td>
+                                    <td>
+                                        <input id=FOLDField class = "text-center" size = "2" value = "{{this.Fold}}" readonly>
+                                    </td>
+                                    <td>
+                                        <input id=SOAPField class = "text-center" size = "2" value = "{{this.Soap}}" readonly>
+                                    </td>
+                                    <td>
+                                        <input id=DOWNField class = "text-center" size = "2" value = "{{this.Downy}}" readonly>
+                                    </td>
+                                    <td></td>
+                                    <td id = "TTLField" width = "100" value = "{{this.totalPrice}}"></td>
+                                    <td id = "AMTField" width = "100" value = "{{this.AmountPaid}}"></td>
+                                    <td id = "BALField" width = "100" value = "{{this.Balance}}"></td>
+                                </tr>
+                            {{/each}}   
+                            </tbody>
+                            <!-- End of Table Body -->
                 
-                <ul class="navbar-nav text-center">     
-                  <table class="table text-center table-striped">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th scope="col" class="btn date-drawer">2021-01-01</th>
-                      </tr>
-                      
-                      <tr>
-                        <th scope="col" class="btn date-drawer">2021-01-02</th>
-                      </tr>
-
-                      <tr>
-                        <th scope="col" class="btn date-drawer">2021-01-03</th>
-                      </tr>
-
-                      <tr>
-                        <th scope="col" class="btn date-drawer">2021-01-04</th>
-                      </tr>
-
-                      <tr> 
-                        <th scope="col" class="btn date-drawer">2021-01-05</th>
-                      </tr>
-
-                      <tr>
-                        <th scope="col" class="btn date-drawer">2021-01-06</th>
-                      </tr>
-
-                      <tr>
-                        <th scope="col" class="btn date-drawer">2021-01-07</th>
-                      </tr>
-
-                      <tr>
-                        <th scope="col" class="btn date-drawer">2021-01-08</th>
-                      </tr>
-                      
-                    </thead>
-
-                  </table>            
-
-                    
-                 </ul><br>
-                 <nav aria-label="PageNav">
-                  <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                      <a class="page-link page" href="#" aria-label="Previous">
-                        <i class="bi bi-chevron-left"></i>
-                      </a>
-                    </li>
-                    <li class="page-item"><a class="page-link page" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link page" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link page" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link page" href="#">N</a></li>
-                    <li class="page-item">
-                      <a class="page-link page" href="#" aria-label="Next">
-                        <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-                
-
-              </div>
-          
-              <div class="col-sm-10">
-                <h4><small>DAILY REPORT (YYYY/MM/DD)</small></h4>
-                <div class="col-md-12">
-                    <table class="table text-center table-striped">
-                      <thead class="thead-dark">
-                        <tr>
-                          <th scope="col">Name</th>
-                          <th scope="col">Total Items</th>
-                          <th scope="col">Amount Paid</th>
-                          <th scope="col">Balance</th>
-                          <th scope="col">Token Error</th>
-                          <th scope="col">Log</th>
-                          <th scope="col">Employee</th>
-                          <th scope="col">Shift</th>
-                        </tr>
-                      </thead>
-          
-                      <!-- Table Body -->
-                      <tbody>
-                       {{#each this.entry}}
-                        <tr>
-                        <div id = "Log_ID" hidden>{{this._id}}</div>
-                        <td><input id=NAMEField class = "text-center" size = "35" value = "{{this.Name}}" readonly></td>
-                        <td><input id=TNWFIeld class = "text-center" size = "2" value = "{{this.ThinWash}}" readonly></td>
-                        <td><input id=TNDField class = "text-center" size = "2" value = "{{this.ThinDry}}" readonly></td>
-                        <td><input id=TKWField class = "text-center" size = "2" value = "{{this.ThickWash}}" readonly></td>
-                        <td><input id=TKDField class = "text-center" size = "2" value = "{{this.ThickDry}}" readonly></td>
-                        <td><input id=FOLDField class = "text-center" size = "2" value = "{{this.Fold}}" readonly></td>
-                        <td><input id=SOAPField class = "text-center" size = "2" value = "{{this.Soap}}" readonly></td>
-                        <td><input id=DOWNField class = "text-center" size = "2" value = "{{this.Downy}}" readonly></td>
-                        <td></td>
-                        <td id = "TTLField" width = "100" value = "{{this.totalPrice}}"></td>
-                        <td id = "AMTField" width = "100" value = "{{this.AmountPaid}}"></td>
-                        <td id = "BALField" width = "100" value = "{{this.Balance}}"></td>
-                        </tr>
-                       {{/each}}   
-                      </tbody>
-                      <!-- End of Table Body -->
-          
-                    </table>
-                    <!-- End of Table -->
-                  </div>
-              </div>
+                        </table>
+                        <!-- End of Table -->
+                    </div>
+                </div>
             </div>
-          </div>
-
-
-   </body>
+        </div>
+</body>

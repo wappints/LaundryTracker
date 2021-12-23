@@ -1,73 +1,69 @@
+<body>
 {{>header}}
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-10">
-                    <h3 class="text-left mt-3 mb-3"></h3>
-                </div>
-
-                <div class="col-md-1 mt-3 editsales">
-                    Enable Payments:
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <h3 class="text-left mt-3 mb-3"></h3>
             </div>
+            <div class="col-md-1 mt-3 editsales">
+                Enable Payments:
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <table class="table text-center table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Balance</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Payment</th>
+                    </tr>
+                </thead>
+                <div hidden id="HIDDENACCType">{{ACCType}}</div>
+                <div hidden id="HIDDENDDate">{{DDate}}</div>
+                <tbody>
+                    {{#each this.entry}}
+                    <tr>
+                        <td hidden> 
+                            <div id = "BAL_ID" >{{this.BalanceID}}</div> 
+                        </td>
 
-            <div class="col-md-12">
-                <table class="table text-center table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Phone Number</th>
-                            <th scope="col">Balance</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Payment</th>
-                        </tr>
-                    </thead>
+                        <td> 
+                            <input type="text" id="NAMEField"  name="NAMEField" class = "text-center" size = "30" value = "{{this.Name}}" readonly> 
+                        </td>
 
-                    <div hidden id="HIDDENACCType">{{ACCType}}</div>
-                    <div hidden id="HIDDENDDate">{{DDate}}</div>
+                        <td> 
+                            <input type="text" id="PHONEField" name="PHONEField" class = "text-center" size = "30" value = "{{this.PhoneNum}}" readonly> 
+                        </td>
 
-                    <tbody>
-                        {{#each this.entry}}
-                        <tr>
-                            <td hidden> 
-                                <div id = "BAL_ID" >{{this.BalanceID}}</div> 
-                            </td>
+                        <td> 
+                            <input type="tel" id="BALField" name="BALField"  class = "text-center" size = "7" value = "{{this.Balance}}" readonly> 
+                        </td>
 
-                            <td> 
-                                <input type="text" id="NAMEField"  name="NAMEField" class = "text-center" size = "30" value = "{{this.Name}}" readonly> 
-                            </td>
+                        <td> 
+                            <input type="text" id="DATEField"  name="DATEField" class = "text-center" size = "17" value = "{{this.DDate}}" readonly> 
+                        </td>
 
-                            <td> 
-                                <input type="text" id="PHONEField" name="PHONEField" class = "text-center" size = "30" value = "{{this.PhoneNum}}" readonly> 
-                            </td>
+                        <td>
+                            <input type="tel" class="PAYMENTFieldIdentifier"id="PAYMENTField" name="PAYMENTField" class = "text-center" size = "7" value = "0" > 
+                        </td>
 
-                            <td> 
-                                <input type="tel" id="BALField" name="BALField"  class = "text-center" size = "7" value = "{{this.Balance}}" readonly> 
-                            </td>
-
-                            <td> 
-                                <input type="text" id="DATEField"  name="DATEField" class = "text-center" size = "17" value = "{{this.DDate}}" readonly> 
-                            </td>
-
-                            <td>
-                                <input type="tel" class="PAYMENTFieldIdentifier"id="PAYMENTField" name="PAYMENTField" class = "text-center" size = "7" value = "0" > 
-                            </td>
-
-                            <td>
-                                <a class="btn btn-outline-danger ">
-                                    <i class="bi bi-trash" href="/deleteBal" data-toggle="modal" data-target="#DeleteAccountModal"> </i>
-                                </a>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
+                        <td>
+                            <a class="btn btn-outline-danger ">
+                                <i class="bi bi-trash" href="/deleteBal" data-toggle="modal" data-target="#DeleteAccountModal"> </i>
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
                 <!-- End of Table Body -->
-                </table>
+            </table>
             <!-- End of Table -->
-
             <script>     
             $('.btn.btn-outline-danger').click((event) => { 
                 var card = event.currentTarget.parentElement.parentElement.querySelector("#BAL_ID").innerHTML
@@ -80,16 +76,16 @@
             <script>
                 $('.PAYMENTFieldIdentifier').keypress((event) => { 
                     if (event.keyCode == 13) {
-                        var entry = parseInt(event.currentTarget.parentElement.parentElement.children[5].firstChild.value)
-                        var Balance= event.currentTarget.parentElement.parentElement.children[3].firstChild.getAttribute("value")
-                        var child = event.currentTarget.parentElement.parentElement.children[3].firstChild
+                        var entry = event.currentTarget.parentElement.parentElement.children[5].children[0].value
+                        var Balance= event.currentTarget.parentElement.parentElement.children[3].children[0].getAttribute("value")
+                        var child = event.currentTarget.parentElement.parentElement.children[3].children[0]
                         var computation = child.getAttribute("value") - entry
 
                         child.setAttribute("value", computation)
 
-                        var BalanceID = event.currentTarget.parentElement.parentElement.children[0].firstChild.innerText
-                        var Name = event.currentTarget.parentElement.parentElement.children[1].firstChild.getAttribute("value")
-                        var PhoneNum = event.currentTarget.parentElement.parentElement.children[2].firstChild.getAttribute("value")
+                        var BalanceID = event.currentTarget.parentElement.parentElement.children[0].children[0].innerText
+                        var Name = event.currentTarget.parentElement.parentElement.children[1].children[0].getAttribute("value")
+                        var PhoneNum = event.currentTarget.parentElement.parentElement.children[2].children[0].getAttribute("value")
 
                         if (computation <= 0)
                             $(event.currentTarget.parentElement.parentElement).remove();  
@@ -97,20 +93,19 @@
                         var ACCType = document.getElementById("HIDDENACCType").innerText
                         var DDate = document.getElementById("HIDDENDDate").innerText
                         var obj = {
-                        BalanceID : BalanceID,
-                        Name : Name, 
-                        Payment : entry,
-                        computation : computation,
-                        Balance : Balance,
-                        PhoneNum : PhoneNum
+                            BalanceID : BalanceID,
+                            Name : Name, 
+                            Payment : entry,
+                            computation : computation,
+                            Balance : Balance,
+                            PhoneNum : PhoneNum
                         }
                         $.post("/balances/" + ACCType + "/" + DDate, obj, function(result){})
-                }
-            })
+                    }
+                })
             </script>
-            </div>
         </div>
-    </body>
-</html>
+    </div>
+</body>
 
 
