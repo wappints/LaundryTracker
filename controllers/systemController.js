@@ -15,8 +15,9 @@ const systemController = {
         var formattedDate = currentDate.toISOString().split('T')[0];
         
         if (errors.isEmpty()) {
-            var ACCType = req.body.ACCType;
+            var ACCType = req.body.ACCType
             var PASSField = req.body.PASSField;
+            console.log(ACCType)
             var session = "Anonymous"
             if (ACCType === "EMPLOYEE") {
                 db.findOne(System, {EMPPass : PASSField}, {}, function(result) {
@@ -43,7 +44,7 @@ const systemController = {
                 db.findOne(System, {ADMINPass : PASSField}, {}, function(result) {
                     if (result != null) {
                         if (result.ADMINPass === PASSField) {
-                            res.redirect("home/EMPLOYEE/" + session + "/" + formattedDate);
+                            res.redirect("home/ADMIN/" + session + "/" + formattedDate);
                         }
                         else {
                             var details = {

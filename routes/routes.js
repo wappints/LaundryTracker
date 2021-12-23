@@ -7,7 +7,7 @@ const inventoryController = require('../controllers/inventoryController.js');
 const balancesController = require('../controllers/balancesController.js');
 const viewDateController = require('../controllers/viewDateController.js');
 const accountsController = require('../controllers/accountsController.js');
-
+const sessionController = require('../controllers/sessionController.js')
 const app = express();
 app.set('views', path.join(__dirname, '../views'))
 
@@ -36,5 +36,7 @@ app.get('/management/:ACCType/:Session/:DDate', accountsController.getAccounts);
 app.post('/management/:ACCType/:Session/:DDate', accountsController.updateAccounts);
 app.post('/addAccount', accountsController.addAccount);
 app.post('/delAccount', accountsController.deleteAccount);
+
+app.post('/session/:ACCType/:SessionName/:SessionPass/:DDate', sessionController.getSession)
 
 module.exports = app;  

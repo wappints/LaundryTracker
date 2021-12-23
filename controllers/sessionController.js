@@ -8,26 +8,23 @@ const sessionController = {
 
     getSession : function (req, res) {
 
-        var EMPName = req.body.EMPName
-        var EMPPass = req.body.EMPPass 
+        var EMPName = req.params.SessionName
+        var EMPPass = req.params.SessionPass
         var DDate = req.params.DDate
         var ACCType = req.params.ACCType
-        /*
-            button onclick ->  confirm -> function ()
+        var isAdmin = true;
 
-            ACCType = {hbs acc}
-            DDate = {hbs ddate}
-            Name = input field
-            Pass = input field
-
-            {
-                $.get(/home/ + ACCType,  {EMPName : Name, EMPPass : Pass})
+        if (ACCType === "EMPLOYEE")
+            isAdmin = false;
+        console.log(EMPName)
+        console.log(EMPPass)
+        db.findOne(Account, {EMPName : EMPName, EMPPass : EMPPass, isAdmin : {$eq : isAdmin}}, {}, function(result) {
+            if (result) {
+                var Session = result.EMPName
+                res.redirect("../../../../home/" + ACCType + "/" + Session + "/" + DDate)
             }
-        */
-        db.findOne(Account, {EMPName : EMPName, EMPPass : EMPPass}, function(result) {
-            var Session = result.EMPName
-            if (result)
-                res.redirect("/home/" + ACCType + "/" + Session + "/" + DDate)
+            else
+                console.log("User does not exist or has wrong input")
         })
     }
 }

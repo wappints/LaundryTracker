@@ -675,3 +675,8 @@ SyntaxError: Identifier 'ID' has already been declared
     at Module.require (node:internal/modules/cjs/loader:1012:19)
     at require (node:internal/modules/cjs/helpers:94:18)
     at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\routes\routes.js:12:28)
+[2021-12-24 01:41:21.290] [error] TypeError: Cannot read properties of null (reading 'EMPName')
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\sessionController.js:21:34
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)

@@ -47,31 +47,48 @@
 						<a class="dropdown-item" href="endSessionModal" data-toggle="modal" data-target="#endSessionModal"> End Session </a>
 					</div>
 				</li>
-
-				<!-- Start of Add Session Modal -->
+				<!-- Start of Add Session Modal -->			
 				<div class="modal fade" id="addSessionModal" tabindex="-1" role="dialog" aria-labelledby="addSessionModalLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel"> Add Session </h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body col-12">
-								<h5>Employee Name</h5>
-								<input class="text">
-							</div>
-							<div class="modal-body">
-								<h5>Password</h5>
-								<input type="password">
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancel </button>
-								<button type="button" class="btn btn-success"> Confirm </button>
+					<form id="THESESSIONFORM" method="post" action="">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel"> Add Session </h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body col-12">
+									<h5>Employee Name</h5>
+									<input id="addSessionName" type="text" value="">
+								</div>
+								<div class="modal-body">
+									<h5>Password</h5>
+									<input id="addSessionPass" type="password" value="">
+								</div>
+								<script>
+									function addSession() {
+										var sessionName = event.currentTarget.parentElement.parentElement.children[1].children[1].value
+										var sessionPass = event.currentTarget.parentElement.parentElement.children[2].children[1].value
+										var DDate = $("#ULTIMATEhiddendate").text()
+										var ACCType = $("#ULTIMATEhiddenacc").text()
+										console.log(sessionName)
+										console.log(sessionPass)
+										document.getElementById("THESESSIONFORM").setAttribute("action", "/session/" + ACCType + "/" + sessionName + "/" + sessionPass + "/" + DDate)
+										document.getElementById("THESESSIONFORM").submit()
+									}
+									function resetSessionInput() {
+										$("#addSessionName").val("")
+										$("#addSessionPass").val("")
+									}
+								</script>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" onclick="resetSessionInput()"data-dismiss="modal"> Cancel </button>
+									<button type="button" class="btn btn-success" onclick="addSession()"> Confirm </button>
+								</div>
 							</div>
 						</div>
-					</div>
+					</form>
 				</div>
 				<!-- End of Add Session Modal -->
 				<!-- Start of Change Session Modal -->
