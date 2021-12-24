@@ -8,19 +8,20 @@ const balancesController = require('../controllers/balancesController.js');
 const viewDateController = require('../controllers/viewDateController.js');
 const accountsController = require('../controllers/accountsController.js');
 const sessionController = require('../controllers/sessionController.js')
+const logController = require('../controllers/logController.js')
 const app = express();
 app.set('views', path.join(__dirname, '../views'))
 
 app.get('/', systemController.getSystem); 
 app.post('/login', systemController.postLogin);
-
+ 
 app.get('/home/:ACCType/:Session/:DDate', saleController.getEntries);  
 app.post('/home/:ACCType/:Session/:DDate', saleController.addEntry);
 app.get('/delete', saleController.deleteEntry);
 
 app.post('/edit', editPriceController.changePrice);
 
-app.get('/log/:ACCType', ); 
+app.get('/log/:ACCType', logController.getLogs); 
 app.post('/log/:ACCType', );
 
 app.get('/deleteBal', balancesController.deleteBalance);

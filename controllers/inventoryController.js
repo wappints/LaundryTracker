@@ -9,6 +9,7 @@ const inventoryController = {
         var currentDate = new Date()
         currentDate.setHours(currentDate.getHours() + 8);
         var formattedDate = currentDate.toISOString().split('T')[0];
+        
         db.findOne(Inventory, {}, {}, function(result)
         {
             var object =  result;
