@@ -35,7 +35,7 @@
             </div>
             {{#if_neq Session "Anonymous"}}
             <div class="col-sm-1 mt-3 editsales align-center"> Edit Sales:
-                <label class="switch">
+                <label class="switch" name="enableEdit" id="enableEdit">
                     <input type="checkbox">
                     <span class="slider round"></span>
                 </label>
@@ -326,54 +326,58 @@
             <tbody>
                 {{#if this.entry}}
                 {{#each this.entry}}
+
                     <tr id="FinancialEntry" name="FinancialEntry">
                         <td hidden>
-                            <div id="Entry_id" name="Entry_id" >{{this.SalesID}}</div>  
+                            <input id="Entry_id" name="Entry_id" value="{{this.SalesID}}">{{this.SalesID}}</input>  
                         </td>      
                         <td>
-                            <input  id ="NAMEField" name="NAMEField" class="text-center" size="18" value="{{this.Name}}"readonly>  
+                            <input  id ="NAMEField" name="NAMEField" class="INPUTFIELD_EDITidentifiers text-center" size="18" value="{{this.Name}}"readonly="true">  
                         </td>
                         <td>
-                            <input  id ="TNWField" name="TNWField"class="text-center" size="1" value="{{this.ThinWash}}" readonly>  
+                            <input  id ="TNWField" name="TNWField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThinWash}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="TNDField" name="TNDField"class="text-center" size="1" value="{{this.ThinDry}}" readonly>  
+                            <input  id ="TNDField" name="TNDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThinDry}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="TKWField" name="TKWField"class="text-center" size="1" value="{{this.ThickWash}}" readonly>  
+                            <input  id ="TKWField" name="TKWField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThickWash}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="TKDField"  name="TKDField"class="text-center" size="1" value="{{this.ThickDry}}" readonly>  
+                            <input  id ="TKDField"  name="TKDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThickDry}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="FOLDField"  name="FOLDField"class="text-center" size="1" value="{{this.Fold}}" readonly>  
+                            <input  id ="FOLDField"  name="FOLDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Fold}}" readonly="true"y>  
                         </td>
                         <td>
-                            <input  id ="SOAPField"  name="SOAPField"class="text-center" size="1" value="{{this.Soap}}" readonly>  
+                            <input  id ="SOAPField"  name="SOAPField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Soap}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="DOWNField" name="DOWNField"class="text-center" size="1" value="{{this.Downy}}" readonly> 
+                            <input  id ="DOWNField" name="DOWNField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Downy}}" readonly="true"> 
                         </td>
                         <td width="100"> 
-                            <input name="TTLField" id ="TTLField" class="text-center" size="5" value="{{this.totalPrice}}" readonly> 
+                            <input name="TTLField" id ="TTLField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.totalPrice}}" readonly> 
                         </td>
                         <td width="100"> 
-                            <input   name="AMTField"id ="AMTField" class="text-center" size="5" value="{{this.AmountPaid}}" readonly> 
+                            <input   name="AMTField"id ="AMTField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.AmountPaid}}" readonly> 
                         </td>
                         <td width="100"> 
-                            <input   name="BALField" id ="BALField" class="text-center" size="5" value="{{this.Balance}}" readonly> 
+                            <input   name="BALField" id ="BALField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.Balance}}" readonly> 
                         </td>
                         <td>
-                            <input id ="TOKENField" name="TOKENField" class="text-center" size="1" value ="{{this.Token}}" readonly> 
+                            <input id ="TOKENField" name="TOKENField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value ="{{this.Token}}" readonly="true"> 
                         </td>
                         <td>
-                            <input id ="PHONEField" class="text-center" size="11" value="{{this.PhoneNumber}}" readonly>
+                            <input id ="PHONEField" class="INPUTFIELD_EDITidentifiers text-center" size="11" value="{{this.PhoneNumber}}" readonly="true">
                         </td>
-                        <td>
+                        {{#if_eq ../Session "Anonymous"}}
+                        {{else}}
+                        <td>  
                             <a class="btn btn-outline-danger ">
                                 <i class="bi bi-trash" href="/delete" data-toggle="modal" data-target="#DeleteAccountModal"></i>
                             </a>
                         </td>
+                        {{/if_eq}}
                     </tr>
                 {{/each}}
                 {{else}}
@@ -383,6 +387,22 @@
                 {{/if}}
             </tbody>
             <script>     
+            
+                    var enable = document.getElementById("enableEdit");
+                    enable.addEventListener('change', e => {
+                    if (e.target.checked) {
+                        var els = document.querySelectorAll('.INPUTFIELD_EDITidentifiers.text-center');
+                        for (var i=0; i < els.length; i++) {
+                            els[i].removeAttribute('readonly');
+                        }
+                    }
+                    else { 
+                        var els = document.querySelectorAll('.INPUTFIELD_EDITidentifiers.text-center');
+                        for (var i=0; i < els.length; i++) 
+                            els[i].setAttribute("readOnly", true);
+                    }
+                    });
+                
                 $('.btn.btn-outline-danger').click((event) => { 
                     var entry = event.currentTarget.parentElement.parentElement.innerHTML
                     var card = event.currentTarget.parentElement.parentElement.querySelector("#Entry_id").innerHTML
@@ -456,6 +476,54 @@
                 <!-- End of Table Body -->
         </table>
         <script>
+         $(".INPUTFIELD_EDITidentifiers.text-center").on("change", function(event) { 
+            var id = this.parentElement.parentElement.children[0].children[0].value
+            var Name = this.parentElement.parentElement.children[1].children[0].value
+            var TNWQty = parseInt(this.parentElement.parentElement.children[2].children[0].value)
+            var TNDQty = parseInt(this.parentElement.parentElement.children[3].children[0].value)
+            var TKWQty = parseInt(this.parentElement.parentElement.children[4].children[0].value)
+            var TKDQty = parseInt(this.parentElement.parentElement.children[5].children[0].value)
+            var FOLDQty = parseInt(this.parentElement.parentElement.children[6].children[0].value)
+            var SOAPQty = parseInt(this.parentElement.parentElement.children[7].children[0].value)
+            var DOWNQty = parseInt(this.parentElement.parentElement.children[8].children[0].value)
+            var payment = parseInt(this.parentElement.parentElement.children[10].children[0].value)
+            var Token = parseInt(this.parentElement.parentElement.children[12].children[0].value)
+            var Phone = this.parentElement.parentElement.children[13].children[0].value
+            var TNWPrice = parseInt($("#TNWPrice").text())
+            var TNDPrice =parseInt($("#TNDPrice").text())
+            var TKWPrice =parseInt($("#TKWPrice").text())
+            var TKDPrice =parseInt($("#TKDPrice").text())
+            var FOLDPrice =parseInt($("#FOLDPrice").text())
+            var SOAPPrice =parseInt($("#SOAPPrice").text())
+            var DOWNPrice =parseInt($("#DOWNPrice").text())
+
+            var computation = TNWPrice * TNWQty + TNDPrice * TNDQty +  TKWPrice * TKWQty +  TKDPrice * TKDQty +  FOLDPrice * FOLDQty + SOAPPrice * SOAPQty + DOWNPrice * DOWNQty  
+            this.parentElement.parentElement.children[9].children[0].value = computation
+            var totalPayment = parseInt(this.parentElement.parentElement.children[9].children[0].value)
+            this.parentElement.parentElement.children[11].children[0].value = this.parentElement.parentElement.children[9].children[0].value - this.parentElement.parentElement.children[10].children[0].value
+            var Balance = parseInt(this.parentElement.parentElement.children[11].children[0].value)
+            var ACCType = $("#ULTIMATEhiddenacc").text()
+            var Session = $("#ULTIMATEhiddenses").text() 
+            var DDate = $("#ULTIMATEhiddendate").text()
+            var obj = {
+                id : id,
+                Name : Name,
+                Phone : Phone, 
+                TNWQty : TNWQty,
+                TNDQty : TNDQty, 
+                TKWQty : TKWQty,
+                TKDQty : TKDQty,
+                FOLDQty : FOLDQty, 
+                SOAPQty : SOAPQty, 
+                DOWNQty : DOWNQty,
+                AmountPaid : totalPayment,
+                TotalPrice : computation,
+                Balance : Balance,
+                Token : Token
+            }
+            console.log(obj)
+            $.post("/editEntry/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})
+        })
         $(document).on("change paste keyup cut select", function() { 
 
             var a = b = c = d = e = f = g = h = i = j = k = 0
@@ -485,7 +553,7 @@
                 $("#TOKENSum").val(k)
             }
         })
-
+    
         window.onload = function test () {
 
             var a = b = c = d = e = f = g = h = i = j = k = 0

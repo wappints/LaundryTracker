@@ -691,3 +691,36 @@ SyntaxError: Identifier 'ID' has already been declared
     at require (node:internal/modules/cjs/helpers:94:18)
     at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\main.js:38:1)
     at Module._compile (node:internal/modules/cjs/loader:1116:14)
+[2021-12-24 22:00:52.152] [error] ReferenceError: typeOfAcc is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\logController.js:29:44
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:70:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-24 22:38:46.028] [error] TypeError: model.create is not a function
+    at Object.insertOne (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:30:19)
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:180:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:70:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-24 22:40:24.638] [error] TypeError: model.create is not a function
+    at Object.insertOne (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:30:19)
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\saleController.js:181:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:70:20
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-25 04:28:51.026] [error] Error: Route.get() requires a callback function but got a [object Undefined]
+    at Route.<computed> [as get] (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\express\lib\router\route.js:202:15)
+    at Function.app.<computed> [as get] (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\express\lib\application.js:482:19)
+    at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\routes\routes.js:43:5)
+    at Module._compile (node:internal/modules/cjs/loader:1116:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1169:10)
+    at Module.load (node:internal/modules/cjs/loader:988:32)
+    at Module._load (node:internal/modules/cjs/loader:829:12)
+    at Function.c._load (node:electron/js2c/asar_bundle:5:13331)
+    at Module.require (node:internal/modules/cjs/loader:1012:19)
+    at require (node:internal/modules/cjs/helpers:94:18)
+[2021-12-25 04:34:51.174] [error] ReferenceError: pass is not defined
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\updateController.js:62:13
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:81:34
+    at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)

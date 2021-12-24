@@ -9,7 +9,7 @@
             <div class="col-md-1 mt-3 editsales">
                 Enable Payments:
                 <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" id="enablePay">
                     <span class="slider round"></span>
                 </label>
             </div>
@@ -54,7 +54,7 @@
                         </td>
 
                         <td>
-                            <input type="tel" class="PAYMENTFieldIdentifier"id="PAYMENTField" name="PAYMENTField" class = "text-center" size = "7" value = "0" > 
+                            <input type="tel" class="PAYMENTFieldIdentifier"id="PAYMENTField" name="PAYMENTField" class = "text-center" size = "7" value = "0" readonly="true"> 
                         </td>
 
                         <td>
@@ -68,7 +68,21 @@
                 <!-- End of Table Body -->
             </table>
             <!-- End of Table -->
-            <script>     
+            <script>    
+                var enable = document.getElementById("enablePay");
+                enable.addEventListener('change', e => {
+                    if (e.target.checked) {
+                        var els = document.querySelectorAll('.PAYMENTFieldIdentifier');
+                        for (var i=0; i < els.length; i++) {
+                                els[i].removeAttribute('readonly');
+                        }
+                    } 
+                    else { 
+                        var els = document.querySelectorAll('.PAYMENTFieldIdentifie');
+                        for (var i=0; i < els.length; i++) 
+                            els[i].setAttribute("readOnly", true);
+                    }
+                });
             $('.btn.btn-outline-danger').click((event) => { 
                 var card = event.currentTarget.parentElement.parentElement.querySelector("#BAL_ID").innerHTML
                 console.log(card)

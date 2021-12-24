@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const path = require('path')
 const db = require('./models/db.js'); 
+const {Handlebars} = require('handlebars')
 //const fse = require('fs-extra')
 
 const app = express()
@@ -26,6 +27,7 @@ var helperIF = {
         return opts.inverse(this);
     }
 }
+
 
 const hbs = exphbs.create({
     defaultLayout: 'loginLayout',

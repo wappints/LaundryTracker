@@ -11,7 +11,8 @@ const logController = {
 
     getLogs : function (req,res) {
       
-        var Session = req.params.Session     
+        var Session = req.params.Session 
+        var typeOfAcc = req.params.ACCType    
         var currentDate = new Date()
         currentDate.setHours(currentDate.getHours() + 8);
         var formattedDate = currentDate.toISOString().split('T')[0];
@@ -21,16 +22,18 @@ const logController = {
             details = []
             for (var i of result) {
                 obj = {}
-               
                 obj["LogID"] = i._id,
-                obj["Editors"] =    i.Editors,
                 obj["EditLog"] =      i.EditLog,
- 
-                details.push(obj)
-                var renderobjects = {ACCType : typeOfAcc, DDate : formattedDate, Session : Session, layout : 'logLayout', object : obj}
-                
+                obj["DDate"] = i.DDate,
+                obj["Name"] = i.Name,
+                obj["AmountPaid"] = i.AmountPaid,
+                obj["TotalPrice"] = i.TotalPrice,
+                obj["Balance"] = i.Balance,
+                obj["TokenError"] = i.TokenError,
+                obj["Handler"] = i.Handler 
+                details.push(obj) 
             }
-            
+            var renderobjects = {ACCType : typeOfAcc, DDate : formattedDate, Session : Session, layout : 'logLayout', object : details}
             res.render('log', renderobjects)
         })            
         

@@ -5,20 +5,43 @@ var mongoose = require('mongoose');
 // defines the schema for collection `Log`
 var LogSchema = new mongoose.Schema({
    
-    LogID : {
+    LogID : { 
         type : mongoose.Schema.Types.ObjectId,
         required : true
     },
-  
-    Editors : [{
+    
+    EditLog : [{ 
         type : String,
         required : false
     }],
-
-    EditLog : [{
+    Name : {
         type : String,
         required : false
-    }],
+    },
+    DDate : {
+        type : Date,
+        required : false
+    },
+    AmountPaid: {
+        type: Number,
+        required: false
+    },
+    TotalPrice: {
+        type: Number,
+        required: false
+    },
+    Balance: {
+        type: Number,
+        required: false
+    },
+    TokenError : {
+        type: Number,
+        required: false
+    },
+    Handler : [{
+        type: String,
+        required : false 
+    }]
 
 });
 

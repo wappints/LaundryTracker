@@ -24,3 +24,9 @@
   color:black;
   background-color:rgb(82, 172, 224);
 }
+.heighttext {
+  display:inline-block;
+  padding:60px 60px;
+  font-size: 12px;
+  line-height:0%;
+}

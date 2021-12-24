@@ -6,6 +6,7 @@ const db = require('../models/db.js');
 // import module `System` from `../models/SystemModel.js`
 const Sale = require('../models/SalesModel.js');
 const Price = require('../models/PriceModel.js');
+const Log = require('../models/LogModel.js');
 const Balances = require('../models/BalancesModel.js');
 /*
     defines an object which contains functions executed as callback
@@ -27,8 +28,10 @@ const saleController = {
 
         if (typeOfAcc == null)
             typeOfAcc = req.body.ACCType
-
+         console.log(DDate)
         var currentDate = new Date(DDate)
+        console.log("Current date is ")
+        console.log(currentDate)
         var formattedDate = currentDate.toISOString().split('T')[0];
 
         var start = formattedDate + "T00:00:00.000Z"
@@ -92,7 +95,8 @@ const saleController = {
         var TotalPrice = req.body.ADDTotalPriceR;
         var AmountPaid = req.body.ADDAmountPaid;
         var Balance = req.body.ADDBalanceR;
-
+        var Session = req.params.Session;
+        var ACCType = req.params.ACCType;
         if (isNaN(Phone) || Phone === null || Phone == "")
             Phone = "No Number"
         if (isNaN(TNW))
@@ -119,6 +123,10 @@ const saleController = {
         var tokenDefault = 0;
         var currentDate = new Date(DDate);
         var dateForBalance = currentDate
+        var hour = currentDate.getHours()
+        var minutes = currentDate.getMinutes()
+        var seconds = currentDate.getSeconds()
+        var time = hour + "-" + minutes + "-" + seconds
         dateForBalance = dateForBalance.toISOString().split('T')[0]
 
         var ObjectID = require('bson').ObjectID;
@@ -159,6 +167,20 @@ const saleController = {
                             db.insertOne(Balances, docs2, function(result){})
                     })
                 }
+                var EditLog = [ACCType + " " + Session + " added financial entry for " + Name + " "];
+                var Handler = [ACCType + " " + Session + " | " + time + " to CURRENT "] //7 letters remove then append END OF TIME
+                docs3 = {
+                    LogID : id,
+                    Name : Name,
+                    TotalPrice : TotalPrice,
+                    AmountPaid : AmountPaid,
+                    Balance : Balance,
+                    TokenError : tokenDefault,
+                    EditLog : EditLog,
+                    Handler : Handler,
+                    DDate : currentDate,
+                }
+                db.insertOne(Log, docs3, function(result){})
                 res.redirect('back')
             })
         })
@@ -183,7 +205,11 @@ const saleController = {
             }
             else {
                 db.deleteOne(Sale, {_id : id}, function(result){
-                    db.deleteOne(Balances, {BalanceID : id}, function(result){})
+                    db.deleteOne(Balances, {BalanceID : id}, function(result){
+                        db.deleteOne(Log, {LogID : id}, function(result){ // Confirmation
+                            res.redirect("back")
+                        })                    
+                    })
                 })
             }
         })
