@@ -17,7 +17,6 @@ const systemController = {
         if (errors.isEmpty()) {
             var ACCType = req.body.ACCType
             var PASSField = req.body.PASSField;
-            console.log(ACCType)
             var session = "Anonymous"
             if (ACCType === "EMPLOYEE") {
                 db.findOne(System, {EMPPass : PASSField}, {}, function(result) {

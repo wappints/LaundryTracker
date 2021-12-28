@@ -16,8 +16,6 @@ const sessionController = {
 
         if (ACCType === "EMPLOYEE")
             isAdmin = false;
-        console.log(EMPName)
-        console.log(EMPPass)
         db.findOne(Account, {EMPName : EMPName, EMPPass : EMPPass, isAdmin : {$eq : isAdmin}}, {}, function(result) {
             if (result) {
                 var Session = result.EMPName

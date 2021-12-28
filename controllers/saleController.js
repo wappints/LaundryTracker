@@ -28,10 +28,7 @@ const saleController = {
 
         if (typeOfAcc == null)
             typeOfAcc = req.body.ACCType
-         console.log(DDate)
         var currentDate = new Date(DDate)
-        console.log("Current date is ")
-        console.log(currentDate)
         var formattedDate = currentDate.toISOString().split('T')[0];
 
         var start = formattedDate + "T00:00:00.000Z"

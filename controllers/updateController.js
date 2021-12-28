@@ -7,7 +7,8 @@ const Log = require('../models/LogModel.js');
 const Balances = require('../models/BalancesModel.js');
 
 const updateController = {
-    updateEntry : function (req,res){
+
+    updateEntry : function (req,res) {
         var id = req.body.id
         var formattedDate = req.params.DDate
         var Session = req.params.Session
@@ -29,23 +30,30 @@ const updateController = {
         var Token = req.body.Token;
         var currentDate = new Date(DDate);
         var dateForBalance = currentDate
+        dateForBalance = dateForBalance.toISOString().split('T')[0]
         var pass = 0
-        if (Balance > 0) {
-            pass = 1;
-            docs2 = {
-                BalanceID : id,
-                Name : Name,
-                PhoneNum : Phone,
-                DDate : dateForBalance,
-                Balance : Balance
-            }
-            if (pass) {
-                db.findOne(Balances, {BalanceID : id}, {}, function(result) {
-                    if (!result)
-                        db.insertOne(Balances, docs2, function(result){})
+        var docs2 = {
+            BalanceID : id,
+            Name : Name,
+            PhoneNum : Phone,
+            DDate : dateForBalance,
+            Balance : Balance
+        }
+        db.findOne(Balances, {BalanceID : id}, {}, function(result) {
+            if (!result)
+                db.insertOne(Balances, docs2, function(result){
+                })
+            else {
+                db.updateOne(Balances, {BalanceID : id}, docs2, function(result) {
+                    db.findOne(Balances, {BalanceID : id}, {}, function(result) {
+                        if (result.Balance <= 0)
+                            db.deleteOne(Balances, {BalanceID : id}, function(result){
+                            })
+                    })
                 })
             }
-        }     
+        })
+
         var docs = {
             _id : id,
             Name : Name,
@@ -63,11 +71,10 @@ const updateController = {
             Balance : Balance,
             TokenError : Token
         }
-        console.log(docs)
-        db.updateOne(Sale, {_id : id}, docs, function(result) {
-
-        })
+        db.updateOne(Sale, {_id : id}, docs, function(result) {})
         res.redirect("../../../home/" + ACCType + "/" + Session + "/" + formattedDate);
     }
 }
+
+
 module.exports = updateController;

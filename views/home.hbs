@@ -169,7 +169,7 @@
                                 <p>Name</p>
                             </div>
                             <div class="col-md-8 ml-auto">
-                                <input type="text" onkeypress="return /[a-z]/i.test(event.key)" id="ADDName" name="ADDName">
+                                <input type="text" id="ADDName" name="ADDName">
                             </div>
                         </div>
                         <div class="row">
@@ -245,8 +245,14 @@
                             $("#ADDBalanceR").val(0) 
                             })
                         }
-
-                        $(".ADDSALES_INPUTidentifier").on("change paste keyup cut select", function() {
+                        $(document).ready(function() {
+                            $("#ADDName").keydown(function(event) {
+                                var inputValue = event.which;
+                                if(!(inputValue >= 65 && inputValue <= 122) && (inputValue != 32 && inputValue != 0 && inputValue != 8))
+                                    event.preventDefault(); 
+                            });
+                        });
+                        $(".ADDSALES_INPUTidentifier").on("change paste keyup cut", function() {
                             var TNWPrice = parseInt($("#TNWPrice").text())
                             var TNDPrice =parseInt($("#TNDPrice").text())
                             var TKWPrice =parseInt($("#TKWPrice").text())
@@ -335,40 +341,40 @@
                             <input  id ="NAMEField" name="NAMEField" class="INPUTFIELD_EDITidentifiers text-center" size="18" value="{{this.Name}}"readonly="true">  
                         </td>
                         <td>
-                            <input  id ="TNWField" name="TNWField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThinWash}}" readonly="true">  
+                            <input  id ="TNWField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="TNWField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThinWash}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="TNDField" name="TNDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThinDry}}" readonly="true">  
+                            <input  id ="TNDField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="TNDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThinDry}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="TKWField" name="TKWField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThickWash}}" readonly="true">  
+                            <input  id ="TKWField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="TKWField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThickWash}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="TKDField"  name="TKDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThickDry}}" readonly="true">  
+                            <input  id ="TKDField" type="tel" onkeypress="return /[0-9]/i.test(event.key)"  name="TKDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThickDry}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="FOLDField"  name="FOLDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Fold}}" readonly="true"y>  
+                            <input  id ="FOLDField" type="tel" onkeypress="return /[0-9]/i.test(event.key)"  name="FOLDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Fold}}" readonly="true"y>  
                         </td>
                         <td>
-                            <input  id ="SOAPField"  name="SOAPField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Soap}}" readonly="true">  
+                            <input  id ="SOAPField" type="tel" onkeypress="return /[0-9]/i.test(event.key)"  name="SOAPField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Soap}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="DOWNField" name="DOWNField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Downy}}" readonly="true"> 
+                            <input  id ="DOWNField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="DOWNField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Downy}}" readonly="true"> 
                         </td>
                         <td width="100"> 
-                            <input name="TTLField" id ="TTLField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.totalPrice}}" readonly> 
+                            <input name="TTLField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" id ="TTLField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.totalPrice}}" readonly> 
                         </td>
                         <td width="100"> 
-                            <input   name="AMTField"id ="AMTField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.AmountPaid}}" readonly> 
+                            <input   name="AMTField"  type="tel" onkeypress="return /[0-9]/i.test(event.key)" id ="AMTField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.AmountPaid}}" readonly> 
                         </td>
                         <td width="100"> 
-                            <input   name="BALField" id ="BALField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.Balance}}" readonly> 
+                            <input   name="BALField"  type="tel" onkeypress="return /[0-9]/i.test(event.key)" id ="BALField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.Balance}}" readonly> 
                         </td>
                         <td>
-                            <input id ="TOKENField" name="TOKENField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value ="{{this.Token}}" readonly="true"> 
+                            <input id ="TOKENField"  type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="TOKENField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value ="{{this.Token}}" readonly="true"> 
                         </td>
                         <td>
-                            <input id ="PHONEField" class="INPUTFIELD_EDITidentifiers text-center" size="11" value="{{this.PhoneNumber}}" readonly="true">
+                            <input id ="PHONEField" onkeypress="return /[0-9]/i.test(event.key)" type="text" class="INPUTFIELD_EDITidentifiers text-center" size="11" value="{{this.PhoneNumber}}" readonly="true">
                         </td>
                         {{#if_eq ../Session "Anonymous"}}
                         {{else}}
@@ -387,7 +393,13 @@
                 {{/if}}
             </tbody>
             <script>     
-            
+                    $(document).ready(function() {
+                        $("#NAMEField").keydown(function(event) {
+                            var inputValue = event.which;
+                            if(!(inputValue >= 65 && inputValue <= 122) && (inputValue != 32 && inputValue != 0 && inputValue != 8)) 
+                                event.preventDefault(); 
+                        });
+                    });
                     var enable = document.getElementById("enableEdit");
                     enable.addEventListener('change', e => {
                     if (e.target.checked) {
@@ -406,8 +418,6 @@
                 $('.btn.btn-outline-danger').click((event) => { 
                     var entry = event.currentTarget.parentElement.parentElement.children[0].children[0].value
                     var card = event.currentTarget.parentElement.parentElement.querySelector("#Entry_id").innerHTML
-                      console.log(card)
-                      console.log(entry)
                     $.get('/delete', {_id : entry}, function (result) {});
                     $(event.currentTarget.parentElement.parentElement).remove();
                     var a = b = c = d = e = f = g = h = i = j = k = 0
@@ -478,7 +488,7 @@
                 <!-- End of Table Body -->
         </table>
         <script>
-         $(".INPUTFIELD_EDITidentifiers.text-center").on("change", function(event) { 
+         $(".INPUTFIELD_EDITidentifiers.text-center").on("change paste keyup cut", function(event) { 
             var id = this.parentElement.parentElement.children[0].children[0].value
             var Name = this.parentElement.parentElement.children[1].children[0].value
             var TNWQty = parseInt(this.parentElement.parentElement.children[2].children[0].value)
@@ -498,7 +508,52 @@
             var FOLDPrice =parseInt($("#FOLDPrice").text())
             var SOAPPrice =parseInt($("#SOAPPrice").text())
             var DOWNPrice =parseInt($("#DOWNPrice").text())
-
+            console.log(TNWQty)
+            if (isNaN(TNWQty) || TNWQty === "") {
+                this.parentElement.parentElement.children[2].children[0].value = 0
+                TNWQty = 0
+            }
+                
+            if (isNaN(TNDQty)) { 
+                this.parentElement.parentElement.children[3].children[0].value = 0
+                TNDQty = 0
+            }
+            if (isNaN(TKWQty)) {
+                this.parentElement.parentElement.children[4].children[0].value = 0
+                TKWQty = 0
+                }
+            if (isNaN(TKDQty)) {
+                this.parentElement.parentElement.children[5].children[0].value = 0
+                TKDQty = 0
+                }
+            if (isNaN(FOLDQty)) {
+                this.parentElement.parentElement.children[6].children[0].value = 0
+                FOLDQty = 0
+                }
+            if (isNaN(SOAPQty)) {  
+                this.parentElement.parentElement.children[7].children[0].value = 0
+                SOAPQty = 0
+                }
+            if (isNaN(DOWNQty)) {
+                this.parentElement.parentElement.children[8].children[0].value = 0
+                DOWNQty = 0
+                }
+            if (isNaN(payment)) {
+                this.parentElement.parentElement.children[10].children[0].value = 0
+                payment = 0
+                }
+            if (isNaN(Token))   {
+                this.parentElement.parentElement.children[12].children[0].value = 0
+                Token = 0
+                }
+            if (Phone === null || Phone === "") {
+                this.parentElement.parentElement.children[13].children[0].value = "No Number"
+                Phone = "No Number"
+                }
+            if (Name === null || Name === "") {
+                this.parentElement.parentElement.children[1].children[0].value = "No Name"
+                Phone = "No Name"
+                }
             var computation = TNWPrice * TNWQty + TNDPrice * TNDQty +  TKWPrice * TKWQty +  TKDPrice * TKDQty +  FOLDPrice * FOLDQty + SOAPPrice * SOAPQty + DOWNPrice * DOWNQty  
             this.parentElement.parentElement.children[9].children[0].value = computation
             var totalPayment = parseInt(this.parentElement.parentElement.children[9].children[0].value)
@@ -518,12 +573,11 @@
                 FOLDQty : FOLDQty, 
                 SOAPQty : SOAPQty, 
                 DOWNQty : DOWNQty,
-                AmountPaid : totalPayment,
+                AmountPaid : payment,
                 TotalPrice : computation,
                 Balance : Balance,
                 Token : Token
             }
-            console.log(obj)
             $.post("/editEntry/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})
         })
         $(document).on("change paste keyup cut select", function() { 

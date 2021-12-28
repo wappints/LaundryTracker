@@ -724,3 +724,18 @@ SyntaxError: Identifier 'ID' has already been declared
     at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\models\db.js:81:34
     at C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
     at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2021-12-28 23:19:56.541] [error] C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\controllers\updateController.js:49
+                db.updateOne(Balances, {BalanceID : id}, docs2, function(result) {}
+                                                                                  ^
+
+SyntaxError: missing ) after argument list
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1038:15)
+    at Module._compile (node:internal/modules/cjs/loader:1072:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1169:10)
+    at Module.load (node:internal/modules/cjs/loader:988:32)
+    at Module._load (node:internal/modules/cjs/loader:829:12)
+    at Function.c._load (node:electron/js2c/asar_bundle:5:13331)
+    at Module.require (node:internal/modules/cjs/loader:1012:19)
+    at require (node:internal/modules/cjs/helpers:94:18)
+    at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\routes\routes.js:11:26)

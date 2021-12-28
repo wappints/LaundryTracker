@@ -28,7 +28,7 @@
                             <button id="DECDownybtn" class="btn btn-danger" data-toggle="modal" >
                                 <i class="bi bi-dash"></i>
                             </button>
-                            <input id="DOWNYinput" type="text" size="1" class="text-center" placeholder="Qty.">
+                            <input id="DOWNYinput" type="number" size="1" class="text-center" min=0 oninput="validity.valid||(value='');" placeholder="Qty.">
                             <button id="INCDownybtn"class="btn btn-primary" data-toggle="modal">
                                 <i class="bi bi-plus"></i>
                             </button>
@@ -53,7 +53,7 @@
                             <button id="DECSoapbtn" class="btn btn-danger" data-toggle="modal" >
                                 <i class="bi bi-dash"></i>
                             </button>
-                            <input id="SOAPinput" type="text" size="1" class="text-center" placeholder="Qty.">
+                            <input id="SOAPinput" type="number" size="1" class="text-center" min=0 oninput="validity.valid||(value='');" placeholder="Qty.">
                             <button id="INCSoapbtn" class="btn btn-primary" data-toggle="modal">
                                 <i class="bi bi-plus"></i>
                             </button>
@@ -84,17 +84,21 @@
                     $("#DECDownybtn").click((event) => {
                         INVDowny = parseInt($("#QTYFieldDowny").text())
                         INVSoap = parseInt($("#QTYFieldSoap").text())
-                        INVDowny = INVDowny - 1;
-                        document.getElementById("QTYFieldDowny").innerText = INVDowny
-                        $.post("/inventory/" + ACCType + "/" + Session + "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
+                        if (INVDowny > 0) {
+                            INVDowny = INVDowny - 1;
+                            document.getElementById("QTYFieldDowny").innerText = INVDowny
+                            $.post("/inventory/" + ACCType + "/" + Session + "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
+                        }
                     })
 
                     $("#DECSoapbtn").click((event) => {
-                       INVDowny = parseInt($("#QTYFieldDowny").text())
-                       INVSoap = parseInt($("#QTYFieldSoap").text())
-                       INVSoap = INVSoap - 1;
-                       document.getElementById("QTYFieldSoap").innerText = INVSoap
-                      $.post("/inventory/" + ACCType + "/" + Session + "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
+                        INVDowny = parseInt($("#QTYFieldDowny").text())
+                        INVSoap = parseInt($("#QTYFieldSoap").text())
+                        if (INVSoap > 0) {
+                            INVSoap = INVSoap - 1;
+                            document.getElementById("QTYFieldSoap").innerText = INVSoap
+                            $.post("/inventory/" + ACCType + "/" + Session + "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
+                        }
                     })
 
                     $("#INCSoapbtn").click((event) => {
@@ -107,6 +111,8 @@
 
                     $("#SOAPinput").on("change", function () {
                         INVSoap = document.getElementById("SOAPinput").value
+                        if (isNaN(INVSoap))
+                            INVSoap = 0
                         $("SOAPinput").val(INVSoap)
                         document.getElementById("QTYFieldSoap").innerText = INVSoap
                         $.post("/inventory/" + ACCType + "/" + Session + "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})
@@ -114,6 +120,8 @@
 
                     $("#DOWNYinput").on("change", function () {
                         INVDowny = document.getElementById("DOWNYinput").value
+                        if (isNaN(INVDowny))
+                            INVDowny = 0
                         $("DOWNYinput").val(INVDowny)
                         document.getElementById("QTYFieldDowny").innerText = INVDowny
                         $.post("/inventory/" + ACCType + "/" + Session + "/" + DDate, {INVDowny : INVDowny, INVSoap : INVSoap}, function (req, res) {})

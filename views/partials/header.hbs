@@ -74,13 +74,31 @@
 									<input id="addSessionPass" type="password" value="">
 								</div>
 								<script>
+									$("#addSessionName").keydown(function(event) {
+										var inputValue = event.which;
+										if(!(inputValue >= 65 && inputValue <= 122) && (inputValue != 32 && inputValue != 0 && inputValue != 8)) 
+											event.preventDefault(); 
+										});
+									$("#NewEMPName").keydown(function(event) {
+										var inputValue = event.which;
+										if(!(inputValue >= 65 && inputValue <= 122) && (inputValue != 32 && inputValue != 0 && inputValue != 8)) 
+											event.preventDefault(); 
+										});
 									function addSession() {
 										var sessionName = event.currentTarget.parentElement.parentElement.children[1].children[1].value
 										var sessionPass = event.currentTarget.parentElement.parentElement.children[2].children[1].value
 										var DDate = $("#ULTIMATEhiddendate").text()
 										var ACCType = $("#ULTIMATEhiddenacc").text()
+										if (sessionName === "" && sessionPass === "")
+											console.log("No Name and Password")
+										else if (sessionName === "")
+											console.log("No Name")
+										else if (sessionPass === "")
+											console.log("No Password")
+										else {
 										document.getElementById("THESESSIONFORM").setAttribute("action", "/session/" + ACCType + "/" + sessionName + "/" + sessionPass + "/" + DDate)
 										document.getElementById("THESESSIONFORM").submit()
+										}
 									}
 									function resetSessionInput() {
 										$("#addSessionName").val("")
@@ -108,7 +126,7 @@
 							</div>
 							<div class="modal-body">
 								<h5>New Employee Name</h5>
-								<input class="text">
+								<input id="NewEMPName"class="text">
 							</div>
 							<div class="modal-body">
 								<h5>Password</h5>

@@ -16,10 +16,6 @@ const editPriceController = {
             DOWNPrice : parseInt(req.body.EDOWNPrice),
         }
         db.updateOne(Price, {key:docs.key}, docs, function(result){
-            if (result)
-                console.log("Updated Prices SUCCESSFULLY")
-            else
-                console.log("Updated Prices FAILURE")
             res.redirect("back")
         })
     }

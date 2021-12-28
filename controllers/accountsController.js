@@ -35,12 +35,17 @@ const accountsController = {
 
     },
     updateAccounts : function (req,res) {
-        var EMPName = req.body.Name
-        var EMPPass = req.body.Pass
+        var EMPName = req.body.EMPName
+        var EMPPass = req.body.EMPPass
         var ID = req.body.ID
         const { ObjectId } = require('mongodb');
         ID = ObjectId(ID);   
-        db.updateOne(Account, {_id : ID}, {EMPName : EMPName, EMPPass : EMPPass}, function(result) {res.redirect("back")})
+        var currentDate = new Date()
+        currentDate.setHours(currentDate.getHours() + 8);
+        var formattedDate = currentDate.toISOString().split('T')[0];
+
+        db.updateOne(Account, {_id : ID}, {EMPName : EMPName, EMPPass : EMPPass}, function(result) {})
+        res.redirect(EMPName)
     },
     deleteAccount : function (req,res) {
         var ID = req.body.ID
