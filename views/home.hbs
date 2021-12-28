@@ -404,9 +404,11 @@
                     });
                 
                 $('.btn.btn-outline-danger').click((event) => { 
-                    var entry = event.currentTarget.parentElement.parentElement.innerHTML
+                    var entry = event.currentTarget.parentElement.parentElement.children[0].children[0].value
                     var card = event.currentTarget.parentElement.parentElement.querySelector("#Entry_id").innerHTML
-                    $.get('/delete', {_id : card}, function (result) {});
+                      console.log(card)
+                      console.log(entry)
+                    $.get('/delete', {_id : entry}, function (result) {});
                     $(event.currentTarget.parentElement.parentElement).remove();
                     var a = b = c = d = e = f = g = h = i = j = k = 0
                     var numRows = document.getElementsByName("FinancialEntry").length 
