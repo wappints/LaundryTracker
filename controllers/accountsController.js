@@ -1,7 +1,7 @@
 const { request } = require('express');
 const db = require('../models/db.js');
 const Account = require('../models/AccountModel.js');
-
+//testing 
 const accountsController = {
     getAccounts : function (req,res){
         var ACCType = req.params.ACCType
