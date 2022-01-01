@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var AccountSchema = new mongoose.Schema({
     isAdmin:
     {
-        type : Boolean,
+        type : String,
         required : true
     },
     EMPName: 
