@@ -57,7 +57,7 @@ const accountsController = {
         var docs = {
             EMPName : EMPName,
             EMPPass : EMPPass,
-            isAdmin : false
+            isAdmin : "false"
         }
         db.insertOne(Account, docs, function(result){res.redirect("back")})
     }
