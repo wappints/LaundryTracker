@@ -122,6 +122,37 @@
                         $.post("/balances/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})
                     }
                 })
+
+                $('.PAYMENTFieldIdentifier').keypress((event) => { 
+                    if (event.keyCode == 13) {
+                        var entry = event.currentTarget.parentElement.parentElement.children[5].children[0].value
+                        var Balance= event.currentTarget.parentElement.parentElement.children[3].children[0].getAttribute("value")
+                        var child = event.currentTarget.parentElement.parentElement.children[3].children[0]
+                        var computation = child.getAttribute("value") - entry
+
+                        child.setAttribute("value", computation)
+
+                        var BalanceID = event.currentTarget.parentElement.parentElement.children[0].children[0].innerText
+                        var Name = event.currentTarget.parentElement.parentElement.children[1].children[0].getAttribute("value")
+                        var PhoneNum = event.currentTarget.parentElement.parentElement.children[2].children[0].getAttribute("value")
+
+                        if (computation <= 0)
+                            $(event.currentTarget.parentElement.parentElement).remove();  
+
+                        var ACCType = document.getElementById("HIDDENACCType").innerText
+                        var DDate = document.getElementById("HIDDENDDate").innerText
+                        var Session = document.getElementById("HIDDENDSesh").innerText
+                        var obj = {
+                            BalanceID : BalanceID,
+                            Name : Name, 
+                            Payment : entry,
+                            computation : computation,
+                            Balance : Balance,
+                            PhoneNum : PhoneNum
+                        }
+                        $.post("/balances/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})
+                    }
+                })
             </script>
         </div>
     </div>
