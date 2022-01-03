@@ -28,6 +28,7 @@
     "localforage": "^1.10.0",
     "mongoose": "^6.1.2",
     "ngx-indexed-db": "^9.4.2",
+    "util.promisify": "^1.1.1",
     "zangodb": "^1.0.8"
   },
   "repository": {
