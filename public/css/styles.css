@@ -24,3 +24,11 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.modal{
+  pointer-events: none;
+}
+
+.modal-dialog{
+  pointer-events: all;
+}
