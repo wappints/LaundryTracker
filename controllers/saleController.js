@@ -61,7 +61,8 @@ const saleController = {
             }
 
             db.findOne(Price, {}, {}, function(result) {
-                var  obj2 = {
+                if (result)
+                   { var  obj2 = {
                     TNWPrice : result.TNWPrice,
                     TNDPrice : result.TNDPrice,
                     TKWPrice : result.TKWPrice,
@@ -69,7 +70,17 @@ const saleController = {
                     FOLDPrice : result.FOLDPrice,
                     SOAPPrice : result.SOAPPrice,
                     DOWNPrice : result.DOWNPrice
-                }
+                    }}
+                else
+                    { var  obj2 = {
+                    TNWPrice : 0,
+                    TNDPrice : 0,
+                    TKWPrice : 0,
+                    TKDPrice : 0,
+                    FOLDPrice : 0,
+                    SOAPPrice : 0,
+                    DOWNPrice : 0
+                    }}
                 var renderobjects = {ACCType : typeOfAcc, DDate : formattedDate, Session : Session, entry : details, layout : 'mainLayout', object : obj2}
                 console.log("DDate = " + DDate )
                 console.log("formattedDate = " + formattedDate)
