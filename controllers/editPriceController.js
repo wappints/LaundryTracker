@@ -15,9 +15,24 @@ const editPriceController = {
             SOAPPrice : parseInt(req.body.ESOAPPrice),
             DOWNPrice : parseInt(req.body.EDOWNPrice),
         }
-        db.updateOne(Price, {key:docs.key}, docs, function(result){
-            res.redirect("back")
+        db.findOne(Price, {key:docs.key}, docs, function(result){
+            if (typeof result.TNWPrice === 'string' ) {
+                docs = {   
+                    key : 'Price',
+                    TNWPrice : req.body.ETNWPrice.toString(),
+                    TNDPrice : req.body.ETNDPrice.toString(),
+                    TKWPrice : req.body.ETKWPrice.toString(),
+                    TKDPrice : req.body.ETKDPrice.toString(),
+                    FOLDrice : req.body.EFOLDPrice.toString(),
+                    SOAPPrice : req.body.ESOAPPrice.toString(),
+                    DOWNPrice : req.body.EDOWNPrice.toString(),
+                }
+            }
+            db.updateOne(Price, {key:docs.key}, docs, function(result){
+                res.redirect("back")
+            })
         })
+
     }
     
 }
