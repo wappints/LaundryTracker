@@ -73,14 +73,26 @@ const saleController = {
                     }}
                 else
                     { var  obj2 = {
-                    TNWPrice : 0,
-                    TNDPrice : 0,
-                    TKWPrice : 0,
-                    TKDPrice : 0,
-                    FOLDPrice : 0,
-                    SOAPPrice : 0,
-                    DOWNPrice : 0
-                    }}
+                    TNWPrice : 65,
+                    TNDPrice : 65,
+                    TKWPrice :75,
+                    TKDPrice : 75,
+                    FOLDPrice : 32,
+                    SOAPPrice : 15,
+                    DOWNPrice : 10,
+
+                    }
+                    var initialPrices = {
+                        key : 'Price',
+                        TNWPrice : 65,
+                        TNDPrice : 65,
+                        TKWPrice :75,
+                        TKDPrice : 75,
+                        FOLDPrice : 32,
+                        SOAPPrice : 15,
+                        DOWNPrice : 10,}
+                    db.insertOne(Price, initialPrices, function(result){})
+                }
                 var renderobjects = {ACCType : typeOfAcc, DDate : formattedDate, Session : Session, entry : details, layout : 'mainLayout', object : obj2}
                 console.log("DDate = " + DDate )
                 console.log("formattedDate = " + formattedDate)
