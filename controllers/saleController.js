@@ -142,6 +142,7 @@ const saleController = {
 
         var tokenDefault = 0;
         var currentDate = new Date();
+        currentDate.setHours(currentDate.getHours() + 8);
         var dateForBalance = currentDate
         var hour = currentDate.getHours()
         var minutes = currentDate.getMinutes()
@@ -223,6 +224,7 @@ const saleController = {
                     Balance : -(result.Balance)
                 } 
                 db.insertOne(Balances, docs2, function(result){db.deleteOne(Sale, {_id : id}, function(result){})})   
+                res.redirect("back")
             }
             else {
                 db.deleteOne(Sale, {_id : id}, function(result){

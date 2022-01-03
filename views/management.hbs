@@ -144,8 +144,8 @@
                 	<br>
                 		Password:
                 	<input  id="adminPass" type="password" value="{{this.EMPPass}}" readonly> <br>
-                	<input class="form-check-input" type="checkbox" onclick="showAdminPass()"value="" id="flexCheckDefault">
-                	<label class="form-check-label" for="flexCheckDefault">
+                	<input class="form-check-input" type="checkbox" onclick="showAdminPass()"value="" id="flexCheckDefaultW">
+                	<label class="form-check-label" for="flexCheckDefaultW">
                   		Show Password
                 	</label> 
 				</th>
@@ -254,7 +254,6 @@
             })
             $('.btn.btn-outline-danger.mt-2').click(function(event) {
             	var entry = event.currentTarget.parentElement.children[1].value  
-				console.log(entry)   
                 $("#deleteAccConfirm").click(function() {
                   $.post("/delAccount", {ID : entry},  function(result) {
                      event.currentTarget.parentElement.parentElement.remove() 
@@ -263,14 +262,16 @@
                 })
             })
             $('.btn.btn-outline-primary.confirm').click(function(event) {
-                var entry = event.currentTarget.parentElement.children[1].value
+                var entry = event.currentTarget.parentElement.children[1].value	
 				var DDate = $("#ULTIMATEhiddendate").text()
 				var ACCType = $("#ULTIMATEhiddenacc").text()
 				var Session = $("#ULTIMATEhiddenses").text()
                 $(".btn.btn-success.confirm.now").click(function(event) {
 					var Name = event.currentTarget.parentElement.parentElement.children[1].children[1].value
 					var Pass = event.currentTarget.parentElement.parentElement.children[2].children[1].value								
-                  	$.post("/management" + "/" + ACCType + "/" + Session + "/" + DDate , {ID : entry, EMPName : Name, EMPPass : Pass},  function(result){window.location.reload()})
+                  	$.post("/management" + "/" + ACCType + "/" + Session + "/" + DDate , {ID : entry, EMPName : Name, EMPPass : Pass},  function(result){
+						  // RELOCATE
+					  })
                 })
             })
         </script>

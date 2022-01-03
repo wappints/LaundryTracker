@@ -34,7 +34,11 @@ const balancesController = {
         if (computation == 0) 
             db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){})
         else
-            db.updateOne(Balances, {BalanceID : BalanceID}, {Balance : computation}, function(result) {})
+            {
+                db.updateOne(Balances, {BalanceID : BalanceID}, {Balance : computation}, function(result) {})
+                db.updateOne(Sale, {_id : BalanceID}, {Balance : computation}, function(result) {})
+            }
+           
         var ObjectID = require('bson').ObjectID;
         var id  = new ObjectID();
         var currentDate = new Date()
@@ -53,7 +57,7 @@ const balancesController = {
             Soap : 0,
             Downy : 0,
             AmountPaid : Payment,
-            TotalPrice : Balance,
+            TotalPrice : 0,
             Balance : -Payment,
             TokenError : 0
         }

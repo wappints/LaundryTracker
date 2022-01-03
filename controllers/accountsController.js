@@ -13,7 +13,7 @@ const accountsController = {
             var details = []
             var details2 = []
             for (var i of result) {
-                if (i.isAdmin) {
+                if (i.isAdmin == "true") {
                     obj = {}
                     obj["AccID"] = i._id
                     obj["isAdmin"] = i.isAdmin
@@ -45,7 +45,7 @@ const accountsController = {
         var formattedDate = currentDate.toISOString().split('T')[0];
 
         db.updateOne(Account, {_id : ID}, {EMPName : EMPName, EMPPass : EMPPass}, function(result) {})
-        res.redirect(EMPName)
+        res.redirect("back")
     },
     deleteAccount : function (req,res) {
         var ID = req.body.ID

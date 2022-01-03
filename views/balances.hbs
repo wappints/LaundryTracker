@@ -54,14 +54,16 @@
                         </td>
 
                         <td>
-                            <input type="tel" class="PAYMENTFieldIdentifier"id="PAYMENTField" name="PAYMENTField" class = "text-center" size = "7" value = "0" readonly="true"> 
+                            <input type="tel" onkeypress="return /[0-9]/i.test(event.key)" class="PAYMENTFieldIdentifier"id="PAYMENTField" name="PAYMENTField" class = "text-center" size = "7" value = "0" readonly="true"> 
                         </td>
-
+                        {{#if_neq ../Session "Anonymous"}}
                         <td>
                             <a class="btn btn-outline-danger ">
                                 <i class="bi bi-trash" href="/deleteBal" data-toggle="modal" data-target="#DeleteAccountModal"> </i>
                             </a>
                         </td>
+                        {{else}}
+                        {{/if_neq}}    
                     </tr>
                     {{/each}}
                 </tbody>
@@ -70,6 +72,7 @@
             <!-- End of Table -->
             <script>    
                 var enable = document.getElementById("enablePay");
+                if (enable != null){
                 enable.addEventListener('change', e => {
                     if (e.target.checked) {
                         var els = document.querySelectorAll('.PAYMENTFieldIdentifier');
@@ -78,14 +81,14 @@
                         }
                     } 
                     else { 
-                        var els = document.querySelectorAll('.PAYMENTFieldIdentifie');
+                        var els = document.querySelectorAll('.PAYMENTFieldIdentifier');
                         for (var i=0; i < els.length; i++) 
                             els[i].setAttribute("readOnly", true);
                     }
                 });
+                }
             $('.btn.btn-outline-danger').click((event) => { 
                 var card = event.currentTarget.parentElement.parentElement.querySelector("#BAL_ID").innerHTML
-                console.log(card)
                 $.get('/deleteBal', {card : card}, function (result) {});
                 $(event.currentTarget.parentElement.parentElement).remove();
             })
@@ -93,45 +96,21 @@
 
             <script>
                 $('.PAYMENTFieldIdentifier').keypress((event) => { 
+                    var Balance= parseInt(event.currentTarget.parentElement.parentElement.children[3].children[0].getAttribute("value"))
+                    event.currentTarget.parentElement.parentElement.children[5].children[0].max = Balance
+                     var entry = parseInt(event.currentTarget.parentElement.parentElement.children[5].children[0].value)
+                     if (isNaN(entry))
+                        entry = 0
+                     event.currentTarget.parentElement.parentElement.children[5].children[0].value = entry
                     if (event.keyCode == 13) {
-                        var entry = event.currentTarget.parentElement.parentElement.children[5].children[0].value
-                        var Balance= event.currentTarget.parentElement.parentElement.children[3].children[0].getAttribute("value")
+
+                       
+                        if (Balance < entry) 
+                            entry = Balance
                         var child = event.currentTarget.parentElement.parentElement.children[3].children[0]
-                        var computation = child.getAttribute("value") - entry
-
+                        var computation = Balance - entry
                         child.setAttribute("value", computation)
-
-                        var BalanceID = event.currentTarget.parentElement.parentElement.children[0].children[0].innerText
-                        var Name = event.currentTarget.parentElement.parentElement.children[1].children[0].getAttribute("value")
-                        var PhoneNum = event.currentTarget.parentElement.parentElement.children[2].children[0].getAttribute("value")
-
-                        if (computation <= 0)
-                            $(event.currentTarget.parentElement.parentElement).remove();  
-
-                        var ACCType = document.getElementById("HIDDENACCType").innerText
-                        var DDate = document.getElementById("HIDDENDDate").innerText
-                        var Session = document.getElementById("HIDDENDSesh").innerText
-                        var obj = {
-                            BalanceID : BalanceID,
-                            Name : Name, 
-                            Payment : entry,
-                            computation : computation,
-                            Balance : Balance,
-                            PhoneNum : PhoneNum
-                        }
-                        $.post("/balances/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})
-                    }
-                })
-
-                $('.PAYMENTFieldIdentifier').keypress((event) => { 
-                    if (event.keyCode == 13) {
-                        var entry = event.currentTarget.parentElement.parentElement.children[5].children[0].value
-                        var Balance= event.currentTarget.parentElement.parentElement.children[3].children[0].getAttribute("value")
-                        var child = event.currentTarget.parentElement.parentElement.children[3].children[0]
-                        var computation = child.getAttribute("value") - entry
-
-                        child.setAttribute("value", computation)
-
+                        
                         var BalanceID = event.currentTarget.parentElement.parentElement.children[0].children[0].innerText
                         var Name = event.currentTarget.parentElement.parentElement.children[1].children[0].getAttribute("value")
                         var PhoneNum = event.currentTarget.parentElement.parentElement.children[2].children[0].getAttribute("value")

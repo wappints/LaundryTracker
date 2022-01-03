@@ -227,7 +227,7 @@
                         <div class="row mt-2">
                             <div class="col-md-4 ml-auto">Amount Paid: </div>
                             <div class="col-md-8 ml-auto">
-                                <input type="tel" size="4" onkeypress="return /[0-9]/i.test(event.key)" id="ADDAmountPaid" name="ADDAmountPaid" value="0">
+                                <input type="number" size="4" onkeypress="return /[0-9]/i.test(event.key)" id="ADDAmountPaid" name="ADDAmountPaid" value="0" max="0">
                             </div>
                         </div>
                         <div class="row">
@@ -256,6 +256,7 @@
                             });
                         });
                         $(".ADDSALES_INPUTidentifier").on("change paste keyup cut", function() {
+
                             var TNWPrice = parseInt($("#TNWPrice").text())
                             var TNDPrice =parseInt($("#TNDPrice").text())
                             var TKWPrice =parseInt($("#TKWPrice").text())
@@ -274,28 +275,52 @@
 
                             if (isNaN(TNWQty))
                                 $("#ADDThinW").val(0)
+                            else
+                                $("#ADDThinW").val(TNWQty)
                             if (isNaN(TNDQty))
                                 $("#ADDThinD").val(0)
+                            else
+                                $("#ADDThinD").val(TNDQty)
                             if (isNaN(TKWQty))
                                 $("#ADDThickW").val(0)
-                            if ( isNaN(TKDQty))
+                            else
+                                $("#ADDThickW").val(TKWQty)
+                            if (isNaN(TKDQty))
                                 $("#ADDThickD").val(0)
+                            else
+                                $("#ADDThickD").val(TKDQty)    
                             if (isNaN(FOLDQty))
                                 $("#ADDFold").val(0)
-                            if (isNaN(SOAPQty ))
+                            else
+                                $("#ADDFold").val(FOLDQty)    
+                            if (isNaN(SOAPQty))
                                 $("#ADDSoap").val(0)
+                            else
+                                $("#ADDSoap").val(SOAPQty)    
                             if (isNaN(DOWNQty))
                                 $("#ADDDowny").val(0)
+                            else
+                                $("#ADDDowny").val(DOWNQty)    
                             if (isNaN(BALQty))
                                 $("#ADDBalanceR").val(0)
-        
+                            
                             var computation = TNWPrice * TNWQty + TNDPrice * TNDQty +  TKWPrice * TKWQty +  TKDPrice * TKDQty +  FOLDPrice * FOLDQty + SOAPPrice * SOAPQty + DOWNPrice * DOWNQty  
+                            document.getElementById("ADDAmountPaid").setAttribute("max", computation)
                             $("#ADDTotalPriceR").val(computation);
                             $("#ADDBalanceR").val( $("#ADDTotalPriceR").val() - $("#ADDAmountPaid").val()) 
                         });
 
-                        $("#ADDAmountPaid").on("change paste keyup cut select", function() {
+                        $("#ADDAmountPaid").on("change paste keyup cut", function() {
+                            var amtpaid =  parseInt($("#ADDAmountPaid").val())
+                            var total = $("#ADDTotalPriceR").val()
+                            if (isNaN(amtpaid))
+                                $("#ADDAmountPaid").val(0)
+                            else if ( total < amtpaid)
+                                $("#ADDAmountPaid").val(total)
+                            else
+                                $("#ADDAmountPaid").val(amtpaid)
                             $("#ADDBalanceR").val( $("#ADDTotalPriceR").val() - $("#ADDAmountPaid").val()) 
+
                         });
 
                         </script>
@@ -368,10 +393,10 @@
                             <input name="TTLField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" id ="TTLField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.totalPrice}}" readonly> 
                         </td>
                         <td width="100"> 
-                            <input   name="AMTField"  type="tel" onkeypress="return /[0-9]/i.test(event.key)" id ="AMTField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.AmountPaid}}" readonly> 
+                            <input   name="AMTField"  type="number" onkeypress="return /[0-9]/i.test(event.key)" id ="AMTField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.AmountPaid}}" max="0"readonly> 
                         </td>
                         <td width="100"> 
-                            <input   name="BALField"  type="tel" onkeypress="return /[0-9]/i.test(event.key)" id ="BALField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.Balance}}" readonly> 
+                            <input   name="BALField"  type="tel" id ="BALField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.Balance}}" readonly> 
                         </td>
                         <td>
                             <input id ="TOKENField"  type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="TOKENField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value ="{{this.Token}}" readonly="true"> 
@@ -404,20 +429,29 @@
                         });
                     });
                     var enable = document.getElementById("enableEdit");
-                    enable.addEventListener('change', e => {
-                    if (e.target.checked) {
-                        var els = document.querySelectorAll('.INPUTFIELD_EDITidentifiers.text-center');
-                        for (var i=0; i < els.length; i++) {
-                            els[i].removeAttribute('readonly');
+                    if (enable != null) {
+                        enable.addEventListener('change', e => {
+                        if (e.target.checked) {
+                            var els = document.querySelectorAll('.INPUTFIELD_EDITidentifiers.text-center');
+                            var numRows = document.getElementsByName("FinancialEntry").length 
+                            var j = 13
+                            while (j <= (numRows * 12 + 1)) {
+                                for (var i = 0; i < els.length; i++) {
+                                    if (els[-3+(j)].getAttribute("value") >= 0 )
+                                        els[i].removeAttribute('readonly');
+                                    if ((i+1)%13 == 0)
+                                        j = j+13
+                                }
+                            }
                         }
+                        else { 
+                            var els = document.querySelectorAll('.INPUTFIELD_EDITidentifiers.text-center');   
+                                for (var i=0; i < els.length; i++) 
+                                    els[i].setAttribute("readOnly", true);
+                            }
+                        });
                     }
-                    else { 
-                        var els = document.querySelectorAll('.INPUTFIELD_EDITidentifiers.text-center');
-                        for (var i=0; i < els.length; i++) 
-                            els[i].setAttribute("readOnly", true);
-                    }
-                    });
-                
+                    
                 $('.btn.btn-outline-danger').click((event) => { 
                     var entry = event.currentTarget.parentElement.parentElement.children[0].children[0].value
                     var card = event.currentTarget.parentElement.parentElement.querySelector("#Entry_id").innerHTML
@@ -425,6 +459,19 @@
                     $(event.currentTarget.parentElement.parentElement).remove();
                     var a = b = c = d = e = f = g = h = i = j = k = 0
                     var numRows = document.getElementsByName("FinancialEntry").length 
+                    if (numRows == 0) {
+                        $("#TNWSum").val(0)
+                        $("#TNDSum").val(0)
+                        $("#TKWSum").val(0)
+                        $("#TKDSum").val(0)
+                        $("#FOLDSum").val(0)
+                        $("#SOAPSum").val(0)
+                        $("#DOWNSum").val(0)
+                        $("#TTLSum").val(0)
+                        $("#AMTSum").val(0)
+                        $("#BALSum").val(0)
+                        $("#TOKENSum").val(0)
+                        }
                     for (z = 0; z <numRows; z++) {
                         a += parseInt(document.getElementsByName("TNWField")[z].value)
                         b += parseInt(document.getElementsByName("TNDField")[z].value)
@@ -449,7 +496,8 @@
                         $("#BALSum").val(j)
                         $("#TOKENSum").val(k)
                     }
-                });
+                }
+                );
                 </script>   
 
             <tr>
@@ -491,7 +539,10 @@
                 <!-- End of Table Body -->
         </table>
         <script>
-         $(".INPUTFIELD_EDITidentifiers.text-center").on("change paste keyup cut", function(event) { 
+         $(".INPUTFIELD_EDITidentifiers.text-center").on("change select paste keyup cut", function(event) { 
+              var BalanceCheck = parseInt(this.parentElement.parentElement.children[11].children[0].value)
+            if(BalanceCheck >= 0)
+            {
             var id = this.parentElement.parentElement.children[0].children[0].value
             var Name = this.parentElement.parentElement.children[1].children[0].value
             var TNWQty = parseInt(this.parentElement.parentElement.children[2].children[0].value)
@@ -504,6 +555,7 @@
             var payment = parseInt(this.parentElement.parentElement.children[10].children[0].value)
             var Token = parseInt(this.parentElement.parentElement.children[12].children[0].value)
             var Phone = this.parentElement.parentElement.children[13].children[0].value
+
             var TNWPrice = parseInt($("#TNWPrice").text())
             var TNDPrice =parseInt($("#TNDPrice").text())
             var TKWPrice =parseInt($("#TKWPrice").text())
@@ -511,54 +563,86 @@
             var FOLDPrice =parseInt($("#FOLDPrice").text())
             var SOAPPrice =parseInt($("#SOAPPrice").text())
             var DOWNPrice =parseInt($("#DOWNPrice").text())
-            console.log(TNWQty)
             if (isNaN(TNWQty) || TNWQty === "") {
                 this.parentElement.parentElement.children[2].children[0].value = 0
                 TNWQty = 0
+            }
+            else {
+                this.parentElement.parentElement.children[2].children[0].value = TNWQty
             }
                 
             if (isNaN(TNDQty)) { 
                 this.parentElement.parentElement.children[3].children[0].value = 0
                 TNDQty = 0
             }
+            else {
+                this.parentElement.parentElement.children[3].children[0].value = TNDQty
+            }
             if (isNaN(TKWQty)) {
                 this.parentElement.parentElement.children[4].children[0].value = 0
                 TKWQty = 0
-                }
+            }
+            else {
+                this.parentElement.parentElement.children[4].children[0].value = TKWQty
+            }
             if (isNaN(TKDQty)) {
                 this.parentElement.parentElement.children[5].children[0].value = 0
                 TKDQty = 0
                 }
+            else {
+                this.parentElement.parentElement.children[5].children[0].value = TKDQty
+            }
             if (isNaN(FOLDQty)) {
                 this.parentElement.parentElement.children[6].children[0].value = 0
                 FOLDQty = 0
-                }
+            }
+            else {
+                this.parentElement.parentElement.children[6].children[0].value = FOLDQty
+            }
             if (isNaN(SOAPQty)) {  
                 this.parentElement.parentElement.children[7].children[0].value = 0
                 SOAPQty = 0
-                }
+            }
+            else {
+                this.parentElement.parentElement.children[7].children[0].value = SOAPQty
+            }
             if (isNaN(DOWNQty)) {
                 this.parentElement.parentElement.children[8].children[0].value = 0
                 DOWNQty = 0
-                }
+            }
+            else {
+                this.parentElement.parentElement.children[8].children[0].value = DOWNQty
+            }
             if (isNaN(payment)) {
                 this.parentElement.parentElement.children[10].children[0].value = 0
                 payment = 0
-                }
+            }
+            else {
+                this.parentElement.parentElement.children[10].children[0].value = payment
+            }
             if (isNaN(Token))   {
                 this.parentElement.parentElement.children[12].children[0].value = 0
                 Token = 0
-                }
-            if (Phone === null || Phone === "") {
+            }
+            else {
+                this.parentElement.parentElement.children[12].children[0].value = Token
+            }
+            if (!(event.keyCode == "08" || (event.keyCode >= "48" || event.keyCode <= "57")) && (Phone === null || Phone === "")) {
                 this.parentElement.parentElement.children[13].children[0].value = "No Number"
                 Phone = "No Number"
-                }
-            if (Name === null || Name === "") {
+            }
+            if (!(event.keyCode == "08"  || (event.keyCode >= "a" || event.keyCode <= "z") || (event.keyCode >= "A" || event.keyCode <= "Z")) && (Name === null || Name === "")) {
                 this.parentElement.parentElement.children[1].children[0].value = "No Name"
                 Phone = "No Name"
-                }
+            }
             var computation = TNWPrice * TNWQty + TNDPrice * TNDQty +  TKWPrice * TKWQty +  TKDPrice * TKDQty +  FOLDPrice * FOLDQty + SOAPPrice * SOAPQty + DOWNPrice * DOWNQty  
             this.parentElement.parentElement.children[9].children[0].value = computation
+            this.parentElement.parentElement.children[10].children[0].max = computation
+            if (computation < payment)
+            {
+                payment = computation
+                this.parentElement.parentElement.children[10].children[0].value =  payment
+            }
             var totalPayment = parseInt(this.parentElement.parentElement.children[9].children[0].value)
             this.parentElement.parentElement.children[11].children[0].value = this.parentElement.parentElement.children[9].children[0].value - this.parentElement.parentElement.children[10].children[0].value
             var Balance = parseInt(this.parentElement.parentElement.children[11].children[0].value)
@@ -582,7 +666,26 @@
                 Token : Token
             }
             $.post("/editEntry/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})
-        })
+
+         }
+         else
+         {
+            this.parentElement.parentElement.children[0].children[0].readOnly = true
+            this.parentElement.parentElement.children[1].children[0].readOnly = true
+            this.parentElement.parentElement.children[2].children[0].readOnly = true
+            this.parentElement.parentElement.children[3].children[0].readOnly = true
+            this.parentElement.parentElement.children[4].children[0].readOnly = true
+            this.parentElement.parentElement.children[5].children[0].readOnly = true
+            this.parentElement.parentElement.children[6].children[0].readOnly = true
+            this.parentElement.parentElement.children[7].children[0].readOnly = true
+            this.parentElement.parentElement.children[8].children[0].readOnly = true
+            this.parentElement.parentElement.children[9].children[0].readOnly = true
+            this.parentElement.parentElement.children[10].children[0].readOnly = true
+            this.parentElement.parentElement.children[11].children[0].readOnly = true
+            this.parentElement.parentElement.children[12].children[0].readOnly = true
+            this.parentElement.parentElement.children[13].children[0].readOnly = true
+         }
+         })
         $(document).on("change paste keyup cut select", function() { 
 
             var a = b = c = d = e = f = g = h = i = j = k = 0

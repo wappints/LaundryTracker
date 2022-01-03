@@ -39,6 +39,7 @@ const updateController = {
             DDate : dateForBalance,
             Balance : Balance
         }
+        console.log(docs2)
         db.findOne(Balances, {BalanceID : id}, {}, function(result) {
             if (!result)
                 db.insertOne(Balances, docs2, function(result){
