@@ -118,7 +118,7 @@ const saleController = {
             Balance = 0
 
         var tokenDefault = 0;
-        var currentDate = new Date(DDate);
+        var currentDate = new Date();
         var dateForBalance = currentDate
         var hour = currentDate.getHours()
         var minutes = currentDate.getMinutes()
@@ -166,6 +166,7 @@ const saleController = {
                 }
                 var EditLog = [ACCType + " " + Session + " added financial entry for " + Name + " "];
                 var Handler = [ACCType + " " + Session + " | " + time + " to CURRENT "] //7 letters remove then append END OF TIME
+                //console.log("time console log = " + time)
                 docs3 = {
                     LogID : id,
                     Name : Name,
