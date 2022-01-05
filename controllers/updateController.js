@@ -31,7 +31,6 @@ const updateController = {
         var currentDate = new Date(DDate);
         var dateForBalance = currentDate
         dateForBalance = dateForBalance.toISOString().split('T')[0]
-        var pass = 0
         var docs2 = {
             BalanceID : id,
             Name : Name,
@@ -39,7 +38,6 @@ const updateController = {
             DDate : dateForBalance,
             Balance : Balance
         }
-        console.log(docs2)
         db.findOne(Balances, {BalanceID : id}, {}, function(result) {
             if (!result)
                 db.insertOne(Balances, docs2, function(result){

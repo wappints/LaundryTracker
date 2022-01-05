@@ -54,7 +54,7 @@
                         </td>
 
                         <td>
-                            <input type="tel" onkeypress="return /[0-9]/i.test(event.key)" class="PAYMENTFieldIdentifier"id="PAYMENTField" name="PAYMENTField" class = "text-center" size = "7" value = "0" readonly="true"> 
+                            <input type="tel" onkeypress="return /[0-9]/i.test(event.key)" class="PAYMENTFieldIdentifier"id="PAYMENTField" name="PAYMENTField" class = "text-center" size = "7" readonly="true"> 
                         </td>
                         {{#if_neq ../Session "Anonymous"}}
                         <td>
@@ -99,37 +99,36 @@
                     var Balance= parseInt(event.currentTarget.parentElement.parentElement.children[3].children[0].getAttribute("value"))
                     event.currentTarget.parentElement.parentElement.children[5].children[0].max = Balance
                      var entry = parseInt(event.currentTarget.parentElement.parentElement.children[5].children[0].value)
-                     if (isNaN(entry))
-                        entry = 0
-                     event.currentTarget.parentElement.parentElement.children[5].children[0].value = entry
+
                     if (event.keyCode == 13) {
 
-                       
-                        if (Balance < entry) 
-                            entry = Balance
-                        var child = event.currentTarget.parentElement.parentElement.children[3].children[0]
-                        var computation = Balance - entry
-                        child.setAttribute("value", computation)
-                        
-                        var BalanceID = event.currentTarget.parentElement.parentElement.children[0].children[0].innerText
-                        var Name = event.currentTarget.parentElement.parentElement.children[1].children[0].getAttribute("value")
-                        var PhoneNum = event.currentTarget.parentElement.parentElement.children[2].children[0].getAttribute("value")
+                        if (entry == 0 || !isNaN(entry)) {
+                            if (Balance < entry) 
+                                entry = Balance
+                            var child = event.currentTarget.parentElement.parentElement.children[3].children[0]
+                            var computation = Balance - entry
+                            child.setAttribute("value", computation)
+                            
+                            var BalanceID = event.currentTarget.parentElement.parentElement.children[0].children[0].innerText
+                            var Name = event.currentTarget.parentElement.parentElement.children[1].children[0].getAttribute("value")
+                            var PhoneNum = event.currentTarget.parentElement.parentElement.children[2].children[0].getAttribute("value")
 
-                        if (computation <= 0)
-                            $(event.currentTarget.parentElement.parentElement).remove();  
+                            if (computation <= 0)
+                                $(event.currentTarget.parentElement.parentElement).remove();  
 
-                        var ACCType = document.getElementById("HIDDENACCType").innerText
-                        var DDate = document.getElementById("HIDDENDDate").innerText
-                        var Session = document.getElementById("HIDDENDSesh").innerText
-                        var obj = {
-                            BalanceID : BalanceID,
-                            Name : Name, 
-                            Payment : entry,
-                            computation : computation,
-                            Balance : Balance,
-                            PhoneNum : PhoneNum
+                            var ACCType = document.getElementById("HIDDENACCType").innerText
+                            var DDate = document.getElementById("HIDDENDDate").innerText
+                            var Session = document.getElementById("HIDDENDSesh").innerText
+                            var obj = {
+                                BalanceID : BalanceID,
+                                Name : Name, 
+                                Payment : entry,
+                                computation : computation,
+                                Balance : Balance,
+                                PhoneNum : PhoneNum
+                            }
+                            $.post("/balances/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})
                         }
-                        $.post("/balances/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})
                     }
                 })
             </script>

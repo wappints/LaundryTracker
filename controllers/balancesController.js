@@ -29,7 +29,6 @@ const balancesController = {
         var Name = req.body.Name
         var PhoneNum = req.body.PhoneNum
         var computation = req.body.computation
-        var Balance = req.body.Balance
         var Payment = req.body.Payment
         if (computation == 0) 
             db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){})
@@ -66,7 +65,6 @@ const balancesController = {
     deleteBalance : function(req,res)
     {
         var BalanceID = req.query.card
-        console.log(BalanceID)
         db.deleteOne(Sale, {_id : BalanceID}, function(result){db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){})})
     }
 }

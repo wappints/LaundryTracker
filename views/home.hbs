@@ -169,72 +169,118 @@
                                 <p>Name</p>
                             </div>
                             <div class="col-md-8 ml-auto">
-                                <input type="text" id="ADDName" name="ADDName">
+                                <input type="text" id="ADDName" name="ADDName"> 
+                                <br/>
+                                <span id="errorname1" style="color: red;"></span>
+                                <br/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4 ml-auto" >Phone</div>
                             <div class="col-md-8 ml-auto">
-                                <input onkeypress="return /[0-9]/i.test(event.key)" type="text" id="ADDPhone" name="ADDPhone">
+                                <input onkeypress="return /[0-9]/i.test(event.key)" type="text" id="ADDPhone" name="ADDPhone"> 
+                                <br/>
+                                <span id="errorname2" style="color: red;"></span>
+                                <br/>
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-4 ml-auto" >Thin Wash</div>
                             <div class="col-md-8 ml-auto">
-                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThinW" name="ADDThinW" value="0">
+                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThinW" name="ADDThinW">
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-4 ml-auto">Thin Dry</div>
                             <div class="col-md-8 ml-auto">
-                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThinD" name="ADDThinD"  value="0">
+                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThinD" name="ADDThinD">
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-4 ml-auto">Thick Wash</div>
                             <div class="col-md-8 ml-auto">
-                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThickW"  name="ADDThickW" value="0">
+                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDThickW"  name="ADDThickW">
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-4 ml-auto">Thick Dry</div>
                             <div class="col-md-8 ml-auto">
-                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)"  type="tel" size="4" id="ADDThickD" name="ADDThickD" value="0">
+                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)"  type="tel" size="4" id="ADDThickD" name="ADDThickD">
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-4 ml-auto"  >Fold</div>
                             <div class="col-md-8 ml-auto">
-                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDFold" name="ADDFold" value="0">
+                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDFold" name="ADDFold">
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-4 ml-auto" >Soap</div>
                             <div class="col-md-8 ml-auto">
-                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)"  type="tel" size="4" id="ADDSoap" name="ADDSoap" value="0">
+                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)"  type="tel" size="4" id="ADDSoap" name="ADDSoap">
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-4 ml-auto">Downy</div>
                             <div class="col-md-8 ml-auto">
-                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDDowny" name="ADDDowny" value="0">
+                                <input class="ADDSALES_INPUTidentifier" onkeypress="return /[0-9]/i.test(event.key)" type="tel" size="4" id="ADDDowny" name="ADDDowny">
                             </div>
+                            <span id="errorname3" style="color: red; padding-top:5px;"></span>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md ml-auto" text="text-left" id="ADDTotalPrice" name="ADDTotalPrice">Total Price: </div>
+                        <div class="row mt-3" style="padding-top: 30px;">
+                            <div class="col-md ml-auto">Total Price: </div>
+                            <div class="col-md-8 ml-auto">  
                                 <input  type="number" size="4" id="ADDTotalPriceR" name="ADDTotalPriceR" value="0" readonly>
+                            </div>   
+                            
                         </div>
-                        <div class="row mt-2">
+                        <div class="row mt-2" style="padding-top: 10px;">
                             <div class="col-md-4 ml-auto">Amount Paid: </div>
-                            <div class="col-md-8 ml-auto">
+                            <div class="col-md-8 ml-auto" >
                                 <input type="number" size="4" onkeypress="return /[0-9]/i.test(event.key)" id="ADDAmountPaid" name="ADDAmountPaid" value="0" max="0">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md ml-auto" id="ADDBalance">Balance: </div>
-                            <input  type="number" size="4" id="ADDBalanceR" name="ADDBalanceR" value="0" readonly>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-md ml-auto" >Balance: </div>
+                            <div class="col-md-8 ml-auto">
+                                <input  type="number" size="4" id="ADDBalanceR" name="ADDBalanceR" value="0" readonly>
+                            </div>
                         </div>
                         <script>
+                            $('#addSaleForm').submit(function(event) {
+                                event.preventDefault(); 
+                                console.log("LESGO")
+                                var form = document.getElementById('addSaleForm');
+                                var firstName = document.getElementById('ADDName');
+                                var phone = document.getElementById('ADDPhone');
+                                var errorMessage1 = document.getElementById('errorname1');
+                                var errorMessage2 = document.getElementById('errorname2');
+                                var errorMessage3 = document.getElementById('errorname3');
+                                var totalpay = document.getElementById('ADDTotalPriceR');
+                                var pass1 = 1;
+                                var pass2 = 1;
+                                console.log("IT IS " + totalpay.value)
+                                if ((firstName.value === '' || !firstName.value.length) && (phone.value === '' || !phone.value.length)) {
+                                        errorMessage1.innerText = 'Error! No Name Entered!';
+                                        errorMessage2.innerText = 'Error! No PhoneNum Entered!';
+                                        pass1 = 0
+                                } 
+                                if (parseInt(totalpay.value) === 0 || totalpay.value === "" || isNaN(parseInt(totalpay.value))) {
+                                        errorMessage3.innerText = 'Not a single form of sale was inputted! Input needed.';
+                                        pass2 = 0
+                                } 
+                                if (pass1) {
+                                    errorMessage1.innerText = '';
+                                    errorMessage2.innerText = '';
+                                }
+                                if (pass2) {
+                                    errorMessage3.innerText = '';         
+                                }
+                                if (pass1 && pass2) {  
+                                    console.log("LESGO")
+                                    $(this).unbind('submit').submit(); 
+                                }
+                            })
                         function resetEdit()
                         {
                             document.location.reload()
@@ -274,31 +320,31 @@
                             var BALQty = parseInt($("#ADDBalanceR").val())
 
                             if (isNaN(TNWQty))
-                                $("#ADDThinW").val(0)
+                                TNWQty = 0
                             else
                                 $("#ADDThinW").val(TNWQty)
                             if (isNaN(TNDQty))
-                                $("#ADDThinD").val(0)
+                                TNDQty = 0
                             else
                                 $("#ADDThinD").val(TNDQty)
                             if (isNaN(TKWQty))
-                                $("#ADDThickW").val(0)
+                                TKWQty = 0
                             else
                                 $("#ADDThickW").val(TKWQty)
                             if (isNaN(TKDQty))
-                                $("#ADDThickD").val(0)
+                                TKDQty = 0
                             else
                                 $("#ADDThickD").val(TKDQty)    
                             if (isNaN(FOLDQty))
-                                $("#ADDFold").val(0)
+                                FOLDQty = 0
                             else
                                 $("#ADDFold").val(FOLDQty)    
                             if (isNaN(SOAPQty))
-                                $("#ADDSoap").val(0)
+                                SOAPQty = 0
                             else
                                 $("#ADDSoap").val(SOAPQty)    
                             if (isNaN(DOWNQty))
-                                $("#ADDDowny").val(0)
+                                DOWNQty = 0
                             else
                                 $("#ADDDowny").val(DOWNQty)    
                             if (isNaN(BALQty))
@@ -381,7 +427,7 @@
                             <input  id ="TKDField" type="tel" onkeypress="return /[0-9]/i.test(event.key)"  name="TKDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThickDry}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="FOLDField" type="tel" onkeypress="return /[0-9]/i.test(event.key)"  name="FOLDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Fold}}" readonly="true"y>  
+                            <input  id ="FOLDField" type="tel" onkeypress="return /[0-9]/i.test(event.key)"  name="FOLDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Fold}}" readonly="true">  
                         </td>
                         <td>
                             <input  id ="SOAPField" type="tel" onkeypress="return /[0-9]/i.test(event.key)"  name="SOAPField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Soap}}" readonly="true">  
@@ -393,7 +439,7 @@
                             <input name="TTLField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" id ="TTLField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.totalPrice}}" readonly> 
                         </td>
                         <td width="100"> 
-                            <input   name="AMTField"  type="number" onkeypress="return /[0-9]/i.test(event.key)" id ="AMTField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.AmountPaid}}" max="0"readonly> 
+                            <input   name="AMTField"  type="tel" onkeypress="return /[0-9]/i.test(event.key)" id ="AMTField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.AmountPaid}}" max="0"readonly> 
                         </td>
                         <td width="100"> 
                             <input   name="BALField"  type="tel" id ="BALField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.Balance}}" readonly> 
@@ -437,10 +483,11 @@
                             var j = 13
                             while (j <= (numRows * 12 + 1)) {
                                 for (var i = 0; i < els.length; i++) {
-                                    if (els[-3+(j)].getAttribute("value") >= 0 )
+                                    if (els[-3+(j)].getAttribute("value") >= 0 && (i+1) % (j-2) != 0)
                                         els[i].removeAttribute('readonly');
+
                                     if ((i+1)%13 == 0)
-                                        j = j+13
+                                        j = j+13                          
                                 }
                             }
                         }

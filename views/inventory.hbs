@@ -10,8 +10,8 @@
                 <tr>
                     <th scope="col">Item</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Add/Remove</th>
+                    <th scope="col" width="110">Quantity</th>
+                    <th scope="col">Set Fixed Quantity</th>
                 </tr>
             </thead>
         <!-- Table Body -->
@@ -19,23 +19,38 @@
                 <tr>
                     <td width="200">Downy</td>
                     <td>{{DOWNPrice}}</td>
-                    <td>
-                        <div id="QTYFieldDowny">{{INVDowny}}</div>
+                    <td style="display:flex; 
+  align-items: center;
+  align-content: center;">
+                        {{#if_neq Session "Anonymous"}}
+                            {{#if_eq ACCType "ADMIN"}}
+                                <div style="padding-right:25px">
+                                    <button id="DECDownybtn" class="btn btn-danger" data-toggle="modal" >
+                                        <i class="bi bi-dash"></i>
+                                    </button>
+                                </div> 
+                                <div id="QTYFieldDowny" style="padding:10px">{{INVDowny}}</div> 
+                                <div style="padding-left:25px">    
+                                    <button id="INCDownybtn"class="btn btn-primary" data-toggle="modal">
+                                        <i class="bi bi-plus"></i>
+                                    </button>  
+                                </div>                      
+                            {{else}}  
+                                <div id="QTYFieldDowny" style="padding-left:55px">{{INVDowny}}</div> 
+                                <div style="padding-left:25px">   
+                                <button id="INCDownybtn"class="btn btn-primary" data-toggle="modal">
+                                    <i class="bi bi-plus"></i>
+                                </button>  
+                                </div> 
+                            {{/if_eq}}
+                        {{else}}
+                        {{/if_neq}}
                     </td>
                     <td>
                         {{#if_neq Session "Anonymous"}}
                             {{#if_eq ACCType "ADMIN"}}
-                            <button id="DECDownybtn" class="btn btn-danger" data-toggle="modal" >
-                                <i class="bi bi-dash"></i>
-                            </button>
-                            <input id="DOWNYinput" type="number" size="1" class="text-center" min=0 oninput="validity.valid||(value='');" placeholder="Qty.">
-                            <button id="INCDownybtn"class="btn btn-primary" data-toggle="modal">
-                                <i class="bi bi-plus"></i>
-                            </button>
+                                <input id="DOWNYinput" type="number" size="1" class="text-center" min=0 oninput="validity.valid||(value='');" placeholder="Qty.">
                             {{else}}
-                            <button id="INCDownybtn"class="btn btn-primary" data-toggle="modal">
-                                <i class="bi bi-plus"></i>
-                            </button>
                             {{/if_eq}}
                         {{else}}
                         {{/if_neq}}
@@ -44,23 +59,38 @@
                 <tr>
                     <td width="200">Soap</td>
                     <td> {{SOAPPrice}} </td>
-                    <td> 
-                        <div id="QTYFieldSoap">{{INVSoap}}</div>
+                    <td style=" display:flex; 
+  align-items: center;
+  align-content: center;"> 
+                        {{#if_neq Session "Anonymous"}}
+                            {{#if_eq ACCType "ADMIN"}}
+                                <div style="padding-right:25px">
+                                    <button id="DECSoapbtn" class="btn btn-danger" data-toggle="modal" >
+                                        <i class="bi bi-dash"></i>
+                                    </button>
+                                </div> 
+                                <div id="QTYFieldSoap" style="padding:10px">{{INVSoap}}</div>
+                                <div style="padding-left:25px"> 
+                                <button id="INCSoapbtn" class="btn btn-primary" data-toggle="modal">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                                </div>
+                            {{else}}
+                                <div id="QTYFieldSoap" style="padding-left:55px">{{INVSoap}}</div>
+                                <div style="padding-left:25px"> 
+                                    <button id="INCSoapbtn" class="btn btn-primary" data-toggle="modal">
+                                        <i class="bi bi-plus"></i>
+                                    </button>
+                                </div> 
+                            {{/if_eq}}
+                        {{else}}
+                        {{/if_neq}}
                     </td>
                     <td>
                         {{#if_neq Session "Anonymous"}}
                             {{#if_eq ACCType "ADMIN"}}
-                            <button id="DECSoapbtn" class="btn btn-danger" data-toggle="modal" >
-                                <i class="bi bi-dash"></i>
-                            </button>
-                            <input id="SOAPinput" type="number" size="1" class="text-center" min=0 oninput="validity.valid||(value='');" placeholder="Qty.">
-                            <button id="INCSoapbtn" class="btn btn-primary" data-toggle="modal">
-                                <i class="bi bi-plus"></i>
-                            </button>
+                                <input id="SOAPinput" type="number" size="1" class="text-center" min=0 oninput="validity.valid||(value='');" placeholder="Qty.">
                             {{else}}
-                            <button id="INCSoapbtn" class="btn btn-primary" data-toggle="modal">
-                                <i class="bi bi-plus"></i>
-                            </button>
                             {{/if_eq}}
                         {{else}}
                         {{/if_neq}}
@@ -111,7 +141,7 @@
 
                     $("#SOAPinput").on("change", function () {
                         INVSoap = document.getElementById("SOAPinput").value
-                        if (isNaN(INVSoap))
+                        if (isNaN(INVSoap) || INVSoap === "")
                             INVSoap = 0
                         $("SOAPinput").val(INVSoap)
                         document.getElementById("QTYFieldSoap").innerText = INVSoap
@@ -120,7 +150,7 @@
 
                     $("#DOWNYinput").on("change", function () {
                         INVDowny = document.getElementById("DOWNYinput").value
-                        if (isNaN(INVDowny))
+                        if (isNaN(INVDowny) || INVDowny === "")
                             INVDowny = 0
                         $("DOWNYinput").val(INVDowny)
                         document.getElementById("QTYFieldDowny").innerText = INVDowny

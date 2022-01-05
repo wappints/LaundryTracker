@@ -28,8 +28,6 @@ const sessionController = {
                 var Session = result.EMPName
                 res.redirect("../../../../home/" + ACCType + "/" + Session + "/" + DDate)
             }
-            else
-                console.log("User does not exist or has wrong input")
         })
     }
 }

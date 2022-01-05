@@ -31,12 +31,6 @@ const systemController = {
                             res.render("login", details);
                         }
                     }
-                    else {
-                        var details = {
-                        loginError : `Password is not associated with any account`
-                    }
-                    res.render("login", details);
-                }
             });
         }
             else {
@@ -45,18 +39,6 @@ const systemController = {
                         if (result.ADMINPass === PASSField) {
                             res.redirect("home/ADMIN/" + session + "/" + formattedDate);
                         }
-                        else {
-                            var details = {
-                                loginError : `Password is incorrect`
-                            }
-                            res.render("login", details);
-                        }
-                    }
-                    else {
-                        var details = {
-                            loginError : `Password is not associated with any account`
-                        }
-                        res.render("login", details);
                     }
                 });
             }

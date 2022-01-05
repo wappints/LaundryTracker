@@ -117,27 +117,29 @@ const saleController = {
         var Balance = req.body.ADDBalanceR;
         var Session = req.params.Session;
         var ACCType = req.params.ACCType;
-        if (isNaN(Phone) || Phone === null || Phone == "")
+        if (Name === null | Name == "")
+            Name = "No Name"
+        if (isNaN(Phone) || Phone === null || Phone === "")
             Phone = "No Number"
-        if (isNaN(TNW))
+        if (isNaN(TNW) || TNW === "")
             TNW = 0
-        if (isNaN(TND))
+        if (isNaN(TND) || TND === "")
             TND = 0
-        if (isNaN(TKW))
+        if (isNaN(TKW) || TKW === "")
             TKW = 0
-        if (isNaN(TKD))
+        if (isNaN(TKD) || TKD === "")
             TKD = 0
-        if (isNaN(Fold))
+        if (isNaN(Fold) || Fold === "")
             Fold = 0
-        if (isNaN(Soap))
+        if (isNaN(Soap) || Soap === "")
             Soap = 0
-        if (isNaN(Downy))
+        if (isNaN(Downy) || Downy === "")
             Downy = 0
-        if (isNaN(TotalPrice))
+        if (isNaN(TotalPrice) || TotalPrice === "")
             TotalPrice = 0
-        if (isNaN(AmountPaid))
+        if (isNaN(AmountPaid) || AmountPaid === "")
             AmountPaid = 0
-        if (isNaN(Balance))
+        if (isNaN(Balance) || Balance === "")
             Balance = 0
 
         var tokenDefault = 0;

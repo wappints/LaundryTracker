@@ -68,11 +68,14 @@
 								<div class="modal-body col-12">
 									<h5>Employee Name</h5>
 									<input id="addSessionName" type="text" value="">
+									<span id="EMPerror1" style="padding-top: 10px; padding-left: 10px; color:red"></span>
 								</div>
 								<div class="modal-body">
 									<h5>Password</h5>
 									<input id="addSessionPass" type="password" value="">
+									<span id="EMPerror2" style="padding-top: 10px; padding-left: 10px; color:red"></span>
 								</div>
+								<span id="EMPerror3" style="padding-top: 10px; padding-left: 10px; color:red"></span>
 								<script>
 									$("#addSessionName").keydown(function(event) {
 										var inputValue = event.which;
@@ -87,20 +90,42 @@
 									function addSession() {
 										var sessionName = event.currentTarget.parentElement.parentElement.children[1].children[1].value
 										var sessionPass = event.currentTarget.parentElement.parentElement.children[2].children[1].value
+										var EMPerror1 = document.getElementById("EMPerror1")
+										var EMPerror2 = document.getElementById("EMPerror2")
+										var EMPerror3 = document.getElementById("EMPerror3")
 										var DDate = $("#ULTIMATEhiddendate").text()
 										var ACCType = $("#ULTIMATEhiddenacc").text()
-										if (sessionName === "" && sessionPass === "")
-											console.log("No Name and Password")
-										else if (sessionName === "")
-											console.log("No Name")
-										else if (sessionPass === "")
-											console.log("No Password")
+										if (sessionName === "" && sessionPass === "") {
+											EMPerror1.innerText = "Empty Name!"
+											EMPerror2.innerText = "Empty Password!"
+											EMPerror3.innerText = ""
+										}
+										else if (sessionName === "") {
+											EMPerror1.innerText = "Empty Name!"
+											EMPerror2.innerText = ""
+											EMPerror3.innerText = ""
+										}
+										else if (sessionPass === "") {
+											EMPerror2.innerText = "Empty Password!"
+											EMPerror1.innerText = ""
+											EMPerror3.innerText = ""
+										}
 										else {
+											EMPerror1.innerText = ""
+											EMPerror2.innerText = ""
 										document.getElementById("THESESSIONFORM").setAttribute("action", "/session/" + ACCType + "/" + sessionName + "/" + sessionPass + "/" + DDate)
 										document.getElementById("THESESSIONFORM").submit()
+										if (performance.navigation.type === 0)
+											EMPerror3.innerText = "Wrong Password / User does not exist"
 										}
 									}
 									function resetSessionInput() {
+										var EMPerror1 = document.getElementById("EMPerror1")
+										var EMPerror2 = document.getElementById("EMPerror2")
+										var EMPerror3 = document.getElementById("EMPerror3")
+										EMPerror1.innerText = ""
+										EMPerror2.innerText = ""
+										EMPerror3.innerText = ""
 										$("#addSessionName").val("")
 										$("#addSessionPass").val("")
 									}

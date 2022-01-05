@@ -1,8 +1,8 @@
-<body>
+<body style="zoom:150%;">
 	<div class="container-fluid bg">
 		<section class="row justify-content-center">
         	<section class="col-12 col-sm-6 col-md-3">
-            	<form class="form-container" method="post" action="/login">
+            	<form class="form-container" method="post" action="/login" id="firstform">
                 	<div class="form-group">
                     	<label for="ACCType">Account</label>
                     	<select id="ACCType" class="form-select" aria-label="Default select example" name="ACCType">
@@ -14,9 +14,28 @@
                     	<label for="PASSField">Password</label>
                     	<input type="password" class="form-control" id="PASSField" name="PASSField">
                   	</div>
-                  	<button target="_self" class="btn btn-info btn-block" role="button">Login</button>
+					  				<div style="padding-bottom:20px"> <span id="errorSystem" style="color: #EE4B2B;"></span></div>  </span>
+                  	<button target="_self" class="btn btn-info btn-block"  role="button">Login</button>
                 </form>
-                <p id = "loginError" class = "error">{{loginError}}</p>
+									  <script>
+										  
+						   $('#firstform').submit(function(event) {
+
+						var error = document.getElementById("errorSystem")
+						
+							if (performance.navigation.type === 0)
+							{
+								error.innerText = "Wrong Password!"
+							}
+							else 
+							{
+								error.innerText = ""
+								$(this).unbind('submit').submit(); 
+							}
+							
+						})
+						
+					  </script>
             </section>
         </section>
     </div>

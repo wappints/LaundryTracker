@@ -13,7 +13,6 @@
 .now {
     
 }
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -31,4 +30,12 @@ input[type=number] {
 
 .modal-dialog{
   pointer-events: all;
+}
+
+html {
+  min-height: 442;
+  min-width: 1308;
+  min-zoom: 130%;
+  zoom: 130%;
+  max-zoom: 175%;
 }

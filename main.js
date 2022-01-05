@@ -55,9 +55,10 @@ let win
 function createWindow(){
    win = new BrowserWindow({
       width: 1920,
-      height: 1080    
+      height: 1080,    
+      minWidth:1307,
+      minHeight:442,
    })
-   win.setMinimumSize(800,600)
    win.loadURL('http://' + hostname + ':' + port)
    win.on('closed', () => {
    win = null
