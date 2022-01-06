@@ -1,7 +1,7 @@
 <body style="zoom:150%;">
 	<div class="container-fluid bg">
 		<section class="row justify-content-center">
-        	<section class="col-12 col-sm-6 col-md-3">
+        	<section class="col-12 col-sm-6 col-md-3" style="min-width: 300px; max-width: 320px;">
             	<form class="form-container" method="post" action="/login" id="firstform">
                 	<div class="form-group">
                     	<label for="ACCType">Account</label>
@@ -9,14 +9,15 @@
                       		<option value="ADMIN">Admin</option>
                       		<option value="EMPLOYEE" selected="EMPLOYEE">Employee</option>
                     	</select>
+									<div style="align-text:center;  margin-left:30px "class="spinner-border" role="status" id="LOAD"hidden>
+										<span  style="align-content:center;" class="sr-only">Loading...</span>
+									</div>
                   	</div>
                 	<div class="form-group">
                     	<label for="PASSField">Password</label>
                     	<input type="password" class="form-control" id="PASSField" name="PASSField">
                   	</div>
-					   					  				<div style="align-text:center; margin-top:40px;"class="spinner-border" role="status" id="LOAD"hidden>
-										<span  style="align-content:center; padding-top:20px;" class="sr-only">Loading...</span>
-									</div>
+
 					  				<div style="padding-bottom:20px"> <span id="errorSystem" style="color: #EE4B2B;"></span></div>  </span>
                   	<button id="THEBUTTON" target="_self" class="btn btn-info btn-block"  role="button">Login</button>
 
