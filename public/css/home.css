@@ -112,6 +112,10 @@ input:checked + .slider:before {
   margin-top: -12px;
 }
 
-.editSales{
-  margin-left: 220px;
+.editsales{
+
+  position: fixed;
+  top: 100;
+  right: 40;
+
 }
