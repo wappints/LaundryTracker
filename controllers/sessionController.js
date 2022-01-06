@@ -22,7 +22,7 @@ const sessionController = {
         
         isAdmin = isAdmin.toString()
         db.findMany(Account, {}, {}, function(result){console.log(result)})
-        db.findOne(Account, {'EMPName' : { '$regex': EMPName, $options: 'i'}, EMPPass : EMPPass, isAdmin : {$eq : isAdmin}}, {}, function(result) {
+        db.findOne(Account, {EMPName : { '$regex': '^'+EMPName+"$", $options: 'i'}, EMPPass : EMPPass, isAdmin : {$eq : isAdmin}}, {}, function(result) {
             console.log(result)
             if (result) {
                 var Session = result.EMPName

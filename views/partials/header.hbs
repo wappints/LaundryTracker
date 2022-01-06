@@ -66,7 +66,11 @@
 									</button>
 								</div>
 								<div class="modal-body col-12">
-									<h5>Employee Name</h5>
+									{{#if_eq ACCType "EMPLOYEE"}}
+									<h5> Employee Name </h5>
+									{{else}}
+									<h5> Admin Name </h5>
+									{{/if_eq}}
 									<input id="addSessionName" type="text" value="">
 									<span id="EMPerror1" style="padding-top: 10px; padding-left: 10px; color:red"></span>
 								</div>
@@ -113,10 +117,16 @@
 										else {
 											EMPerror1.innerText = ""
 											EMPerror2.innerText = ""
-										document.getElementById("THESESSIONFORM").setAttribute("action", "/session/" + ACCType + "/" + sessionName + "/" + sessionPass + "/" + DDate)
-										document.getElementById("THESESSIONFORM").submit()
-										if (performance.navigation.type === 0)
-											EMPerror3.innerText = "Wrong Password / User does not exist"
+											document.getElementById("THESESSIONFORM").setAttribute("action", "/session/" + ACCType + "/" + sessionName + "/" + sessionPass + "/" + DDate)
+											document.getElementById("THESESSIONFORM").submit()
+											if (performance.navigation.type === 0) {
+												function test() {
+													EMPerror3.innerText = "Wrong Password / User does not exist"
+												}
+												setTimeout(test, 200)
+											}
+											else
+												EMPerror3.innerText = ""
 										}
 									}
 									function resetSessionInput() {
