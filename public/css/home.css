@@ -95,3 +95,19 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+#THEDATEFORM{
+  width: 800px;
+
+  padding: 10px;
+  height: 50px;
+  position: absolute;
+  margin-top: -25px;
+  margin-left: -400px;
+  top: auto;
+  left: 50%;
+}
+
+#prevDatebtn, #nextDatebtn {
+  margin-top: -12px;
+}
