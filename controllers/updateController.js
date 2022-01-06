@@ -14,9 +14,17 @@ const updateController = {
         var Session = req.params.Session
         var ACCType = req.params.ACCType
         var DDate = req.params.DDate
-
+        var pass1 = 1
+        var pass2 = 1
         var Name = req.body.Name;
+        if (Name === "" || Name === null)
+            pass1 = 0
         var Phone = req.body.Phone;
+        if (Phone === "" || Phone === null)
+            pass2 = 0
+        console.log("HERE")
+        console.log(Name)
+        console.log(Phone)
         var TNW = req.body.TNWQty;
         var TND = req.body.TNDQty;
         var TKW = req.body.TKWQty;
@@ -33,10 +41,16 @@ const updateController = {
         dateForBalance = dateForBalance.toISOString().split('T')[0]
         var docs2 = {
             BalanceID : id,
-            Name : Name,
-            PhoneNum : Phone,
+            //Name : Name,
+            //PhoneNum : Phone,
             DDate : dateForBalance,
             Balance : Balance
+        }
+        if (pass1) {
+            docs2["Name"] = Name;
+        }
+        if (pass2) {
+            docs2["PhoneNum"] = Phone;
         }
         db.findOne(Balances, {BalanceID : id}, {}, function(result) {
             if (!result)
@@ -55,8 +69,8 @@ const updateController = {
 
         var docs = {
             _id : id,
-            Name : Name,
-            PhoneNum : Phone,
+            //Name : Name,
+            //PhoneNum : Phone,
             DDate : currentDate,
             ThinWash : TNW,
             ThinDry : TND,
@@ -69,6 +83,12 @@ const updateController = {
             TotalPrice : TotalPrice,
             Balance : Balance,
             TokenError : Token
+        }
+        if (pass1) {
+            docs["Name"] = Name;
+        }
+        if (pass2) {
+            docs["PhoneNum"] = Phone;
         }
         db.updateOne(Sale, {_id : id}, docs, function(result) {})
         res.redirect("../../../home/" + ACCType + "/" + Session + "/" + formattedDate);

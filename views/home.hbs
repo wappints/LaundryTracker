@@ -272,7 +272,7 @@
                                 console.log("IT IS " + totalpay.value)
                                 if ((firstName.value === '' || !firstName.value.length) && (phone.value === '' || !phone.value.length)) {
                                         errorMessage1.innerText = 'Error! No Name Entered!';
-                                        errorMessage2.innerText = 'Error! No PhoneNum Entered!';
+                                        errorMessage2.innerText = 'Error! No Phone Number Entered!';
                                         pass1 = 0
                                 } 
                                 if (parseInt(totalpay.value) === 0 || totalpay.value === "" || isNaN(parseInt(totalpay.value))) {
@@ -479,6 +479,8 @@
                         </td>
                         {{/if_eq}}
                     </tr>
+                    <span id="ERRORENTRY" style="color:red; padding-left:20px"> </span>
+
                 {{/each}}
                 {{else}}
                 <hr>
@@ -606,155 +608,190 @@
                 <!-- End of Table Body -->
         </table>
         <script>
-         $(".INPUTFIELD_EDITidentifiers.text-center").on("change select paste keyup cut", function(event) { 
-              var BalanceCheck = parseInt(this.parentElement.parentElement.children[11].children[0].value)
-            if(BalanceCheck >= 0)
-            {
-            var id = this.parentElement.parentElement.children[0].children[0].value
-            var Name = this.parentElement.parentElement.children[1].children[0].value
-            var TNWQty = parseInt(this.parentElement.parentElement.children[2].children[0].value)
-            var TNDQty = parseInt(this.parentElement.parentElement.children[3].children[0].value)
-            var TKWQty = parseInt(this.parentElement.parentElement.children[4].children[0].value)
-            var TKDQty = parseInt(this.parentElement.parentElement.children[5].children[0].value)
-            var FOLDQty = parseInt(this.parentElement.parentElement.children[6].children[0].value)
-            var SOAPQty = parseInt(this.parentElement.parentElement.children[7].children[0].value)
-            var DOWNQty = parseInt(this.parentElement.parentElement.children[8].children[0].value)
-            var payment = parseInt(this.parentElement.parentElement.children[10].children[0].value)
-            var Token = parseInt(this.parentElement.parentElement.children[12].children[0].value)
-            var Phone = this.parentElement.parentElement.children[13].children[0].value
+        $("#NAMEField.INPUTFIELD_EDITidentifiers.text-center").on("focus", function(event) { 
+            var temp = this.parentElement.parentElement.children[1].children[0].value
+            if (temp === "" || temp === "No Name")
+                this.parentElement.parentElement.children[1].children[0].value = ""
+        })
+        $("#PHONEField.INPUTFIELD_EDITidentifiers.text-center").on("focus", function(event) { 
+            var temp = this.parentElement.parentElement.children[13].children[0].value
+            if (temp === "" || temp === "No Number")
+                this.parentElement.parentElement.children[13].children[0].value = ""
+        })
 
-            var TNWPrice = parseInt($("#TNWPrice").text())
-            var TNDPrice =parseInt($("#TNDPrice").text())
-            var TKWPrice =parseInt($("#TKWPrice").text())
-            var TKDPrice =parseInt($("#TKDPrice").text())
-            var FOLDPrice =parseInt($("#FOLDPrice").text())
-            var SOAPPrice =parseInt($("#SOAPPrice").text())
-            var DOWNPrice =parseInt($("#DOWNPrice").text())
-            if (isNaN(TNWQty) || TNWQty === "") {
-                this.parentElement.parentElement.children[2].children[0].value = 0
-                TNWQty = 0
-            }
-            else {
-                this.parentElement.parentElement.children[2].children[0].value = TNWQty
-            }
-                
-            if (isNaN(TNDQty)) { 
-                this.parentElement.parentElement.children[3].children[0].value = 0
-                TNDQty = 0
-            }
-            else {
-                this.parentElement.parentElement.children[3].children[0].value = TNDQty
-            }
-            if (isNaN(TKWQty)) {
-                this.parentElement.parentElement.children[4].children[0].value = 0
-                TKWQty = 0
-            }
-            else {
-                this.parentElement.parentElement.children[4].children[0].value = TKWQty
-            }
-            if (isNaN(TKDQty)) {
-                this.parentElement.parentElement.children[5].children[0].value = 0
-                TKDQty = 0
+        $(".INPUTFIELD_EDITidentifiers.text-center").on("change paste keyup cut", function(event) { 
+            var BalanceCheck = parseInt(this.parentElement.parentElement.children[11].children[0].value)
+            if (BalanceCheck >= 0) {
+                var id = this.parentElement.parentElement.children[0].children[0].value
+                var Name = this.parentElement.parentElement.children[1].children[0].value
+                var TNWQty = parseInt(this.parentElement.parentElement.children[2].children[0].value)
+                var TNDQty = parseInt(this.parentElement.parentElement.children[3].children[0].value)
+                var TKWQty = parseInt(this.parentElement.parentElement.children[4].children[0].value)
+                var TKDQty = parseInt(this.parentElement.parentElement.children[5].children[0].value)
+                var FOLDQty = parseInt(this.parentElement.parentElement.children[6].children[0].value)
+                var SOAPQty = parseInt(this.parentElement.parentElement.children[7].children[0].value)
+                var DOWNQty = parseInt(this.parentElement.parentElement.children[8].children[0].value)
+                var payment = parseInt(this.parentElement.parentElement.children[10].children[0].value)
+                var Token = parseInt(this.parentElement.parentElement.children[12].children[0].value)
+                var Phone = this.parentElement.parentElement.children[13].children[0].value
+                var TNWPrice = parseInt($("#TNWPrice").text())
+                var TNDPrice =parseInt($("#TNDPrice").text())
+                var TKWPrice =parseInt($("#TKWPrice").text())
+                var TKDPrice =parseInt($("#TKDPrice").text())
+                var FOLDPrice =parseInt($("#FOLDPrice").text())
+                var SOAPPrice =parseInt($("#SOAPPrice").text())
+                var DOWNPrice =parseInt($("#DOWNPrice").text())
+
+                if (isNaN(TNWQty) || TNWQty === "") {
+                    this.parentElement.parentElement.children[2].children[0].value = 0
+                    TNWQty = 0
                 }
-            else {
-                this.parentElement.parentElement.children[5].children[0].value = TKDQty
-            }
-            if (isNaN(FOLDQty)) {
-                this.parentElement.parentElement.children[6].children[0].value = 0
-                FOLDQty = 0
-            }
-            else {
-                this.parentElement.parentElement.children[6].children[0].value = FOLDQty
-            }
-            if (isNaN(SOAPQty)) {  
-                this.parentElement.parentElement.children[7].children[0].value = 0
-                SOAPQty = 0
-            }
-            else {
-                this.parentElement.parentElement.children[7].children[0].value = SOAPQty
-            }
-            if (isNaN(DOWNQty)) {
-                this.parentElement.parentElement.children[8].children[0].value = 0
-                DOWNQty = 0
-            }
-            else {
-                this.parentElement.parentElement.children[8].children[0].value = DOWNQty
-            }
-            if (isNaN(payment)) {
-                this.parentElement.parentElement.children[10].children[0].value = 0
-                payment = 0
-            }
-            else {
-                this.parentElement.parentElement.children[10].children[0].value = payment
-            }
-            if (isNaN(Token))   {
-                this.parentElement.parentElement.children[12].children[0].value = 0
-                Token = 0
-            }
-            else {
-                this.parentElement.parentElement.children[12].children[0].value = Token
-            }
-            if (!(event.keyCode == "08" || (event.keyCode >= "48" || event.keyCode <= "57")) && (Phone === null || Phone === "")) {
-                this.parentElement.parentElement.children[13].children[0].value = "No Number"
-                Phone = "No Number"
-            }
-            if (!(event.keyCode == "08"  || (event.keyCode >= "a" || event.keyCode <= "z") || (event.keyCode >= "A" || event.keyCode <= "Z")) && (Name === null || Name === "")) {
-                this.parentElement.parentElement.children[1].children[0].value = "No Name"
-                Phone = "No Name"
-            }
-            var computation = TNWPrice * TNWQty + TNDPrice * TNDQty +  TKWPrice * TKWQty +  TKDPrice * TKDQty +  FOLDPrice * FOLDQty + SOAPPrice * SOAPQty + DOWNPrice * DOWNQty  
-            this.parentElement.parentElement.children[9].children[0].value = computation
-            this.parentElement.parentElement.children[10].children[0].max = computation
-            if (computation < payment)
-            {
-                payment = computation
-                this.parentElement.parentElement.children[10].children[0].value =  payment
-            }
-            var totalPayment = parseInt(this.parentElement.parentElement.children[9].children[0].value)
-            this.parentElement.parentElement.children[11].children[0].value = this.parentElement.parentElement.children[9].children[0].value - this.parentElement.parentElement.children[10].children[0].value
-            var Balance = parseInt(this.parentElement.parentElement.children[11].children[0].value)
-            var ACCType = $("#ULTIMATEhiddenacc").text()
-            var Session = $("#ULTIMATEhiddenses").text() 
-            var DDate = $("#ULTIMATEhiddendate").text()
-            var obj = {
-                id : id,
-                Name : Name,
-                Phone : Phone, 
-                TNWQty : TNWQty,
-                TNDQty : TNDQty, 
-                TKWQty : TKWQty,
-                TKDQty : TKDQty,
-                FOLDQty : FOLDQty, 
-                SOAPQty : SOAPQty, 
-                DOWNQty : DOWNQty,
-                AmountPaid : payment,
-                TotalPrice : computation,
-                Balance : Balance,
-                Token : Token
-            }
-            $.post("/editEntry/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})
+                else {
+                    this.parentElement.parentElement.children[2].children[0].value = TNWQty
+                }
+                    
+                if (isNaN(TNDQty)) { 
+                    this.parentElement.parentElement.children[3].children[0].value = 0
+                    TNDQty = 0
+                }
+                else {
+                    this.parentElement.parentElement.children[3].children[0].value = TNDQty
+                }
+                if (isNaN(TKWQty)) {
+                    this.parentElement.parentElement.children[4].children[0].value = 0
+                    TKWQty = 0
+                }
+                else {
+                    this.parentElement.parentElement.children[4].children[0].value = TKWQty
+                }
+                if (isNaN(TKDQty)) {
+                    this.parentElement.parentElement.children[5].children[0].value = 0
+                    TKDQty = 0
+                    }
+                else {
+                    this.parentElement.parentElement.children[5].children[0].value = TKDQty
+                }
+                if (isNaN(FOLDQty)) {
+                    this.parentElement.parentElement.children[6].children[0].value = 0
+                    FOLDQty = 0
+                }
+                else {
+                    this.parentElement.parentElement.children[6].children[0].value = FOLDQty
+                }
+                if (isNaN(SOAPQty)) {  
+                    this.parentElement.parentElement.children[7].children[0].value = 0
+                    SOAPQty = 0
+                }
+                else {
+                    this.parentElement.parentElement.children[7].children[0].value = SOAPQty
+                }
+                if (isNaN(DOWNQty)) {
+                    this.parentElement.parentElement.children[8].children[0].value = 0
+                    DOWNQty = 0
+                }
+                else {
+                    this.parentElement.parentElement.children[8].children[0].value = DOWNQty
+                }
+                if (isNaN(payment)) {
+                    this.parentElement.parentElement.children[10].children[0].value = 0
+                    payment = 0
+                }
+                else {
+                    this.parentElement.parentElement.children[10].children[0].value = payment
+                }
+                if (isNaN(Token))   {
+                    this.parentElement.parentElement.children[12].children[0].value = 0
+                    Token = 0
+                }
+                else {
+                    this.parentElement.parentElement.children[12].children[0].value = Token
+                }
+                if (!(event.keyCode === "08" || (event.keyCode >= "48" && event.keyCode <= "57")) && (Phone === null || Phone === "" || Phone === "No Number") && (Name != null || Name != "" || Name != "No Name") && event.keyCode == "13") {
+                    this.parentElement.parentElement.children[13].children[0].value = "No Number"
 
-         }
-         else
-         {
-            this.parentElement.parentElement.children[0].children[0].readOnly = true
-            this.parentElement.parentElement.children[1].children[0].readOnly = true
-            this.parentElement.parentElement.children[2].children[0].readOnly = true
-            this.parentElement.parentElement.children[3].children[0].readOnly = true
-            this.parentElement.parentElement.children[4].children[0].readOnly = true
-            this.parentElement.parentElement.children[5].children[0].readOnly = true
-            this.parentElement.parentElement.children[6].children[0].readOnly = true
-            this.parentElement.parentElement.children[7].children[0].readOnly = true
-            this.parentElement.parentElement.children[8].children[0].readOnly = true
-            this.parentElement.parentElement.children[9].children[0].readOnly = true
-            this.parentElement.parentElement.children[10].children[0].readOnly = true
-            this.parentElement.parentElement.children[11].children[0].readOnly = true
-            this.parentElement.parentElement.children[12].children[0].readOnly = true
-            this.parentElement.parentElement.children[13].children[0].readOnly = true
-         }
-         })
+                    Phone = "No Number"
+                }
+                    if (!(event.keyCode == "08"  || (event.keyCode >= "a" && event.keyCode <= "z") || (event.keyCode >= "A" || event.keyCode <= "Z")) && (Name === null || Name === "") && (Phone != null || Phone != "" || Phone != "No Number") && event.keyCode == "13") {
+                        this.parentElement.parentElement.children[1].children[0].value = "No Name"
+                        Name = "No Name"
+                    }
+                var temp = Name 
+                temp = temp.replace(/\s/g, "")
+                if (!(Phone === "No Number" || Phone === ""))
+                    if (temp === "NoName" && !(event.keyCode == "08"  || (event.keyCode >= "a" || event.keyCode <= "z"))) {
+                        this.parentElement.parentElement.children[1].children[0].value = "No Name"
+                        Name = "No Name"
+                }
+                var computation = TNWPrice * TNWQty + TNDPrice * TNDQty +  TKWPrice * TKWQty +  TKDPrice * TKDQty +  FOLDPrice * FOLDQty + SOAPPrice * SOAPQty + DOWNPrice * DOWNQty  
+                this.parentElement.parentElement.children[9].children[0].value = computation
+                this.parentElement.parentElement.children[10].children[0].max = computation
+                if (computation < payment) {
+                    payment = computation
+                    this.parentElement.parentElement.children[10].children[0].value =  payment
+                }
+                var totalPayment = parseInt(this.parentElement.parentElement.children[9].children[0].value)
+                this.parentElement.parentElement.children[11].children[0].value = this.parentElement.parentElement.children[9].children[0].value - this.parentElement.parentElement.children[10].children[0].value
+                var Balance = parseInt(this.parentElement.parentElement.children[11].children[0].value)
+                var ACCType = $("#ULTIMATEhiddenacc").text()
+                var Session = $("#ULTIMATEhiddenses").text() 
+                var DDate = $("#ULTIMATEhiddendate").text()
+                var obj = {
+                    id : id,
+                    //Phone : Phone, 
+                    TNWQty : TNWQty,
+                    TNDQty : TNDQty, 
+                    TKWQty : TKWQty,
+                    TKDQty : TKDQty,
+                    FOLDQty : FOLDQty, 
+                    SOAPQty : SOAPQty, 
+                    DOWNQty : DOWNQty,
+                    AmountPaid : payment,
+                    TotalPrice : computation,
+                    Balance : Balance,
+                    Token : Token
+                }
+                if (event.keyCode === 13 && ((Name != "" && Name != "No Name") && (Phone === "" || Phone === "No Number"))) {
+                    obj["Name"] = Name
+                    obj["Phone"] = "No Number"
+                    
+                }
+                else if (event.keyCode === 13 && ((Name === "" || Name === "No Name") && (Phone != "" && Phone != "No Number"))) {
+                    obj["Phone"] = Phone
+                    obj["Name"] = "No Name"
+                }
+                else if (event.keyCode === 13 && ((Name != "" && Name != "No Name") && (Phone != "" && Phone != "No Number"))) {
+                    obj["Name"] = Name
+                    obj["Phone"] = Phone
+                }
+                else {
+                    obj["Name"] = ""
+                    obj["Phone"] = ""
+                }
+                var error = document.getElementById("ERRORENTRY")
+                if ((Name === "" || Name === "No Name") && (Phone === "" || Phone === "No Number"))
+                    error.innerText = "Warning: One or more entries have no data on both Name and Phone Number. This will be reverted upon refresh."
+                else
+                    error.innerText = ""
+                $.post("/editEntry/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})
+            }
+            else {
+                this.parentElement.parentElement.children[0].children[0].readOnly = true
+                this.parentElement.parentElement.children[1].children[0].readOnly = true
+                this.parentElement.parentElement.children[2].children[0].readOnly = true
+                this.parentElement.parentElement.children[3].children[0].readOnly = true
+                this.parentElement.parentElement.children[4].children[0].readOnly = true
+                this.parentElement.parentElement.children[5].children[0].readOnly = true
+                this.parentElement.parentElement.children[6].children[0].readOnly = true
+                this.parentElement.parentElement.children[7].children[0].readOnly = true
+                this.parentElement.parentElement.children[8].children[0].readOnly = true
+                this.parentElement.parentElement.children[9].children[0].readOnly = true
+                this.parentElement.parentElement.children[10].children[0].readOnly = true
+                this.parentElement.parentElement.children[11].children[0].readOnly = true
+                this.parentElement.parentElement.children[12].children[0].readOnly = true
+                this.parentElement.parentElement.children[13].children[0].readOnly = true
+            }
+        })
         $(document).on("change paste keyup cut select", function() { 
-
             var a = b = c = d = e = f = g = h = i = j = k = 0
             var numRows = document.getElementsByName("FinancialEntry").length 
             for (z = 0; z <numRows; z++) {
@@ -784,7 +821,6 @@
         })
     
         window.onload = function test () {
-
             var a = b = c = d = e = f = g = h = i = j = k = 0
             var numRows = document.getElementsByName("FinancialEntry").length 
             for (z = 0; z <numRows; z++) {
