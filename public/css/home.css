@@ -111,3 +111,7 @@ input:checked + .slider:before {
 #prevDatebtn, #nextDatebtn {
   margin-top: -12px;
 }
+
+.editSales{
+  margin-left: 220px;
+}
