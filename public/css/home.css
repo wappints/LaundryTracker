@@ -119,3 +119,10 @@ input:checked + .slider:before {
   right: 40;
 
 }
+
+.switch{
+
+  position: fixed;
+  top: 140;
+  right: 80;
+}
