@@ -287,8 +287,11 @@
                                     errorMessage3.innerText = '';         
                                 }
                                 if (pass1 && pass2) {  
-                                    console.log("LESGO")
-                                    $(this).unbind('submit').submit(); 
+                                    errorMessage1.innerText = '';
+                                    errorMessage2.innerText = '';
+                                    errorMessage3.innerText = '';  
+                                    $(this).unbind('submit').submit();
+
                                 }
                             })
                         function resetEdit()
@@ -296,10 +299,17 @@
                             document.location.reload()
                         }
                         function xAddSale() {
+                            var errorMessage1 = document.getElementById('errorname1');
+                            var errorMessage2 = document.getElementById('errorname2');
+                            var errorMessage3 = document.getElementById('errorname3');
+                            errorMessage1.innerText = '';
+                            errorMessage2.innerText = '';
+                            errorMessage3.innerText = '';  
                             $(".ADDSALES_INPUTidentifier").each(function(index, element) {
                             $("#ADDName").val("") 
                             $("#ADDPhone").val("") 
                             $(this).val(0)  
+                            $("#ADDAmountPaid").val(0)
                             $("#ADDTotalPriceR").val(0) 
                             $("#ADDBalanceR").val(0) 
                             })
