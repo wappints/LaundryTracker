@@ -19,10 +19,8 @@
                 <tr>
                     <td width="200">Downy</td>
                     <td>{{DOWNPrice}}</td>
-                    <td style="display:flex; 
-  align-items: center;
-  align-content: center;">
                         {{#if_neq Session "Anonymous"}}
+                         <td style="display:flex; align-items: center; align-content: center;">
                             {{#if_eq ACCType "ADMIN"}}
                                 <div style="padding-right:25px">
                                     <button id="DECDownybtn" class="btn btn-danger" data-toggle="modal" >
@@ -43,9 +41,10 @@
                                 </button>  
                                 </div> 
                             {{/if_eq}}
+                            </td>
                         {{else}}
+                        <td></td>
                         {{/if_neq}}
-                    </td>
                     <td>
                         {{#if_neq Session "Anonymous"}}
                             {{#if_eq ACCType "ADMIN"}}
@@ -59,10 +58,8 @@
                 <tr>
                     <td width="200">Soap</td>
                     <td> {{SOAPPrice}} </td>
-                    <td style=" display:flex; 
-  align-items: center;
-  align-content: center;"> 
                         {{#if_neq Session "Anonymous"}}
+                        <td style=" display:flex; align-items: center;align-content: center;"> 
                             {{#if_eq ACCType "ADMIN"}}
                                 <div style="padding-right:25px">
                                     <button id="DECSoapbtn" class="btn btn-danger" data-toggle="modal" >
@@ -83,7 +80,9 @@
                                     </button>
                                 </div> 
                             {{/if_eq}}
+                        </td>
                         {{else}}
+                        <td></td>
                         {{/if_neq}}
                     </td>
                     <td>
