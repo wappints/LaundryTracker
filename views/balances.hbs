@@ -128,6 +128,8 @@
                                 PhoneNum : PhoneNum
                             }
                             $.post("/balances/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})
+                            var entry = event.currentTarget.parentElement.parentElement.children[5].children[0].value = ""
+                            $(event.currentTarget).blur()
                         }
                     }
                 })
