@@ -80,6 +80,9 @@
 									<span id="EMPerror2" style="padding-top: 10px; padding-left: 10px; color:red"></span>
 								</div>
 								<span id="EMPerror3" style="padding-top: 10px; padding-left: 10px; color:red"></span>
+																<div style="align-text:center;  margin-left:30px; margin-bottom:15px "class="spinner-border" role="status" id="LOAD" hidden>
+										<span  style="align-content:center;" class="sr-only"></span>
+								</div>
 								<script>
 									$("#addSessionName").keydown(function(event) {
 										var inputValue = event.which;
@@ -92,11 +95,13 @@
 											event.preventDefault(); 
 										});
 									function addSession() {
+										
 										var sessionName = event.currentTarget.parentElement.parentElement.children[1].children[1].value
 										var sessionPass = event.currentTarget.parentElement.parentElement.children[2].children[1].value
 										var EMPerror1 = document.getElementById("EMPerror1")
 										var EMPerror2 = document.getElementById("EMPerror2")
 										var EMPerror3 = document.getElementById("EMPerror3")
+										EMPerror3.innerText = ""
 										var DDate = $("#ULTIMATEhiddendate").text()
 										var ACCType = $("#ULTIMATEhiddenacc").text()
 										if (sessionName === "" && sessionPass === "") {
@@ -120,13 +125,18 @@
 											document.getElementById("THESESSIONFORM").setAttribute("action", "/session/" + ACCType + "/" + sessionName + "/" + sessionPass + "/" + DDate)
 											document.getElementById("THESESSIONFORM").submit()
 											if (performance.navigation.type === 0) {
+												document.getElementById("LOAD").hidden = false
+												
 												function test() {
+													document.getElementById("LOAD").hidden = true
 													EMPerror3.innerText = "Wrong Password / User does not exist"
 												}
-												setTimeout(test, 200)
+												setTimeout(test, 2000)
 											}
-											else
-												EMPerror3.innerText = ""
+											else {
+													document.getElementById("LOAD").hidden = true
+													EMPerror3.innerText = ""
+											}
 										}
 									}
 									function resetSessionInput() {
@@ -138,6 +148,7 @@
 										EMPerror3.innerText = ""
 										$("#addSessionName").val("")
 										$("#addSessionPass").val("")
+										document.getElementById("LOAD").hidden = true
 									}
 								</script>
 								<div class="modal-footer">
