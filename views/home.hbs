@@ -182,16 +182,14 @@
                                 <input type="text" id="ADDName" name="ADDName"> 
                                 <br/>
                                 <span id="errorname1" style="color: red;"></span>
-                                <br/>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" >
                             <div class="col-md-4 ml-auto" >Phone</div>
                             <div class="col-md-8 ml-auto">
                                 <input onkeypress="return /[0-9]/i.test(event.key)" type="text" id="ADDPhone" name="ADDPhone"> 
                                 <br/>
                                 <span id="errorname2" style="color: red;"></span>
-                                <br/>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -237,20 +235,20 @@
                             </div>
                             <span id="errorname3" style="color: red; padding-top:5px;"></span>
                         </div>
-                        <div class="row mt-3" style="padding-top: 30px;">
+                        <div class="row mt-3" style="padding-top: 5px;">
                             <div class="col-md ml-auto">Total Price: </div>
                             <div class="col-md-8 ml-auto">  
                                 <input  type="number" size="4" id="ADDTotalPriceR" name="ADDTotalPriceR" value="0" readonly>
                             </div>   
                             
                         </div>
-                        <div class="row mt-2" style="padding-top: 10px;">
+                        <div class="row mt-2" style="padding-bottom: 10px;">
                             <div class="col-md-4 ml-auto">Amount Paid: </div>
                             <div class="col-md-8 ml-auto" >
                                 <input type="number" size="4" onkeypress="return /[0-9]/i.test(event.key)" id="ADDAmountPaid" name="ADDAmountPaid" value="0" max="0">
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row" style="padding-bottom: 5px;">
                             <div class="col-md ml-auto" >Balance: </div>
                             <div class="col-md-8 ml-auto">
                                 <input  type="number" size="4" id="ADDBalanceR" name="ADDBalanceR" value="0" readonly>
@@ -308,7 +306,6 @@
                             $(".ADDSALES_INPUTidentifier").each(function(index, element) {
                             $("#ADDName").val("") 
                             $("#ADDPhone").val("") 
-                            $(this).val(0)  
                             $("#ADDAmountPaid").val(0)
                             $("#ADDTotalPriceR").val(0) 
                             $("#ADDBalanceR").val(0) 
@@ -480,7 +477,7 @@
                         {{/if_eq}}
                     </tr>
                     <span id="ERRORENTRY" style="color:red; padding-left:20px"> </span>
-                    <span id="REMINDERENTRY" style="color:green; padding-top:10px"> </span>
+                    <span id="REMINDERENTRY" style="color:green; padding-top:10px; padding-left:20px"> </span>
 
                 {{/each}}
                 {{else}}
@@ -766,29 +763,40 @@
                 if (event.keyCode === 13 && ((Name != "" && Name != "No Name") && (Phone === "" || Phone === "No Number"))) {
                     obj["Name"] = Name
                     obj["Phone"] = "No Number"
+                    this.parentElement.parentElement.children[13].children[0].blur()
+                    this.parentElement.parentElement.children[1].children[0].blur()
+                    console.log("LETSGO")
                     remind.innerText = ""
                     
                 }
                 else if (event.keyCode === 13 && ((Name === "" || Name === "No Name") && (Phone != "" && Phone != "No Number"))) {
                     obj["Phone"] = Phone
                     obj["Name"] = "No Name"
+                    console.log("LETSGO2")
+                    this.parentElement.parentElement.children[1].children[0].blur()
+                    this.parentElement.parentElement.children[13].children[0].blur()
                     remind.innerText = ""
+
                 }
                 else if (event.keyCode === 13 && ((Name != "" && Name != "No Name") && (Phone != "" && Phone != "No Number"))) {
                     obj["Name"] = Name
                     obj["Phone"] = Phone
                     remind.innerText = ""
+                    this.parentElement.parentElement.children[1].children[0].blur()
+                    this.parentElement.parentElement.children[13].children[0].blur()
                 }
                 else {
-                   
                     obj["Name"] = ""
                     obj["Phone"] = ""
                 }
                 var error = document.getElementById("ERRORENTRY")
                 
                 
-                if ((Name === "" || Name === "No Name") && (Phone === "" || Phone === "No Number"))
+                if ((Name === "" || Name === "No Name") && (Phone === "" || Phone === "No Number")) {
                     error.innerText = "Warning: One or more entries have no data on both Name and Phone Number. This will be reverted upon refresh."
+                    remind.innerText = ""
+                }
+                    
                 else
                     error.innerText = ""
                 $.post("/editEntry/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})

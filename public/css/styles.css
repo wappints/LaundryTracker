@@ -31,7 +31,10 @@ input[type=number] {
 .modal-dialog{
   pointer-events: all;
 }
-
+.modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
 html {
   min-height: 442;
   min-width: 1308;

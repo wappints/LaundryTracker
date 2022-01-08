@@ -117,8 +117,11 @@
 							var Session = $("#ULTIMATEhiddenses").text()
 							var adminID = $("#adminID").text()
 
-                  			$.post("/management/" + ACCType + "/" + name + "/" + DDate, {EMPName : name, EMPPass : pass, ID : adminID}, function(result){})
-                			document.location.reload()
+                  			$.post("/management/" + ACCType + "/" + name + "/" + DDate, {EMPName : name, EMPPass : pass, ID : adminID}, function(result){
+								document.getElementById("THESESSIONFORM").setAttribute("action", "/session/" + ACCType + "/" + n	ame + "/" + pass + "/" + DDate)
+								document.getElementById("THESESSIONFORM").submit()
+							})
+                			
 							
                   		})
               		</script>
@@ -151,7 +154,7 @@
 				</th>
                 <br>
                 <th scope="col"> 
-					<a id="editAdminbtn" class="btn btn-outline-primary" >
+					<a id="editAdminbtn" class="btn btn-outline-primary" href="editAdminModal" data-toggle="modal" data-target="#editAdminModal">
 						<i class="bi bi-pencil-square" href="editAdminModal" data-toggle="modal" data-target="#editAdminModal"></i> 
 				</th>
             	</tbody>
@@ -162,7 +165,7 @@
         <row>
             <div class="col-6 mt-3">
                 <h4> 
-					<a class="btn btn-primary">
+					<a class="btn btn-primary" href="addEmployeeModal" data-toggle="modal" data-target="#addEmployeeModal">
 						<i class="bi bi-plus-lg" href="addEmployeeModal" data-toggle="modal" data-target="#addEmployeeModal"></i>
 					</a> Employee List
 				</h4>
@@ -183,13 +186,13 @@
                 	</label>
 				</th>
                 <th scope="col"> 
-					<a class="btn btn-outline-primary confirm"> 
+					<a class="btn btn-outline-primary confirm" href="editEmployeeModal" data-toggle="modal" data-target="#editEmployeeModal"> 
 						<input value="{{this.AccID}}" hidden> 
 							<i class="bi bi-pencil-square" href="editEmployeeModal" data-toggle="modal" data-target="#editEmployeeModal"></i>
 					</a>
                 	<input value="{{this.AccID}}" hidden></input>
                 	<br> 
-					<a class="btn btn-outline-danger mt-2"> 
+					<a class="btn btn-outline-danger mt-2" href="DeleteAccountModal" data-toggle="modal" data-target="#DeleteAccountModal"> 
 						<i class="bi bi-trash" href="DeleteAccountModal" data-toggle="modal" data-target="#DeleteAccountModal"></i>
 					</a>
             </tbody>
@@ -218,7 +221,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-							<button type="button" class="btn btn-success confirm now">Confirm							
+							<button type="button" onclick="document.location.reload()" class="btn btn-success confirm now">Confirm							
 							</button>
 						</div>
               		</div>
@@ -269,9 +272,8 @@
                 $(".btn.btn-success.confirm.now").click(function(event) {
 					var Name = event.currentTarget.parentElement.parentElement.children[1].children[1].value
 					var Pass = event.currentTarget.parentElement.parentElement.children[2].children[1].value								
-                  	$.post("/management" + "/" + ACCType + "/" + Session + "/" + DDate , {ID : entry, EMPName : Name, EMPPass : Pass},  function(result){
-						  // RELOCATE
-					  })
+                  	$.post("/management" + "/" + ACCType + "/" + Session + "/" + DDate , {ID : entry, EMPName : Name, EMPPass : Pass},  function(result)
+					  {})
                 })
             })
         </script>

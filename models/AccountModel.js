@@ -4,6 +4,11 @@ var mongoose = require('mongoose');
 
 // defines the schema for collection `Account`
 var AccountSchema = new mongoose.Schema({
+    _id:
+    {
+        type : String,
+        required : true
+    },
     isAdmin:
     {
         type : String,

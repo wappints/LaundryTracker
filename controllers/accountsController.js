@@ -40,21 +40,37 @@ const accountsController = {
         var ID = req.body.ID
         const { ObjectId } = require('mongodb');
         ID = ObjectId(ID);   
-        var currentDate = new Date()
-        currentDate.setHours(currentDate.getHours() + 8);
-        var formattedDate = currentDate.toISOString().split('T')[0];
-
-        db.updateOne(Account, {_id : ID}, {EMPName : EMPName, EMPPass : EMPPass}, function(result) {})
-        res.redirect("back")
+        db.updateOne(Account, {_id : ID.toString()}, {EMPName : EMPName, EMPPass : EMPPass}, function(result) {
+            if (result === null)
+                db.updateOne(Account, {_id : ID}, {EMPName : EMPName, EMPPass : EMPPass}, function(result) {
+                })
+            else {
+                res.redirect("back")
+            }
+        
+                
+        })
+        
     },
     deleteAccount : function (req,res) {
         var ID = req.body.ID
-        db.deleteOne(Account, {_id : ID}, function(result){res.redirect("back")})
+        db.deleteOne(Account, {_id : ID}, function(result){
+            console.log(result)
+            if (result)
+                res.redirect("back")
+            else
+                db.deleteOne(Account, {_id : ID.toString()}, function(result) {
+                    res.redirect("back")
+                })
+            })
     },
     addAccount : function (req,res) {
         var EMPName = req.body.Name
         var EMPPass = req.body.Pass
+        var mongoose = require('mongoose');
+        var ID = new mongoose.mongo.ObjectId();
         var docs = {
+            _id : ID.toString(),
             EMPName : EMPName,
             EMPPass : EMPPass,
             isAdmin : "false"
