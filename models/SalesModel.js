@@ -9,6 +9,10 @@ var SalesSchema = new mongoose.Schema({
         type : ObjectID,
         required : true
     },
+    BalanceID : {
+        type: ObjectID,
+        required: false
+    },
     Name: {
         type: String,
         required: false

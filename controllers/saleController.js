@@ -211,6 +211,7 @@ const saleController = {
     },
     deleteEntry : function (req, res) {
         var id = req.query._id
+        var neww = req.query.Balance  
         db.findOne(Sale, {_id : id}, {}, function(result){
             if (result.Balance < 0) {
                 var Name = result.Name;
@@ -218,22 +219,33 @@ const saleController = {
                 var currentDate = result.DDate
                 var dateForBalance = currentDate.toISOString().split('T')[0]
                 var newid  = result._id
-                var docs2 = {
-                    BalanceID : newid,
-                    Name : Name,
-                    PhoneNum : Phone,
-                    DDate : dateForBalance,
-                    Balance : -(result.Balance)
-                } 
-                db.insertOne(Balances, docs2, function(result){db.deleteOne(Sale, {_id : id}, function(result){})})   
-                res.redirect("back")
+
+                db.findOne(Sale, {_id : id}, {}, function(result){
+                    var saleParentID = result.BalanceID
+                    db.findOne(Balances, {BalanceID : saleParentID}, {}, function (result){
+                        if (result) {
+                            var returnBal = parseInt(result.Balance) + parseInt(neww)
+                            db.updateOne(Balances, {BalanceID : saleParentID}, {Balance : returnBal}, function(result){})
+                        }  
+                        else {
+                            var docs2 = {
+                                BalanceID : saleParentID,
+                                Name : Name,
+                                PhoneNum : Phone,
+                                DDate : dateForBalance,
+                                Balance : parseInt(neww)
+                            }
+                            db.insertOne(Balances, docs2, function(result){})  
+                        }               
+                        db.deleteOne(Sale, {_id : id}, function(result){})
+                    })
+                })
             }
             else {
                 db.deleteOne(Sale, {_id : id}, function(result){
                     db.deleteOne(Balances, {BalanceID : id}, function(result){
-                        db.deleteOne(Log, {LogID : id}, function(result){ // Confirmation
-                            res.redirect("back")
-                        })                    
+                        db.deleteMany(Sale, {BalanceID : id}, function(result){
+                        }) 
                     })
                 })
             }

@@ -35,16 +35,19 @@ const balancesController = {
         else
             {
                 db.updateOne(Balances, {BalanceID : BalanceID}, {Balance : computation}, function(result) {})
-                db.updateOne(Sale, {_id : BalanceID}, {Balance : computation}, function(result) {})
             }
-           
+        console.log(BalanceID)
         var ObjectID = require('bson').ObjectID;
         var id  = new ObjectID();
+        var BALid = new ObjectID(BalanceID);
+        console.log("STILL ID")
+        console.log(id)
         var currentDate = new Date()
         currentDate.setHours(currentDate.getHours() + 8);
         var formattedDate = currentDate.toISOString().split('T')[0];
         var docs = {
             _id : id,
+            BalanceID : BALid,
             Name : Name,
             PhoneNum : PhoneNum,
             DDate : formattedDate,
@@ -60,12 +63,19 @@ const balancesController = {
             Balance : -Payment,
             TokenError : 0
         }
-        db.insertOne(Sale, docs, function(result){})
+        db.insertOne(Sale, docs, function(result){
+            console.log(result)
+        })
     },
     deleteBalance : function(req,res)
     {
         var BalanceID = req.query.card
-        db.deleteOne(Sale, {_id : BalanceID}, function(result){db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){})})
+        db.deleteOne(Sale, {_id : BalanceID}, function(result){
+            db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){
+                db.deleteMany(Sale, {BalanceID : BalanceID}, function (result) {
+                })
+            })
+        })
     }
 }
 module.exports = balancesController;
