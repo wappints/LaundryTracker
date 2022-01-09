@@ -213,6 +213,7 @@ const saleController = {
         var id = req.query._id
         var neww = req.query.Balance  
         db.findOne(Sale, {_id : id}, {}, function(result){
+        if (result != null) {
             if (result.Balance < 0) {
                 var Name = result.Name;
                 var Phone = result.PhoneNum;
@@ -249,6 +250,7 @@ const saleController = {
                     })
                 })
             }
+        }
         })
     }
 }
