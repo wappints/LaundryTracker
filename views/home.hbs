@@ -46,7 +46,7 @@
             {{#if_neq Session "Anonymous"}}
             <div class="col-sm-1 mt-3 editsales align-center" style="margin-left:80px"> Edit Sales:
                 <label class="switch" name="enableEdit" id="enableEdit">
-                    <input type="checkbox">
+                    <input type="checkbox" id="editboxcheck">
                     <span class="slider round"></span>
                 </label>
             </div>
@@ -614,21 +614,35 @@
         <script>
         $("#NAMEField.INPUTFIELD_EDITidentifiers.text-center").on("focus", function(event) { 
             var temp = this.parentElement.parentElement.children[1].children[0].value
+            var isChecked = document.getElementById("editboxcheck").checked
             document.getElementById("WARNINGENTRY").innerText = ""
-            if (temp === "" || temp === "No Name")
+            if ((temp === "" || temp === "No Name") && isChecked)
                 this.parentElement.parentElement.children[1].children[0].value = ""
         })
         $("#PHONEField.INPUTFIELD_EDITidentifiers.text-center").on("focus", function(event) { 
             var temp = this.parentElement.parentElement.children[13].children[0].value
+            var isChecked = document.getElementById("editboxcheck").checked
             document.getElementById("WARNINGENTRY").innerText = ""
-            if (temp === "" || temp === "No Number")
+            if ((temp === "" || temp === "No Number") && isChecked)
                 this.parentElement.parentElement.children[13].children[0].value = ""
         })
-        $("#PHONEField.INPUTFIELD_EDITidentifiers.text-center").on("change", function(event) { 
+        $("#PHONEField.INPUTFIELD_EDITidentifiers.text-center").on("blur", function(event) { 
+            var temp = this.parentElement.parentElement.children[13].children[0].value
+            document.getElementById("WARNINGENTRY").innerText = ""
+            if (temp === "")
+                this.parentElement.parentElement.children[13].children[0].value = "No Number"
+        })
+        $("#PHONEField.INPUTFIELD_EDITidentifiers.text-center").on("blur", function(event) { 
+            var temp = this.parentElement.parentElement.children[1].children[0].value
+            document.getElementById("WARNINGENTRY").innerText = ""
+            if (temp === "")
+                this.parentElement.parentElement.children[1].children[0].value = "No Name"
+        })
+        $("#PHONEField.INPUTFIELD_EDITidentifiers.text-center").on("change keyup cut paste", function(event) { 
             var remind = document.getElementById("REMINDERENTRY")
             remind.innerText = "Reminder: Press the ENTER Key in either Name or Phone fields to save their changes"
         })
-        $("#NAMEField.INPUTFIELD_EDITidentifiers.text-center").on("change", function(event) { 
+        $("#NAMEField.INPUTFIELD_EDITidentifiers.text-center").on("change keyup cut paste", function(event) { 
             var remind = document.getElementById("REMINDERENTRY")
             remind.innerText = "Reminder: Press the ENTER Key in either Name or Phone fields to save their changes"
         })
