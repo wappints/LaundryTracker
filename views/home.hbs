@@ -451,10 +451,10 @@
                             <input  id ="DOWNField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="DOWNField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{#if this.Downy}}{{this.Downy}}{{else}}0{{/if}}" readonly="true"> 
                         </td>
                         <td width="100"> 
-                            <input name="TTLField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" id ="TTLField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{#if this.totalPrice}}{{this.totalPrice}}{{else}}0{{/if}}" readonly> 
+                            <input name="TTLField" type="number" style="width:80px"onkeypress="return /[0-9]/i.test(event.key)" id ="TTLField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{#if this.totalPrice}}{{this.totalPrice}}{{else}}0{{/if}}" readonly> 
                         </td>
                         <td width="100"> 
-                            <input   name="AMTField"  type="tel" onkeypress="return /[0-9]/i.test(event.key)" id ="AMTField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.AmountPaid}}" max="0"readonly> 
+                            <input   name="AMTField"  type="number" style="width:80px" onkeypress="return /[0-9]/i.test(event.key)" id ="AMTField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.AmountPaid}}" max="0"readonly> 
                         </td>
                         <td width="100"> 
                             <input   name="BALField"  type="tel" id ="BALField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.Balance}}" readonly> 
@@ -633,7 +633,7 @@
             remind.innerText = "Reminder: Press the ENTER Key in either Name or Phone fields to save their changes"
         })
 
-        $(".INPUTFIELD_EDITidentifiers.text-center").on("change paste keyup cut", function(event) { 
+        $(".INPUTFIELD_EDITidentifiers.text-center").on("change paste cut keyup", function(event) { 
             var BalanceCheck = parseInt(this.parentElement.parentElement.children[11].children[0].value)
              document.getElementById("WARNINGENTRY").innerText = ""
             if (BalanceCheck >= 0) {
@@ -772,6 +772,7 @@
                 if (event.keyCode === 13 && ((Name != "" && Name != "No Name") && (Phone === "" || Phone === "No Number"))) {
                     obj["Name"] = Name
                     obj["Phone"] = "No Number"
+                    obj["eventkey"] = "LIFE"
                     this.parentElement.parentElement.children[13].children[0].blur()
                     this.parentElement.parentElement.children[1].children[0].blur()
                     remind.innerText = ""
@@ -780,6 +781,7 @@
                 else if (event.keyCode === 13 && ((Name === "" || Name === "No Name") && (Phone != "" && Phone != "No Number"))) {
                     obj["Phone"] = Phone
                     obj["Name"] = "No Name"
+                    obj["eventkey"] = "LIFE"
                     this.parentElement.parentElement.children[1].children[0].blur()
                     this.parentElement.parentElement.children[13].children[0].blur()
                     remind.innerText = ""
@@ -788,13 +790,14 @@
                 else if (event.keyCode === 13 && ((Name != "" && Name != "No Name") && (Phone != "" && Phone != "No Number"))) {
                     obj["Name"] = Name
                     obj["Phone"] = Phone
+                    obj["eventkey"] = "LIFE"
                     remind.innerText = ""
                     this.parentElement.parentElement.children[1].children[0].blur()
                     this.parentElement.parentElement.children[13].children[0].blur()
                 }
                 else {
-                    obj["Name"] = ""
-                    obj["Phone"] = ""
+                        obj["Name"] = Name
+                        obj["Phone"] = Phone
                 }
                 var error = document.getElementById("ERRORENTRY")
                 
