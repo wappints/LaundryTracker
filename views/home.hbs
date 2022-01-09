@@ -642,13 +642,13 @@
         $("#PHONEField.INPUTFIELD_EDITidentifiers.text-center").on("change keyup cut paste", function(event) { 
             var remind = document.getElementById("REMINDERENTRY")
             var isChecked = document.getElementById("editboxcheck").checked
-            if (isChecked)
+            if (isChecked && this.parentElement.parentElement.children[11].children[0].value >= 0)
                 remind.innerText = "Reminder: Press the ENTER Key in either Name or Phone fields to save their changes"
         })
         $("#NAMEField.INPUTFIELD_EDITidentifiers.text-center").on("change keyup cut paste", function(event) { 
             var remind = document.getElementById("REMINDERENTRY")
             var isChecked = document.getElementById("editboxcheck").checked
-            if (isChecked)
+            if (isChecked && this.parentElement.parentElement.children[11].children[0].value >= 0)
                 remind.innerText = "Reminder: Press the ENTER Key in either Name or Phone fields to save their changes"
         })
 
