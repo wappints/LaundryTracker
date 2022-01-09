@@ -209,45 +209,45 @@ const saleController = {
     deleteEntry : function (req, res) {
         var id = req.query._id
         var neww = req.query.Balance  
-        db.findOne(Sale, {_id : id}, {}, function(result){
-        if (result != null) {
-            if (result.Balance < 0) {
-                var Name = result.Name;
-                var Phone = result.PhoneNum;
-                var currentDate = result.DDate
-                var dateForBalance = currentDate.toISOString().split('T')[0]
-                var newid  = result._id
+        db.findOne(Sale, {_id : id}, {}, function(result) {
+            if (result != null) {
+                if (result.Balance < 0) {
+                    var Name = result.Name;
+                    var Phone = result.PhoneNum;
+                    var currentDate = result.DDate
+                    var dateForBalance = currentDate.toISOString().split('T')[0]
 
-                db.findOne(Sale, {_id : id}, {}, function(result){
-                    var saleParentID = result.BalanceID
-                    db.findOne(Balances, {BalanceID : saleParentID}, {}, function (result){
-                        if (result) {
-                            var returnBal = parseInt(result.Balance) + parseInt(neww)
-                            db.updateOne(Balances, {BalanceID : saleParentID}, {Balance : returnBal}, function(result){})
-                        }  
-                        else {
-                            var docs2 = {
-                                BalanceID : saleParentID,
-                                Name : Name,
-                                PhoneNum : Phone,
-                                DDate : dateForBalance,
-                                Balance : parseInt(neww)
-                            }
-                            db.insertOne(Balances, docs2, function(result){})  
-                        }               
-                        db.deleteOne(Sale, {_id : id}, function(result){})
+                    db.findOne(Sale, {_id : id}, {}, function(result){
+                        var saleParentID = result.BalanceID
+                        db.findOne(Balances, {BalanceID : saleParentID}, {}, function (result){
+                            if (result) {
+                                var returnBal = parseInt(result.Balance) + parseInt(neww)
+                                db.updateOne(Balances, {BalanceID : saleParentID}, {Balance : returnBal}, function(result){})
+                            }  
+                            else {
+                                var docs2 = {
+                                    BalanceID : saleParentID,
+                                    Name : Name,
+                                    PhoneNum : Phone,
+                                    DDate : dateForBalance,
+                                    Balance : parseInt(neww)
+                                }
+                                db.insertOne(Balances, docs2, function(result){})  
+                            }               
+                            db.deleteOne(Sale, {_id : id}, function(result){})
+                        })
                     })
-                })
-            }
-            else {
-                db.deleteOne(Sale, {_id : id}, function(result){
-                    db.deleteOne(Balances, {BalanceID : id}, function(result){
-                        db.deleteMany(Sale, {BalanceID : id}, function(result){
-                        }) 
+                }
+                else {
+                    db.deleteOne(Sale, {_id : id}, function(result){
+                        db.deleteOne(Balances, {BalanceID : id}, function(result){
+                            db.deleteMany(Sale, {BalanceID : id}, function(result){
+                            }) 
+                        })
                     })
-                })
+                }
             }
-        }
+        res.redirect("back")
         })
     }
 }
