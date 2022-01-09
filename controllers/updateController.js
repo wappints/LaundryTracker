@@ -103,7 +103,8 @@ const updateController = {
                 docs["PhoneNum"] = Phone;
             
             db.updateOne(Sale, {_id : id}, docs, function(result) {})
-            db.deleteMany(Sale, {BalanceID : id}, function(result){})
+            if (pass3)
+                db.deleteMany(Sale, {BalanceID : id}, function(result){})
             res.redirect("../../../home/" + ACCType + "/" + Session + "/" + formattedDate);
         })
     }
