@@ -624,11 +624,11 @@
             if (temp === "" || temp === "No Number")
                 this.parentElement.parentElement.children[13].children[0].value = ""
         })
-        $("#PHONEField.INPUTFIELD_EDITidentifiers.text-center").on("keyup cut paste", function(event) { 
+        $("#PHONEField.INPUTFIELD_EDITidentifiers.text-center").on("change", function(event) { 
             var remind = document.getElementById("REMINDERENTRY")
             remind.innerText = "Reminder: Press the ENTER Key in either Name or Phone fields to save their changes"
         })
-        $("#NAMEField.INPUTFIELD_EDITidentifiers.text-center").on("keyup cut paste", function(event) { 
+        $("#NAMEField.INPUTFIELD_EDITidentifiers.text-center").on("change", function(event) { 
             var remind = document.getElementById("REMINDERENTRY")
             remind.innerText = "Reminder: Press the ENTER Key in either Name or Phone fields to save their changes"
         })
