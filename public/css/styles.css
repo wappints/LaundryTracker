@@ -38,7 +38,7 @@ input[type=number] {
 html {
   min-height: 442;
   min-width: 1308;
-  min-zoom: 130%;
-  zoom: 130%;
-  max-zoom: 175%;
+  min-zoom: 115%;
+  zoom: 115%;
+  max-zoom: 130%;
 }
