@@ -55,7 +55,6 @@ const accountsController = {
     deleteAccount : function (req,res) {
         var ID = req.body.ID
         db.deleteOne(Account, {_id : ID}, function(result){
-            console.log(result)
             if (result)
                 res.redirect("back")
             else

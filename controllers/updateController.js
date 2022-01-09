@@ -22,9 +22,6 @@ const updateController = {
         var Phone = req.body.Phone;
         if (Phone === "" || Phone === null)
             pass2 = 0
-        console.log("HERE")
-        console.log(Name)
-        console.log(Phone)
         var TNW = req.body.TNWQty;
         var TND = req.body.TNDQty;
         var TKW = req.body.TKWQty;
@@ -46,11 +43,14 @@ const updateController = {
             DDate : dateForBalance,
             Balance : Balance
         }
+        var updateIdentity = {}
         if (pass1) {
             docs2["Name"] = Name;
+            updateIdentity["Name"] = Name;
         }
         if (pass2) {
             docs2["PhoneNum"] = Phone;
+            updateIdentity["PhoneNum"] = Phone;
         }
         db.findOne(Balances, {BalanceID : id}, {}, function(result) {
             if (!result)
@@ -64,6 +64,7 @@ const updateController = {
                             })
                     })
                 })
+                db.updateMany(Sale, {BalanceID: id}, updateIdentity, function(result){})
             }
         })
 

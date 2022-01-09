@@ -44,7 +44,7 @@
                 {{/if_neq}}
             </div>
             {{#if_neq Session "Anonymous"}}
-            <div class="col-sm-1 mt-3 editsales align-center"> Edit Sales:
+            <div class="col-sm-1 mt-3 editsales align-center" style="margin-left:80px"> Edit Sales:
                 <label class="switch" name="enableEdit" id="enableEdit">
                     <input type="checkbox">
                     <span class="slider round"></span>
@@ -257,7 +257,6 @@
                         <script>
                             $('#addSaleForm').submit(function(event) {
                                 event.preventDefault(); 
-                                console.log("LESGO")
                                 var form = document.getElementById('addSaleForm');
                                 var firstName = document.getElementById('ADDName');
                                 var phone = document.getElementById('ADDPhone');
@@ -267,7 +266,6 @@
                                 var totalpay = document.getElementById('ADDTotalPriceR');
                                 var pass1 = 1;
                                 var pass2 = 1;
-                                console.log("IT IS " + totalpay.value)
                                 if ((firstName.value === '' || !firstName.value.length) && (phone.value === '' || !phone.value.length)) {
                                         errorMessage1.innerText = 'Error! No Name Entered!';
                                         errorMessage2.innerText = 'Error! No Phone Number Entered!';
@@ -432,28 +430,28 @@
                             <input  id ="NAMEField" name="NAMEField" class="INPUTFIELD_EDITidentifiers text-center" size="18" value="{{this.Name}}"readonly="true">  
                         </td>
                         <td>
-                            <input  id ="TNWField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="TNWField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThinWash}}" readonly="true">  
+                            <input  id ="TNWField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="TNWField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{#if this.ThinWash}}{{this.ThinWash}}{{else}}0{{/if}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="TNDField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="TNDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThinDry}}" readonly="true">  
+                            <input  id ="TNDField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="TNDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{#if this.ThinDry}}{{this.ThinDry}}{{else}}0{{/if}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="TKWField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="TKWField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThickWash}}" readonly="true">  
+                            <input  id ="TKWField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="TKWField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{#if this.ThickWash}}{{this.ThickWash}}{{else}}0{{/if}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="TKDField" type="tel" onkeypress="return /[0-9]/i.test(event.key)"  name="TKDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.ThickDry}}" readonly="true">  
+                            <input  id ="TKDField" type="tel" onkeypress="return /[0-9]/i.test(event.key)"  name="TKDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{#if this.ThickDry}}{{this.ThickDry}}{{else}}0{{/if}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="FOLDField" type="tel" onkeypress="return /[0-9]/i.test(event.key)"  name="FOLDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Fold}}" readonly="true">  
+                            <input  id ="FOLDField" type="tel" onkeypress="return /[0-9]/i.test(event.key)"  name="FOLDField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{#if this.Fold}}{{this.Fold}}{{else}}0{{/if}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="SOAPField" type="tel" onkeypress="return /[0-9]/i.test(event.key)"  name="SOAPField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Soap}}" readonly="true">  
+                            <input  id ="SOAPField" type="tel" onkeypress="return /[0-9]/i.test(event.key)"  name="SOAPField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{#if this.Soap}}{{this.Soap}}{{else}}0{{/if}}" readonly="true">  
                         </td>
                         <td>
-                            <input  id ="DOWNField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="DOWNField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{this.Downy}}" readonly="true"> 
+                            <input  id ="DOWNField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="DOWNField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value="{{#if this.Downy}}{{this.Downy}}{{else}}0{{/if}}" readonly="true"> 
                         </td>
                         <td width="100"> 
-                            <input name="TTLField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" id ="TTLField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.totalPrice}}" readonly> 
+                            <input name="TTLField" type="tel" onkeypress="return /[0-9]/i.test(event.key)" id ="TTLField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{#if this.totalPrice}}{{this.totalPrice}}{{else}}0{{/if}}" readonly> 
                         </td>
                         <td width="100"> 
                             <input   name="AMTField"  type="tel" onkeypress="return /[0-9]/i.test(event.key)" id ="AMTField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.AmountPaid}}" max="0"readonly> 
@@ -462,7 +460,7 @@
                             <input   name="BALField"  type="tel" id ="BALField" class="INPUTFIELD_EDITidentifiers text-center" size="5" value="{{this.Balance}}" readonly> 
                         </td>
                         <td>
-                            <input id ="TOKENField"  type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="TOKENField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value ="{{this.Token}}" readonly="true"> 
+                            <input id ="TOKENField"  type="tel" onkeypress="return /[0-9]/i.test(event.key)" name="TOKENField" class="INPUTFIELD_EDITidentifiers text-center" size="1" value ="{{#if this.Token}}{{this.Token}}{{else}}0{{/if}}" readonly="true"> 
                         </td>
                         <td>
                             <input id ="PHONEField" onkeypress="return /[0-9]/i.test(event.key)" type="text" class="INPUTFIELD_EDITidentifiers text-center" size="11" value="{{this.PhoneNumber}}" readonly="true">
@@ -626,11 +624,11 @@
             if (temp === "" || temp === "No Number")
                 this.parentElement.parentElement.children[13].children[0].value = ""
         })
-        $("#PHONEField.INPUTFIELD_EDITidentifiers.text-center").on("change keyup cut paste", function(event) { 
+        $("#PHONEField.INPUTFIELD_EDITidentifiers.text-center").on("keyup cut paste", function(event) { 
             var remind = document.getElementById("REMINDERENTRY")
             remind.innerText = "Reminder: Press the ENTER Key in either Name or Phone fields to save their changes"
         })
-        $("#NAMEField.INPUTFIELD_EDITidentifiers.text-center").on("change keyup cut paste", function(event) { 
+        $("#NAMEField.INPUTFIELD_EDITidentifiers.text-center").on("keyup cut paste", function(event) { 
             var remind = document.getElementById("REMINDERENTRY")
             remind.innerText = "Reminder: Press the ENTER Key in either Name or Phone fields to save their changes"
         })
@@ -776,14 +774,12 @@
                     obj["Phone"] = "No Number"
                     this.parentElement.parentElement.children[13].children[0].blur()
                     this.parentElement.parentElement.children[1].children[0].blur()
-                    console.log("LETSGO")
                     remind.innerText = ""
                     
                 }
                 else if (event.keyCode === 13 && ((Name === "" || Name === "No Name") && (Phone != "" && Phone != "No Number"))) {
                     obj["Phone"] = Phone
                     obj["Name"] = "No Name"
-                    console.log("LETSGO2")
                     this.parentElement.parentElement.children[1].children[0].blur()
                     this.parentElement.parentElement.children[13].children[0].blur()
                     remind.innerText = ""

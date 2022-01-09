@@ -94,9 +94,6 @@ const saleController = {
                     db.insertOne(Price, initialPrices, function(result){})
                 }
                 var renderobjects = {ACCType : typeOfAcc, DDate : formattedDate, Session : Session, entry : details, layout : 'mainLayout', object : obj2}
-                console.log("DDate = " + DDate )
-                console.log("formattedDate = " + formattedDate)
-                console.log("Session = " + Session)
                 res.render('home', renderobjects)
             })
         })

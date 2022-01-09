@@ -32,16 +32,12 @@ const balancesController = {
         var Payment = req.body.Payment
         if (computation == 0) 
             db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){})
-        else
-            {
-                db.updateOne(Balances, {BalanceID : BalanceID}, {Balance : computation}, function(result) {})
-            }
-        console.log(BalanceID)
+        else 
+            db.updateOne(Balances, {BalanceID : BalanceID}, {Balance : computation}, function(result) {})
+            
         var ObjectID = require('bson').ObjectID;
         var id  = new ObjectID();
         var BALid = new ObjectID(BalanceID);
-        console.log("STILL ID")
-        console.log(id)
         var currentDate = new Date()
         currentDate.setHours(currentDate.getHours() + 8);
         var formattedDate = currentDate.toISOString().split('T')[0];
@@ -51,21 +47,11 @@ const balancesController = {
             Name : Name,
             PhoneNum : PhoneNum,
             DDate : formattedDate,
-            ThinWash : 0,
-            ThinDry : 0,
-            ThickWash : 0,
-            ThickDry : 0,
-            Fold : 0,
-            Soap : 0,
-            Downy : 0,
             AmountPaid : Payment,
-            TotalPrice : 0,
             Balance : -Payment,
-            TokenError : 0
         }
-        db.insertOne(Sale, docs, function(result){
-            console.log(result)
-        })
+        db.insertOne(Sale, docs, function(result){})
+        res.redirect("back")
     },
     deleteBalance : function(req,res)
     {
