@@ -54,7 +54,7 @@
                         </td>
 
                         <td>
-                            <input type="tel" onkeypress="return /[0-9]/i.test(event.key)" class="PAYMENTFieldIdentifier"id="PAYMENTField" name="PAYMENTField" class = "text-center" size = "7" readonly="true"> 
+                            <input type="number" style="width: 90px;" onkeypress="return /[0-9]/i.test(event.key)" class="PAYMENTFieldIdentifier" id="PAYMENTField" name="PAYMENTField" class = "text-center" size = "7" max="0" readonly="true"> 
                         </td>
                         {{#if_neq ../Session "Anonymous"}}
                         <td>
@@ -93,16 +93,25 @@
                 $(event.currentTarget.parentElement.parentElement).remove();
             })
             </script>
-
+            
             <script>
+                 $('.PAYMENTFieldIdentifier').on("keyup change cut paste", function (event){
+                    var Balance = parseInt(event.currentTarget.parentElement.parentElement.children[3].children[0].getAttribute("value"))
+                    event.currentTarget.parentElement.parentElement.children[5].children[0].setAttribute("max", Balance)
+                    var max = event.currentTarget.parentElement.parentElement.children[5].children[0].value
+                    if (max >= Balance)
+                        event.currentTarget.parentElement.parentElement.children[5].children[0].value = Balance
+                    else if (max < Balance)
+                        event.currentTarget.parentElement.parentElement.children[5].children[0].value = max
+                     
+                 })
                 $('.PAYMENTFieldIdentifier').keypress((event) => { 
                     var Balance= parseInt(event.currentTarget.parentElement.parentElement.children[3].children[0].getAttribute("value"))
-                    event.currentTarget.parentElement.parentElement.children[5].children[0].max = Balance
                      var entry = parseInt(event.currentTarget.parentElement.parentElement.children[5].children[0].value)
 
                     if (event.keyCode == 13) {
 
-                        if (entry == 0 || !isNaN(entry)) {
+                        if (entry != 0 && !isNaN(entry)) {
                             if (Balance < entry) 
                                 entry = Balance
                             var child = event.currentTarget.parentElement.parentElement.children[3].children[0]
