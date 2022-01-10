@@ -218,24 +218,26 @@ const saleController = {
                     var dateForBalance = currentDate.toISOString().split('T')[0]
 
                     db.findOne(Sale, {_id : id}, {}, function(result){
-                        var saleParentID = result.BalanceID
-                        db.findOne(Balances, {BalanceID : saleParentID}, {}, function (result){
-                            if (result) {
-                                var returnBal = parseInt(result.Balance) + parseInt(neww)
-                                db.updateOne(Balances, {BalanceID : saleParentID}, {Balance : returnBal}, function(result){})
-                            }  
-                            else {
-                                var docs2 = {
-                                    BalanceID : saleParentID,
-                                    Name : Name,
-                                    PhoneNum : Phone,
-                                    DDate : dateForBalance,
-                                    Balance : parseInt(neww)
-                                }
-                                db.insertOne(Balances, docs2, function(result){})  
-                            }               
-                            db.deleteOne(Sale, {_id : id}, function(result){})
-                        })
+                        if (result) {
+                            var saleParentID = result.BalanceID
+                            db.findOne(Balances, {BalanceID : saleParentID}, {}, function (result){
+                                if (result) {
+                                    var returnBal = parseInt(result.Balance) + parseInt(neww)
+                                    db.updateOne(Balances, {BalanceID : saleParentID}, {Balance : returnBal}, function(result){})
+                                }  
+                                else {
+                                    var docs2 = {
+                                        BalanceID : saleParentID,
+                                        Name : Name,
+                                        PhoneNum : Phone,
+                                        DDate : dateForBalance,
+                                        Balance : parseInt(neww)
+                                    }
+                                    db.insertOne(Balances, docs2, function(result){})  
+                                }               
+                                db.deleteOne(Sale, {_id : id}, function(result){})
+                            })
+                        }
                     })
                 }
                 else {
