@@ -112,7 +112,7 @@ input:checked + .slider:before {
 }
 
 .editsales{
-  position: fixed;
+  position: absolute;
   top: 100;
   right: 40;
 
