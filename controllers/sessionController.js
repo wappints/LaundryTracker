@@ -17,6 +17,7 @@ const sessionController = {
             isAdmin = false;
         
         isAdmin = isAdmin.toString()
+        EMPName = EMPName.trim()
         db.findMany(Account, {}, {}, function(result){})
         db.findOne(Account, {EMPName : { '$regex': '^'+EMPName+"$", $options: 'i'}, EMPPass : EMPPass, isAdmin : {$eq : isAdmin}}, {}, function(result) {
             if (result) {

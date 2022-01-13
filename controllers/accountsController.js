@@ -1,7 +1,6 @@
 const { request } = require('express');
 const db = require('../models/db.js');
 const Account = require('../models/AccountModel.js');
-//testing 
 const accountsController = {
     getAccounts : function (req,res){
         var ACCType = req.params.ACCType
@@ -37,34 +36,72 @@ const accountsController = {
     updateAccounts : function (req,res) {
         var EMPName = req.body.EMPName
         var EMPPass = req.body.EMPPass
-        var ID = req.body.ID
-        const { ObjectId } = require('mongodb');
-        ID = ObjectId(ID);   
-        db.updateOne(Account, {_id : ID.toString()}, {EMPName : EMPName, EMPPass : EMPPass}, function(result) {
-            if (result === null)
-                db.updateOne(Account, {_id : ID}, {EMPName : EMPName, EMPPass : EMPPass}, function(result) {
-                })
-            else {
-                res.redirect("back")
-            }
         
+        console.log(EMPName)
+        console.log(EMPPass)
+        db.findOne(Account, {EMPName : EMPName}, {}, function(result) {
+            console.log(result)
+            if (result === null) {
+                var obj = {}
+                if (!!EMPName){
+                EMPName = EMPName.toLowerCase()
+                EMPName = EMPName.trim()
+                EMPName = EMPName.replace(/\s\s+/g, ' ')
+                names = EMPName.split(" ")
+                for (let i = 0; i < names.length; i++) {
+                    names[i] = names[i][0].toUpperCase() + names[i].substr(1);
+                }
+                EMPName = names.join(" ")
+                EMPName = EMPName.trim()
+                obj["EMPName"] = EMPName;
                 
-        })
-        
+                }
+                
+                if (!!EMPPass) {
+                    obj["EMPPass"] = EMPPass;
+                }
+                    
+
+                var ID = req.body.ID
+                ID = ID.toString()
+                db.updateOne(Account, {_id : ID}, obj, function(result) {
+                    if (result === null) {
+                        db.updateOne(Account, {_id : ID.toString()}, obj, function(result) {
+                            res.redirect('back');
+                        })
+                    }
+                    else {
+                        res.redirect('back');
+                    }
+                
+                        
+                })
+        }
+    }) 
     },
     deleteAccount : function (req,res) {
         var ID = req.body.ID
         db.deleteOne(Account, {_id : ID}, function(result){
             if (result)
-                res.redirect("back")
+                res.redirect('back');
             else
                 db.deleteOne(Account, {_id : ID.toString()}, function(result) {
-                    res.redirect("back")
+                    res.redirect('back');
                 })
             })
     },
     addAccount : function (req,res) {
+        
         var EMPName = req.body.Name
+        EMPName = EMPName.toLowerCase()
+        EMPName = EMPName.trim()
+        EMPName = EMPName.replace(/\s\s+/g, ' ')
+        names = EMPName.split(" ")
+        for (let i = 0; i < names.length; i++) {
+            names[i] = names[i][0].toUpperCase() + names[i].substr(1);
+        }
+        EMPName = names.join(" ")
+        EMPName = EMPName.trim()
         var EMPPass = req.body.Pass
         var mongoose = require('mongoose');
         var ID = new mongoose.mongo.ObjectId();
@@ -74,7 +111,13 @@ const accountsController = {
             EMPPass : EMPPass,
             isAdmin : "false"
         }
-        db.insertOne(Account, docs, function(result){res.redirect("back")})
+        db.findOne(Account, {EMPName : EMPName}, {}, function(result) {
+            console.log(result)
+            if (result === null)
+                db.insertOne(Account, docs, function(result) {
+                    res.redirect('back');
+                })
+        })
     }
 }
 
