@@ -39,45 +39,46 @@ const accountsController = {
         
         console.log(EMPName)
         console.log(EMPPass)
-        db.findOne(Account, {EMPName : EMPName}, {}, function(result) {
-            console.log(result)
-            if (result === null) {
-                var obj = {}
-                if (!!EMPName){
-                EMPName = EMPName.toLowerCase()
-                EMPName = EMPName.trim()
-                EMPName = EMPName.replace(/\s\s+/g, ' ')
-                names = EMPName.split(" ")
-                for (let i = 0; i < names.length; i++) {
-                    names[i] = names[i][0].toUpperCase() + names[i].substr(1);
-                }
-                EMPName = names.join(" ")
-                EMPName = EMPName.trim()
-                obj["EMPName"] = EMPName;
-                
-                }
-                
-                if (!!EMPPass) {
-                    obj["EMPPass"] = EMPPass;
-                }
+        if (EMPName != "" || EMPPass != "")
+            db.findOne(Account, {EMPName : EMPName}, {}, function(result) {
+                console.log(result)
+                if (result === null) {
+                    var obj = {}
+                    if (!!EMPName){
+                    EMPName = EMPName.toLowerCase()
+                    EMPName = EMPName.trim()
+                    EMPName = EMPName.replace(/\s\s+/g, ' ')
+                    names = EMPName.split(" ")
+                    for (let i = 0; i < names.length; i++) {
+                        names[i] = names[i][0].toUpperCase() + names[i].substr(1);
+                    }
+                    EMPName = names.join(" ")
+                    EMPName = EMPName.trim()
+                    obj["EMPName"] = EMPName;
                     
-
-                var ID = req.body.ID
-                ID = ID.toString()
-                db.updateOne(Account, {_id : ID}, obj, function(result) {
-                    if (result === null) {
-                        db.updateOne(Account, {_id : ID.toString()}, obj, function(result) {
-                            res.redirect('back');
-                        })
                     }
-                    else {
-                        res.redirect('back');
+                    
+                    if (!!EMPPass) {
+                        obj["EMPPass"] = EMPPass;
                     }
-                
                         
-                })
-        }
-    }) 
+
+                    var ID = req.body.ID
+                    ID = ID.toString()
+                    db.updateOne(Account, {_id : ID}, obj, function(result) {
+                        if (result === null) {
+                            db.updateOne(Account, {_id : ID.toString()}, obj, function(result) {
+                                res.redirect('back');
+                            })
+                        }
+                        else {
+                            res.redirect('back');
+                        }
+                    
+                            
+                    })
+            }
+        }) 
     },
     deleteAccount : function (req,res) {
         var ID = req.body.ID

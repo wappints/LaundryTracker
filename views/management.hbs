@@ -3,7 +3,8 @@
 	<script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.min.js" ></script>
     <input hidden id="ULTIMATEhiddendate" value="{{DDate}}"></input>  
     <input hidden id="ULTIMATEhiddenacc" value="{{ACCType}}"></input>  
-	<input hidden id="ULTIMATEhiddenses" value="{{Session}}"></input>  
+	<input hidden id="ULTIMATEhiddenses" value="{{Session}}"></input> 
+	<input hidden id="theID" value=""></input>   
     <!-- Start of Add Employee Modal -->
     <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -353,6 +354,7 @@
 				});
             $('.form-check-input').change(function() {
                 var entry = event.currentTarget.parentElement.children[2]
+				console.log(entry)
                 if($(this).is(":checked"))
                   entry.setAttribute("type", "text")
                 else
@@ -361,13 +363,25 @@
             })
             $('.form-check-input.mt-1').change(function() {
                 var entry = event.currentTarget.parentElement.children[1]
+				console.log(entry)
                 if($(this).is(":checked"))
                   entry.setAttribute("type", "text")
                 else
                   entry.setAttribute("type", "password")
             })
-            $('.btn.btn-outline-danger.mt-2').click(function(event) {
+            $('.bi.bi-trash').click(function(event) {
+            	var entry = event.currentTarget.parentElement.parentElement.children[1].value  
+				console.log(entry)
+                $("#deleteAccConfirm").click(function() {
+                  $.post("/delAccount", {ID : entry},  function(result) {
+                     event.currentTarget.parentElement.parentElement.parentElement.remove() 
+                     window.location.reload()
+                  })
+                })
+            })
+			$('.btn.btn-outline-danger.mt-2').click(function(event) {
             	var entry = event.currentTarget.parentElement.children[1].value  
+				console.log(entry)
                 $("#deleteAccConfirm").click(function() {
                   $.post("/delAccount", {ID : entry},  function(result) {
                      event.currentTarget.parentElement.parentElement.remove() 
@@ -376,7 +390,45 @@
                 })
             })
             $('.btn.btn-outline-primary.confirm').click(function(event) {
-                var entry = event.currentTarget.parentElement.children[1].value	
+                var entry = event.currentTarget.children[0].value	
+				var DDate = $("#ULTIMATEhiddendate").text()
+				var ACCType = $("#ULTIMATEhiddenacc").text()
+				var Session = $("#ULTIMATEhiddenses").text()
+				console.log(entry)
+                $(".btn.btn-success.confirm.now").click(function(event) {
+					var Name = event.currentTarget.parentElement.parentElement.children[1].children[1].value
+					var Pass = event.currentTarget.parentElement.parentElement.children[2].children[1].value		
+					if (Name === "" && Pass === "")	{
+						document.getElementById("ERROREMPTY2").innerText = "Atleast 1 field must have input"
+					}
+					else {
+						var pass = {num : 1}
+						$.ajax({
+							url: document.location.url,
+							method: "POST",
+							data : {ID : entry, EMPName : Name, EMPPass : Pass},
+							success: function(){
+								pass["num"] = 0
+								document.getElementById("ERROREMPTY2").innerText = ""
+								document.location.reload()
+							},
+							});
+						document.getElementById("ERROREMPTY2").innerText = ""	
+						document.getElementById("EDITEMPLOYEELOADER").hidden = false
+						function WaitItOut() {
+							document.getElementById("EDITEMPLOYEELOADER").hidden = true
+							if (pass)
+								document.getElementById("ERROREMPTY2").innerText = "Employee already exists!"
+							//$.post("/management" + "/" + ACCType + "/" + Session + "/" + DDate , {},  function(result){})
+						}
+						setTimeout(WaitItOut, 1000)
+
+					}
+                })
+            })
+ 			$('.bi.bi-pencil-square').click(function(event) {
+                var entry = event.currentTarget.parentElement.parentElement.children[1].value	
+				console.log(entry)
 				var DDate = $("#ULTIMATEhiddendate").text()
 				var ACCType = $("#ULTIMATEhiddenacc").text()
 				var Session = $("#ULTIMATEhiddenses").text()
@@ -411,7 +463,7 @@
 
 					}
                 })
-            })
+            })			
         </script>
 	</div>
 </body>
