@@ -176,7 +176,7 @@
 							var Session = $("#ULTIMATEhiddenses").text()
 							var adminID = $("#adminID").text()
 							document.getElementById("ERROREMPTY3").innerText = ""
-							if (name === "" || pass === "")
+							if (name === "" && pass === "")
 								document.getElementById("ERROREMPTY3").innerText = "Atleast 1 field must have input"
 							else {
 							document.getElementById("EDITADMINLOADER").hidden = false
@@ -196,10 +196,12 @@
 									if (passw) {
 										document.getElementById("ERROREMPTY3").innerText = "Employee already exists!"		
 										}
-									else {
+									else if (name != ""){
 											document.getElementById("THESESSIONFORM").setAttribute("action", "/session/" + ACCType + "/" + name + "/" + pass + "/" + DDate)
 											document.getElementById("THESESSIONFORM").submit() 
 									}
+									else
+										document.location.reload()
 								}
 
 								setTimeout(WaitItOut, 1000)
