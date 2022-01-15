@@ -3,82 +3,52 @@
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-2 sidenav">
-                <form>
-                    <div class="row mt-2">
-                        <div class="col-5">
-                            <select class="form-select" aria-label="SelectView">
-                                <option selected value="YYYY">YYYY</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                            </select>
-                        </div>
-                        <div class="col-4">
-                            <select class="form-select" aria-label="SelectView">
-                                <option selected value="MM">MM</option>
-                                <option value="Jan">Jan</option>
-                                <option value="Jan">Feb</option>
-                                <option value="Jan">Mar</option>
-                                <option value="Jan">Apr</option>
-                                <option value="Jan">May</option>
-                                <option value="Jan">Jun</option>
-                                <option value="Jan">Jul</option>
-                                <option value="Jan">Aug</option>
-                                <option value="Jan">Sept</option>
-                                <option value="Jan">Oct</option>
-                                <option value="Jan">Nov</option>
-                                <option value="Jan">Dec</option>
-                            </select>
-                        </div>
-                        <div class="col-3">
-                            <input type="text" class="form-control" placeholder="DD">
-                        </div>
-                    </div>
-                </form>
-                <ul class="navbar-nav text-center">     
-                    <table class="table text-center table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col" class="btn date-drawer">2021-01-01</th>
-                            </tr>
-                            <tr>
-                                <th scope="col" class="btn date-drawer">2021-01-02</th>
-                            </tr>
-                        </thead>
-                    </table>                       
-                </ul>
-                <br>
-                <nav aria-label="PageNav">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item">
-                            <a class="page-link page" href="#" aria-label="Previous">
-                                <i class="bi bi-chevron-left"></i>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link page" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link page" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link page" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link page" href="#">N</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link page" href="#" aria-label="Next">
-                                <span aria-hidden="true">
-                                    <i class="bi bi-chevron-right"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+
+                <div id ="hiddenDate" hidden>{{DDate}}</div>
+                <div id ="hiddenAcc" hidden>{{ACCType}}</div>
+                <div id ="hiddenSes" hidden>{{Session}}</div>
+
+                <form id = "THEDATEFORM" method="post" action="">
+                     <div id="THEDATE"> </div>
+                        <button id="prevDatebtn" form="THEDATEFORM" class="btn btn-outline-primary">
+                            <i class="bi bi-caret-left-fill"></i>
+                        </button> {{DDate}} 
+                        <button id="nextDatebtn" form="THEDATEFORM" class="btn btn-outline-primary">
+                            <i class="bi bi-caret-right-fill"></i>
+                        </button> 
+                    </form>               
+
             </div>
+
+        <script>
+            $("#nextDatebtn").click((event) => {
+                var DDate = $('#hiddenDate').text()
+                var ACCType = $('#hiddenAcc').text()
+                var Session = $('#hiddenSes').text()
+                var newDate = new Date(DDate)
+                newDate.setDate(newDate.getDate() + 1) 
+                DDate = newDate.toISOString().split('T')[0];
+
+                document.getElementById("THEDATEFORM").setAttribute("action", "/newLog/" + ACCType + "/" + Session + "/" + DDate)
+                document.getElementById("THEDATEFORM").submit()
+            });
+
+            $("#prevDatebtn").click((event) => {
+                var DDate = $('#hiddenDate').text()
+                var ACCType = $('#hiddenAcc').text() 
+                var Session = $('#hiddenSes').text()
+                var newDate = new Date(DDate)
+                newDate.setDate(newDate.getDate() - 1) 
+                var LastDate = newDate.toISOString().split('T')[0];
+    
+                document.getElementById("THEDATEFORM").setAttribute("action", "/newLog/" + ACCType + "/" + Session + "/" + LastDate)
+                document.getElementById("THEDATEFORM").submit()
+            });
+        </script>
+                  
             <div class="col-sm-10">
                 <h4>
-                    <small> DAILY REPORT (YYYY/MM/DD) </small>
+                    <small> DAILY REPORT {{DDate}} </small>
                 </h4>
                 <div class="col-md-12">
                     <table class="table text-center table-striped">

@@ -9,7 +9,8 @@ const viewDateController = require('../controllers/viewDateController.js');
 const accountsController = require('../controllers/accountsController.js');
 const sessionController = require('../controllers/sessionController.js')
 const updateController = require('../controllers/updateController.js')
-const logController = require('../controllers/logController.js')
+const logController = require('../controllers/logController.js');
+const viewLogController = require('../controllers/viewLogController.js');
 const app = express();
 app.set('views', path.join(__dirname, '../views'))
 
@@ -23,13 +24,14 @@ app.get('/delete', saleController.deleteEntry);
 app.post('/edit', editPriceController.changePrice);
 
 app.get('/log/:ACCType/:Session/:DDate', logController.getLogs); 
-app.post('/log/:ACCType/:Session/:DDate', );
+app.post('/log/:ACCType/:Session/:DDate', logController.updateLogs);
 
 app.get('/deleteBal', balancesController.deleteBalance);
 app.get('/balances/:ACCType/:Session/:DDate', balancesController.getBalances); 
 app.post('/balances/:ACCType/:Session/:DDate', balancesController.payBalances);
 
 app.post('/new/:ACCType/:Session/:DDate', viewDateController.newDate)
+app.post('/newLog/:ACCType/:Session/:DDate', viewLogController.newDate)
 
 app.get('/inventory/:ACCType/:Session/:DDate', inventoryController.getInventory);
 app.post('/inventory/:ACCType/:Session/:DDate', inventoryController.setInventory);
