@@ -373,9 +373,10 @@
             })
             $('.bi.bi-trash').click(function(event) {
             	var entry = event.currentTarget.parentElement.parentElement.children[1].value  
-				console.log(entry)
+				document.getElementById("theID").value = entry
+				console.log(document.getElementById("theID").value)
                 $("#deleteAccConfirm").click(function() {
-                  $.post("/delAccount", {ID : entry},  function(result) {
+                  $.post("/delAccount", {ID : document.getElementById("theID").value},  function(result) {
                      event.currentTarget.parentElement.parentElement.parentElement.remove() 
                      window.location.reload()
                   })
@@ -383,13 +384,15 @@
             })
 			$('.btn.btn-outline-danger.mt-2').click(function(event) {
             	var entry = event.currentTarget.parentElement.children[1].value  
-				console.log(entry)
+				document.getElementById("theID").value = entry
+				console.log(document.getElementById("theID").value)
                 $("#deleteAccConfirm").click(function() {
-                  $.post("/delAccount", {ID : entry},  function(result) {
+                  $.post("/delAccount", {ID : document.getElementById("theID").value},  function(result) {
                      event.currentTarget.parentElement.parentElement.remove() 
                      window.location.reload()
                   })
                 })
+
             })
             $('.btn.btn-outline-primary.confirm').click(function(event) {
                 var entry = event.currentTarget.children[0].value	
