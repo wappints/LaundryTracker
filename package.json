@@ -1,11 +1,29 @@
 {
-  "name": "julian",
+  "name": "laundrytracker",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "win": {
+      "target": [
+        "zip",
+        "portable"
+      ],
+      "icon": "details/logo.ico"
+    },
+    "portable": {
+      "artifactName": "LaundryTracker.exe"
+    },
+    "directories": {
+      "buildResources": "details",
+      "output": "release"
+    }
   },
   "author": "",
   "license": "ISC",
@@ -15,12 +33,12 @@
     "bson": "^4.6.0",
     "connect-mongo": "^4.6.0",
     "dotenv": "^10.0.0",
-    "electron": "^16.0.5",
     "electron-log": "^4.4.3",
     "express": "^4.17.2",
     "express-handlebars": "^6.0.2",
     "express-session": "^1.17.2",
     "express-validator": "^6.14.0",
+    "fs-extra": "^8.1.0",
     "hbs": "^4.2.0",
     "hbs-helpers": "^1.0.3",
     "jquery": "^3.6.0",
@@ -30,6 +48,10 @@
     "ngx-indexed-db": "^9.4.2",
     "util.promisify": "^1.1.1",
     "zangodb": "^1.0.8"
+  },
+  "devDependencies": {
+    "electron": "^16.0.5",
+    "electron-builder": "^22.14.5"
   },
   "repository": {
     "type": "git",
