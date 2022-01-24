@@ -6,10 +6,8 @@ const fse = require('fs-extra')
 const appPath = app.getAppPath()
 const dotenv = require('dotenv')
 
+
 let logPath = 'logs'
-
-
-
 
 if (process.env.PORTABLE_EXECUTABLE_DIR !== undefined) {
    logPath = path.join(process.env.PORTABLE_EXECUTABLE_DIR, '/logs')
@@ -36,20 +34,6 @@ process.on('uncaughtException', function (error) {
 })
 
 require('./app.js');
-//This is the OG createWindow()
-
-// function createWindow() {
-//    const win = new BrowserWindow({        webPreferences: {
-//       nodeIntegration: true}, width: 1920, height: 1080})
-//    win.loadURL(url.format ({
-//       pathname: path.join(__dirname, 'login.html'),
-//       protocol: 'file:',
-//       slashes: true
-//    }), {})
-   
-// }
-
-//This is the test createWindow()
 
 let win 
 function createWindow(){
@@ -59,7 +43,7 @@ function createWindow(){
       minWidth:1307,
       minHeight:442,
       webPreferences: {
-        // devTools: false,
+        devTools: false,
       },
    })
    win.loadURL('http://' + hostname + ':' + port)
@@ -71,7 +55,10 @@ function createWindow(){
 }
 
 app.on('ready', createWindow)
-
+app.on('window-all-closed', () => {
+    app.quit()
+  
+})
 app.on('activate', function () {
    if (win === null) {
      createWindow()
