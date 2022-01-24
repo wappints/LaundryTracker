@@ -141,13 +141,15 @@ const saleController = {
 
         var tokenDefault = 0;
         var currentDate = new Date();
-        currentDate.setHours(currentDate.getHours() + 8);
+        currentDate.setHours(currentDate.getHours() );
         var dateForBalance = currentDate
         var hour = currentDate.getHours()
         var minutes = currentDate.getMinutes()
         var seconds = currentDate.getSeconds()
-        var time = hour + "-" + minutes + "-" + seconds
+        var time = hour + ":" + minutes + ":" + seconds
         dateForBalance = dateForBalance.toISOString().split('T')[0]
+
+        console.log("curent date = " + currentDate);
 
         var ObjectID = require('bson').ObjectID;
         var id  = new ObjectID();
@@ -188,8 +190,8 @@ const saleController = {
                     })
                 }
                 var EditLog = [ACCType + " " + Session + " added financial entry for " + Name + " "];
-                var Handler = [ACCType + " " + Session + " | " + time + " to CURRENT "] //7 letters remove then append END OF TIME
-                //console.log("time console log = " + time)
+                var Handler = [ACCType + " " + Session + " | " + time ]
+                console.log("time console log = " + time)
                 docs3 = {
                     LogID : id,
                     Name : Name,
