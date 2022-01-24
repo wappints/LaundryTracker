@@ -58,6 +58,9 @@ function createWindow(){
       height: 1080,    
       minWidth:1307,
       minHeight:442,
+      webPreferences: {
+        // devTools: false,
+      },
    })
    win.loadURL('http://' + hostname + ':' + port)
    win.on('closed', () => {
