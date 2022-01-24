@@ -2421,3 +2421,9 @@ node_modules/node-fetch/lib/index.js
 node_modules/node-fetch/lib/index.es.js
 node_modules/electron/dist/debug.log
 node_modules/.package-lock.json
+node_modules/.package-lock.json
+node_modules/electron/dist/debug.log
+node_modules/node-fetch/lib/index.es.js
+node_modules/node-fetch/lib/index.js
+node_modules/node-fetch/lib/index.mjs
+node_modules/node-fetch/package.json
