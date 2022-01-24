@@ -16,8 +16,27 @@ const logController = {
         var currentDate = new Date()
         currentDate.setHours(currentDate.getHours() + 8);
         var formattedDate = currentDate.toISOString().split('T')[0];
+        var DDate = req.query.DDate
 
-        db.findMany(Log, {}, {}, function(result){
+        if (DDate == null)
+        DDate = req.params.DDate
+
+       if (DDate == null)
+        DDate = req.body.DDate
+
+      var typeOfAcc = req.params.ACCType
+
+       if (typeOfAcc == null)
+        typeOfAcc = req.body.ACCType
+      var currentDate = new Date(DDate)
+      var formattedDate = currentDate.toISOString().split('T')[0];
+
+      var start = formattedDate + "T00:00:00.000Z"
+      var end = formattedDate + "T23:59:59.999Z"
+
+     start = new Date(start).toISOString()
+      end = new Date(end).toISOString()
+        db.findMany(Log, {DDate : {$gte : start, $lte : end}}, {}, function(result){
             var obj = {}
             details = []
             for (var i of result) {
@@ -56,7 +75,7 @@ const logController = {
 
         console.log(endHandler)
         db.updateOne(Log, {Handler: endHandler})
-
+        res.redirect("../../../log/" + ACCType + "/" + Session + "/" + formattedDate);
         
     }
 }
