@@ -145,6 +145,9 @@ const saleController = {
         var dateForBalance = currentDate
         var hour = currentDate.getHours()
         var minutes = currentDate.getMinutes()
+        if(minutes < 10){
+            minutes = ("0"+minutes);
+        }
         var seconds = currentDate.getSeconds()
         var time = hour + ":" + minutes + ":" + seconds
         dateForBalance = dateForBalance.toISOString().split('T')[0]
