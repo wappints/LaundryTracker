@@ -25,43 +25,50 @@ const balancesController = {
     },
     payBalances : function(req,res)
     {
-        var BalanceID = req.body.BalanceID
-        var Name = req.body.Name
-        var PhoneNum = req.body.PhoneNum
-        var computation = req.body.computation
-        var Payment = req.body.Payment
-        if (computation == 0) 
-            db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){})
-        else 
-            db.updateOne(Balances, {BalanceID : BalanceID}, {Balance : computation}, function(result) {})
-            
-        var ObjectID = require('bson').ObjectID;
-        var id  = new ObjectID();
-        var BALid = new ObjectID(BalanceID);
-        var currentDate = new Date()
-        currentDate.setHours(currentDate.getHours() + 8);
-        var formattedDate = currentDate.toISOString().split('T')[0];
-        var docs = {
-            _id : id,
-            BalanceID : BALid,
-            Name : Name,
-            PhoneNum : PhoneNum,
-            DDate : formattedDate,
-            AmountPaid : Payment,
-            Balance : -Payment,
+        if (req) {
+            var BalanceID = req.body.BalanceID
+            var Name = req.body.Name
+            var PhoneNum = req.body.PhoneNum
+            var computation = req.body.computation
+            var Payment = req.body.Payment
+            if (computation == 0) 
+                db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){})
+            else 
+                db.updateOne(Balances, {BalanceID : BalanceID}, {Balance : computation}, function(result) {})
+                
+            var ObjectID = require('bson').ObjectID;
+            var id  = new ObjectID();
+            var BALid = new ObjectID(BalanceID);
+            var currentDate = new Date()
+            currentDate.setHours(currentDate.getHours() + 8);
+            var formattedDate = currentDate.toISOString().split('T')[0];
+            var docs = {
+                _id : id,
+                BalanceID : BALid,
+                Name : Name,
+                PhoneNum : PhoneNum,
+                DDate : formattedDate,
+                AmountPaid : Payment,
+                Balance : -Payment,
+            }
+            db.insertOne(Sale, docs, function(result){})
+            res.redirect("back")
         }
-        db.insertOne(Sale, docs, function(result){})
-        res.redirect("back")
     },
     deleteBalance : function(req,res)
     {
         var BalanceID = req.query.card
-        db.deleteOne(Sale, {_id : BalanceID}, function(result){
-            db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){
-                db.deleteMany(Sale, {BalanceID : BalanceID}, function (result) {
-                })
+        if (BalanceID != null) {
+            db.deleteOne(Sale, {_id : BalanceID}, function(result){
+                if (result != null) {
+                    db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){
+                        if (result != null) {
+                            db.deleteMany(Sale, {BalanceID : BalanceID}, function (result) {})
+                        }
+                    })
+                }
             })
-        })
+        }
     }
 }
 module.exports = balancesController;
