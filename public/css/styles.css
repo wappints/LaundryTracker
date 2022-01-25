@@ -37,8 +37,17 @@ input[type=number] {
 }
 html {
   min-height: 442;
-  min-width: 1308;
-  min-zoom: 115%;
-  zoom: 115%;
-  max-zoom: 130%;
+  min-width: 1500;
+  min-zoom: 105%;
+  zoom: 105%;
 }
+
+body {
+  min-height: 442;
+  min-width: 1500;
+  min-zoom: 105%;
+  zoom: 105%;
+}
+
+
+
