@@ -45,6 +45,7 @@ function createWindow(){
       webPreferences: {
         devTools: false,
       },
+      icon: __dirname + '/details/logo.ico',
    })
    win.loadURL('http://' + hostname + ':' + port)
    win.on('closed', () => {
