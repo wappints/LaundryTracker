@@ -88,10 +88,12 @@
                 });
                 }
             $('.btn.btn-outline-danger').click((event) => { 
-                var card = event.currentTarget.parentElement.parentElement.querySelector("#BAL_ID").innerHTML
-                $.get('/deleteBal', {card : card}, function (result) {});
-                $(event.currentTarget.parentElement.parentElement).remove();
-                document.location.reload()
+                
+                    var card = event.currentTarget.parentElement.parentElement.querySelector("#BAL_ID").innerHTML
+                    $.get('/deleteBal', {card : card}, function (result) {});
+                    //$(event.currentTarget.parentElement.parentElement).remove();
+                    document.location.reload()
+
             })
             </script>
             
