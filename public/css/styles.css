@@ -37,16 +37,19 @@ input[type=number] {
 }
 html {
   min-height: 442;
-  min-width: 1520;
-  min-zoom: 105%;
-  zoom: 105%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  overflow-x:auto
 }
 
 body {
   min-height: 442;
-  min-width: 1520;
-  min-zoom: 105%;
-  zoom: 105%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  overflow-x: auto
+
 }
 
 
