@@ -172,20 +172,25 @@
                     		var name = $("#adminNameInput").val()
 							var pass = $("#adminPassInput").val()
 
-							if (pass == null || pass == "")
-								pass = $("#adminPass").val()
-	
-							console.log(name)
-							console.log(pass)
+
 							var ACCType = $("#ULTIMATEhiddenacc").text()
 							var DDate = $("#ULTIMATEhiddendate").text()
 							var Session = $("#ULTIMATEhiddenses").text()
 							var adminID = $("#adminID").text()
 							document.getElementById("ERROREMPTY3").innerText = ""
-							if (name === "" && pass === "")
+							console.log(name)
+							console.log(pass)
+							if ((name === "" || name === null) && (pass === "" || pass === null))
+							{
 								document.getElementById("ERROREMPTY3").innerText = "Atleast 1 field must have input"
+								console.log("TRIGGER")
+							}
+								
 							else {
-							document.getElementById("EDITADMINLOADER").hidden = false
+								document.getElementById("EDITADMINLOADER").hidden = false
+								
+							if (pass == null || pass == "")
+								pass = $("#adminPass").val()
 									$.ajax({
 										url: document.location.url,
 										method: "POST",
