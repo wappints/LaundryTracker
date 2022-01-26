@@ -171,6 +171,12 @@
                   		$("#adminConfirmBtn").click((event) => {
                     		var name = $("#adminNameInput").val()
 							var pass = $("#adminPassInput").val()
+
+							if (pass == null || pass == "")
+								pass = $("#adminPass").val()
+	
+							console.log(name)
+							console.log(pass)
 							var ACCType = $("#ULTIMATEhiddenacc").text()
 							var DDate = $("#ULTIMATEhiddendate").text()
 							var Session = $("#ULTIMATEhiddenses").text()
@@ -197,6 +203,7 @@
 										document.getElementById("ERROREMPTY3").innerText = "Employee already exists!"		
 										}
 									else if (name != ""){
+											console.log(pass)
 											document.getElementById("THESESSIONFORM").setAttribute("action", "/session/" + ACCType + "/" + name + "/" + pass + "/" + DDate)
 											document.getElementById("THESESSIONFORM").submit() 
 									}
