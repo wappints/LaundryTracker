@@ -36,7 +36,18 @@ const accountsController = {
     updateAccounts : function (req,res) {
         var EMPName = req.body.EMPName
         var EMPPass = req.body.EMPPass
-        
+        if (EMPName != null && EMPName != undefined && EMPName != "")
+        {
+            EMPName = EMPName.toLowerCase()
+            EMPName = EMPName.trim()
+            EMPName = EMPName.replace(/\s\s+/g, ' ')
+            names = EMPName.split(" ")
+            for (let i = 0; i < names.length; i++) {
+                names[i] = names[i][0].toUpperCase() + names[i].substr(1);
+            }
+            EMPName = names.join(" ")
+            EMPName = EMPName.trim()
+        }
         console.log(EMPName)
         console.log(EMPPass)
         if (EMPName != "" || EMPPass != "" || EMPName != null || EMPPass != null)
