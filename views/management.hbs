@@ -62,7 +62,7 @@
 							document.getElementById("ERROREMPTY").innerText = "Both fields must have input!"
 						else {
 							document.getElementById("ADDEMPLOYEELOADER").hidden = false
-								$.ajax({
+								var y = $.ajax({
 								url: "/addAccount",
 								method: "POST",
 								data : {Name : Name, Pass : Pass},
@@ -74,10 +74,14 @@
 								},
 								});
 							
-							function WaitItOut(){							
+							function WaitItOut(){	
+
 								document.getElementById("ADDEMPLOYEELOADER").hidden = true
 								if (passw) 
-									document.getElementById("ERROREMPTY").innerText = "Employee already exists!"
+									{
+										document.getElementById("ERROREMPTY").innerText = "Employee already exists!"
+										y.abort()
+										}
 								else
 									document.location.reload()
 
@@ -195,7 +199,7 @@
 							if (pass === null || pass === "")
 								pass = $("#adminPass").val()
 
-									$.ajax({
+									var y = $.ajax({
 										url: document.location.url,
 										method: "POST",
 										data : {EMPName : name, EMPPass : pass, ID : adminID},
@@ -213,6 +217,7 @@
 									if (passw) {
 										document.getElementById("ERROREMPTY3").innerText = "Employee already exists!"		
 										document.getElementById("adminConfirmBtn").disabled = false
+										y.abort()
 										}
 									else if (name != ""){
 											console.log(pass)
@@ -433,7 +438,7 @@
 					}
 					else {
 						var pass = {num : 1}
-						$.ajax({
+						var y = $.ajax({
 							url: document.location.url,
 							method: "POST",
 							data : {ID : entry, EMPName : Name, EMPPass : Pass},
@@ -447,10 +452,12 @@
 						document.getElementById("ERROREMPTY2").innerText = ""	
 						document.getElementById("EDITEMPLOYEELOADER").hidden = false
 						function WaitItOut() {
+							
 							document.getElementById("ERROREMPTY2").innerText = ""
 							document.getElementById("EDITEMPLOYEELOADER").hidden = true
 							if (pass) {
 								document.getElementById("ERROREMPTY2").innerText = "Employee already exists!"
+								y.abort()
 							}
 								
 							//$.post("/management" + "/" + ACCType + "/" + Session + "/" + DDate , {},  function(result){})
@@ -477,7 +484,7 @@
 					}
 					else {
 						var pass = {num : 1}
-						$.ajax({
+						var y = $.ajax({
 							url: document.location.url,
 							method: "POST",
 							data : {ID : entry, EMPName : Name, EMPPass : Pass},
@@ -494,8 +501,10 @@
 							document.getElementById("EDITEMPLOYEELOADER").hidden = true
 							if (pass)
 								{
+
 									document.getElementById("ERROREMPTY2").innerText = "Employee already exists!"
 									document.getElementById("confirmeditemployee").disabled = false
+									y.abort()
 								}
 							//$.post("/management" + "/" + ACCType + "/" + Session + "/" + DDate , {},  function(result){})
 						}

@@ -90,6 +90,8 @@ const accountsController = {
                     })
             }
         }) 
+        else 
+            res.send('back');
     },
     deleteAccount : function (req,res) {
         var ID = req.body.ID
