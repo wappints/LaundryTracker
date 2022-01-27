@@ -180,13 +180,14 @@
 							document.getElementById("ERROREMPTY3").innerText = ""
 							console.log(name)
 							console.log(pass)
-							if ((name === "" || name === null) && (pass === "" || pass === null))
+							if ((name === "" || name === null || name.indexOf(' ') >= 0) && (pass === "" || pass === null || pass.indexOf(' ') >= 0))
 							{
 								document.getElementById("ERROREMPTY3").innerText = "Atleast 1 field must have input"
 								console.log("TRIGGER")
 							}
 								
 							else {
+								document.getElementById("ERROREMPTY3").innerText = ""
 								document.getElementById("EDITADMINLOADER").hidden = false
 								
 							if (pass == null || pass == "")
@@ -366,6 +367,11 @@
 				if(!(inputValue >= 65 && inputValue <= 122) && (inputValue != 32 && inputValue != 0 && inputValue != 8)) 
 					event.preventDefault(); 
 				});
+			$(".employeePassInput").keydown(function(event) {
+				var inputValue = event.which;
+				if(!(inputValue != 32)) 
+					event.preventDefault(); 
+				});
             $('.form-check-input').change(function() {
                 var entry = event.currentTarget.parentElement.children[2]
 				console.log(entry)
@@ -415,7 +421,7 @@
                 $(".btn.btn-success.confirm.now").click(function(event) {
 					var Name = event.currentTarget.parentElement.parentElement.children[1].children[1].value
 					var Pass = event.currentTarget.parentElement.parentElement.children[2].children[1].value		
-					if (Name === "" && Pass === "")	{
+						if ((Name === "" || Name == null || Name.indexOf(' ') >= 0) && (Pass === "" || Pass === null || Pass.indexOf(' ') >= 0))	{
 						document.getElementById("ERROREMPTY2").innerText = "Atleast 1 field must have input"
 					}
 					else {
@@ -433,6 +439,7 @@
 						document.getElementById("ERROREMPTY2").innerText = ""	
 						document.getElementById("EDITEMPLOYEELOADER").hidden = false
 						function WaitItOut() {
+							document.getElementById("ERROREMPTY2").innerText = ""
 							document.getElementById("EDITEMPLOYEELOADER").hidden = true
 							if (pass)
 								document.getElementById("ERROREMPTY2").innerText = "Employee already exists!"

@@ -39,7 +39,7 @@ const accountsController = {
         
         console.log(EMPName)
         console.log(EMPPass)
-        if (EMPName != "" || EMPPass != "")
+        if (EMPName != "" || EMPPass != "" || EMPName != null || EMPPass != null)
             db.findOne(Account, {EMPName : EMPName}, {}, function(result) {
                 console.log(result)
                 if (result === null) {

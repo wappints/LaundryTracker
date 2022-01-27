@@ -43,7 +43,7 @@ function createWindow(){
       minWidth:1510,
       minHeight:442,
       webPreferences: {
-        devTools: false,
+        devTools: true,
       },
       icon: __dirname + '/details/logo.ico',
    })
