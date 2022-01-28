@@ -114,6 +114,7 @@ const saleController = {
         var Balance = req.body.ADDBalanceR;
         var Session = req.params.Session;
         var ACCType = req.params.ACCType;
+
         if (Name === null | Name == "")
             Name = "No Name"
         if (isNaN(Phone) || Phone === null || Phone === "")
@@ -141,9 +142,15 @@ const saleController = {
 
         var tokenDefault = 0;
         var currentDate = new Date();
-        currentDate.setHours(currentDate.getHours() );
+
+       
+        currentDate.setHours(currentDate.getHours() +8 );
+
         var dateForBalance = currentDate
         var hour = currentDate.getHours()
+        hour=hour-8;
+        if(hour<0)
+            hour=hour+24 
         var minutes = currentDate.getMinutes()
         if(minutes < 10){
             minutes = ("0"+minutes);
@@ -151,8 +158,6 @@ const saleController = {
         var seconds = currentDate.getSeconds()
         var time = hour + ":" + minutes + ":" + seconds
         dateForBalance = dateForBalance.toISOString().split('T')[0]
-
-        console.log("curent date = " + currentDate);
 
         var ObjectID = require('bson').ObjectID;
         var id  = new ObjectID();
@@ -192,9 +197,9 @@ const saleController = {
                             db.insertOne(Balances, docs2, function(result){})
                     })
                 }
-                var EditLog = [ACCType + " " + Session + " added financial entry for " + Name + " "];
-                var Handler = [ACCType + " " + Session + " | " + time ]
-                console.log("time console log = " + time)
+                var EditLog = [ACCType + " " + Session + " added this financial entry"];
+                var Handler = [ time ]
+
                 docs3 = {
                     LogID : id,
                     Name : Name,
@@ -214,6 +219,24 @@ const saleController = {
     deleteEntry : function (req, res) {
         var id = req.query._id
         var neww = req.query.Balance  
+        var Session = req.params.Session;
+        var ACCType = req.params.ACCType;
+
+        var currentDate = new Date();
+        currentDate.setHours(currentDate.getHours() +8 );
+        var hour = currentDate.getHours() 
+        hour=hour-8;
+        if(hour<0)
+            hour=hour+24  
+        var minutes = currentDate.getMinutes()
+        if(minutes < 10){
+            minutes = ("0"+minutes);
+        }
+        var seconds = currentDate.getSeconds()
+        if(seconds < 10){
+            seconds = ("0"+seconds);
+        }
+        var time = hour + ":" + minutes + ":" + seconds        
         db.findOne(Sale, {_id : id}, {}, function(result) {
             if (result != null) {
                 if (result.Balance < 0) {
@@ -229,6 +252,8 @@ const saleController = {
                                 if (result) {
                                     var returnBal = parseInt(result.Balance) + parseInt(neww)
                                     db.updateOne(Balances, {BalanceID : saleParentID}, {Balance : returnBal}, function(result){})
+
+                                    
                                 }  
                                 else {
                                     var docs2 = {
@@ -254,6 +279,21 @@ const saleController = {
                     })
                 }
             }
+
+            var EditLog = ACCType + " " + Session + " deleted this entry";
+            var Handler =  time 
+  
+            db.findOne(Log, {LogID:id}, {}, function(result){
+
+                var currentLog = result.EditLog
+                currentLog.push("\n" + EditLog)
+                db.updateOne(Log, {LogID:id}, {EditLog:currentLog}, function(result){})
+
+                var currentHandler = result.Handler
+                currentHandler.push("\n" + Handler)
+                db.updateOne(Log, {LogID:id}, {Handler:currentHandler}, function(result){})
+            })
+
         res.redirect("back")
         })
     }

@@ -58,26 +58,7 @@ const logController = {
         
     },
 
-    updateLogs : function (req,res) {
 
-        var Handler = req.body.Handler
-        var currentDate  = new Date()
-        currentDate.setHours(currentDate.getHours() + 8);
-        var hour = currentDate.getHours()
-        var minutes = currentDate.getMinutes()
-        var seconds = currentDate.getSeconds()
-        var time = hour + ":" + minutes + ":" + seconds
-
-        console.log(Handler)
-        console.log("time now = " + time)
-        
-        var endHandler = Handler.replace('CURRENT', time)
-
-        console.log(endHandler)
-        db.updateOne(Log, {Handler: endHandler})
-        res.redirect("../../../log/" + ACCType + "/" + Session + "/" + formattedDate);
-        
-    }
 }
 
 module.exports = logController;

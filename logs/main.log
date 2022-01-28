@@ -820,3 +820,150 @@ SyntaxError: missing ) after argument list
     at Module.require (node:internal/modules/cjs/loader:1012:19)
     at require (node:internal/modules/cjs/helpers:94:18)
     at Object.<anonymous> (C:\Users\YEOHAN\Desktop\CSSWENG\CSSWENGFinal-Group3\routes\routes.js:9:28)
+[2022-01-25 16:08:32.640] [error] Error: Route.post() requires a callback function but got a [object Undefined]
+    at Route.<computed> [as post] (C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\express\lib\router\route.js:202:15)
+    at Function.app.<computed> [as post] (C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\express\lib\application.js:482:19)
+    at Object.<anonymous> (C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\routes\routes.js:27:5)
+    at Module._compile (node:internal/modules/cjs/loader:1116:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1169:10)
+    at Module.load (node:internal/modules/cjs/loader:988:32)
+    at Module._load (node:internal/modules/cjs/loader:829:12)
+    at Function.c._load (node:electron/js2c/asar_bundle:5:13331)
+    at Module.require (node:internal/modules/cjs/loader:1012:19)
+    at require (node:internal/modules/cjs/helpers:94:18)
+[2022-01-25 16:09:19.249] [error] ReferenceError: ACCType is not defined
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:258:28
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-25 20:33:30.520] [error] ReferenceError: ACCType is not defined
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:258:28
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-25 20:35:17.611] [error] ReferenceError: Session is not defined
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:259:44
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-25 20:35:57.611] [error] ReferenceError: time is not defined
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:261:62
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-25 20:37:01.635] [error] ReferenceError: TotalPrice is not defined
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:278:30
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-25 20:43:36.999] [error] ReferenceError: TotalPrice is not defined
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:278:30
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-25 20:56:26.452] [error] ReferenceError: ACCType is not defined
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:258:28
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-25 21:20:33.961] [error] TypeError: currentLog.append is not a function
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:278:28
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+    at runNextTicks (node:internal/process/task_queues:65:3)
+    at processImmediate (node:internal/timers:437:9)
+[2022-01-25 21:33:17.233] [error] TypeError: callback is not a function
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:83:24
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-25 22:02:54.505] [error] TypeError: Cannot read properties of null (reading 'EditLog')
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:283:41
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-26 01:52:38.856] [error] TypeError: result is not iterable
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:42:27
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:69:30
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-26 11:47:07.069] [error] Error: Route.post() requires a callback function but got a [object Undefined]
+    at Route.<computed> [as post] (C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\express\lib\router\route.js:202:15)
+    at Function.app.<computed> [as post] (C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\express\lib\application.js:482:19)
+    at Object.<anonymous> (C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\routes\routes.js:27:5)
+    at Module._compile (node:internal/modules/cjs/loader:1116:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1169:10)
+    at Module.load (node:internal/modules/cjs/loader:988:32)
+    at Module._load (node:internal/modules/cjs/loader:829:12)
+    at Function.c._load (node:electron/js2c/asar_bundle:5:13331)
+    at Module.require (node:internal/modules/cjs/loader:1012:19)
+    at require (node:internal/modules/cjs/helpers:94:18)
+[2022-01-26 18:31:42.787] [error] C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:291
+            console.log("hour = " = hour)
+                        ^^^^^^^^^
+
+SyntaxError: Invalid left-hand side in assignment
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1038:15)
+    at Module._compile (node:internal/modules/cjs/loader:1072:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1169:10)
+    at Module.load (node:internal/modules/cjs/loader:988:32)
+    at Module._load (node:internal/modules/cjs/loader:829:12)
+    at Function.c._load (node:electron/js2c/asar_bundle:5:13331)
+    at Module.require (node:internal/modules/cjs/loader:1012:19)
+    at require (node:internal/modules/cjs/helpers:94:18)
+    at Object.<anonymous> (C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\routes\routes.js:4:24)
+[2022-01-26 19:11:03.710] [error] ReferenceError: time is not defined
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\updateController.js:110:65
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-27 00:19:25.999] [error] TypeError: Cannot read properties of null (reading 'EditLog')
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:280:41
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-27 00:44:04.007] [error] TypeError: Cannot read properties of null (reading 'EditLog')
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:280:41
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-27 11:10:09.674] [error] TypeError: Cannot read properties of undefined (reading 'push')
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\updateController.js:132:36
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-27 15:58:39.125] [error] ReferenceError: Editlog is not defined
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\updateController.js:127:25
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+    at runNextTicks (node:internal/process/task_queues:65:3)
+    at processImmediate (node:internal/timers:437:9)
+[2022-01-28 11:42:30.785] [error] ReferenceError: newName is not defined
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\updateController.js:185:49
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-28 11:47:50.053] [error] ReferenceError: newName is not defined
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\updateController.js:175:61
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+    at runNextTicks (node:internal/process/task_queues:65:3)
+    at processImmediate (node:internal/timers:437:9)
+[2022-01-28 11:54:53.598] [error] TypeError: Cannot read properties of null (reading 'EditLog')
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\updateController.js:166:57
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-28 11:55:38.656] [error] TypeError: Cannot read properties of null (reading 'EditLog')
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\updateController.js:169:57
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2022-01-28 11:56:16.215] [error] TypeError: Cannot read properties of null (reading 'EditLog')
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\controllers\saleController.js:288:41
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\models\db.js:57:20
+    at C:\Users\user\Documents\GitHub\CSSWENGFinal-Group3\node_modules\mongoose\lib\model.js:4945:18
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)

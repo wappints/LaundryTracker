@@ -485,7 +485,12 @@
                 <hr>
                 {{/if}}
             </tbody>
-            <script>     
+            <script>    
+
+                var DDate = $('#hiddenDate').text()
+                var ACCType = $('#hiddenAcc').text()
+                var Session = $('#hiddenSes').text()                 
+
                     $(document).ready(function() {
                         $("#NAMEField").keydown(function(event) {
                             var inputValue = event.which;
@@ -527,8 +532,10 @@
                         document.getElementById("WARNINGENTRY").innerText = "You deleted an entry that has a remaining balance! Succeeding related payments will be DELETED upon refresh."
                     else 
                         document.getElementById("WARNINGENTRY").innerText = ""
-                    $.get('/delete', {_id : entry, Balance : currentValue}, function (result) {});
+                    $.get('/delete/' + ACCType + '/' + Session + '/' + DDate  , {_id : entry, Balance : currentValue}, function (result) {});
                     
+                    
+
                     $(event.currentTarget.parentElement.parentElement).remove();
                     var a = b = c = d = e = f = g = h = i = j = k = 0
                     var numRows = document.getElementsByName("FinancialEntry").length 
@@ -652,7 +659,7 @@
                 remind.innerText = "Reminder: Press the ENTER Key in either Name or Phone fields to save their changes"
         })
 
-        $(".INPUTFIELD_EDITidentifiers.text-center").on("change paste cut keyup", function(event) { 
+        $(".INPUTFIELD_EDITidentifiers.text-center").on("change keyup", function(event) { 
             var BalanceCheck = parseInt(this.parentElement.parentElement.children[11].children[0].value)
              document.getElementById("WARNINGENTRY").innerText = ""
              var isChecked = document.getElementById("editboxcheck").checked

@@ -19,12 +19,11 @@ app.post('/login', systemController.postLogin);
  
 app.get('/home/:ACCType/:Session/:DDate', saleController.getEntries);  
 app.post('/home/:ACCType/:Session/:DDate', saleController.addEntry);
-app.get('/delete', saleController.deleteEntry);
+app.get('/delete/:ACCType/:Session/:DDate', saleController.deleteEntry);
 
 app.post('/edit', editPriceController.changePrice);
 
 app.get('/log/:ACCType/:Session/:DDate', logController.getLogs); 
-app.post('/log/:ACCType/:Session/:DDate', logController.updateLogs);
 
 app.get('/deleteBal', balancesController.deleteBalance);
 app.get('/balances/:ACCType/:Session/:DDate', balancesController.getBalances); 
