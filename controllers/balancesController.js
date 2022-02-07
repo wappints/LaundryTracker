@@ -74,7 +74,7 @@ const balancesController = {
                 Name : Name,
                 TotalPrice : computation,
                 AmountPaid : Payment,
-                Balance : -Payment,
+                Balance : computation-Payment,
                 TokenError : 0,
                 EditLog : EditLog,
                 Handler : Handler,
