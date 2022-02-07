@@ -2,6 +2,7 @@ const { request } = require('express');
 const db = require('../models/db.js');
 const Balances = require('../models/BalancesModel.js');
 const Sale = require('../models/SalesModel.js');
+const Log = require('../models/LogModel.js');
 const balancesController = {
     getBalances : function (req,res){
         var DDate = req.params.DDate
@@ -31,6 +32,8 @@ const balancesController = {
             var PhoneNum = req.body.PhoneNum
             var computation = req.body.computation
             var Payment = req.body.Payment
+            var ACCType = req.params.ACCType
+            var Session = req.params.Session
             if (computation == 0) 
                 db.deleteOne(Balances, {BalanceID : BalanceID}, function(result){})
             else 
@@ -40,6 +43,8 @@ const balancesController = {
             var id  = new ObjectID();
             var BALid = new ObjectID(BalanceID);
             var currentDate = new Date()
+            var temp = new Date()
+            temp.setHours(temp.getHours() + 8);
             currentDate.setHours(currentDate.getHours() + 8);
             var formattedDate = currentDate.toISOString().split('T')[0];
             var docs = {
@@ -52,6 +57,32 @@ const balancesController = {
                 Balance : -Payment,
             }
             db.insertOne(Sale, docs, function(result){})
+            var hour = temp.getHours()
+            hour=hour-8;
+            if(hour<0)
+                hour=hour+24 
+            var minutes = temp.getMinutes()
+            if(minutes < 10){
+                minutes = ("0"+minutes);
+            }
+            var seconds = temp.getSeconds()
+            var time = hour + ":" + minutes + ":" + seconds
+            var EditLog = [ACCType + " " + Session + " paid for a balance entry"];
+            var Handler = [ time ]
+            var docs3 = {
+                LogID : id,
+                Name : Name,
+                TotalPrice : computation,
+                AmountPaid : Payment,
+                Balance : -Payment,
+                TokenError : 0,
+                EditLog : EditLog,
+                Handler : Handler,
+                DDate : temp,
+            }
+            db.insertOne(Log, docs3, function(result){
+                console.log("I AM HERE")
+            })
             res.redirect("back")
         }
     },
