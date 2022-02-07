@@ -69,10 +69,11 @@ const balancesController = {
             var time = hour + ":" + minutes + ":" + seconds
             var EditLog = [ACCType + " " + Session + " paid for a balance entry"];
             var Handler = [ time ]
+            var tprice = parseInt(computation) + parseInt(Payment)
             var docs3 = {
                 LogID : id,
                 Name : Name,
-                TotalPrice : computation+payment,
+                TotalPrice : tprice,
                 AmountPaid : Payment,
                 Balance : computation,
                 TokenError : 0,
