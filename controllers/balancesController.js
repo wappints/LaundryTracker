@@ -72,9 +72,9 @@ const balancesController = {
             var docs3 = {
                 LogID : id,
                 Name : Name,
-                TotalPrice : computation,
+                TotalPrice : computation+payment,
                 AmountPaid : Payment,
-                Balance : computation-Payment,
+                Balance : computation,
                 TokenError : 0,
                 EditLog : EditLog,
                 Handler : Handler,
