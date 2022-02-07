@@ -58,7 +58,7 @@
                         </td>
                         {{#if_neq ../Session "Anonymous"}}
                         <td>
-                            <a class="btn btn-outline-danger ">
+                            <a class="btn btn-outline-danger " disabled>
                                 <i class="bi bi-trash" href="/deleteBal" data-toggle="modal" data-target="#DeleteAccountModal"> </i>
                             </a>
                         </td>
@@ -88,11 +88,26 @@
                 });
                 }
             $('.btn.btn-outline-danger').click((event) => { 
-                
+                    var ACCType = document.getElementById("HIDDENACCType").innerText
+                    var Session = document.getElementById("HIDDENDSesh").innerText
                     var card = event.currentTarget.parentElement.parentElement.querySelector("#BAL_ID").innerHTML
-                    $.get('/deleteBal', {card : card}, function (result) {});
+                   event.currentTarget.parentElement.parentElement.remove()
+                    $.get('/deleteBal', {card : card, Session : Session, ACCType : ACCType}, function (result) {
+                            
+                    });
+                    var elements = document.querySelectorAll('.btn.btn-outline-danger');
+                        for(var i = 0; i < elements.length; i++){
+                            var str = elements[i].innerHTML;
+                            elements[i].setAttribute("style", "pointer-events:none");
+                        }
+                    function WAR(){
+  
+                        document.location.reload()
+                    }
+                    setTimeout(WAR, 400)
+                    
                     //$(event.currentTarget.parentElement.parentElement).remove();
-                    document.location.reload()
+                    
 
             })
             </script>
