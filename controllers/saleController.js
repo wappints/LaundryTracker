@@ -100,6 +100,7 @@ const saleController = {
     },
     addEntry : function (req, res) {
         var Name = req.body.ADDName;
+        Name = Name.replace(/^\s+|\s+$/g, "").replace(/\s+/g, " ");;
         var Phone = req.body.ADDPhone;
         var DDate = req.params.DDate
         var TNW = req.body.ADDThinW;

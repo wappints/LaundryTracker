@@ -667,6 +667,8 @@
 
                 var id = this.parentElement.parentElement.children[0].children[0].value
                 var Name = this.parentElement.parentElement.children[1].children[0].value
+                Name = Name.replace(/^\s+|\s+$/g, "").replace(/\s+/g, " ");
+                                    
                 var TNWQty = parseInt(this.parentElement.parentElement.children[2].children[0].value)
                 var TNDQty = parseInt(this.parentElement.parentElement.children[3].children[0].value)
                 var TKWQty = parseInt(this.parentElement.parentElement.children[4].children[0].value)
@@ -802,6 +804,7 @@
                     obj["eventkey"] = "LIFE"
                     this.parentElement.parentElement.children[13].children[0].blur()
                     this.parentElement.parentElement.children[1].children[0].blur()
+                    this.parentElement.parentElement.children[1].children[0].value = Name
                     remind.innerText = ""
                     
                 }
@@ -811,6 +814,7 @@
                     obj["eventkey"] = "LIFE"
                     this.parentElement.parentElement.children[1].children[0].blur()
                     this.parentElement.parentElement.children[13].children[0].blur()
+                    this.parentElement.parentElement.children[1].children[0].value = Name
                     remind.innerText = ""
 
                 }
@@ -821,6 +825,8 @@
                     remind.innerText = ""
                     this.parentElement.parentElement.children[1].children[0].blur()
                     this.parentElement.parentElement.children[13].children[0].blur()
+                    this.parentElement.parentElement.children[1].children[0].value = Name
+
                 }
                 else {
                         obj["Name"] = Name
@@ -834,8 +840,10 @@
                     remind.innerText = ""
                 }
                     
-                else
+                else {
                     error.innerText = ""
+                }
+                    
                 $.post("/editEntry/" + ACCType + "/" + Session + "/" + DDate, obj, function(result){})
             }
             else {
