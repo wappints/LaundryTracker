@@ -152,11 +152,17 @@ const updateController = {
                     else if(docs.AmountPaid != result.AmountPaid)
                         EditLog = EditLog.concat("Amount Paid");
                     
-                    else if (docs.TokenError != result.TokenError)
-                        newToken = result.TokenError             
+                    else if (docs.TokenError != result.TokenError) {
+                        newToken = result.TokenError    
+                        EditLog = EditLog.concat("Token Error");
+                    }
+                                 
 
-                   else if(docs.Name != result.Name && pass1)
-                        newName = result.Name
+                   else if(docs.Name != result.Name && pass1) {
+                    EditLog = EditLog.concat("Name");
+                    newName = result.Name
+                   }
+                        
                                                         
                     else if(docs.PhoneNum != result.PhoneNum && pass2)
                          EditLog = EditLog.concat("Phone Number")               
