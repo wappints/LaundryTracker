@@ -1,7 +1,10 @@
 # CSSWENG Group3
+First Term Project | Junior Year | 
 
 ## Laundry Tracker 
 A MongoDB-based local software for the business _Dirty Treats_.
+
+Author/s: Yeohan Norona, Jihro Abendano
 
 
 ## Software Solution (From the SRS)
@@ -15,10 +18,8 @@ The specific objectives of the software are as follows:
 - To provide a facility for monitoring the number of laundry inventories;
 - To provide a facility for preventing any miscalculations and unjustified unbalances in the process.
 
-https://github.com/wappints/CSSWENG-G3-LaundryTracker/blob/main/details/logo.jpg
-First Term Project | Junior Year | 
+![alt text](https://github.com/wappints/CSSWENG-G3-LaundryTracker/blob/main/details/logo.jpg)
 
-Author/s: Yeohan Norona, Jihro Abendano
 
 
 
