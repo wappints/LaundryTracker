@@ -11,6 +11,11 @@ Author/s: Yeohan Norona, Jihro Abendano
 
 ## INSTALL MONGODB COMPASS BEFORE RUNNING THE SOFTWARE
 1. https://www.mongodb.com/try/download/community
+2. After installation, connect to the localhost.
+3. Create a database called _LaundryTracker_
+4. First collection will be named _System_, followed by two collections named _Inventory_ and _Account_
+5. Download the initial data of the software here: https://drive.google.com/drive/folders/1OS9EPJZyft3sGGZjHOUFq-NDb3ACPYMA?usp=sharing
+6. Import the JSON file to the collection respective to their name. (i.e. Import System.JSON to the collection _System_) 
 
 
 ## Instructions to create the executable file
