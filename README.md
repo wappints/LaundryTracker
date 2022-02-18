@@ -10,7 +10,7 @@ Author/s: Yeohan Norona, Jihro Abendano
 
 
 ## INSTALL MONGODB COMPASS BEFORE RUNNING THE SOFTWARE
-1. ![image](https://user-images.githubusercontent.com/59228576/154626799-995e4c33-0bba-4592-b5ab-942a0a8ab1f5.png)
+1. https://www.mongodb.com/try/download/community
 
 
 ## Instructions to create the executable file
