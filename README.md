@@ -6,6 +6,7 @@ A MongoDB-based local software for the business _Dirty Treats_.
 
 Author/s: Yeohan Norona, Jihro Abendano
 
+![alt text](https://github.com/wappints/CSSWENG-G3-LaundryTracker/blob/main/details/logo.jpg)
 
 ## Software Solution (From the SRS)
 The software aims to provide a tracker of financial resources of the laundry company such as their transaction entries, stock of inventories, and to prevent any loss of profit due to tedious, manual placements and calculations that led to unbalanced statements. 
@@ -18,7 +19,7 @@ The specific objectives of the software are as follows:
 - To provide a facility for monitoring the number of laundry inventories;
 - To provide a facility for preventing any miscalculations and unjustified unbalances in the process.
 
-![alt text](https://github.com/wappints/CSSWENG-G3-LaundryTracker/blob/main/details/logo.jpg)
+
 
 
 
