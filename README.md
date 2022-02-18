@@ -3,6 +3,7 @@ First Term Project | Junior Year |
 
 ## Laundry Tracker 
 ![alt text](https://github.com/wappints/CSSWENG-G3-LaundryTracker/blob/main/details/logo.jpg)
+
 A MongoDB-based local software for the business _Dirty Treats_.
 
 Author/s: Yeohan Norona, Jihro Abendano
