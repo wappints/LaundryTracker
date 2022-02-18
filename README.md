@@ -3,6 +3,19 @@
 ## Laundry Tracker 
 A MongoDB-based local software for the business _Dirty Treats_.
 
+
+## Software Solution (From the SRS)
+The software aims to provide a tracker of financial resources of the laundry company such as their transaction entries, stock of inventories, and to prevent any loss of profit due to tedious, manual placements and calculations that led to unbalanced statements. 
+
+The specific objectives of the software are as follows:
+
+- To provide a facility for tracking the flow of money into the business;
+- To provide a facility for automation of calculations for certain financial categories;
+- To provide a facility for current assets, liabilities, and expenses of the business;
+- To provide a facility for monitoring the number of laundry inventories;
+- To provide a facility for preventing any miscalculations and unjustified unbalances in the process.
+
+https://github.com/wappints/CSSWENG-G3-LaundryTracker/blob/main/details/logo.jpg
 First Term Project | Junior Year | 
 
 Author/s: Yeohan Norona, Jihro Abendano
@@ -31,4 +44,3 @@ Author/s: Yeohan Norona, Jihro Abendano
 
 1. Open your IDE's command prompt
 2. run `npm start` or `electron main.js`
-
