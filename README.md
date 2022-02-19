@@ -28,7 +28,7 @@ The specific objectives of the software are as follows:
 
 
 ## INSTALL MONGODB COMPASS BEFORE RUNNING THE SOFTWARE
-1. https://www.mongodb.com/try/download/community
+1. Download MongoDB Compass from this link for database of the software: https://www.mongodb.com/try/download/community
 2. After installation, connect to the localhost.
 3. Create a database called _LaundryTracker_
 4. First collection will be named _System_, followed by two collections named _Inventory_ and _Account_
